@@ -1,4 +1,4 @@
-package Mod.TileEntity;
+package Mod.TileEntityRenderer;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -11,15 +11,14 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import org.lwjgl.opengl.GL11;
 
-import Mod.Render.ShelfModel;
 import Mod.Render.TrashBinModel;
 
-public class TileEntityShelfRender extends TileEntitySpecialRenderer {
+public class TileEntityBinRender extends TileEntitySpecialRenderer {
     
-    private final ShelfModel model;
+    private final TrashBinModel model;
    
-    public TileEntityShelfRender() {
-            this.model = new ShelfModel();
+    public TileEntityBinRender() {
+            this.model = new TrashBinModel();
     }
    
     private void adjustRotatePivotViaMeta(World world, int x, int y, int z) {
@@ -35,7 +34,7 @@ public class TileEntityShelfRender extends TileEntitySpecialRenderer {
             GL11.glTranslatef((float) x + 0.5F, (float) y + 1.5F, (float) z + 0.5F);
             
             
-            func_110628_a(new ResourceLocation("textures/blocks/planks_oak.png"));
+            func_110628_a(new ResourceLocation("miscitemsandblocks" , "textures/models/BinModel.png"));
             
             
          GL11.glPushMatrix();

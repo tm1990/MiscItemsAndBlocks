@@ -16,6 +16,7 @@ public class ModBlocks {
 	public static Block XpStorage;
 	public static Block Bin;
 	public static Block Shelf;
+	public static Block Trap;
 	
 	public static void Init(){
 		
@@ -27,6 +28,11 @@ public class ModBlocks {
 		
 		Shelf = new ModBlockShelf(Config.ShelfId);
 		Register(Shelf, "Shelf");
+		
+		Trap = new ModBlockTrap(Config.TrapId);
+		Register(Trap, "Disarm Trap");
+		
+		
 		
 		
 		

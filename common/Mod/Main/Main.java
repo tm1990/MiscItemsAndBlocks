@@ -24,6 +24,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import Mod.Block.ModBlocks;
 import Mod.Commands.ExpExtractCommand;
+import Mod.Commands.GetXpCommand;
 import Mod.Crafting.Crafting;
 import Mod.Gui.GuiHandler;
 import Mod.Items.ModItems;
@@ -33,6 +34,7 @@ import Mod.Proxies.ClientProxy;
 import Mod.Proxies.ServerProxy;
 import Mod.TileEntity.TileEntityBin;
 import Mod.TileEntity.TileEntityShelf;
+import Mod.TileEntity.TileEntityTrap;
 import Mod.TileEntity.TileEntityXpStorage;
 
 
@@ -40,7 +42,6 @@ import Mod.TileEntity.TileEntityXpStorage;
 @NetworkMod(clientSideRequired=true, serverSideRequired=false, channels = {"MiscItems"}, packetHandler = PacketHandler.class)
 public class Main {
 
-	
 	public static boolean IsBlastproofLoaded = false;
 	
     @Instance
@@ -78,6 +79,7 @@ public class Main {
         GameRegistry.registerTileEntity(TileEntityXpStorage.class, "XpStorage");
         GameRegistry.registerTileEntity(TileEntityBin.class, "TileEntityBin");
         GameRegistry.registerTileEntity(TileEntityShelf.class, "TileEntityShelf");
+        GameRegistry.registerTileEntity(TileEntityTrap.class, "TileEntityTrap");
         
 
         NetworkRegistry.instance().registerGuiHandler(this, new GuiHandler());
@@ -110,6 +112,7 @@ public class Main {
 	  public void serverLoad(FMLServerStartingEvent event)
 	  {
 	    event.registerServerCommand(new ExpExtractCommand());
+	    event.registerServerCommand(new GetXpCommand());
 	  }
 	
 	

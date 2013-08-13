@@ -2,7 +2,9 @@ package Mod.Render;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
+import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.item.Item;
 
 //Date: 13.08.2013 01:29:13
 //Template version 1.1
@@ -24,6 +26,8 @@ public ShelfModel()
 {
  textureWidth = 64;
  textureHeight = 64;
+ 
+
  
  Shape2 = new ModelRenderer(this, 0, 0);
  Shape2.addBox(0F, 0F, 0F, 16, 9, 1);
@@ -55,6 +59,7 @@ public ShelfModel()
  Shape5.setTextureSize(64, 64);
  Shape5.mirror = true;
  setRotation(Shape5, 0F, 0F, 0F);
+ 
 }
 
 public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)

@@ -1,4 +1,4 @@
-package Mod.TileEntity;
+package Mod.TileEntityRenderer;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -11,20 +11,21 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import org.lwjgl.opengl.GL11;
 
-import Mod.Render.TrashBinModel;
+import Mod.Block.ModBlockTrap;
+import Mod.Render.TrapModel;
 
-public class TileEntityBinRender extends TileEntitySpecialRenderer {
+public class TileEntityTrapRenderer extends TileEntitySpecialRenderer {
     
-    private final TrashBinModel model;
+    private final TrapModel model;
    
-    public TileEntityBinRender() {
-            this.model = new TrashBinModel();
+    public TileEntityTrapRenderer() {
+            this.model = new TrapModel();
     }
    
     private void adjustRotatePivotViaMeta(World world, int x, int y, int z) {
             int meta = world.getBlockMetadata(x, y, z);
             GL11.glPushMatrix();
-            GL11.glRotatef(meta * (-90), 0.0F, 0.0F, 1.0F);
+            GL11.glRotatef(meta * (- 90), 0.0F, 0.0F, 1.0F);
             GL11.glPopMatrix();
     }
    
@@ -34,7 +35,7 @@ public class TileEntityBinRender extends TileEntitySpecialRenderer {
             GL11.glTranslatef((float) x + 0.5F, (float) y + 1.5F, (float) z + 0.5F);
             
             
-            func_110628_a(new ResourceLocation("miscitemsandblocks" , "textures/models/BinModel.png"));
+            func_110628_a(new ResourceLocation("textures/blocks/iron_block.png"));
             
             
          GL11.glPushMatrix();

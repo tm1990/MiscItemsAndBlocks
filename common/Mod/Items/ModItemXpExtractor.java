@@ -106,7 +106,7 @@ return stack;
 
 		{
 
-			if(useRemaining > 24) return _icon1;
+			if(useRemaining > 24)  return _icon1;
 
 			if(useRemaining > 12) return _icon2;
 

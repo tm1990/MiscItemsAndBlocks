@@ -12,7 +12,7 @@ import net.minecraft.tileentity.TileEntity;
 
 public class TileEntityShelf extends TileEntity implements IInventory{
 
-	private ItemStack[] Items;
+	public ItemStack[] Items;
 	
 	public TileEntityShelf(){
 		

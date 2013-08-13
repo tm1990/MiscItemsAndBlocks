@@ -14,6 +14,7 @@ public class Config {
 	public static int XpStorageBlockId;
 	public static int BinsId;
 	public static int ShelfId;
+	public static int TrapId;
 	
 	/** Items **/
 	public static int XpExtractorId;
@@ -37,6 +38,7 @@ public class Config {
 		XpStorageBlockId = config.get("Blocks","Xp Storage Block ID", StartBlockId).getInt();
 		BinsId = config.get("Blocks","Bins Block ID", XpStorageBlockId + 1).getInt();
 		ShelfId = config.get("Blocks","Shelf Block ID", BinsId + 1).getInt();
+		TrapId = config.get("Blocks","Trap Block ID", ShelfId + 1).getInt();
 		
         XpExtractorId = config.get("Items","Xp Extractor ID", StartItemId).getInt();
         
