@@ -1,7 +1,11 @@
 package Mod.Gui;
 
+import Mod.Container.ContainerBin;
+import Mod.Container.ContainerShelf;
 import Mod.Container.ContainerXpStorage;
 import Mod.Main.Main;
+import Mod.TileEntity.TileEntityBin;
+import Mod.TileEntity.TileEntityShelf;
 import Mod.TileEntity.TileEntityXpStorage;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
@@ -26,12 +30,21 @@ public class GuiHandler implements IGuiHandler{
 
         }
         
+        if(tile_entity instanceof TileEntityBin){
 
+            return new ContainerBin(player.inventory, (TileEntityBin) tile_entity);
 
+        }
+        
+        if(tile_entity instanceof TileEntityShelf){
 
+            return new ContainerShelf(player.inventory, (TileEntityShelf) tile_entity);
+
+        }
+        
         return null;
-
     }
+        
 
 
     @Override
@@ -46,6 +59,19 @@ public class GuiHandler implements IGuiHandler{
             return new XpStorageGui(player.inventory, (TileEntityXpStorage) tile_entity);
 
         }
+        
+        if(tile_entity instanceof TileEntityBin){
+
+            return new GuiTrashBin(player.inventory, (TileEntityBin) tile_entity);
+
+        }
+        
+        if(tile_entity instanceof TileEntityShelf){
+
+            return new GuiShelf(player.inventory, (TileEntityShelf) tile_entity);
+
+        }
+        
         
 
 

@@ -1,5 +1,6 @@
 package Mod.Items;
 
+import Mod.Main.Config;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
@@ -10,12 +11,14 @@ public class ModItems {
 
 	
 	public static Item XpExtractor;
+	public static Item UnEquipStaff;
 	
 	
 	public static void Init(){
 		
-		XpExtractor = new ModItemXpExtractor(1000);
+		XpExtractor = new ModItemXpExtractor(Config.XpExtractorId);
 		Register(XpExtractor, "Xp Extractor");
+		
 		
 		
 	}

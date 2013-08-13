@@ -139,6 +139,12 @@ public class TileEntityXpStorage extends TileEntity implements IInventory{
 				System.out.println(player.experienceLevel + ":" + XpAmount);
 				
 				break;
+				
+			case 3:
+				
+				player.addChatMessage("Currently stored xp levels : " + XpAmount + " (This will be added to the gui soon)");
+				
+				break;
 		}
 	}
 	

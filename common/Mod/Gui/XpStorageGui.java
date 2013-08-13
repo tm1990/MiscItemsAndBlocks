@@ -59,8 +59,12 @@ public class XpStorageGui extends GuiContainer{
 		super.initGui();
 		buttonList.clear();
 		
-		buttonList.add(new GuiButton(1, 142, 82, 60, 20, "Withdraw"));
-		buttonList.add(new GuiButton(2, 226, 82, 60, 20, "Deposit"));
+		//TODO Fix Location After Gui Size
+		
+		buttonList.add(new GuiButton(1, 132, 82, 60, 20, "Withdraw"));
+		buttonList.add(new GuiButton(2, 232, 82, 60, 20, "Deposit"));
+		buttonList.add(new GuiButton(3, 202, 82, 20, 20, "?"));
+		
 		textfield = new GuiTextField(fontRenderer, 24, 15, 120, 20);
 		
 		
@@ -71,24 +75,16 @@ public class XpStorageGui extends GuiContainer{
 	@Override
 	protected void actionPerformed(GuiButton button){
 		PacketHandler.sendButtonPacket((byte)button.id);
-		
 
-		switch(button.id){
-		
-		case 1:
-			break;
-		
-		case 2:
-			break;
-		
-		}
 		
 		
 		
 		}
 	
+	
+	//TODO Add XpAmount Stored Into The Gui Without Make TileEntityes Share
 	public void updateScreen(){
-		textfield.setText("Xp Amount : ");
+		textfield.setText("Gui Text Coming Soon");
 		
 		}
 
