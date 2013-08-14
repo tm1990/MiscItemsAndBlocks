@@ -43,6 +43,7 @@ public class TileEntityShelfRender extends TileEntitySpecialRenderer {
             this.model.render((Entity)null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
             GL11.glPopMatrix();
             GL11.glPopMatrix();
+            
     }
      
     private void adjustLightFixture(World world, int i, int j, int k, Block block) {

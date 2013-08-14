@@ -18,6 +18,7 @@ public class Config {
 	
 	/** Items **/
 	public static int XpExtractorId;
+	public static int ShelfItemId;
 	
 	/** Booleans **/
 	public static boolean BlastProofOverRide;
@@ -41,6 +42,7 @@ public class Config {
 		TrapId = config.get("Blocks","Trap Block ID", ShelfId + 1).getInt();
 		
         XpExtractorId = config.get("Items","Xp Extractor ID", StartItemId).getInt();
+        ShelfItemId = config.get("Items","Shelf Item ID", XpExtractorId + 1).getInt();
         
         BlastProofOverRide = config.get("Settings","Should use Blast proof craft items : ", false).getBoolean(false);
         

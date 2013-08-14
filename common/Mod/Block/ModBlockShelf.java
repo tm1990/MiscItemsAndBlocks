@@ -1,6 +1,11 @@
 package Mod.Block;
 
+import java.util.Random;
+
 import cpw.mods.fml.common.network.FMLNetworkHandler;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import Mod.Items.ModItems;
 import Mod.Lib.Refrence;
 import Mod.Main.Config;
 import Mod.Main.Main;
@@ -13,6 +18,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
@@ -30,7 +36,8 @@ public class ModBlockShelf extends BlockContainer{
 		setUnlocalizedName("Shelf");
 		
         this.setBlockBounds(0F, 0.0F, 0F, 1F, 0.68F, 0.55F);
-		
+        
+
 	}
 
 	@Override
@@ -71,6 +78,7 @@ public class ModBlockShelf extends BlockContainer{
 	    {
 	        if (par1World.isRemote)
 	        {
+	        	
 	            return true;
 	        }
 	        else
@@ -104,89 +112,17 @@ public class ModBlockShelf extends BlockContainer{
      }
      else if(dir == 3)
      {
+    	 
         this.setBlockBounds(0F, 0.0F, 0F, 1F, 0.68F, 0.55F);
 }
 }
-
-
-
-@Override
-public boolean canPlaceBlockOnSide(World world, int i, int j, int k, int side)
-{
-if(this.canPlaceBlockAt(world, i, j, k))
-{
-if(side == 5 && world.isBlockNormalCube(i-1, j, k)) {
-return true;
-}
-if(side == 4 && world.isBlockNormalCube(i+1, j, k)) {
-return true;
-}
-if(side == 2 && world.isBlockNormalCube(i, j, k+1)) {
-return true;
-}
-if(side == 3 && world.isBlockNormalCube(i, j, k-1)) {
-return true;
-}
-}
-return false;
-}
-
-
-public void onNeighborBlockChange(World par1World, int par2, int par3, int par4, int par5)
-{
-    boolean flag = false;
     
-    {
-        int i1 = par1World.getBlockMetadata(par2, par3, par4);
-        flag = true;
+    public void onBlockAdded(World par1World, int x, int y, int z) {
+    	
 
-        if (i1 == 2 && par1World.getBlockMaterial(par2, par3, par4 + 1).isSolid())
-        {
-            flag = false;
-        }
-
-        if (i1 == 3 && par1World.getBlockMaterial(par2, par3, par4 - 1).isSolid())
-        {
-            flag = false;
-        }
-
-        if (i1 == 4 && par1World.getBlockMaterial(par2 + 1, par3, par4).isSolid())
-        {
-            flag = false;
-        }
-
-        if (i1 == 5 && par1World.getBlockMaterial(par2 - 1, par3, par4).isSolid())
-        {
-            flag = false;
-        }
+    	
     }
 
-    if (flag)
-    {
-        this.dropBlockAsItem(par1World, par2, par3, par4, par1World.getBlockMetadata(par2, par3, par4), 0);
-        par1World.setBlockToAir(par2, par3, par4);
-    }
-
-    super.onNeighborBlockChange(par1World, par2, par3, par4, par5);
-}
-
-
-public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int par4)
-{
-    return null;
-}
-
-
-
-public AxisAlignedBB getSelectedBoundingBoxFromPool(World par1World, int par2, int par3, int par4)
-{
-    this.setBlockBoundsBasedOnState(par1World, par2, par3, par4);
-    return super.getSelectedBoundingBoxFromPool(par1World, par2, par3, par4);
-
-}
-
-          
-  
 @Override
 public void breakBlock(World World, int x, int y, int z, int id, int meta)
 {
@@ -219,6 +155,17 @@ public void breakBlock(World World, int x, int y, int z, int id, int meta)
 			
 		}
 	}
+}
+
+@SideOnly(Side.CLIENT)
+public int idPicked(World par1World, int par2, int par3, int par4)
+{
+    return ModItems.ShelfItem.itemID;
+}
+
+public int idDropped(int par1, Random par2Random, int par3)
+{
+    return ModItems.ShelfItem.itemID;
 }
 
 

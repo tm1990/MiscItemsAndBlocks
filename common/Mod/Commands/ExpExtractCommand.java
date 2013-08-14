@@ -25,10 +25,7 @@ public class ExpExtractCommand extends CommandBase{
 		this.aliases = new ArrayList();
 	    this.aliases.add("ExpExtract");
 	    this.aliases.add("Extract");
-	    this.aliases.add("extract");
-	    this.aliases.add("expextract");
-	    this.aliases.add("expExtract");
-	    this.aliases.add("Expextract");
+
 		
 	}
 	
@@ -70,7 +67,7 @@ public class ExpExtractCommand extends CommandBase{
 	    
 	    if(astring.length >= 3){
 	    	
-	    	String Type = astring[0];
+	    	String Type = astring[0].toLowerCase();
 	    	
             EntityPlayer player = func_82359_c(icommandsender, astring[1]);
             
@@ -81,22 +78,21 @@ public class ExpExtractCommand extends CommandBase{
             	
             }else{
             	
+
+	    		int Amount = parseInt(icommandsender, astring[2]);
+	    		
             	if(player.inventory.getCurrentItem().getItemDamage() - player.inventory.getCurrentItem().getMaxDamage() > 40){
 
             	
             
-
-	    		int Amount = parseInt(icommandsender, astring[2]);
 	    		
 	    		if(astring.length >= 4){
 	    	
 	    			
 	    			EntityPlayer playerTwo = func_82359_c(icommandsender, astring[3]);
 	    			
-	    			switch(Type.toLowerCase()){
-	    			
-	    			
-	    			case "xp":
+
+	    			if(Type == "xp"){
 	    				
 	    				if(player.experience >= Amount){
 	    				icommandsender.sendChatToPlayer(ChatMessageComponent.func_111082_b("Extracted : " + Amount + " " + Type + " From " + player.username + " and transferd to " + playerTwo.username));
@@ -105,9 +101,7 @@ public class ExpExtractCommand extends CommandBase{
 	    				if(!player.capabilities.isCreativeMode)
 		    				DamageItem(player.inventory.getCurrentItem(), player);
 	    				}
-	    				break;
-	    				
-	    			case "level":
+	    			}else if (Type == "level"){
 	    				
 	    				if(player.experienceLevel >= Amount){
 	    				icommandsender.sendChatToPlayer(ChatMessageComponent.func_111082_b("Extracted : " + Amount + " " + Type + " From " + player.username + " and transferd to " + playerTwo.username));
@@ -116,17 +110,16 @@ public class ExpExtractCommand extends CommandBase{
 	    				if(!player.capabilities.isCreativeMode)
 		    				DamageItem(player.inventory.getCurrentItem(), player);
 	    				}
-	    				break;
+	    			}
 	    			
 	    		}
 	    			
 	    			
-	    		}else{
+	    		}
+            else{
 	    			
-	    			switch(Type.toLowerCase()){
-	    			
-	    			
-	    			case "xp":
+
+	    			if(Type == "xp"){
 	    				
 	    				
 	    				if(player.experience >= Amount){
@@ -136,9 +129,7 @@ public class ExpExtractCommand extends CommandBase{
 		    				DamageItem(player.inventory.getCurrentItem(), player);
 	    				
 	    				}
-	    				break;
-	    				
-	    			case "level":
+	    			}else if(Type == "leve"){
 	    				
 	    				
 	    				if(player.experienceLevel >= Amount){
@@ -147,7 +138,7 @@ public class ExpExtractCommand extends CommandBase{
 	    				if(!player.capabilities.isCreativeMode)
 	    				DamageItem(player.inventory.getCurrentItem(), player);
 	    				}
-	    				break;
+	    			}
 	    			
 	    		}
 	    			
@@ -164,17 +155,7 @@ public class ExpExtractCommand extends CommandBase{
 	             
 	    			
 	    		  
-	    		  
-	    		}else{
-	    			icommandsender.sendChatToPlayer(Error());
-	    			
-	    		}
-	    
-	    
-	    		
-	    
-            
-	}
+
 
 
 	@Override

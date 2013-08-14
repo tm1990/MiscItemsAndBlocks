@@ -74,10 +74,7 @@ public class ContainerShelf extends Container {
 	            }
 	            else if (par2 >= 10 && par2 < 37)
 	            {
-	                if (!this.mergeItemStack(itemstack1, 37, 46, false))
-	                {
-	                    return null;
-	                }
+
 	            }
 	            else if (par2 >= 37 && par2 < 46)
 	            {

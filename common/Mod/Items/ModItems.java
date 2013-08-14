@@ -11,13 +11,18 @@ public class ModItems {
 
 	
 	public static Item XpExtractor;
-	public static Item UnEquipStaff;
+	public static Item ShelfItem;
 	
 	
 	public static void Init(){
 		
 		XpExtractor = new ModItemXpExtractor(Config.XpExtractorId);
 		Register(XpExtractor, "Xp Extractor");
+		
+		ShelfItem = new ModItemShelf(Config.ShelfItemId);
+		Register(ShelfItem, "Shelf");
+		
+		
 		
 		
 		

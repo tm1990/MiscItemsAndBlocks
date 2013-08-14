@@ -34,31 +34,26 @@ public ShelfModel()
  Shape2.setRotationPoint(-8F, 15F, -8F);
  Shape2.setTextureSize(64, 64);
  Shape2.mirror = true;
- setRotation(Shape2, 0F, 0F, 0F);
  Shape1 = new ModelRenderer(this, 0, 0);
  Shape1.addBox(0F, 0F, 0F, 16, 1, 7);
  Shape1.setRotationPoint(-8F, 23F, -8F);
  Shape1.setTextureSize(64, 64);
  Shape1.mirror = true;
- setRotation(Shape1, 0F, 0F, 0F);
  Shape3 = new ModelRenderer(this, 0, 0);
  Shape3.addBox(0F, 0F, 0F, 1, 8, 4);
  Shape3.setRotationPoint(-8F, 16F, -8F);
  Shape3.setTextureSize(64, 64);
  Shape3.mirror = true;
- setRotation(Shape3, 0F, 0F, 0F);
  Shape4 = new ModelRenderer(this, 0, 0);
  Shape4.addBox(0F, 0F, 0F, 1, 8, 4);
  Shape4.setRotationPoint(7F, 16F, -8F);
  Shape4.setTextureSize(64, 64);
  Shape4.mirror = true;
- setRotation(Shape4, 0F, 0F, 0F);
  Shape5 = new ModelRenderer(this, 0, 0);
  Shape5.addBox(-6F, 0F, 0F, 16, 1, 3);
  Shape5.setRotationPoint(-2F, 18F, -7F);
  Shape5.setTextureSize(64, 64);
  Shape5.mirror = true;
- setRotation(Shape5, 0F, 0F, 0F);
  
 }
 

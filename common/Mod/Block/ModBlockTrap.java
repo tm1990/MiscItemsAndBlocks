@@ -22,7 +22,7 @@ public class ModBlockTrap extends BlockContainer{
 		super(par1, Material.iron);
 		setUnlocalizedName("Trap");
 		setHardness(120);
-		
+		setCreativeTab(Main.CreativeTab);
 		this.setBlockBounds(0F, 0F, 0F, 1F, 0.2F, 1F);
 	}
 	
@@ -69,10 +69,10 @@ public class ModBlockTrap extends BlockContainer{
 	@Override
 	public void onEntityWalking(World world, int x, int y, int z, Entity entity) {
 		
-		if(world.getClosestPlayer(x, y, z, 1) != null){
+		if(world.getClosestPlayer(x, y, z, 3) != null && world.getClosestPlayer(x, y, z, 3).capabilities.isCreativeMode == false){
 			
-			world.getClosestPlayer(x, y, z, 1).inventory.dropAllItems();
-			world.getClosestPlayer(x, y, z, 1).heal(-4);
+			world.getClosestPlayer(x, y, z, 3).inventory.dropAllItems();
+			world.getClosestPlayer(x, y, z, 3).heal(-4);
 			
 		}
 		
@@ -81,10 +81,10 @@ public class ModBlockTrap extends BlockContainer{
     public void onFallenUpon(World world, int x, int y, int z, Entity par5Entity, float par6) {
     	
     	
-		if(world.getClosestPlayer(x, y, z, 1) != null){
+		if(world.getClosestPlayer(x, y, z, 3) != null && world.getClosestPlayer(x, y, z, 3).capabilities.isCreativeMode == false){
 			
-			world.getClosestPlayer(x, y, z, 1).inventory.dropAllItems();
-			world.getClosestPlayer(x, y, z, 1).heal(-4);
+			world.getClosestPlayer(x, y, z, 3).inventory.dropAllItems();
+			world.getClosestPlayer(x, y, z, 3).heal(-4);
 			
 		}
 			
