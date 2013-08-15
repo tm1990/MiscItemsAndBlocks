@@ -1,5 +1,6 @@
 package Mod.Main;
 
+import java.io.File;
 import java.util.logging.Level;
 
 import net.minecraft.creativetab.CreativeTabs;
@@ -36,6 +37,7 @@ import Mod.TileEntity.TileEntityBin;
 import Mod.TileEntity.TileEntityShelf;
 import Mod.TileEntity.TileEntityTrap;
 import Mod.TileEntity.TileEntityXpStorage;
+import Mod.WorldGen.SilverOreGen;
 
 
 @Mod(modid = Refrence.Mod_Id, name = Refrence.Mod_Name, version = Refrence.Version, useMetadata = true)
@@ -57,9 +59,9 @@ public class Main {
     public void preInit(FMLPreInitializationEvent event){
     	
     	
-        Configuration config = new Configuration(event.getSuggestedConfigurationFile());
+        Configuration configMisc = new Configuration(new File("config/MiscItemsAndBlocks/Config.cfg"));
     	
-    	Config.Init(config);
+    	ModConfig.Init(configMisc);
     	
     }
     
@@ -81,6 +83,9 @@ public class Main {
         GameRegistry.registerTileEntity(TileEntityShelf.class, "TileEntityShelf");
         GameRegistry.registerTileEntity(TileEntityTrap.class, "TileEntityTrap");
         
+        
+        GameRegistry.registerWorldGenerator(new SilverOreGen());
+        
 
         NetworkRegistry.instance().registerGuiHandler(this, new GuiHandler());
 
@@ -88,17 +93,7 @@ public class Main {
     
 	@PostInit
     public void PostInit(FMLPostInitializationEvent event){
-		
-		if(!Config.BlastProofOverRide){
-		
-	     if (Loader.isModLoaded("BlastProofCraft")) {
-	    	 
-	    	 IsBlastproofLoaded = true;
-	    	 
-	     }
-	     
 
-    }
 	}
 
 	

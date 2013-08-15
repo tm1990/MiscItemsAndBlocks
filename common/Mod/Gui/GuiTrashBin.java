@@ -17,7 +17,7 @@ import net.minecraft.util.StatCollector;
 public class GuiTrashBin extends GuiContainer{
 
 	 TileEntityBin tile = new TileEntityBin();
-	private final ResourceLocation Texture = new ResourceLocation("miscitemsandblocks" , "textures/gui/BinGui.png");
+	private final ResourceLocation Texture = new ResourceLocation("miscitems" , "textures/gui/BinGui.png");
 	
 	
 	public GuiTrashBin(InventoryPlayer InvPlayer, TileEntityBin tile) {

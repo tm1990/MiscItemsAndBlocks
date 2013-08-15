@@ -7,7 +7,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import Mod.Items.ModItems;
 import Mod.Lib.Refrence;
-import Mod.Main.Config;
+import Mod.Main.ModConfig;
 import Mod.Main.Main;
 import Mod.TileEntity.TileEntityShelf;
 import net.minecraft.block.Block;
@@ -34,6 +34,8 @@ public class ModBlockShelf extends BlockContainer{
 	protected ModBlockShelf(int par1) {
 		super(par1, Material.wood);
 		setUnlocalizedName("Shelf");
+		
+		setCreativeTab(Main.CreativeTab);
 		
         this.setBlockBounds(0F, 0.0F, 0F, 1F, 0.68F, 0.55F);
         
@@ -71,7 +73,7 @@ public class ModBlockShelf extends BlockContainer{
 	}
 	    
 	    public void registerIcons(IconRegister icon) {
-	        this.blockIcon = icon.registerIcon(Refrence.Mod_Name + ":Shelf");
+	        this.blockIcon = icon.registerIcon(Refrence.Mod_Id + ":Shelf");
 	}
 	    
 	    public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9)
@@ -85,7 +87,7 @@ public class ModBlockShelf extends BlockContainer{
 	        {
 	        	
 	        	
-	        	FMLNetworkHandler.openGui(par5EntityPlayer, Main.instance, Config.ShelfGuiId, par1World, par2, par3, par4);
+	        	FMLNetworkHandler.openGui(par5EntityPlayer, Main.instance, ModConfig.ShelfGuiId, par1World, par2, par3, par4);
 	            return true;
 	        }
 	    }
@@ -157,16 +159,6 @@ public void breakBlock(World World, int x, int y, int z, int id, int meta)
 	}
 }
 
-@SideOnly(Side.CLIENT)
-public int idPicked(World par1World, int par2, int par3, int par4)
-{
-    return ModItems.ShelfItem.itemID;
-}
-
-public int idDropped(int par1, Random par2Random, int par3)
-{
-    return ModItems.ShelfItem.itemID;
-}
 
 
 }

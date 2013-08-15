@@ -4,7 +4,7 @@ import cpw.mods.fml.common.network.FMLNetworkHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import Mod.Lib.Refrence;
-import Mod.Main.Config;
+import Mod.Main.ModConfig;
 import Mod.Main.Main;
 import Mod.TileEntity.TileEntityXpStorage;
 import net.minecraft.block.Block;
@@ -43,7 +43,7 @@ public class BlockXpStorage extends BlockContainer{
         else
         {
         	
-        	FMLNetworkHandler.openGui(par5EntityPlayer, Main.instance, Config.XpStorageGuiId, par1World, par2, par3, par4);
+        	FMLNetworkHandler.openGui(par5EntityPlayer, Main.instance, ModConfig.XpStorageGuiId, par1World, par2, par3, par4);
             return true;
         }
     }

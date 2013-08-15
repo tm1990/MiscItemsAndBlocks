@@ -1,6 +1,6 @@
 package Mod.Block;
 
-import Mod.Main.Config;
+import Mod.Main.ModConfig;
 import Mod.Main.Main;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
@@ -20,23 +20,29 @@ public class ModBlocks {
 	public static Block Shelf;
 	public static Block Trap;
 	public static Block TestStair;
+	public static Block SilverOre;
 	
 	public static void Init(){
 		
-		XpStorage = new BlockXpStorage(Config.XpStorageBlockId);
+		XpStorage = new BlockXpStorage(ModConfig.XpStorageBlock);
 		Register(XpStorage, "Xp Storage Block");
 		
-		Bin = new ModBlockBin(Config.BinsId);
+		Bin = new ModBlockBin(ModConfig.Bins);
 		Register(Bin, "Trash Bin");
 		
-		Shelf = new ModBlockShelf(Config.ShelfId);
-		Register(Shelf, "Shelf Block");
+		Shelf = new ModBlockShelf(ModConfig.Shelf);
+		Register(Shelf, "Shelf  ");
 		
-		Trap = new ModBlockTrap(Config.TrapId);
+		Trap = new ModBlockTrap(ModConfig.Trap);
 		Register(Trap, "Disarm Trap");
-
+		
+		SilverOre = new ModBlockSilverOre(ModConfig.SilverOre);
+		Register(SilverOre, "Silver Ore");
+        RegisterHarvestLevel(SilverOre, "pickaxe", 3);
 		
 		
+		
+		RegisterOreDictionary(new ItemStack(SilverOre), "oreSilver");
 		
 		
 		
@@ -61,6 +67,8 @@ public class ModBlocks {
 	        }else{
 		        GameRegistry.registerBlock(Block, Name.toLowerCase());
 	        }
+	        
+	        Block.setCreativeTab(Main.CreativeTab);
 
 		}
 		

@@ -2,9 +2,10 @@ package Mod.Block;
 
 import cpw.mods.fml.common.network.FMLNetworkHandler;
 import Mod.Lib.Refrence;
-import Mod.Main.Config;
+import Mod.Main.ModConfig;
 import Mod.Main.Main;
 import Mod.TileEntity.TileEntityTrap;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -18,6 +19,8 @@ import net.minecraft.world.World;
 
 public class ModBlockTrap extends BlockContainer{
 
+	private Block BlockBelow;
+	
 	protected ModBlockTrap(int par1) {
 		super(par1, Material.iron);
 		setUnlocalizedName("Trap");
@@ -37,6 +40,8 @@ public class ModBlockTrap extends BlockContainer{
     	
             return true;
         }
+    
+    
     
 	public boolean shouldSideBeRendered(IBlockAccess iblockaccess, int i, int j, int k, int l)
 	{
@@ -62,7 +67,7 @@ public class ModBlockTrap extends BlockContainer{
     
     
     public void registerIcons(IconRegister icon) {
-        this.blockIcon = icon.registerIcon(Refrence.Mod_Name + ":Trap");
+        this.blockIcon = icon.registerIcon(Refrence.Mod_Id + ":Trap");
 }
     
     

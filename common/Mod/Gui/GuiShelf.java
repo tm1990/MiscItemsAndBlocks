@@ -16,7 +16,7 @@ import Mod.TileEntity.TileEntityShelf;
 public class GuiShelf extends GuiContainer{
 
 	 TileEntityBin tile = new TileEntityBin();
-	private final ResourceLocation Texture = new ResourceLocation("miscitemsandblocks" , "textures/gui/ShelfGui.png");
+	private final ResourceLocation Texture = new ResourceLocation("miscitems" , "textures/gui/ShelfGui.png");
 	
 	
 	public GuiShelf(InventoryPlayer InvPlayer, TileEntityShelf tile) {

@@ -59,9 +59,9 @@ private Icon _icon3;
     public void registerIcons(IconRegister par1IconRegister)
     {
     	
-    	_icon1 = par1IconRegister.registerIcon(Refrence.Mod_Name + ":" + getUnlocalizedName().substring(5) + ".1");
-    	_icon2 = par1IconRegister.registerIcon(Refrence.Mod_Name + ":" + getUnlocalizedName().substring(5) + ".2");
-    	_icon3 = par1IconRegister.registerIcon(Refrence.Mod_Name + ":" + getUnlocalizedName().substring(5) + ".3");
+    	_icon1 = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + getUnlocalizedName().substring(5) + ".1");
+    	_icon2 = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + getUnlocalizedName().substring(5) + ".2");
+    	_icon3 = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + getUnlocalizedName().substring(5) + ".3");
     	
     	itemIcon = _icon1;
     }

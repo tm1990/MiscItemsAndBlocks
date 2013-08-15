@@ -18,7 +18,7 @@ import net.minecraft.util.StatCollector;
 public class XpStorageGui extends GuiContainer{
 
 	 TileEntityXpStorage tile = new TileEntityXpStorage();
-	private final ResourceLocation Texture = new ResourceLocation("miscitemsandblocks" , "textures/gui/XpStorageGui.png");
+	private final ResourceLocation Texture = new ResourceLocation("miscitems" , "textures/gui/XpStorageGui.png");
 	
 	GuiTextField textfield;
 

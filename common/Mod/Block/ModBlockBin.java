@@ -2,7 +2,7 @@ package Mod.Block;
 
 import cpw.mods.fml.common.network.FMLNetworkHandler;
 import Mod.Lib.Refrence;
-import Mod.Main.Config;
+import Mod.Main.ModConfig;
 import Mod.Main.Main;
 import Mod.TileEntity.TileEntityBin;
 import net.minecraft.block.Block;
@@ -48,7 +48,7 @@ public class ModBlockBin extends BlockContainer{
 }
     
     public void registerIcons(IconRegister icon) {
-        this.blockIcon = icon.registerIcon(Refrence.Mod_Name + ":Bin");
+        this.blockIcon = icon.registerIcon(Refrence.Mod_Id + ":Bin");
 }
 
     
@@ -62,7 +62,7 @@ public class ModBlockBin extends BlockContainer{
         {
         	
         	
-        	FMLNetworkHandler.openGui(par5EntityPlayer, Main.instance, Config.BinGuiId, par1World, par2, par3, par4);
+        	FMLNetworkHandler.openGui(par5EntityPlayer, Main.instance, ModConfig.BinGuiId, par1World, par2, par3, par4);
             return true;
         }
     }

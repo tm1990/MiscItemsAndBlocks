@@ -1,8 +1,11 @@
 package Mod.Items;
 
-import Mod.Main.Config;
+import Mod.Main.Main;
+import Mod.Main.ModConfig;
+import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.EnumHelper;
 import net.minecraftforge.oredict.OreDictionary;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
@@ -11,16 +14,32 @@ public class ModItems {
 
 	
 	public static Item XpExtractor;
-	public static Item ShelfItem;
+	public static Item SilverIngot;
+	public static Item SilverNugget;
+	public static Item SilverSword;
 	
+	
+	
+    public static EnumToolMaterial SilverMaterial = EnumHelper.addToolMaterial("Silver", 5, 527, 13.0F, 4.0F, 45);
 	
 	public static void Init(){
 		
-		XpExtractor = new ModItemXpExtractor(Config.XpExtractorId);
+		XpExtractor = new ModItemXpExtractor(ModConfig.XpExtractor);
 		Register(XpExtractor, "Xp Extractor");
 		
-		ShelfItem = new ModItemShelf(Config.ShelfItemId);
-		Register(ShelfItem, "Shelf");
+		SilverIngot = new ModItemSilverIngot(ModConfig.SilverIngot);
+		Register(SilverIngot, "Silver Ingot");
+		
+		SilverNugget = new ModItemSilverNugget(ModConfig.SilverNugget);
+		Register(SilverNugget, "Silver Nugget");
+		
+		SilverSword = new ModItemSilverSword(ModConfig.SilverSword, SilverMaterial);
+		Register(SilverSword, "Silver Sword");
+
+		
+		
+	RegisterOreDictionary(new ItemStack(SilverIngot), "ingotSilver");
+	RegisterOreDictionary(new ItemStack(SilverNugget), "nuggetSilver");
 		
 		
 		
@@ -40,5 +59,6 @@ public class ModItems {
 		
         LanguageRegistry.addName(Item, Name);
         GameRegistry.registerItem(Item, Name.toLowerCase().replace(" ", ""));
+        Item.setCreativeTab(Main.CreativeTab);
 	}
 }
