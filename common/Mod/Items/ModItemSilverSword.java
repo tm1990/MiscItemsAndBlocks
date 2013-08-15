@@ -9,9 +9,9 @@ import net.minecraft.item.ItemSword;
 import net.minecraft.util.DamageSource;
 import Mod.Lib.Refrence;
 import Mod.Main.Main;
+import Mod.Misc.MiscDamage;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import Misc.MiscDamage;
 
 public class ModItemSilverSword extends ItemSword {
 

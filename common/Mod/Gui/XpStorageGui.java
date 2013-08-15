@@ -21,11 +21,15 @@ public class XpStorageGui extends GuiContainer{
 	private final ResourceLocation Texture = new ResourceLocation("miscitems" , "textures/gui/XpStorageGui.png");
 	
 	GuiTextField textfield;
+	
 
  
  
 	public XpStorageGui(InventoryPlayer InvPlayer, TileEntityXpStorage tile) {
 		super(new ContainerXpStorage(InvPlayer, tile));
+		
+		xSize = 176;
+		ySize = 166;
 	}
 
 	
@@ -59,11 +63,10 @@ public class XpStorageGui extends GuiContainer{
 		super.initGui();
 		buttonList.clear();
 		
-		//TODO Fix Location After Gui Size
 		
-		buttonList.add(new GuiButton(1, 132, 82, 60, 20, "Withdraw"));
-		buttonList.add(new GuiButton(2, 232, 82, 60, 20, "Deposit"));
-		buttonList.add(new GuiButton(3, 202, 82, 20, 20, "?"));
+		buttonList.add(new GuiButton(1, guiLeft + 8,  guiTop + 45, 60, 20, "Withdraw"));
+		buttonList.add(new GuiButton(2, guiLeft + 108, guiTop + 45, 60, 20, "Deposit"));
+		buttonList.add(new GuiButton(3, guiLeft + 78, guiTop + 45, 20, 20, "?"));
 		
 		textfield = new GuiTextField(fontRenderer, 24, 15, 120, 20);
 		

@@ -1,4 +1,4 @@
-package Misc;
+package Mod.Misc;
 
 import net.minecraft.util.DamageSource;
 
