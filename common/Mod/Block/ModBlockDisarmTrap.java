@@ -4,7 +4,8 @@ import cpw.mods.fml.common.network.FMLNetworkHandler;
 import Mod.Lib.Refrence;
 import Mod.Main.ModConfig;
 import Mod.Main.Main;
-import Mod.TileEntity.TileEntityTrap;
+import Mod.Misc.MiscDamage;
+import Mod.TileEntity.TileEntityDisarmTrap;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -17,11 +18,11 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class ModBlockTrap extends BlockContainer{
+public class ModBlockDisarmTrap extends BlockContainer{
 
 	private Block BlockBelow;
 	
-	protected ModBlockTrap(int par1) {
+	protected ModBlockDisarmTrap(int par1) {
 		super(par1, Material.iron);
 		setUnlocalizedName("Trap");
 		setHardness(120);
@@ -77,19 +78,19 @@ public class ModBlockTrap extends BlockContainer{
 		if(world.getClosestPlayer(x, y, z, 3) != null && world.getClosestPlayer(x, y, z, 3).capabilities.isCreativeMode == false){
 			
 			world.getClosestPlayer(x, y, z, 3).inventory.dropAllItems();
-			world.getClosestPlayer(x, y, z, 3).heal(-4);
+			entity.attackEntityFrom(new MiscDamage("Disarm Trap", "was Disarmed"), 4);
 			
 		}
 		
 	}
 	
-    public void onFallenUpon(World world, int x, int y, int z, Entity par5Entity, float par6) {
+    public void onFallenUpon(World world, int x, int y, int z, Entity entity, float par6) {
     	
     	
 		if(world.getClosestPlayer(x, y, z, 3) != null && world.getClosestPlayer(x, y, z, 3).capabilities.isCreativeMode == false){
 			
 			world.getClosestPlayer(x, y, z, 3).inventory.dropAllItems();
-			world.getClosestPlayer(x, y, z, 3).heal(-4);
+			entity.attackEntityFrom(new MiscDamage("Disarm Trap", "was Disarmed"), 4);
 			
 		}
 			
@@ -101,7 +102,7 @@ public class ModBlockTrap extends BlockContainer{
 	
 	@Override
 	public TileEntity createNewTileEntity(World world) {
-		return new TileEntityTrap();
+		return new TileEntityDisarmTrap();
 	}
 		
     }

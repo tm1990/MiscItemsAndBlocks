@@ -11,14 +11,14 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import org.lwjgl.opengl.GL11;
 
-import Mod.Block.ModBlockTrap;
+import Mod.Block.ModBlockDisarmTrap;
 import Mod.Render.TrapModel;
 
-public class TileEntityTrapRenderer extends TileEntitySpecialRenderer {
+public class TileEntityDisarmTrapRenderer extends TileEntitySpecialRenderer {
     
     private final TrapModel model;
    
-    public TileEntityTrapRenderer() {
+    public TileEntityDisarmTrapRenderer() {
             this.model = new TrapModel();
     }
    

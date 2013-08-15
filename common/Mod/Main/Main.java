@@ -21,12 +21,14 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import Mod.Block.ModBlocks;
 import Mod.Commands.ExpExtractCommand;
 import Mod.Commands.GetXpCommand;
 import Mod.Crafting.Crafting;
+import Mod.Entity.EntitySilverArrow;
 import Mod.Gui.GuiHandler;
 import Mod.Items.ModItems;
 import Mod.Lib.*;
@@ -35,7 +37,7 @@ import Mod.Proxies.ClientProxy;
 import Mod.Proxies.ServerProxy;
 import Mod.TileEntity.TileEntityBin;
 import Mod.TileEntity.TileEntityShelf;
-import Mod.TileEntity.TileEntityTrap;
+import Mod.TileEntity.TileEntityDisarmTrap;
 import Mod.TileEntity.TileEntityXpStorage;
 import Mod.WorldGen.SilverOreGen;
 
@@ -59,7 +61,7 @@ public class Main {
     public void preInit(FMLPreInitializationEvent event){
     	
     	
-        Configuration configMisc = new Configuration(new File("config/MiscItemsAndBlocks/Config.cfg"));
+        Configuration configMisc = new Configuration(new File("config/tm1990's mods/MiscItemsAndBlocksConfig.cfg"));
     	
     	ModConfig.Init(configMisc);
     	
@@ -75,13 +77,17 @@ public class Main {
         Crafting.RegisterRecipes();
     	
         proxy.registerRenderThings();
+        
+        EntityRegistry.registerGlobalEntityID(EntitySilverArrow.class, "SilverArrow", EntityRegistry.findGlobalUniqueEntityId());
+        EntityRegistry.registerModEntity(EntitySilverArrow.class, "SilverArrow", 0, this, 128, 1, true);
     	
         LanguageRegistry.instance().addStringLocalization("itemGroup."+Refrence.Mod_Name, "en_US", Refrence.Mod_Name);
+        LanguageRegistry.instance().addStringLocalization("entity.SilverArrow.name", "Silver Arrow");
         
         GameRegistry.registerTileEntity(TileEntityXpStorage.class, "XpStorage");
         GameRegistry.registerTileEntity(TileEntityBin.class, "TileEntityBin");
         GameRegistry.registerTileEntity(TileEntityShelf.class, "TileEntityShelf");
-        GameRegistry.registerTileEntity(TileEntityTrap.class, "TileEntityTrap");
+        GameRegistry.registerTileEntity(TileEntityDisarmTrap.class, "TileEntityTrap");
         
         
         GameRegistry.registerWorldGenerator(new SilverOreGen());

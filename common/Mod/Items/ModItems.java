@@ -17,6 +17,8 @@ public class ModItems {
 	public static Item SilverIngot;
 	public static Item SilverNugget;
 	public static Item SilverSword;
+	public static Item SilverBow;
+	public static Item SilverArrow;
 	
 	
 	
@@ -35,6 +37,13 @@ public class ModItems {
 		
 		SilverSword = new ModItemSilverSword(ModConfig.SilverSword, SilverMaterial);
 		Register(SilverSword, "Silver Sword");
+		
+		SilverBow = new ModItemSilverBow(ModConfig.SilverBow).setUnlocalizedName("SilverBow");
+		Register(SilverBow, "Silver Bow");
+		
+		SilverArrow = new ModItemSilverArrow(ModConfig.SilverArrow);
+		Register(SilverArrow, "Silver Arrow");
+		
 
 		
 		

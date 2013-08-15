@@ -9,7 +9,7 @@ import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.Packet132TileEntityData;
 import net.minecraft.tileentity.TileEntity;
 
-public class TileEntityTrap extends TileEntity{
+public class TileEntityDisarmTrap extends TileEntity{
 
 	
 	

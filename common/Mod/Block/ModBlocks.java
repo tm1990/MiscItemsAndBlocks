@@ -33,7 +33,7 @@ public class ModBlocks {
 		Shelf = new ModBlockShelf(ModConfig.Shelf);
 		Register(Shelf, "Shelf  ");
 		
-		Trap = new ModBlockTrap(ModConfig.Trap);
+		Trap = new ModBlockDisarmTrap(ModConfig.Trap);
 		Register(Trap, "Disarm Trap");
 		
 		SilverOre = new ModBlockSilverOre(ModConfig.SilverOre);
