@@ -42,17 +42,14 @@ import Mod.TileEntity.TileEntityXpStorage;
 import Mod.WorldGen.SilverOreGen;
 
 
-@Mod(modid = Refrence.Mod_Id, name = Refrence.Mod_Name, version = Refrence.Version, useMetadata = true)
+@Mod(modid = Refrence.Mod_Id, name = Refrence.Mod_Name, version = Refrence.Version)
 @NetworkMod(clientSideRequired=true, serverSideRequired=false, channels = {"MiscItems"}, packetHandler = PacketHandler.class)
 public class Main {
-
-	public static boolean IsBlastproofLoaded = false;
 	
     @Instance
     public static Main instance = new Main();
     
     @SidedProxy(clientSide = "Mod.Proxies.ClientProxy", serverSide = "Mod.Proxies.ServerProxy")
-
     public static ServerProxy proxy;
     
     
@@ -71,12 +68,15 @@ public class Main {
     @Init
     public void Init(FMLInitializationEvent event){
     	
+    	
     	ModItems.Init();
     	ModBlocks.Init();
     	
         Crafting.RegisterRecipes();
     	
         proxy.registerRenderThings();
+        proxy.registerClientTickHandler();
+        proxy.registerServerTickHandler();
         
         EntityRegistry.registerGlobalEntityID(EntitySilverArrow.class, "SilverArrow", EntityRegistry.findGlobalUniqueEntityId());
         EntityRegistry.registerModEntity(EntitySilverArrow.class, "SilverArrow", 0, this, 128, 1, true);

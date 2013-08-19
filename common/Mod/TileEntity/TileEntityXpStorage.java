@@ -121,7 +121,7 @@ public class TileEntityXpStorage extends TileEntity implements IInventory{
 			case 1:
 				
 				if(XpAmount > 0){
-				player.experienceLevel = player.experienceLevel + 1;
+				player.addExperienceLevel(1);
 				XpAmount = XpAmount - 1;
 				}
 				
@@ -132,7 +132,7 @@ public class TileEntityXpStorage extends TileEntity implements IInventory{
 			case 2:
 				
 				if(player.experienceLevel > 0){
-				player.experienceLevel = player.experienceLevel - 1;
+				player.addExperienceLevel(-1);
 				XpAmount = XpAmount + 1;
 				}
 				

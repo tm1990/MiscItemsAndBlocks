@@ -1,4 +1,4 @@
-package Mod.Renders;
+package Mod.Render;
 
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.Render;
@@ -18,7 +18,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class SilverArrowRender extends Render
 {
-    private static final ResourceLocation field_110780_a = new ResourceLocation("miscitems", "/textures/models/SilverArrow.png");
+    private static final ResourceLocation field_110780_a = new ResourceLocation(Refrence.Mod_Id.toLowerCase(), "/textures/entity/SilverArrow.png");
 
     public void renderArrow(EntitySilverArrow par1EntityArrow, double par2, double par4, double par6, float par8, float par9)
     {

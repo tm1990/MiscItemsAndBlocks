@@ -1,6 +1,7 @@
 package Mod.Block;
 
 import cpw.mods.fml.common.network.FMLNetworkHandler;
+import Mod.Items.ModItems;
 import Mod.Lib.Refrence;
 import Mod.Main.ModConfig;
 import Mod.Main.Main;
@@ -37,8 +38,9 @@ public class ModBlockDisarmTrap extends BlockContainer{
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
     {
 
-        player.inventory.dropAllItems();	
     	
+        player.inventory.dropAllItems();	
+    	    	
             return true;
         }
     

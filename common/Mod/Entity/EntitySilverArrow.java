@@ -121,9 +121,6 @@ public class EntitySilverArrow extends Entity implements IProjectile
         this.dataWatcher.addObject(16, Byte.valueOf((byte)0));
     }
 
-    /**
-     * Similar to setArrowHeading, it's point the throwable entity to a x, y, z direction.
-     */
     public void setThrowableHeading(double par1, double par3, double par5, float par7, float par8)
     {
         float f2 = MathHelper.sqrt_double(par1 * par1 + par3 * par3 + par5 * par5);
@@ -147,10 +144,6 @@ public class EntitySilverArrow extends Entity implements IProjectile
 
     @SideOnly(Side.CLIENT)
 
-    /**
-     * Sets the position and rotation. Only difference from the other one is no bounding on the rotation. Args: posX,
-     * posY, posZ, yaw, pitch
-     */
     public void setPositionAndRotation2(double par1, double par3, double par5, float par7, float par8, int par9)
     {
         this.setPosition(par1, par3, par5);
@@ -159,9 +152,6 @@ public class EntitySilverArrow extends Entity implements IProjectile
 
     @SideOnly(Side.CLIENT)
 
-    /**
-     * Sets the velocity to the args. Args: x, y, z
-     */
     public void setVelocity(double par1, double par3, double par5)
     {
         this.motionX = par1;
@@ -180,9 +170,7 @@ public class EntitySilverArrow extends Entity implements IProjectile
         }
     }
 
-    /**
-     * Called to update the entity's position/logic.
-     */
+
     public void onUpdate()
     {
         super.onUpdate();
@@ -459,9 +447,7 @@ public class EntitySilverArrow extends Entity implements IProjectile
         }
     }
 
-    /**
-     * (abstract) Protected helper method to write subclass entity data to NBT.
-     */
+
     public void writeEntityToNBT(NBTTagCompound par1NBTTagCompound)
     {
         par1NBTTagCompound.setShort("xTile", (short)this.xTile);
@@ -475,9 +461,6 @@ public class EntitySilverArrow extends Entity implements IProjectile
         par1NBTTagCompound.setDouble("damage", this.damage);
     }
 
-    /**
-     * (abstract) Protected helper method to read subclass entity data from NBT.
-     */
     public void readEntityFromNBT(NBTTagCompound par1NBTTagCompound)
     {
         this.xTile = par1NBTTagCompound.getShort("xTile");
@@ -503,9 +486,6 @@ public class EntitySilverArrow extends Entity implements IProjectile
         }
     }
 
-    /**
-     * Called by a player entity when they collide with an entity
-     */
     public void onCollideWithPlayer(EntityPlayer par1EntityPlayer)
     {
         if (!this.worldObj.isRemote && this.inGround && this.arrowShake <= 0)
@@ -526,10 +506,6 @@ public class EntitySilverArrow extends Entity implements IProjectile
         }
     }
 
-    /**
-     * returns if this entity triggers Block.onEntityWalking on the blocks they walk on. used for spiders and wolves to
-     * prevent them from trampling crops
-     */
     protected boolean canTriggerWalking()
     {
         return false;
@@ -551,25 +527,19 @@ public class EntitySilverArrow extends Entity implements IProjectile
         return this.damage;
     }
 
-    /**
-     * Sets the amount of knockback the arrow applies when it hits a mob.
-     */
+
     public void setKnockbackStrength(int par1)
     {
         this.knockbackStrength = par1;
     }
 
-    /**
-     * If returns false, the item will not inflict any damage against entities.
-     */
+
     public boolean canAttackWithItem()
     {
         return false;
     }
 
-    /**
-     * Whether the arrow has a stream of critical hit particles flying behind it.
-     */
+
     public void setIsCritical(boolean par1)
     {
         byte b0 = this.dataWatcher.getWatchableObjectByte(16);
@@ -584,9 +554,7 @@ public class EntitySilverArrow extends Entity implements IProjectile
         }
     }
 
-    /**
-     * Whether the arrow has a stream of critical hit particles flying behind it.
-     */
+
     public boolean getIsCritical()
     {
         byte b0 = this.dataWatcher.getWatchableObjectByte(16);

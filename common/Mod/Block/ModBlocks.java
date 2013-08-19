@@ -7,6 +7,7 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBed;
 import net.minecraft.block.BlockStairs;
+import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
@@ -18,9 +19,11 @@ public class ModBlocks {
 	public static Block XpStorage;
 	public static Block Bin;
 	public static Block Shelf;
-	public static Block Trap;
-	public static Block TestStair;
+	public static Block DisarmTrap;
 	public static Block SilverOre;
+	
+	public static ModBlockStair StoneStair;
+	
 	
 	public static void Init(){
 		
@@ -33,15 +36,17 @@ public class ModBlocks {
 		Shelf = new ModBlockShelf(ModConfig.Shelf);
 		Register(Shelf, "Shelf  ");
 		
-		Trap = new ModBlockDisarmTrap(ModConfig.Trap);
-		Register(Trap, "Disarm Trap");
+		DisarmTrap = new ModBlockDisarmTrap(ModConfig.Trap);
+		Register(DisarmTrap, "Disarm Trap");
 		
 		SilverOre = new ModBlockSilverOre(ModConfig.SilverOre);
 		Register(SilverOre, "Silver Ore");
         RegisterHarvestLevel(SilverOre, "pickaxe", 3);
-		
-		
-		
+
+        StoneStair = new ModBlockStair(ModConfig.StoneStair, Block.stone, 0, "StoneStair");
+        Register(StoneStair, "Stone Stair");
+
+        
 		RegisterOreDictionary(new ItemStack(SilverOre), "oreSilver");
 		
 		

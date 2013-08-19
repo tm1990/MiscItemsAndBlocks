@@ -33,6 +33,7 @@ private Icon _icon4;
         this.maxStackSize = 1;
         this.setMaxDamage(384);
     }
+    
 
 
     public void onPlayerStoppedUsing(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer, int par4)
@@ -150,8 +151,9 @@ private Icon _icon4;
     {
     	
     	_icon1 = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + getUnlocalizedName().substring(5) + "_normal");
-    	_icon2 = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + getUnlocalizedName().substring(5) + "_2");
-    	_icon3 = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + getUnlocalizedName().substring(5) + "_3");
+    	_icon2 = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + getUnlocalizedName().substring(5) + "_1");
+    	_icon3 = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + getUnlocalizedName().substring(5) + "_2");
+    	_icon4 = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + getUnlocalizedName().substring(5) + "_3");
     	
     	itemIcon = _icon1;
     }
@@ -171,7 +173,9 @@ private Icon _icon4;
 
 			if(useRemaining > 71920) return _icon2;
 			
-			return _icon3;
+			if(useRemaining > 71870) return _icon3;
+			
+			return _icon4;
             
 
 		}
