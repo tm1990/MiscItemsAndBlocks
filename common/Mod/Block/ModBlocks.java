@@ -9,6 +9,7 @@ import net.minecraft.block.BlockBed;
 import net.minecraft.block.BlockColored;
 import net.minecraft.block.BlockStairs;
 import net.minecraft.block.material.Material;
+import net.minecraft.item.ItemDye;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
@@ -22,6 +23,8 @@ public class ModBlocks {
 	public static Block Shelf;
 	public static Block DisarmTrap;
 	public static Block SilverOre;
+	public static Block Box;
+	
 	public static ModBlockStair StoneStair;
 	
 	
@@ -47,6 +50,8 @@ public class ModBlocks {
         StoneStair = new ModBlockStair(ModConfig.StoneStair, Block.stone, 0, "StoneStair");
         Register(StoneStair, "Stone Stair");
         
+        Box = new ModBlockBox(ModConfig.Box);
+        Register(Box, "Box");
 
         
 		RegisterOreDictionary(new ItemStack(SilverOre), "oreSilver");

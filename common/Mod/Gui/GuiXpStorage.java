@@ -3,6 +3,7 @@ package Mod.Gui;
 
 import org.lwjgl.opengl.GL11;
 
+import Mod.Block.ModBlocks;
 import Mod.Container.ContainerXpStorage;
 import Mod.Network.PacketHandler;
 import Mod.TileEntity.TileEntityXpStorage;
@@ -12,12 +13,14 @@ import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 
-public class XpStorageGui extends GuiContainer{
-
-	 TileEntityXpStorage tile = new TileEntityXpStorage();
+public class GuiXpStorage extends GuiContainer{
+	
+	
+	TileEntityXpStorage tile;
 	private final ResourceLocation Texture = new ResourceLocation("miscitems" , "textures/gui/XpStorageGui.png");
 	
 	GuiTextField textfield;
@@ -25,8 +28,10 @@ public class XpStorageGui extends GuiContainer{
 
  
  
-	public XpStorageGui(InventoryPlayer InvPlayer, TileEntityXpStorage tile) {
+	public GuiXpStorage(InventoryPlayer InvPlayer, TileEntityXpStorage tile) {
 		super(new ContainerXpStorage(InvPlayer, tile));
+		
+		this.tile = tile;
 		
 		xSize = 176;
 		ySize = 166;
@@ -40,8 +45,10 @@ public class XpStorageGui extends GuiContainer{
             
             fontRenderer.drawString("Xp Storage Block", 7, 3, 0x00000);
             
-            textfield.drawTextBox();
             
+            textfield.drawTextBox();
+
+
             
     }
 
@@ -79,7 +86,22 @@ public class XpStorageGui extends GuiContainer{
 	protected void actionPerformed(GuiButton button){
 		PacketHandler.sendButtonPacket((byte)button.id);
 
+		switch(button.id){
+		case 1:
+	
+			break;
+			
+			
+		case 2:
+			
+			break;
+			
+			
+		case 3:
+			
+			break;
 		
+		}
 		
 		
 		}
@@ -87,9 +109,12 @@ public class XpStorageGui extends GuiContainer{
 	
 	//TODO Add XpAmount Stored Into The Gui Without Make TileEntityes Share
 	public void updateScreen(){
-		textfield.setText("Gui Text Coming Soon");
+		
+		textfield.setText("Work In Progress");
+		
 		
 		}
+
 
 	
 	

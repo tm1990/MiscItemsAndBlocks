@@ -56,7 +56,7 @@ public class GuiHandler implements IGuiHandler{
 
         if(tile_entity instanceof TileEntityXpStorage){
 
-            return new XpStorageGui(player.inventory, (TileEntityXpStorage) tile_entity);
+            return new GuiXpStorage(player.inventory, (TileEntityXpStorage) tile_entity);
 
         }
         

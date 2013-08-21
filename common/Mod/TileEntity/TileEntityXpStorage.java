@@ -1,6 +1,7 @@
 package Mod.TileEntity;
 
-import Mod.Gui.XpStorageGui;
+import Mod.Block.ModBlocks;
+import Mod.Gui.GuiXpStorage;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.entity.player.EntityPlayer;
@@ -13,8 +14,9 @@ import net.minecraft.tileentity.TileEntity;
 
 public class TileEntityXpStorage extends TileEntity implements IInventory{
 	
+	
 	public int XpAmount;
-	private EntityPlayer player;
+	public EntityPlayer player;
 	
 	
 	
@@ -29,8 +31,6 @@ public class TileEntityXpStorage extends TileEntity implements IInventory{
 	@Override
 	public void readFromNBT(NBTTagCompound compound){
 		super.readFromNBT(compound);
-		
-
 		XpAmount = compound.getInteger("XpAmount");
 		
 		
@@ -48,32 +48,13 @@ public class TileEntityXpStorage extends TileEntity implements IInventory{
 
 	@Override
 	public ItemStack decrStackSize(int i, int j) {
-		ItemStack itemstack = getStackInSlot(i);
-		
-		if(itemstack != null){
-			
-			if(itemstack.stackSize <= j){
-				
-				setInventorySlotContents(i, null);
-			}else{
-				
-				itemstack = itemstack.splitStack(j);
-				onInventoryChanged();
-				
-			}
-			
-		}
-		
-		return itemstack;
+		return getStackInSlot(i);
 	}
 
 	@Override
 	public ItemStack getStackInSlotOnClosing(int i) {
-		ItemStack item = getStackInSlot(i);
 		
-		setInventorySlotContents(i, null);
-		
-		return item;
+		return getStackInSlot(i);
 	}
 
 	@Override
@@ -111,7 +92,7 @@ public class TileEntityXpStorage extends TileEntity implements IInventory{
 
 	@Override
 	public boolean isItemValidForSlot(int i, ItemStack itemstack) {
-		return itemstack.itemID == Item.coal.itemID;
+		return false;
 	}
 	
 	
@@ -142,16 +123,13 @@ public class TileEntityXpStorage extends TileEntity implements IInventory{
 				
 			case 3:
 				
-				player.addChatMessage("Currently stored xp levels : " + XpAmount + " (This will be added to the gui soon)");
+	            System.out.println("1" + this);
+				player.addChatMessage("Currently stored xp levels : " + XpAmount + " (This message will be added to the gui some time)");
 				
 				break;
 		}
 	}
 	
-	public int GetXp(){
-		
-		return XpAmount;
-	}
 	
 
 	

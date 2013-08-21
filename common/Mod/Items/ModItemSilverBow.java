@@ -202,6 +202,7 @@ public ItemStack onEaten(ItemStack stack, World world, EntityPlayer player)
     public void addInformation(ItemStack itemstack, EntityPlayer player, List list, boolean par4)
     {
             list.add("Idea by ErnieFlapps");
-            list.add("Requires silver arrows!");
+            list.add("");
+            list.add("Requires silver arrows");
     }
 }

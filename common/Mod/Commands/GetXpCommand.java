@@ -28,7 +28,7 @@ public class GetXpCommand extends CommandBase{
 
 	@Override
 	public String getCommandName() {
-		return "Get Exp";
+		return "GetExp";
 	}
 
 	@Override

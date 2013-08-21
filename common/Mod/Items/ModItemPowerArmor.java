@@ -1,5 +1,7 @@
 package Mod.Items;
 
+import java.util.List;
+
 import Mod.Lib.Refrence;
 import Mod.Main.Main;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -71,6 +73,40 @@ public class ModItemPowerArmor extends ItemArmor {
         return RepairItem.itemID == ModItems.SilverIngot.itemID;
     }
     
+    
+    @Override
+    public void addInformation(ItemStack itemstack, EntityPlayer player, List list, boolean par4)
+    {
+		list.add("Original idea by hasnow");
+		list.add("");
+		
+    	if(itemstack.itemID == ModItems.DivingHelmet.itemID){
+
+    		list.add("Active when in water");
+    		list.add("Gives wather breathing");
+    		list.add("Gives night vision");
+    		
+    	}else if(itemstack.itemID == ModItems.FlightChestPlate.itemID){
+    		
+    		list.add("Always active");
+    		list.add("Allows flight");
+    		
+    	}else if(itemstack.itemID == ModItems.RunningLeggings.itemID){
+    		
+    		list.add("Always active while on ground");
+    		list.add("Gives speed effect");
+    		
+    	}else if(itemstack.itemID == ModItems.JumpingBoots.itemID){
+    		
+    		list.add("Always active while on ground");
+    		list.add("Gives jump effect");
+    		
+    	}
+    	
+    	
+    	
+    	
+    }
     
 
 

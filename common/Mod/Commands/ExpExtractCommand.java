@@ -36,7 +36,7 @@ public class ExpExtractCommand extends CommandBase{
 
 	@Override
 	public String getCommandName() {
-		return "Exp Extract";
+		return "ExpExtract";
 	}
 
 	@Override

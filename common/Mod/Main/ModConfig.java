@@ -14,6 +14,7 @@ public class ModConfig {
 	public static int Trap;
 	public static int SilverOre;
 	public static int StoneStair;
+	public static int Box;
 	
 	/** Items **/
 	public static int XpExtractor;
@@ -53,6 +54,7 @@ public class ModConfig {
 		Trap = config.getBlock("Blocks","Disarm Trap Block Id", 603).getInt();
 		SilverOre = config.getBlock("Blocks", "Silver Ore Id", 604).getInt();
 		StoneStair = config.getBlock("Blocks", "Stone Stair Id", 605).getInt();
+		Box = config.getBlock("Blocks", "Box Id", 606).getInt();
 		
         XpExtractor = config.getItem("Items","Xp Extractor Id", 22000).getInt();
         SilverIngot = config.getItem("Items", "Silver Ingot Id", 22001).getInt();

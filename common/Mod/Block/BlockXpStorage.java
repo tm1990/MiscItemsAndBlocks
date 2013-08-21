@@ -28,7 +28,7 @@ public class BlockXpStorage extends BlockContainer{
 	   @SideOnly(Side.CLIENT)
 	   public void registerIcons(IconRegister par1IconRegister)
 	   {
-		   this.blockIcon = par1IconRegister.registerIcon("dragon_egg");
+		   this.blockIcon = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "XpStorage");
 		   
 	   }
 

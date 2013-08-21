@@ -53,6 +53,8 @@ public class Main {
     public static ServerProxy proxy;
     
     
+    
+    File BlastProofCraftConfig = new File("config/tm1990's mods/BlastProofCraftConfig.cfg");
 	
     @PreInit
     public void preInit(FMLPreInitializationEvent event){

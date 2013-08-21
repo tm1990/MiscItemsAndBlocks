@@ -67,6 +67,8 @@ public class ServerTickHandler implements ITickHandler{
 			Jump(player);
 			Full(player);
 			
+			
+			
 			}
 			
 			
@@ -79,7 +81,7 @@ public class ServerTickHandler implements ITickHandler{
 			Helmet = false;
 		}else if(player.inventory.armorInventory[3].itemID == ModItems.DivingHelmet.itemID){
              Helmet = true;
-			if(player.isWet()){
+			if(player.isInWater()){
 				
 				player.addPotionEffect(new PotionEffect(Potion.waterBreathing.id, 2, 10));
 				player.addPotionEffect(new PotionEffect(Potion.nightVision.id, 2, 10));
@@ -107,7 +109,7 @@ public class ServerTickHandler implements ITickHandler{
 			ChestPlate = true;
 			player.capabilities.allowFlying = true;
 			
-			if(player.onGround == false && player.isWet() == false && player.capabilities.allowFlying && player.isAirBorne){
+			if(player.onGround == false && player.isInWater() == false && player.capabilities.allowFlying && player.isAirBorne){
 				Random rand = new Random();
 				if(TickCountParticle == 5){
 			player.worldObj.spawnParticle("cloud", player.posX, player.posY + 0.6, player.posZ, rand.nextFloat() - 0.5, rand.nextFloat() - 0.2, rand.nextFloat() - 0.5);
@@ -143,7 +145,7 @@ public class ServerTickHandler implements ITickHandler{
 			Leggings = false;
 		}else if(player.inventory.armorInventory[1].itemID == ModItems.RunningLeggings.itemID){
 			Leggings = true;
-			if(player.onGround && player.isWet() == false){
+			if(player.onGround && player.isInWater() == false){
 				player.addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 10, 10));
 			}
 			
@@ -156,7 +158,8 @@ public class ServerTickHandler implements ITickHandler{
 			Boots = false;
 		}else if(player.inventory.armorInventory[0].itemID == ModItems.JumpingBoots.itemID){
 			Boots = true;
-			if(player.onGround && player.isWet() == false){
+			
+			if(player.onGround && player.isInWater() == false){
 				player.addPotionEffect(new PotionEffect(Potion.jump.id, 10, 10));
 			}
 		
@@ -170,17 +173,17 @@ public class ServerTickHandler implements ITickHandler{
 
 		if(Helmet && ChestPlate && Leggings && Boots){
 			
-			
-						player.addPotionEffect(new PotionEffect(Potion.regeneration.id, 10, 0));
-						player.addPotionEffect(new PotionEffect(Potion.resistance.id, 10, 2));
 						
-						if(player.isBurning()){
+						if(player.shouldHeal()){
 							
-							player.addPotionEffect(new PotionEffect(Potion.fireResistance.id, 10, 1));
+							player.addPotionEffect(new PotionEffect(Potion.regeneration.id, 10, 0));
+							player.addPotionEffect(new PotionEffect(Potion.resistance.id, 10, 2));
+							
 						}
 						
 						
 					}
+		
 					
 				}
 				
