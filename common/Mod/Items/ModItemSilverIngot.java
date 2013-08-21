@@ -1,10 +1,14 @@
 package Mod.Items;
 
+import java.util.List;
+
 import Mod.Lib.Refrence;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 
 public class ModItemSilverIngot extends Item{
 
@@ -19,4 +23,10 @@ public class ModItemSilverIngot extends Item{
 		   this.itemIcon = par1IconRegister.registerIcon(Refrence.Mod_Id + ":SilverIngot");
 		   
 	   }
+	   
+	    @Override
+	    public void addInformation(ItemStack itemstack, EntityPlayer player, List list, boolean par4)
+	    {
+	            list.add("Idea by ErnieFlapps");
+	    }
 }

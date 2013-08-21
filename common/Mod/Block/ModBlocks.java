@@ -6,6 +6,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBed;
+import net.minecraft.block.BlockColored;
 import net.minecraft.block.BlockStairs;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemStack;
@@ -21,8 +22,8 @@ public class ModBlocks {
 	public static Block Shelf;
 	public static Block DisarmTrap;
 	public static Block SilverOre;
-	
 	public static ModBlockStair StoneStair;
+	
 	
 	
 	public static void Init(){
@@ -45,6 +46,7 @@ public class ModBlocks {
 
         StoneStair = new ModBlockStair(ModConfig.StoneStair, Block.stone, 0, "StoneStair");
         Register(StoneStair, "Stone Stair");
+        
 
         
 		RegisterOreDictionary(new ItemStack(SilverOre), "oreSilver");

@@ -27,7 +27,7 @@ public class ModConfig {
 	public static int FlightChestPlate;
 	public static int RunningLeggings;
 	public static int JumpingBoots;
-	
+
 	/** Booleans **/
 	public static boolean BlastProofOverRe;
 	
@@ -64,7 +64,6 @@ public class ModConfig {
         FlightChestPlate = config.getItem("Items", "Flight Chest Plate Id", 22007).getInt();
         RunningLeggings = config.getItem("Items", "Running Leggings Id", 22008).getInt();
         JumpingBoots = config.getItem("Items", "Jumping Boots Id", 22009).getInt();
-        
 		
         
         config.save();

@@ -1,5 +1,7 @@
 package Mod.Items;
 
+import java.util.List;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import Mod.Lib.Refrence;
@@ -80,7 +82,7 @@ public ItemStack onEaten(ItemStack stack, World world, EntityPlayer player)
 
 		{
 
-			player.experienceLevel--;
+			player.addExperienceLevel(-1);
 
 			player.inventory.consumeInventoryItem(Item.glassBottle.itemID);
 
@@ -123,6 +125,14 @@ public int getMaxItemUseDuration(ItemStack stack)
 {
 return 32;
 }
+	
+    @Override
+    public void addInformation(ItemStack itemstack, EntityPlayer player, List list, boolean par4)
+    {
+            list.add("Requirements: ");
+            list.add("1. You Require Xp Levels");
+            list.add("2. You Require atleast 1 glass bottle");
+    }
     
     
     

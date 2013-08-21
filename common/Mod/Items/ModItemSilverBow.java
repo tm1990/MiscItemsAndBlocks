@@ -1,5 +1,7 @@
 package Mod.Items;
 
+import java.util.List;
+
 import Mod.Entity.EntitySilverArrow;
 import Mod.Lib.Refrence;
 import Mod.Main.Main;
@@ -194,4 +196,12 @@ public ItemStack onEaten(ItemStack stack, World world, EntityPlayer player)
 		
 		
 }
+	
+	
+    @Override
+    public void addInformation(ItemStack itemstack, EntityPlayer player, List list, boolean par4)
+    {
+            list.add("Idea by ErnieFlapps");
+            list.add("Requires silver arrows!");
+    }
 }
