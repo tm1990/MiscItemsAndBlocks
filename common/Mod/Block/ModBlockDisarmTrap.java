@@ -1,5 +1,7 @@
 package Mod.Block;
 
+import java.util.Random;
+
 import cpw.mods.fml.common.network.FMLNetworkHandler;
 import Mod.Items.ModItems;
 import Mod.Lib.Refrence;
@@ -12,6 +14,7 @@ import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -25,7 +28,7 @@ public class ModBlockDisarmTrap extends BlockContainer{
 	
 	protected ModBlockDisarmTrap(int par1) {
 		super(par1, Material.iron);
-		setUnlocalizedName("Trap");
+		setUnlocalizedName("DisarmTrap");
 		setHardness(120);
 		setCreativeTab(Main.CreativeTab);
 		this.setBlockBounds(0F, 0F, 0F, 1F, 0.2F, 1F);
@@ -106,6 +109,20 @@ public class ModBlockDisarmTrap extends BlockContainer{
 	public TileEntity createNewTileEntity(World world) {
 		return new TileEntityDisarmTrap();
 	}
+	
+    public void onNeighborBlockChange(World world, int x, int y, int z, int BlockId)
+    {
+    	
+    	if(world.doesBlockHaveSolidTopSurface(x, y - 1, z) == false){
+    		
+    		Random rand = new Random();
+    		
+    		world.setBlock(x, y, z, 0);
+    		world.spawnEntityInWorld(new EntityItem(world, x + rand.nextInt(3), y + rand.nextInt(3), z + rand.nextInt(3), new ItemStack(ModBlocks.DisarmTrap)));
+    	}
+    	
+    	
+    }
 		
     }
 

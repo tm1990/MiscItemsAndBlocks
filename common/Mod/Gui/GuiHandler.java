@@ -1,17 +1,19 @@
 package Mod.Gui;
 
-import Mod.Container.ContainerBin;
-import Mod.Container.ContainerShelf;
-import Mod.Container.ContainerXpStorage;
-import Mod.Main.Main;
-import Mod.TileEntity.TileEntityBin;
-import Mod.TileEntity.TileEntityShelf;
-import Mod.TileEntity.TileEntityXpStorage;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import Mod.Container.ContainerBin;
+import Mod.Container.ContainerBox;
+import Mod.Container.ContainerCraftingInv;
+import Mod.Container.ContainerShelf;
+import Mod.Container.ContainerXpStorage;
+import Mod.TileEntity.TileEntityBin;
+import Mod.TileEntity.TileEntityBox;
+import Mod.TileEntity.TileEntityCraftingInv;
+import Mod.TileEntity.TileEntityShelf;
+import Mod.TileEntity.TileEntityXpStorage;
 import cpw.mods.fml.common.network.IGuiHandler;
-import cpw.mods.fml.common.network.NetworkRegistry;
 
 public class GuiHandler implements IGuiHandler{
 
@@ -42,6 +44,16 @@ public class GuiHandler implements IGuiHandler{
 
         }
         
+        if(tile_entity instanceof TileEntityBox){
+        	
+        	return new ContainerBox(player.inventory, (TileEntityBox) tile_entity);
+        }
+        
+        if(tile_entity instanceof TileEntityCraftingInv){
+        	
+        	return new ContainerCraftingInv(player.inventory, (TileEntityCraftingInv) tile_entity);
+        }
+        
         return null;
     }
         
@@ -70,6 +82,16 @@ public class GuiHandler implements IGuiHandler{
 
             return new GuiShelf(player.inventory, (TileEntityShelf) tile_entity);
 
+        }
+        
+        if(tile_entity instanceof TileEntityBox){
+        	
+        	return new GuiBox(player.inventory, (TileEntityBox) tile_entity);
+        }
+        
+        if(tile_entity instanceof TileEntityCraftingInv){
+        	
+        	return new GuiCraftingInv(player.inventory, (TileEntityCraftingInv) tile_entity);
         }
         
         

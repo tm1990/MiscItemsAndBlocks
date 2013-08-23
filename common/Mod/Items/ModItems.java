@@ -20,6 +20,8 @@ public class ModItems {
 	public static Item SilverSword;
 	public static Item SilverBow;
 	public static Item SilverArrow;
+	public static Item Cardboard;
+	public static Item CraftingUpgrade;
 	
 	
 	public static Item DivingHelmet;
@@ -65,7 +67,12 @@ public class ModItems {
         
         JumpingBoots = (new ModItemPowerArmor(ModConfig.JumpingBoots, PowerArmor, Main.proxy.addArmor("Power"), 3, 4)).setUnlocalizedName("JumpingBoots");
         Register(JumpingBoots, "Jumping Boots");
-
+        
+        Cardboard = new ModItemCardboard(ModConfig.Cardboard).setUnlocalizedName("Cardboard");
+        Register(Cardboard, "Cardboard");
+        
+        CraftingUpgrade = new ModItemCraftingChestUpgrade(ModConfig.CraftingUpgrade).setUnlocalizedName("CraftingUpgrade");
+        Register(CraftingUpgrade, "Crafting Table Chest Upgrade");
 		
 		
 	RegisterOreDictionary(new ItemStack(SilverIngot), "ingotSilver");

@@ -36,6 +36,8 @@ import Mod.Network.PacketHandler;
 import Mod.Proxies.ClientProxy;
 import Mod.Proxies.ServerProxy;
 import Mod.TileEntity.TileEntityBin;
+import Mod.TileEntity.TileEntityBox;
+import Mod.TileEntity.TileEntityCraftingInv;
 import Mod.TileEntity.TileEntityShelf;
 import Mod.TileEntity.TileEntityDisarmTrap;
 import Mod.TileEntity.TileEntityXpStorage;
@@ -90,6 +92,8 @@ public class Main {
         GameRegistry.registerTileEntity(TileEntityBin.class, "TileEntityBin");
         GameRegistry.registerTileEntity(TileEntityShelf.class, "TileEntityShelf");
         GameRegistry.registerTileEntity(TileEntityDisarmTrap.class, "TileEntityTrap");
+        GameRegistry.registerTileEntity(TileEntityBox.class, "TileEntityBox");
+        GameRegistry.registerTileEntity(TileEntityCraftingInv.class, "TileEntityCraftingInv");
         
         
         GameRegistry.registerWorldGenerator(new SilverOreGen());

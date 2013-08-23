@@ -43,7 +43,7 @@ public class GuiXpStorage extends GuiContainer{
 
             fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, 4210752);
             
-            fontRenderer.drawString("Xp Storage Block", 7, 3, 0x00000);
+            fontRenderer.drawString("Xp Storage Block", 7, 3, 4210752);
             
             
             textfield.drawTextBox();

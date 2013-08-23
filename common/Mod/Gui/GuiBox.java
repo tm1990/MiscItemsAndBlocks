@@ -8,31 +8,31 @@ import net.minecraft.util.StatCollector;
 
 import org.lwjgl.opengl.GL11;
 
-import Mod.Container.ContainerBin;
+import Mod.Container.ContainerBox;
 import Mod.Container.ContainerShelf;
 import Mod.TileEntity.TileEntityBin;
+import Mod.TileEntity.TileEntityBox;
 import Mod.TileEntity.TileEntityShelf;
 
-public class GuiShelf extends GuiContainer{
+public class GuiBox extends GuiContainer{
 
-	 TileEntityBin tile = new TileEntityBin();
-	private final ResourceLocation Texture = new ResourceLocation("miscitems" , "textures/gui/ShelfGui.png");
+	private final ResourceLocation Texture = new ResourceLocation("miscitems" , "textures/gui/BoxGui.png");
 	
 	
-	public GuiShelf(InventoryPlayer InvPlayer, TileEntityShelf tile) {
-		super(new ContainerShelf(InvPlayer, tile));
+	public GuiBox(InventoryPlayer InvPlayer, TileEntityBox tile) {
+		super(new ContainerBox(InvPlayer, tile));
 	}
 	
-   @Override
-   protected void drawGuiContainerForegroundLayer(int param1, int param2) {
+  @Override
+  protected void drawGuiContainerForegroundLayer(int param1, int param2) {
 
-           fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, 4210752);
-           
-           fontRenderer.drawString("Shelf", 7, 3, 4210752);
-        
-           
-           
-   }
+          fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, 4210752);
+          
+          fontRenderer.drawString("Cardboard Box", 7, 3, 4210752);
+       
+          
+          
+  }
 
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float f, int X, int Y)
@@ -45,5 +45,4 @@ public class GuiShelf extends GuiContainer{
 	         
 
 	}
-
 }

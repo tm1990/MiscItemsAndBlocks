@@ -31,6 +31,13 @@ public class Crafting {
 			GameRegistry.addRecipe(new ItemStack(ModBlocks.DisarmTrap), new Object[] {"ISI", "SPS", "ISI", 'I', Item.ingotIron, 'S', ModItems.SilverIngot, 'P', Block.pressurePlateIron});
 	        GameRegistry.addRecipe(new ItemStack(ModBlocks.Bin), new Object[] {"I I", "IBI", " I ", 'I', Item.ingotIron, 'B', Item.bucketEmpty});
 	        GameRegistry.addRecipe(new ItemStack(ModBlocks.Shelf), new Object[] {"SPS", "SPS", "SPS", 'S', Item.stick, 'P', Block.pressurePlatePlanks});
+			GameRegistry.addShapelessRecipe(new ItemStack(ModItems.Cardboard, 2), new Object[]{Item.paper, Item.paper, Item.paper});
+			GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.Box), new Object[]{"CCC", "C C", "CCC", 'C', ModItems.Cardboard});
+			GameRegistry.addRecipe(new ItemStack(ModItems.DivingHelmet), new Object[] {"SNS", "SGS", "   ", 'S', ModItems.SilverIngot, 'N', Item.netherStar, 'G', Block.glass});
+			GameRegistry.addRecipe(new ItemStack(ModItems.RunningLeggings), new Object[]{"SNS", "S S", "S S", 'S', ModItems.SilverIngot, 'N', Item.netherStar});
+			GameRegistry.addRecipe(new ItemStack(ModItems.JumpingBoots), new Object[] {"   ", "S S", "D D", 'D', Item.diamond, 'S', ModItems.SilverIngot});
+	        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.CraftingInv), new Object[] {Block.workbench, Block.chest});
+	        GameRegistry.addShapelessRecipe(new ItemStack(ModItems.CraftingUpgrade), new Object[]{ModItems.Cardboard, Block.chest});
 			
 			
 			

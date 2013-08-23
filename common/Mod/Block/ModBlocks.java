@@ -24,6 +24,7 @@ public class ModBlocks {
 	public static Block DisarmTrap;
 	public static Block SilverOre;
 	public static Block Box;
+	public static Block CraftingInv;
 	
 	public static ModBlockStair StoneStair;
 	
@@ -51,10 +52,15 @@ public class ModBlocks {
         Register(StoneStair, "Stone Stair");
         
         Box = new ModBlockBox(ModConfig.Box);
-        Register(Box, "Box");
+        Register(Box, "Cardboard Box");
+        
+        CraftingInv = new ModBlockCraftingInv(ModConfig.CraftingInv);
+        Register(CraftingInv, "Crafting Table With Inventory");
 
         
 		RegisterOreDictionary(new ItemStack(SilverOre), "oreSilver");
+		
+		RegisterHarvestLevel(Box, "axe", 1);
 		
 		
 		

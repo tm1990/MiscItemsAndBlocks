@@ -15,6 +15,7 @@ public class ModConfig {
 	public static int SilverOre;
 	public static int StoneStair;
 	public static int Box;
+	public static int CraftingInv;
 	
 	/** Items **/
 	public static int XpExtractor;
@@ -23,6 +24,8 @@ public class ModConfig {
 	public static int SilverSword;
 	public static int SilverBow;
 	public static int SilverArrow;
+	public static int Cardboard;
+	public static int CraftingUpgrade;
 	
 	public static int DivingHelmet;
 	public static int FlightChestPlate;
@@ -36,6 +39,8 @@ public class ModConfig {
 	public static int XpStorageGuiId = 1;
 	public static int BinGuiId = 2;
 	public static int ShelfGuiId = 3;
+	public static int BoxGuiId = 4;
+	public static int CraftingInvGuiId = 5;
 	
 	
 	
@@ -55,6 +60,7 @@ public class ModConfig {
 		SilverOre = config.getBlock("Blocks", "Silver Ore Id", 604).getInt();
 		StoneStair = config.getBlock("Blocks", "Stone Stair Id", 605).getInt();
 		Box = config.getBlock("Blocks", "Box Id", 606).getInt();
+		CraftingInv = config.getBlock("Blocks", "Crafting table with inv Id", 607).getInt();
 		
         XpExtractor = config.getItem("Items","Xp Extractor Id", 22000).getInt();
         SilverIngot = config.getItem("Items", "Silver Ingot Id", 22001).getInt();
@@ -66,6 +72,8 @@ public class ModConfig {
         FlightChestPlate = config.getItem("Items", "Flight Chest Plate Id", 22007).getInt();
         RunningLeggings = config.getItem("Items", "Running Leggings Id", 22008).getInt();
         JumpingBoots = config.getItem("Items", "Jumping Boots Id", 22009).getInt();
+        Cardboard = config.getItem("Items", "Cardboard Id", 22010).getInt();
+        CraftingUpgrade = config.getItem("Items", "CraftingTable Chest Upgrade Id", 22011).getInt();
 		
         
         config.save();
