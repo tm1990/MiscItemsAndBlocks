@@ -13,7 +13,7 @@ public class ModBlockSilverOre extends Block{
 	public ModBlockSilverOre(int par1) {
 		super(par1, Material.rock);
 		this.setCreativeTab(Main.CreativeTab);
-		this.setHardness(70);
+		this.setHardness(46);
 		this.setUnlocalizedName("SilverOre");
 	}
 	

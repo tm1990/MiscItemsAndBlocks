@@ -156,11 +156,11 @@ public class ServerTickHandler implements ITickHandler{
 	public void Jump(EntityPlayer player){
 		if(player.inventory.armorInventory[0] == null || player.inventory.armorInventory[0].itemID != ModItems.JumpingBoots.itemID){
 			Boots = false;
-		}else if(player.inventory.armorInventory[0].itemID == ModItems.JumpingBoots.itemID){
+		}else if(player.inventory.armorInventory[0].itemID == ModItems.JumpingBoots.itemID && player.isSneaking() == false){
 			Boots = true;
 			
-			if(player.onGround && player.isInWater() == false){
-				player.addPotionEffect(new PotionEffect(Potion.jump.id, 10, 10));
+			if(player.onGround && player.isInWater() == false && player.isSneaking() == false){
+				player.addPotionEffect(new PotionEffect(Potion.jump.id, 10, 3));
 			}
 		
 	}
@@ -178,6 +178,7 @@ public class ServerTickHandler implements ITickHandler{
 							
 							player.addPotionEffect(new PotionEffect(Potion.regeneration.id, 10, 0));
 							player.addPotionEffect(new PotionEffect(Potion.resistance.id, 10, 2));
+							player.addPotionEffect(new PotionEffect(Potion.field_76443_y.id, 10, 1));
 							
 						}
 						

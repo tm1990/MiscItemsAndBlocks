@@ -1,5 +1,6 @@
 package Mod.Container;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -10,6 +11,9 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.inventory.SlotCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
+import net.minecraft.world.World;
+import Mod.Gui.SlotCraftingInvOutput;
+import Mod.Gui.SlotGhost;
 import Mod.TileEntity.TileEntityBox;
 import Mod.TileEntity.TileEntityCraftingInv;
 
@@ -19,10 +23,20 @@ public class ContainerCraftingInv extends Container{
     
     public InventoryCrafting craftMatrix = new InventoryCrafting(this, 3, 3);
     public IInventory craftResult = new InventoryCraftResult();
+    
+    private World worldObj;
+    
+    ItemStack[] Items;
+    
+    int SlotNext;
+    
 	
     public ContainerCraftingInv(InventoryPlayer InvPlayer, TileEntityCraftingInv tile)
     {
     	this.tile = tile;
+        this.worldObj = tile.world;
+        
+        Items = new ItemStack[tile.Items.length];
     	
     	
     	this.addSlotToContainer(new SlotCrafting(InvPlayer.player, this.craftMatrix, this.craftResult, 0, 121, 27));
@@ -30,6 +44,8 @@ public class ContainerCraftingInv extends Container{
         int l;
         int i1;
 
+        
+        // Crafting grid
         for (l = 0; l < 3; ++l)
         {
             for (i1 = 0; i1 < 3; ++i1)
@@ -38,11 +54,13 @@ public class ContainerCraftingInv extends Container{
             }
         }
     	
+        // Hotbar
     	for(int x = 0; x < 9; x++){
     		
     		addSlotToContainer(new Slot(InvPlayer, x, 8 + 18 * x, 173));
     	}
     	
+    	// Player Inv
     	for(int y = 0; y < 3; y++){
     		for(int x = 0; x < 9; x++){
     			
@@ -51,15 +69,43 @@ public class ContainerCraftingInv extends Container{
     	}
     	
     	
+    	// Crafting Extra Slots
     	for (int x = 0; x != 9; x++){
     		
-    		addSlotToContainer(new Slot(tile, x, 8 + (18 * x), 70));
+    		addSlotToContainer(new Slot(tile, SlotNext, 8 + (18 * x), 70));
+    		SlotNext++;
     	}
     	
     	for (int x = 0; x != 9; x++){
     		
-    		addSlotToContainer(new Slot(tile, x + 9, 8 + (18 * x), 88));
+    		addSlotToContainer(new Slot(tile, SlotNext, 8 + (18 * x), 88));
+    		SlotNext++;
     	}
+    	
+    	
+    	// Moved Crafting Slots
+    	for (int x = 0; x != 3; x++){
+    		addSlotToContainer(new SlotCraftingInvOutput(tile, SlotNext, 191 + x * 18, 70));
+    		SlotNext++;
+    	}
+    	
+    	for (int x = 0; x != 3; x++){
+    		addSlotToContainer(new SlotCraftingInvOutput(tile, SlotNext, 191 + x * 18, 88));
+    		SlotNext++;
+    	}
+    	
+    	for (int x = 0; x != 3; x++){
+    		addSlotToContainer(new SlotCraftingInvOutput(tile, SlotNext, 191 + x * 18, 106));
+    		SlotNext++;
+    	}
+    	
+    	// Product Slot
+    	
+    	tile.ProductSlot = SlotNext;
+    	addSlotToContainer(new SlotGhost(tile, SlotNext, 209, 22));
+    	SlotNext++;
+    	
+    	
     	
     	}
 
@@ -72,11 +118,13 @@ public class ContainerCraftingInv extends Container{
 	 public void onCraftMatrixChanged(IInventory par1IInventory)
 	    {	
 	        this.craftResult.setInventorySlotContents(0, CraftingManager.getInstance().findMatchingRecipe(this.craftMatrix, tile.world));
+	        tile.setInventorySlotContents(tile.ProductSlot, null);
 	    }
 	 
 	 @Override 
 	 public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer, int par2)
     {
+	       tile.setInventorySlotContents(tile.ProductSlot, null);
         ItemStack itemstack = null;
         Slot slot = (Slot)this.inventorySlots.get(par2);
 
@@ -132,4 +180,37 @@ public class ContainerCraftingInv extends Container{
 
         return itemstack;
     }
-    }
+	 
+	    public void onContainerClosed(EntityPlayer player)
+	    {
+	        super.onContainerClosed(player);
+	        if (!tile.worldObj.isRemote)
+	        {
+	            for (int i = 0; i < 9; ++i)
+	            {
+	                ItemStack itemstack = this.craftMatrix.getStackInSlotOnClosing(i);
+
+	                if (itemstack != null)
+	                {
+	                	
+	                	if(tile.getStackInSlot(i + 18) == null){
+	                   	tile.setInventorySlotContents(i + 18, itemstack);
+	                	}else if(tile.getStackInSlot(i + 18).itemID == itemstack.itemID){
+	                		tile.IncrStackSize(i + 18, itemstack.stackSize, player, itemstack);
+	                	}else{
+	                		player.dropItem(itemstack.itemID, itemstack.stackSize);
+	                	}
+	                   	tile.setInventorySlotContents(tile.ProductSlot, craftResult.getStackInSlot(1));
+	                	
+	                		
+	                	}
+	                	
+	                }
+	            }
+	        }
+	    
+	    
+
+	    	
+	    }
+    

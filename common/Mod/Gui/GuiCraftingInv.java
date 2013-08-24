@@ -16,15 +16,15 @@ import Mod.TileEntity.TileEntityCraftingInv;
 
 public class GuiCraftingInv extends GuiContainer{
 
-	private final ResourceLocation Texture = new ResourceLocation("miscitems" , "textures/gui/CraftingInvGui.png");
-	
-	
-	public GuiCraftingInv(InventoryPlayer InvPlayer, TileEntityCraftingInv tile) {
-		super(new ContainerCraftingInv(InvPlayer, tile));
-		
-		this.xSize = 176;
-		this.ySize = 197;
-	}
+private final ResourceLocation Texture = new ResourceLocation("miscitems" , "textures/gui/CraftingInvGui.png");
+
+
+public GuiCraftingInv(InventoryPlayer InvPlayer, TileEntityCraftingInv tile) {
+super(new ContainerCraftingInv(InvPlayer, tile));
+
+this.xSize = 250;
+this.ySize = 197;
+}
 	
  @Override
  protected void drawGuiContainerForegroundLayer(int param1, int param2) {

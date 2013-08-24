@@ -17,6 +17,7 @@ public class ModItemCraftingChestUpgrade extends Item{
 
 	public ModItemCraftingChestUpgrade(int par1) {
 		super(par1);
+		this.maxStackSize = 1;
 	}
 	
     @SideOnly(Side.CLIENT)

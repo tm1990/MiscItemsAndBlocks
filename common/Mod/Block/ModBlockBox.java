@@ -28,7 +28,7 @@ public class ModBlockBox extends BlockContainer{
 		super(par1, Material.wood);
 		this.setStepSound(soundWoodFootstep);
 		this.setUnlocalizedName("Box");
-		this.setHardness(3);
+		this.setHardness(0.5F);
 	}
 	
 	

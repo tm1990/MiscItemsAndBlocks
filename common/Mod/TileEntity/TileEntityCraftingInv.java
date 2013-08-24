@@ -2,6 +2,8 @@ package Mod.TileEntity;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.ISidedInventory;
+import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -11,105 +13,138 @@ import net.minecraft.network.packet.Packet132TileEntityData;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
+
+
 public class TileEntityCraftingInv extends TileEntity implements IInventory{
 
-	public ItemStack[] Items;
-	
-	public World world = worldObj;
-	
-	public TileEntityCraftingInv(){
-		
-		Items = new ItemStack[18];
-	}
-	
-	@Override
-	public int getSizeInventory() {
-		return Items.length;
-	}
+public ItemStack[] Items;
+public int ProductSlot;
 
-	@Override
-	public ItemStack getStackInSlot(int i) {
-		return Items[i];
-	}
+public World world = worldObj;
 
-	@Override
-	public ItemStack decrStackSize(int i, int j) {
-		ItemStack itemstack = getStackInSlot(i);
-		
-		if(itemstack != null){
-			
-			if(itemstack.stackSize <= j){
-				
-				setInventorySlotContents(i, null);
-			}else{
-				
-				itemstack = itemstack.splitStack(j);
-				onInventoryChanged();
-				
-			}
-			
+public TileEntityCraftingInv(){
+
+Items = new ItemStack[28];
+}
+
+@Override
+public int getSizeInventory() {
+return Items.length;
+}
+
+@Override
+public ItemStack getStackInSlot(int i) {
+return Items[i];
+}
+
+public ItemStack IncrStackSize(int i, int j, EntityPlayer player, ItemStack stack) {
+ItemStack itemstack = getStackInSlot(i);
+
+if(itemstack != null){
+
+if(itemstack.stackSize == getInventoryStackLimit()){
+	player.dropItem(stack.itemID, stack.stackSize);
+	return itemstack;
+}else{
+	
+	for (int x = 0; x < j; x++){
+		if(itemstack.stackSize + 1 > getInventoryStackLimit()){
+			player.dropItem(stack.itemID, stack.stackSize);
+			return itemstack;
+		}else{
+			itemstack.stackSize = itemstack.stackSize + j;
 		}
-		
-		return itemstack;
 	}
+}
 
-	@Override
-	public ItemStack getStackInSlotOnClosing(int i) {
-		ItemStack item = getStackInSlot(i);
-		
-		setInventorySlotContents(i, null);
-		
-		return item;
-	}
+onInventoryChanged();
 
-	@Override
-	public void setInventorySlotContents(int i, ItemStack itemstack) {
-	
-		Items[i] = itemstack;
-		
-		if(itemstack != null && itemstack.stackSize > getInventoryStackLimit()){
-			itemstack.stackSize = getInventoryStackLimit();
-			
-		}
-		
-		onInventoryChanged();
-		
-	}
+}
 
-	@Override
-	public String getInvName() {
-		return "BoxInv";
-	}
 
-	@Override
-	public boolean isInvNameLocalized() {
-		return false;
-	}
+return itemstack;
+}
 
-	@Override
-	public int getInventoryStackLimit() {
-		return 64;
-	}
+@Override
+public ItemStack decrStackSize(int i, int j) {
+ItemStack itemstack = getStackInSlot(i);
 
-	@Override
-	public boolean isUseableByPlayer(EntityPlayer entityplayer) {
-		return entityplayer.getDistanceSq(xCoord + 0.5, yCoord + 0.5, zCoord + 0.5) <= 64;
-	}
+if(itemstack != null){
 
-	@Override
-	public void openChest() {}
+if(itemstack.stackSize <= j){
 
-	@Override
-	public void closeChest() {}
+setInventorySlotContents(i, null);
+}else{
 
-	@Override
-	public boolean isItemValidForSlot(int i, ItemStack itemstack) {
-		return true;
-		
-	}
-	
-	
-	public Packet getDescriptionPacket() {
+itemstack = itemstack.splitStack(j);
+onInventoryChanged();
+
+}
+
+}
+
+return itemstack;
+}
+
+
+
+@Override
+public ItemStack getStackInSlotOnClosing(int i) {
+ItemStack item = getStackInSlot(i);
+
+setInventorySlotContents(i, null);
+
+return item;
+}
+
+@Override
+public void setInventorySlotContents(int i, ItemStack itemstack) {
+
+Items[i] = itemstack;
+
+if(itemstack != null && itemstack.stackSize > getInventoryStackLimit()){
+itemstack.stackSize = getInventoryStackLimit();
+
+}
+
+onInventoryChanged();
+
+}
+
+@Override
+public String getInvName() {
+return "BoxInv";
+}
+
+@Override
+public boolean isInvNameLocalized() {
+return false;
+}
+
+@Override
+public int getInventoryStackLimit() {
+return 64;
+}
+
+@Override
+public boolean isUseableByPlayer(EntityPlayer entityplayer) {
+return entityplayer.getDistanceSq(xCoord + 0.5, yCoord + 0.5, zCoord + 0.5) <= 64;
+}
+
+@Override
+public void openChest() {}
+
+@Override
+public void closeChest() {}
+
+@Override
+public boolean isItemValidForSlot(int i, ItemStack itemstack) {
+return true;
+
+}
+
+
+public Packet getDescriptionPacket() {
         NBTTagCompound nbtTag = new NBTTagCompound();
         this.writeToNBT(nbtTag);
         return new Packet132TileEntityData(this.xCoord, this.yCoord, this.zCoord, 1, nbtTag);
@@ -120,46 +155,46 @@ public class TileEntityCraftingInv extends TileEntity implements IInventory{
         }
         
         @Override
-    	public void writeToNBT(NBTTagCompound compound){
-    		super.writeToNBT(compound);
-    		
-    		NBTTagList Items = new NBTTagList();
-    		
-    		for (int i = 0; i < getSizeInventory(); i++){
-    			
-    			ItemStack stack = getStackInSlot(i);
-    			if(stack != null){
-    				
-    				NBTTagCompound item = new NBTTagCompound();
-    				item.setByte("Slot", (byte)i);
-    				stack.writeToNBT(item);
-    				Items.appendTag(item);
-    			}
-    		}
-    		compound.setTag("Items", Items);
-    		
-    		
-    	}
-    	
-    	@Override
-    	public void readFromNBT(NBTTagCompound compound){
-    		super.readFromNBT(compound);
-    		
+     public void writeToNBT(NBTTagCompound compound){
+     super.writeToNBT(compound);
+    
+     NBTTagList Items = new NBTTagList();
+    
+     for (int i = 0; i < getSizeInventory(); i++){
+    
+     ItemStack stack = getStackInSlot(i);
+     if(stack != null){
+    
+     NBTTagCompound item = new NBTTagCompound();
+     item.setByte("Slot", (byte)i);
+     stack.writeToNBT(item);
+     Items.appendTag(item);
+     }
+     }
+     compound.setTag("Items", Items);
+    
+    
+     }
+    
+     @Override
+     public void readFromNBT(NBTTagCompound compound){
+     super.readFromNBT(compound);
+    
 
-    		NBTTagList items = compound.getTagList("Items");
-    		
-    		for(int i = 0; i < items.tagCount(); i++){
-    			
-    			NBTTagCompound item = (NBTTagCompound)items.tagAt(i);
-    			int slot = item.getByte("Slot");
-    			
-    			if(slot >= 0 && slot < getSizeInventory()){
-    				setInventorySlotContents(slot, ItemStack.loadItemStackFromNBT(item));
-    				
-    			}
-    		}
-    		
-    		
-    		
-    	}
+     NBTTagList items = compound.getTagList("Items");
+    
+     for(int i = 0; i < items.tagCount(); i++){
+    
+     NBTTagCompound item = (NBTTagCompound)items.tagAt(i);
+     int slot = item.getByte("Slot");
+    
+     if(slot >= 0 && slot < getSizeInventory()){
+     setInventorySlotContents(slot, ItemStack.loadItemStackFromNBT(item));
+    
+     }
+     }
+    
+    
+    
+     }
 }
