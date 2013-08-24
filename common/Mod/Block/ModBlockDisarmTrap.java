@@ -97,24 +97,21 @@ public class ModBlockDisarmTrap extends BlockContainer{
 	@Override
 	public void onEntityWalking(World world, int x, int y, int z, Entity entity) {
 		
+		
 		if(world.getClosestPlayer(x, y, z, 3) != null && world.getClosestPlayer(x, y, z, 3).capabilities.isCreativeMode == false){
 			
 			world.getClosestPlayer(x, y, z, 3).inventory.dropAllItems();
 			entity.attackEntityFrom(new MiscDamage("Disarm Trap", "was Disarmed"), 4);
 			
+			
 		}
+		
 		
 	}
 	
     public void onFallenUpon(World world, int x, int y, int z, Entity entity, float par6) {
     	
-    	
-		if(world.getClosestPlayer(x, y, z, 3) != null && world.getClosestPlayer(x, y, z, 3).capabilities.isCreativeMode == false){
-			
-			world.getClosestPlayer(x, y, z, 3).inventory.dropAllItems();
-			entity.attackEntityFrom(new MiscDamage("Disarm Trap", "was Disarmed"), 4);
-			
-		}
+    	onEntityWalking(world, x, y, z, entity);
 			
     	
     }

@@ -40,9 +40,11 @@ public class ContainerBin extends Container{
 	}
 
 	
-	  public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer, int par2)
+	  public ItemStack transferStackInSlot(EntityPlayer player, int Slot)
 	    {
-	       return null;
+		  Slot = Slot - 1;
+		  player.inventory.setInventorySlotContents(Slot, null);
+	       return player.inventory.getStackInSlot(Slot);
 	    }
 	  
 	  

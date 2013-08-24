@@ -4,6 +4,7 @@ import java.util.List;
 
 import Mod.Lib.Refrence;
 import Mod.Main.Main;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -53,6 +54,7 @@ public class ModItemPowerArmor extends ItemArmor {
     @Override
     public String getArmorTexture(ItemStack stack, Entity entity, int slot, int layer)
     {
+    	
     	if(stack.itemID == ModItems.FlightChestPlate.itemID || stack.itemID == ModItems.DivingHelmet.itemID || stack.itemID == ModItems.JumpingBoots.itemID){
     		return Refrence.Mod_Id + ":" + "textures/models/armor/PowerArmor_layer_1.png";
 

@@ -32,14 +32,14 @@ public class ModBlocks {
 	
 	public static void Init(){
 		
-		XpStorage = new BlockXpStorage(ModConfig.XpStorageBlock);
+		XpStorage = new ModBlockXpStorage(ModConfig.XpStorageBlock);
 		Register(XpStorage, "Xp Storage Block");
 		
 		Bin = new ModBlockBin(ModConfig.Bins);
 		Register(Bin, "Trash Bin");
 		
 		Shelf = new ModBlockShelf(ModConfig.Shelf);
-		Register(Shelf, "Shelf  ");
+		if("@DEV@" != "NotDev"){ Register(Shelf, "Shelf"); }
 		
 		DisarmTrap = new ModBlockDisarmTrap(ModConfig.Trap);
 		Register(DisarmTrap, "Disarm Trap");
@@ -55,7 +55,7 @@ public class ModBlocks {
         Register(Box, "Cardboard Box");
         
         CraftingInv = new ModBlockCraftingInv(ModConfig.CraftingInv);
-        Register(CraftingInv, "Crafting Table With Inventory");
+        Register(CraftingInv, "Worktable");
 
         
 		RegisterOreDictionary(new ItemStack(SilverOre), "oreSilver");

@@ -22,7 +22,7 @@ private final ResourceLocation Texture = new ResourceLocation("miscitems" , "tex
 public GuiCraftingInv(InventoryPlayer InvPlayer, TileEntityCraftingInv tile) {
 super(new ContainerCraftingInv(InvPlayer, tile));
 
-this.xSize = 250;
+this.xSize = 178;
 this.ySize = 197;
 }
 	
@@ -30,6 +30,7 @@ this.ySize = 197;
  protected void drawGuiContainerForegroundLayer(int param1, int param2) {
 
          fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 4, 4210752);
+         fontRenderer.drawString("Worktable", 8, 2, 4210752);
          
       
          

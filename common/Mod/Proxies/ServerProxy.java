@@ -1,5 +1,6 @@
 package Mod.Proxies;
 
+import Mod.Tick.ClientTickHandler;
 import Mod.Tick.ServerTickHandler;
 import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
@@ -25,6 +26,7 @@ public class ServerProxy {
 	public void registerClientTickHandler() {
 
 		
+		  TickRegistry.registerTickHandler(new ClientTickHandler(), Side.CLIENT);
 		
 		
 	}

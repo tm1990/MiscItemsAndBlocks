@@ -124,10 +124,23 @@ public class TileEntityXpStorage extends TileEntity implements IInventory{
 			case 3:
 				
 	            System.out.println("1" + this);
-				player.addChatMessage("Currently stored xp levels : " + XpAmount + " (This message will be added to the gui some time)");
+				player.addChatMessage("[Tip]This is a Xp Storage block you can store and take xp levels from it at any time");
 				
 				break;
 		}
+		
+	}
+	
+	public TileEntity GetTile(){
+		return this;
+	}
+	
+	public int GetLevels(){
+		return XpAmount;
+	}
+	
+	public void SetLevels(int Levels){
+		XpAmount = Levels;
 	}
 	
 	

@@ -5,6 +5,8 @@ import java.util.List;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.boss.EntityDragon;
+import net.minecraft.entity.boss.EntityWither;
 import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.entity.player.EntityPlayer;
@@ -45,9 +47,11 @@ public class ModItemSilverSword extends ItemSword {
     {
     	
     	
-    	if(EntityHit.getTranslatedEntityName() != "EnderDragon" && EntityHit.getTranslatedEntityName() != "Witer"){
+    	if(EntityHit instanceof EntityDragon || EntityHit instanceof EntityWither || EntityHit instanceof EntityPlayer){
+    	}else{
     		
     		EntityHit.attackEntityFrom(new MiscDamage("Silver Sword", "Was Slain With Silver Sword by " + EntityAttacker.getTranslatedEntityName()), 80F);
+    		EntityHit.attackEntityAsMob(EntityAttacker);
     		
     		itemstack.damageItem(2, EntityAttacker);
     	

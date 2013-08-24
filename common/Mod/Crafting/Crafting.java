@@ -16,7 +16,6 @@ public class Crafting {
 	public static void RegisterRecipes(){
 		
 
-		
 			
 			GameRegistry.addShapedRecipe(new ItemStack(ModItems.XpExtractor), new Object[] {" D ", "IGI", "IGI", 'I', Item.ingotIron, 'G', Block.glass, 'D', Item.diamond});
 			GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.XpStorage), new Object[] {"BIB", "IEI", "BIB", 'I', Block.obsidian, 'B', Block.blockIron, 'E', ModItems.XpExtractor});
@@ -36,8 +35,8 @@ public class Crafting {
 			GameRegistry.addRecipe(new ItemStack(ModItems.DivingHelmet), new Object[] {"SNS", "SGS", "   ", 'S', ModItems.SilverIngot, 'N', Item.netherStar, 'G', Block.glass});
 			GameRegistry.addRecipe(new ItemStack(ModItems.RunningLeggings), new Object[]{"SNS", "S S", "S S", 'S', ModItems.SilverIngot, 'N', Item.netherStar});
 			GameRegistry.addRecipe(new ItemStack(ModItems.JumpingBoots), new Object[] {"   ", "S S", "D D", 'D', Item.diamond, 'S', ModItems.SilverIngot});
-	        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.CraftingInv), new Object[] {Block.workbench, Block.chest});
-	        GameRegistry.addShapelessRecipe(new ItemStack(ModItems.CraftingUpgrade), new Object[]{ModItems.Cardboard, Block.chest});
+	        GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.CraftingInv), new Object[] {"WWW", "PIP", "PCP", 'W', Block.cloth, 'P', Block.planks, 'C', Block.chest, 'I', Block.workbench});
+	        GameRegistry.addShapedRecipe(new ItemStack(ModItems.CraftingUpgrade), new Object[]{"WWW", "PBP", "PCP", 'W', Block.cloth, 'P', Block.planks, 'B', ModItems.Cardboard, 'C', Block.chest});
 			
 			
 			

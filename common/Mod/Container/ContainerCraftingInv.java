@@ -12,156 +12,159 @@ import net.minecraft.inventory.SlotCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.world.World;
-import Mod.Gui.SlotCraftingInvOutput;
+import Mod.Gui.SlotCraftingInv;
 import Mod.Gui.SlotGhost;
 import Mod.TileEntity.TileEntityBox;
 import Mod.TileEntity.TileEntityCraftingInv;
 
-public class ContainerCraftingInv extends Container{
+public class ContainerCraftingInv extends Container
+{
+public TileEntityCraftingInv tileEntity;
 
-    private TileEntityCraftingInv tile;
-    
-    public InventoryCrafting craftMatrix = new InventoryCrafting(this, 3, 3);
-    public IInventory craftResult = new InventoryCraftResult();
-    
-    private World worldObj;
-    
-    ItemStack[] Items;
-    
-    int SlotNext;
-    
-	
-    public ContainerCraftingInv(InventoryPlayer InvPlayer, TileEntityCraftingInv tile)
+public IInventory craftSupplyMatrix;
+public int craftResultSlot = 0;
+private boolean containerChanged;
+private boolean netEditingContainer = false;
+
+public ContainerCraftingInv(InventoryPlayer invPlayer, TileEntityCraftingInv tpb)
+{
+tileEntity = tpb;
+craftSupplyMatrix = tileEntity.craftSupplyMatrix;
+addSlotToContainer(new SlotCraftingInv(this, invPlayer.player, tileEntity, tileEntity.craftResult,
+tileEntity, craftResultSlot, 137, 29));
+layoutContainer(invPlayer, tileEntity);
+bindPlayerInventory(invPlayer);
+containerChanged = true;
+detectAndSendChanges();
+}
+private void layoutContainer(InventoryPlayer invPlayer, TileEntityCraftingInv tpb)
+{
+int row;
+int col;
+int index = -1;
+int counter = 0;
+Slot slot = null;
+
+for(row = 0; row < 3; row++)
+{
+for(col = 0; col < 3; col++)
+{
+slot = new Slot(tileEntity, ++index, 43 + col * 18, 11 + row * 18);
+addSlotToContainer(slot);
+counter++;
+}
+}
+
+for(row = 0; row < 2; row++)
+{
+for(col = 0; col < 9; col++)
+{
+if(row == 1)
+{
+slot = new Slot(tileEntity, 18 + col, 8 + 18 * col, 70);
+addSlotToContainer(slot);
+} else
+{
+slot = new Slot(tileEntity, 9 + col, 8 + col * 18, 88);
+addSlotToContainer(slot);
+}
+counter++;
+}
+}
+}
+protected void bindPlayerInventory(InventoryPlayer invPlayer)
+{
+for(int i = 0; i < 3; i++)
+{
+for(int j = 0; j < 9; j++)
+{
+addSlotToContainer(new Slot(invPlayer, j + i * 9 + 9, 8 + 18 * j, 115 + i * 18));
+}
+}
+for(int i = 0; i < 9; i++)
+{
+addSlotToContainer(new Slot(invPlayer, i, 8 + 18 * i, 173));
+}
+}
+public void updateCrafting(boolean flag){
+tileEntity.markShouldUpdate();
+}
+
+@Override
+public ItemStack slotClick(int slot, int clickType, int clickMeta, EntityPlayer player)
+{
+if(slot <= 9 && slot > -1)
+updateCrafting(true);
+ItemStack stack = super.slotClick(slot, clickType, clickMeta, player);
+return stack;
+}
+@Override
+public boolean canInteractWith(EntityPlayer player)
+{
+return tileEntity.isUseableByPlayer(player);
+}
+@Override
+public void putStacksInSlots(ItemStack[] par1ArrayOfItemStack) {
+tileEntity.containerInit = true;
+super.putStacksInSlots(par1ArrayOfItemStack);
+tileEntity.containerInit = false;
+tileEntity.onInventoryChanged();
+}
+@Override
+public void putStackInSlot(int slot, ItemStack itemStack) {
+tileEntity.containerInit = true;
+super.putStackInSlot(slot, itemStack);
+tileEntity.containerInit = false;
+}
+@Override
+public ItemStack transferStackInSlot(EntityPlayer player, int numSlot)
     {
-    	this.tile = tile;
-        this.worldObj = tile.world;
-        
-        Items = new ItemStack[tile.Items.length];
-    	
-    	
-    	this.addSlotToContainer(new SlotCrafting(InvPlayer.player, this.craftMatrix, this.craftResult, 0, 121, 27));
-    	
-        int l;
-        int i1;
-
-        
-        // Crafting grid
-        for (l = 0; l < 3; ++l)
-        {
-            for (i1 = 0; i1 < 3; ++i1)
-            {
-                this.addSlotToContainer(new Slot(this.craftMatrix, i1 + l * 3, 27 + i1 * 18, 9 + l * 18));
-            }
-        }
-    	
-        // Hotbar
-    	for(int x = 0; x < 9; x++){
-    		
-    		addSlotToContainer(new Slot(InvPlayer, x, 8 + 18 * x, 173));
-    	}
-    	
-    	// Player Inv
-    	for(int y = 0; y < 3; y++){
-    		for(int x = 0; x < 9; x++){
-    			
-    			addSlotToContainer(new Slot(InvPlayer, x + y * 9 + 9, 8 + 18 * x, 115 + y * 18));
-    		}
-    	}
-    	
-    	
-    	// Crafting Extra Slots
-    	for (int x = 0; x != 9; x++){
-    		
-    		addSlotToContainer(new Slot(tile, SlotNext, 8 + (18 * x), 70));
-    		SlotNext++;
-    	}
-    	
-    	for (int x = 0; x != 9; x++){
-    		
-    		addSlotToContainer(new Slot(tile, SlotNext, 8 + (18 * x), 88));
-    		SlotNext++;
-    	}
-    	
-    	
-    	// Moved Crafting Slots
-    	for (int x = 0; x != 3; x++){
-    		addSlotToContainer(new SlotCraftingInvOutput(tile, SlotNext, 191 + x * 18, 70));
-    		SlotNext++;
-    	}
-    	
-    	for (int x = 0; x != 3; x++){
-    		addSlotToContainer(new SlotCraftingInvOutput(tile, SlotNext, 191 + x * 18, 88));
-    		SlotNext++;
-    	}
-    	
-    	for (int x = 0; x != 3; x++){
-    		addSlotToContainer(new SlotCraftingInvOutput(tile, SlotNext, 191 + x * 18, 106));
-    		SlotNext++;
-    	}
-    	
-    	// Product Slot
-    	
-    	tile.ProductSlot = SlotNext;
-    	addSlotToContainer(new SlotGhost(tile, SlotNext, 209, 22));
-    	SlotNext++;
-    	
-    	
-    	
-    	}
-
-
-	@Override
-	public boolean canInteractWith(EntityPlayer entityplayer) {
-		return tile.isUseableByPlayer(entityplayer);
-	}
-	
-	 public void onCraftMatrixChanged(IInventory par1IInventory)
-	    {	
-	        this.craftResult.setInventorySlotContents(0, CraftingManager.getInstance().findMatchingRecipe(this.craftMatrix, tile.world));
-	        tile.setInventorySlotContents(tile.ProductSlot, null);
-	    }
-	 
-	 @Override 
-	 public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer, int par2)
-    {
-	       tile.setInventorySlotContents(tile.ProductSlot, null);
-        ItemStack itemstack = null;
-        Slot slot = (Slot)this.inventorySlots.get(par2);
+        ItemStack stack = null;
+        Slot slot = (Slot)this.inventorySlots.get(numSlot);
 
         if (slot != null && slot.getHasStack())
         {
-            ItemStack itemstack1 = slot.getStack();
-            itemstack = itemstack1.copy();
-
-            if (par2 == 0)
+            ItemStack stack2 = slot.getStack();
+            stack = stack2.copy();
+            
+            if (numSlot == 0)
             {
-                if (!this.mergeItemStack(itemstack1, 10, 46, true))
+                if (!this.mergeItemStack(stack2, 10, 55, true))
                 {
                     return null;
                 }
-
-                slot.onSlotChange(itemstack1, itemstack);
+                updateCrafting(true);
             }
-            else if (par2 >= 10 && par2 < 37)
+            //Merge crafting matrix item with supply matrix inventory
+            else if(numSlot > 0 && numSlot <= 9)
             {
-                if (!this.mergeItemStack(itemstack1, 37, 46, false))
+             if(!this.mergeItemStack(stack2, 10, 28, false))
+             {
+             if(!this.mergeItemStack(stack2, 28, 64, false))
+             {
+                 return null;
+             }
+             }
+             updateCrafting(true);
+            }
+            //Merge Supply matrix item with player inventory
+            else if (numSlot >= 10 && numSlot <= 27)
+            {
+                if (!this.mergeItemStack(stack2, 28, 64, false))
                 {
                     return null;
                 }
             }
-            else if (par2 >= 37 && par2 < 46)
+            //Merge player inventory item with supply matrix
+            else if (numSlot >= 28 && numSlot < 64)
             {
-                if (!this.mergeItemStack(itemstack1, 10, 37, false))
+                if (!this.mergeItemStack(stack2, 10, 28, false))
                 {
                     return null;
                 }
             }
-            else if (!this.mergeItemStack(itemstack1, 10, 46, false))
-            {
-                return null;
-            }
 
-            if (itemstack1.stackSize == 0)
+            if (stack2.stackSize == 0)
             {
                 slot.putStack((ItemStack)null);
             }
@@ -170,47 +173,15 @@ public class ContainerCraftingInv extends Container{
                 slot.onSlotChanged();
             }
 
-            if (itemstack1.stackSize == itemstack.stackSize)
+            if (stack2.stackSize == stack.stackSize)
             {
                 return null;
             }
 
-            slot.onPickupFromSlot(par1EntityPlayer, itemstack1);
+            slot.onPickupFromSlot(player, stack2);
         }
 
-        return itemstack;
+        return stack;
     }
-	 
-	    public void onContainerClosed(EntityPlayer player)
-	    {
-	        super.onContainerClosed(player);
-	        if (!tile.worldObj.isRemote)
-	        {
-	            for (int i = 0; i < 9; ++i)
-	            {
-	                ItemStack itemstack = this.craftMatrix.getStackInSlotOnClosing(i);
+}
 
-	                if (itemstack != null)
-	                {
-	                	
-	                	if(tile.getStackInSlot(i + 18) == null){
-	                   	tile.setInventorySlotContents(i + 18, itemstack);
-	                	}else if(tile.getStackInSlot(i + 18).itemID == itemstack.itemID){
-	                		tile.IncrStackSize(i + 18, itemstack.stackSize, player, itemstack);
-	                	}else{
-	                		player.dropItem(itemstack.itemID, itemstack.stackSize);
-	                	}
-	                   	tile.setInventorySlotContents(tile.ProductSlot, craftResult.getStackInSlot(1));
-	                	
-	                		
-	                	}
-	                	
-	                }
-	            }
-	        }
-	    
-	    
-
-	    	
-	    }
-    

@@ -20,10 +20,11 @@ import net.minecraft.util.StatCollector;
 public class GuiXpStorage extends GuiContainer{
 	
 	
-	TileEntityXpStorage tile;
 	private final ResourceLocation Texture = new ResourceLocation("miscitems" , "textures/gui/XpStorageGui.png");
 	
 	GuiTextField textfield;
+	
+	TileEntityXpStorage tile;
 	
 
  
@@ -32,9 +33,6 @@ public class GuiXpStorage extends GuiContainer{
 		super(new ContainerXpStorage(InvPlayer, tile));
 		
 		this.tile = tile;
-		
-		xSize = 176;
-		ySize = 166;
 	}
 
 	
@@ -47,6 +45,7 @@ public class GuiXpStorage extends GuiContainer{
             
             
             textfield.drawTextBox();
+            
 
 
             
@@ -86,19 +85,16 @@ public class GuiXpStorage extends GuiContainer{
 	protected void actionPerformed(GuiButton button){
 		PacketHandler.sendButtonPacket((byte)button.id);
 
+		
 		switch(button.id){
+		  
 		case 1:
-	
 			break;
-			
 			
 		case 2:
-			
 			break;
-			
 			
 		case 3:
-			
 			break;
 		
 		}
@@ -106,11 +102,9 @@ public class GuiXpStorage extends GuiContainer{
 		
 		}
 	
-	
-	//TODO Add XpAmount Stored Into The Gui Without Make TileEntityes Share
 	public void updateScreen(){
 		
-		textfield.setText("Work In Progress");
+		textfield.setText("Levels stored : " + tile.GetLevels());
 		
 		
 		}

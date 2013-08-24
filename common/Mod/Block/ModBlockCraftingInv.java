@@ -27,9 +27,12 @@ public class ModBlockCraftingInv extends BlockContainer{
     private Icon CraftingTableSide1;
     @SideOnly(Side.CLIENT)
     private Icon CraftingTableSide2;
+    @SideOnly(Side.CLIENT)
+    private Icon CraftingTableBottom;
 	
 	protected ModBlockCraftingInv(int par1) {
 		super(par1, Material.wood);
+		setStepSound(soundWoodFootstep);
 	}
 
 	@Override
@@ -41,15 +44,16 @@ public class ModBlockCraftingInv extends BlockContainer{
 
     public Icon getIcon(int par1, int par2)
     {
-        return par1 == 1 ? CraftingTableTop : (par1 == 0 ? Block.planks.getBlockTextureFromSide(par1) : (par1 != 2 && par1 != 4 ? this.CraftingTableSide2 : this.CraftingTableSide1) );
+        return par1 == 1 ? CraftingTableTop : (par1 == 0 ? CraftingTableBottom : (par1 != 2 && par1 != 4 ? this.CraftingTableSide1 : this.CraftingTableSide2) );
     }
     
     public void registerIcons(IconRegister par1IconRegister)
     {
-        this.blockIcon = par1IconRegister.registerIcon("crafting_table_top");
+        this.blockIcon = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "CraftingTableTop");
         this.CraftingTableSide1 = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "CraftingTableSide1");
         this.CraftingTableSide2 = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "CraftingTableSide2");
-        this.CraftingTableTop = par1IconRegister.registerIcon("crafting_table_top");
+        this.CraftingTableBottom = par1IconRegister.registerIcon("planks_spruce");
+        this.CraftingTableTop = this.blockIcon;
     }
     
 	@Override

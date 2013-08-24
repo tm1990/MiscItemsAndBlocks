@@ -15,9 +15,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-public class BlockXpStorage extends BlockContainer{
+public class ModBlockXpStorage extends BlockContainer{
 
-	public BlockXpStorage(int par1) {
+	public ModBlockXpStorage(int par1) {
 		super(par1, Material.iron);
 		
 		setCreativeTab(Main.CreativeTab);

@@ -17,6 +17,7 @@ public class GetXpCommand extends CommandBase{
 		
 		this.aliases = new ArrayList();
 	    this.aliases.add("GetXp");
+	    this.aliases.add("getxp");
 
 		
 	}
