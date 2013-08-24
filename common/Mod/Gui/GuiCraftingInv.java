@@ -10,6 +10,7 @@ import org.lwjgl.opengl.GL11;
 
 import Mod.Container.ContainerBox;
 import Mod.Container.ContainerCraftingInv;
+import Mod.Lib.Messages;
 import Mod.TileEntity.TileEntityBin;
 import Mod.TileEntity.TileEntityBox;
 import Mod.TileEntity.TileEntityCraftingInv;
@@ -47,5 +48,14 @@ this.ySize = 197;
 
 	         
 
+	}
+	
+	@Override
+	public void initGui(){
+		super.initGui();
+		buttonList.clear();
+		
+		
+		buttonList.add(new GuiTipButton(1, guiLeft, guiTop, "?", Messages.WorktableTips));
 	}
 }

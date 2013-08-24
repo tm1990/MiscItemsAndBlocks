@@ -10,6 +10,7 @@ import org.lwjgl.opengl.GL11;
 
 import Mod.Container.ContainerBox;
 import Mod.Container.ContainerShelf;
+import Mod.Lib.Messages;
 import Mod.TileEntity.TileEntityBin;
 import Mod.TileEntity.TileEntityBox;
 import Mod.TileEntity.TileEntityShelf;
@@ -44,5 +45,14 @@ public class GuiBox extends GuiContainer{
 
 	         
 
+	}
+	
+	@Override
+	public void initGui(){
+		super.initGui();
+		buttonList.clear();
+		
+		
+		buttonList.add(new GuiTipButton(1, guiLeft, guiTop, "?", Messages.CardboardBoxTipes));
 	}
 }

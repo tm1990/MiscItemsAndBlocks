@@ -2,6 +2,7 @@ package Mod.TileEntity;
 
 import Mod.Block.ModBlocks;
 import Mod.Gui.GuiXpStorage;
+import Mod.Lib.Messages;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.entity.player.EntityPlayer;
@@ -11,6 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumChatFormatting;
 
 public class TileEntityXpStorage extends TileEntity implements IInventory{
 	
@@ -96,6 +98,8 @@ public class TileEntityXpStorage extends TileEntity implements IInventory{
 	}
 	
 	
+	int x = 0;
+	
 	public void receiveButtonEvent(byte buttonId) {
 		
 		switch (buttonId) {
@@ -122,9 +126,6 @@ public class TileEntityXpStorage extends TileEntity implements IInventory{
 				break;
 				
 			case 3:
-				
-	            System.out.println("1" + this);
-				player.addChatMessage("[Tip]This is a Xp Storage block you can store and take xp levels from it at any time");
 				
 				break;
 		}

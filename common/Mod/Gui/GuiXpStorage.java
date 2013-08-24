@@ -5,6 +5,7 @@ import org.lwjgl.opengl.GL11;
 
 import Mod.Block.ModBlocks;
 import Mod.Container.ContainerXpStorage;
+import Mod.Lib.Messages;
 import Mod.Network.PacketHandler;
 import Mod.TileEntity.TileEntityXpStorage;
 import net.minecraft.client.Minecraft;
@@ -70,9 +71,9 @@ public class GuiXpStorage extends GuiContainer{
 		buttonList.clear();
 		
 		
-		buttonList.add(new GuiButton(1, guiLeft + 8,  guiTop + 45, 60, 20, "Withdraw"));
-		buttonList.add(new GuiButton(2, guiLeft + 108, guiTop + 45, 60, 20, "Deposit"));
-		buttonList.add(new GuiButton(3, guiLeft + 78, guiTop + 45, 20, 20, "?"));
+		buttonList.add(new GuiButton(1, guiLeft + 20,  guiTop + 45, 60, 20, "Withdraw"));
+		buttonList.add(new GuiButton(2, guiLeft + 96, guiTop + 45, 60, 20, "Deposit"));
+		buttonList.add(new GuiTipButton(3, guiLeft, guiTop, "?", Messages.XpStorageTips));
 		
 		textfield = new GuiTextField(fontRenderer, 24, 15, 120, 20);
 		

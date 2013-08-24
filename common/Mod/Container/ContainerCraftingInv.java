@@ -31,7 +31,7 @@ public ContainerCraftingInv(InventoryPlayer invPlayer, TileEntityCraftingInv tpb
 tileEntity = tpb;
 craftSupplyMatrix = tileEntity.craftSupplyMatrix;
 addSlotToContainer(new SlotCraftingInv(this, invPlayer.player, tileEntity, tileEntity.craftResult,
-tileEntity, craftResultSlot, 137, 29));
+tileEntity, craftResultSlot, 128, 31));
 layoutContainer(invPlayer, tileEntity);
 bindPlayerInventory(invPlayer);
 containerChanged = true;
@@ -49,7 +49,7 @@ for(row = 0; row < 3; row++)
 {
 for(col = 0; col < 3; col++)
 {
-slot = new Slot(tileEntity, ++index, 43 + col * 18, 11 + row * 18);
+slot = new Slot(tileEntity, ++index, 34 + col * 18, 13 + row * 18);
 addSlotToContainer(slot);
 counter++;
 }

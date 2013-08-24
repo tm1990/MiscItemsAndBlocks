@@ -39,7 +39,7 @@ public class ModBlocks {
 		Register(Bin, "Trash Bin");
 		
 		Shelf = new ModBlockShelf(ModConfig.Shelf);
-		if("@DEV@" != "NotDev"){ Register(Shelf, "Shelf"); }
+	    Register(Shelf, "Shelf"); 
 		
 		DisarmTrap = new ModBlockDisarmTrap(ModConfig.Trap);
 		Register(DisarmTrap, "Disarm Trap");

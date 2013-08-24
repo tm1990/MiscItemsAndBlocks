@@ -4,6 +4,7 @@ import org.lwjgl.opengl.GL11;
 
 import Mod.Container.ContainerBin;
 import Mod.Container.ContainerXpStorage;
+import Mod.Lib.Messages;
 import Mod.TileEntity.TileEntityBin;
 import Mod.TileEntity.TileEntityXpStorage;
 
@@ -47,4 +48,13 @@ public class GuiTrashBin extends GuiContainer{
 
 	}
 
+	
+	@Override
+	public void initGui(){
+		super.initGui();
+		buttonList.clear();
+		
+		
+		buttonList.add(new GuiTipButton(1, guiLeft, guiTop, "?", Messages.TrashBinTips));
+	}
 }

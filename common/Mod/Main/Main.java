@@ -75,6 +75,8 @@ public class Main {
     	ModItems.Init();
     	ModBlocks.Init();
     	
+    	Messages.Init();
+    	
         Crafting.RegisterRecipes();
     	
         proxy.registerRenderThings();
