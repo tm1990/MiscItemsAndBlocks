@@ -49,18 +49,11 @@ public class ModBlockDisarmTrap extends BlockContainer{
             return true;
         }
     
-    @Override
-    public void onBlockAdded(World world, int x, int y, int z){
-    	
-    	if(world.doesBlockHaveSolidTopSurface(x, y - 1, z) == false){
-    		
-    		Random rand = new Random();
-    		
-    		world.setBlock(x, y, z, 0);
-    		world.spawnEntityInWorld(new EntityItem(world, x + rand.nextInt(3), y + rand.nextInt(3), z + rand.nextInt(3), new ItemStack(ModBlocks.DisarmTrap)));
-    	}
-    	
-    }
+    
+	public boolean canPlaceBlockAt(World world, int x, int y, int z){
+		
+		return world.doesBlockHaveSolidTopSurface(x, y - 1, z);
+	}
     
  
     

@@ -51,7 +51,7 @@ public class ModItemSilverSword extends ItemSword {
     	}else{
     		
     		EntityHit.attackEntityFrom(new MiscDamage("Silver Sword", "Was Slain With Silver Sword by " + EntityAttacker.getTranslatedEntityName()), 80F);
-    		EntityHit.attackEntityAsMob(EntityAttacker);
+    		EntityHit.attackEntityAsMob(EntityHit);
     		
     		itemstack.damageItem(2, EntityAttacker);
     	

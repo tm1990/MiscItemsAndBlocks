@@ -1,18 +1,14 @@
 package Mod.Block;
 
-import Mod.Main.ModConfig;
-import Mod.Main.Main;
-import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.common.registry.LanguageRegistry;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockBed;
-import net.minecraft.block.BlockColored;
-import net.minecraft.block.BlockStairs;
-import net.minecraft.block.material.Material;
-import net.minecraft.item.ItemDye;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
+import Mod.GamePart.ModBlockGamePart;
+import Mod.Main.Main;
+import Mod.Main.ModConfig;
+import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.common.registry.LanguageRegistry;
 
 public class ModBlocks {
 
@@ -25,6 +21,14 @@ public class ModBlocks {
 	public static Block SilverOre;
 	public static Block Box;
 	public static Block CraftingInv;
+	public static Block Dice;
+	public static Block SpeedBlock;
+	
+	public static Block GamePartRed;
+	public static Block GamePartBlue;
+	public static Block GamePartGreen;
+	public static Block GamePartYellow;
+	public static Block GamePartNull;
 	
 	public static ModBlockStair StoneStair;
 	
@@ -56,6 +60,27 @@ public class ModBlocks {
         
         CraftingInv = new ModBlockCraftingInv(ModConfig.CraftingInv);
         Register(CraftingInv, "Worktable");
+        
+        Dice = new ModBlockDice(ModConfig.Dice).setUnlocalizedName("Dice");
+        Register(Dice, "Dice");
+        
+        SpeedBlock = new ModBlockSpeedBlock(ModConfig.SpeedBlock).setUnlocalizedName("SpeedBlock");
+        Register(SpeedBlock, "Speed Block");
+        
+        GamePartRed = new ModBlockGamePart(ModConfig.GamePartRed, "red").setUnlocalizedName("GamePieceRed");
+        Register(GamePartRed, "Game Piece [Red]");
+        
+        GamePartBlue = new ModBlockGamePart(ModConfig.GamePartBlue, "blue").setUnlocalizedName("GamePieceBlue");
+        Register(GamePartBlue, "Game Piece [Blue]");
+        
+        GamePartGreen = new ModBlockGamePart(ModConfig.GamePartGreen, "green").setUnlocalizedName("GamePieceGreen");
+        Register(GamePartGreen, "Game Piece [Green]");
+        
+        GamePartYellow = new ModBlockGamePart(ModConfig.GamePartYellow, "yellow").setUnlocalizedName("GamePieceYellow");
+        Register(GamePartYellow, "Game Piece [Yellow]");
+        
+        GamePartNull = new ModBlockGamePart(ModConfig.GamePartNull, "null").setUnlocalizedName("GamePieceNull");
+        Register(GamePartNull, "Game Piece [Default]");
 
         
 		RegisterOreDictionary(new ItemStack(SilverOre), "oreSilver");

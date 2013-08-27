@@ -12,7 +12,7 @@ import net.minecraft.world.World;
 import org.lwjgl.opengl.GL11;
 
 import Mod.Block.ModBlockDisarmTrap;
-import Mod.Render.TrapModel;
+import Mod.Models.TrapModel;
 
 public class TileEntityDisarmTrapRenderer extends TileEntitySpecialRenderer {
     

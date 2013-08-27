@@ -13,6 +13,7 @@ public class Messages {
 		
 		XpStorageTips[0] = "This is a Xp Storage block you can store and take xp levels from it at any time";
 		XpStorageTips[1] = "You can save levels then earn more quicker";
+		XpStorageTips[2] = "Use the XpStored button to check the amount stored in the xp storage block on Multiplayer";
 		
 		TrashBinTips[0] = "When putting items into the trash bin they get deleted";
 		

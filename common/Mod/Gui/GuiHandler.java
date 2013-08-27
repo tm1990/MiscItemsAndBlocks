@@ -17,7 +17,7 @@ import cpw.mods.fml.common.network.IGuiHandler;
 
 public class GuiHandler implements IGuiHandler{
 
-    TileEntityXpStorage tile;
+    TileEntityXpStorage tile = null;
 	
     @Override
 
@@ -70,7 +70,15 @@ public class GuiHandler implements IGuiHandler{
 
 
         if(tile_entity instanceof TileEntityXpStorage){
+        	
+        	if(tile != null){
+            	System.out.println("XpStorage gui opend on client!");
             return new GuiXpStorage(player.inventory, tile);
+        	}
+        	
+        	
+        	System.out.println("XpStorage gui opend on server!");
+            return new GuiXpStorage(player.inventory, (TileEntityXpStorage) tile_entity);
 
         }
         

@@ -15,8 +15,6 @@ public class SlotCraftingInv extends SlotCrafting
 private EntityPlayer thePlayer;
 private final IInventory craftMatrix;
 private IInventory craftResultMatrix;
-//This is actually the TileEntity, need to use the
-//tileEntity's inventory to satisfy crafting.
 private IInventory craftSupplyMatrix;
 
 public SlotCraftingInv(Container parent, EntityPlayer player, IInventory craftingMatrix,
@@ -38,11 +36,9 @@ boolean metaSens = false;
         GameRegistry.onItemCrafted(thePlayer, stack, craftMatrix);
         this.onCrafting(stack);
         
-        //Looping through crafting matrix finding required items
         for(int invIndex = 0; invIndex < 9; invIndex++)
         {
          found = false;
-         //Grabs the item for comparison
          ItemStack craftComponentStack = craftSupplyMatrix.getStackInSlot(invIndex);
          if(craftComponentStack != null)
          {
@@ -53,10 +49,8 @@ boolean metaSens = false;
 {
 metaSens = true;
 }
-         //Checking the supply inventory for matching item
      for(int supplyInv = 9; supplyInv < 27; supplyInv++)
 {
-//Grabs the item in the supply Matrix
 ItemStack supplyMatrixStack = craftSupplyMatrix.getStackInSlot(supplyInv);
 if(supplyMatrixStack != null)
 {
@@ -78,7 +72,6 @@ else
 craftSupplyMatrix.decrStackSize(supplyInv, 1);
 found = true;
 }
-//Found item!
 if (supplyMatrixStack.getItem().hasContainerItem())
 {
 ItemStack contStack = supplyMatrixStack.getItem().getContainerItemStack(supplyMatrixStack);
@@ -105,9 +98,7 @@ break;
 }
 }
 }
-        
-         //Didn't find it in the supply inventory, remove from crafting matrix
-     if(!found)
+             if(!found)
          {
          craftSupplyMatrix.decrStackSize(invIndex, 1);
          if (craftComponentStack.getItem().hasContainerItem())

@@ -1,20 +1,39 @@
 package Mod.Main;
 
 import java.io.File;
-import java.util.logging.Level;
 
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.Configuration;
-import cpw.mods.fml.common.Loader;
+import Mod.Block.ModBlocks;
+import Mod.Commands.ExpExtractCommand;
+import Mod.Commands.GetXpCommand;
+import Mod.Crafting.Crafting;
+import Mod.Entity.EntitySilverArrow;
+import Mod.GamePart.TileEntityGamePartBlue;
+import Mod.GamePart.TileEntityGamePartGreen;
+import Mod.GamePart.TileEntityGamePartRed;
+import Mod.GamePart.TileEntityGamePartYellow;
+import Mod.Gui.GuiHandler;
+import Mod.Items.ModItems;
+import Mod.Lib.Messages;
+import Mod.Lib.Refrence;
+import Mod.Network.PacketHandler;
+import Mod.Proxies.ServerProxy;
+import Mod.TileEntity.TileEntityBin;
+import Mod.TileEntity.TileEntityBox;
+import Mod.TileEntity.TileEntityCraftingInv;
+import Mod.TileEntity.TileEntityDisarmTrap;
+import Mod.TileEntity.TileEntityShelf;
+import Mod.TileEntity.TileEntityXpStorage;
+import Mod.WorldGen.SilverOreGen;
 import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.Mod.PostInit;
 import cpw.mods.fml.common.Mod.PreInit;
 import cpw.mods.fml.common.Mod.ServerStarting;
+import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
@@ -24,24 +43,6 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
-import Mod.Block.ModBlocks;
-import Mod.Commands.ExpExtractCommand;
-import Mod.Commands.GetXpCommand;
-import Mod.Crafting.Crafting;
-import Mod.Entity.EntitySilverArrow;
-import Mod.Gui.GuiHandler;
-import Mod.Items.ModItems;
-import Mod.Lib.*;
-import Mod.Network.PacketHandler;
-import Mod.Proxies.ClientProxy;
-import Mod.Proxies.ServerProxy;
-import Mod.TileEntity.TileEntityBin;
-import Mod.TileEntity.TileEntityBox;
-import Mod.TileEntity.TileEntityCraftingInv;
-import Mod.TileEntity.TileEntityShelf;
-import Mod.TileEntity.TileEntityDisarmTrap;
-import Mod.TileEntity.TileEntityXpStorage;
-import Mod.WorldGen.SilverOreGen;
 
 
 @Mod(modid = Refrence.Mod_Id, name = Refrence.Mod_Name, version = Refrence.Version)
@@ -64,6 +65,8 @@ public class Main {
         Configuration configMisc = new Configuration(new File("config/tm1990's mods/MiscItemsAndBlocksConfig.cfg"));
     	
     	ModConfig.Init(configMisc);
+    	
+    	
     	
     }
     
@@ -95,6 +98,11 @@ public class Main {
         GameRegistry.registerTileEntity(TileEntityDisarmTrap.class, "TileEntityTrap");
         GameRegistry.registerTileEntity(TileEntityBox.class, "TileEntityBox");
         GameRegistry.registerTileEntity(TileEntityCraftingInv.class, "TileEntityCraftingInv");
+        
+        GameRegistry.registerTileEntity(TileEntityGamePartRed.class, "TileEntityGamePartRed");
+        GameRegistry.registerTileEntity(TileEntityGamePartBlue.class, "TileEntityGamePartBlue");
+        GameRegistry.registerTileEntity(TileEntityGamePartGreen.class, "TileEntityGamePartGreen");
+        GameRegistry.registerTileEntity(TileEntityGamePartYellow.class, "TileEntityGamePartYellow");
         
         
         GameRegistry.registerWorldGenerator(new SilverOreGen());

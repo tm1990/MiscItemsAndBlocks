@@ -22,6 +22,7 @@ public class ModBlockBin extends BlockContainer{
 		setUnlocalizedName("Bin");
         this.setBlockBounds(0.2F, 0.0F, 0.2F, 0.8F, 0.6F, 0.8F);
 		setCreativeTab(Main.CreativeTab);
+		this.setHardness(5);
 	}
 	
 	

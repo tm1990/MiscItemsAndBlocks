@@ -1,13 +1,19 @@
 package Mod.Proxies;
 
 import Mod.Entity.EntitySilverArrow;
-import Mod.Render.SilverArrowRender;
+import Mod.GamePart.TileEntityGamePartBlue;
+import Mod.GamePart.TileEntityGamePartGreen;
+import Mod.GamePart.TileEntityGamePartRed;
+import Mod.GamePart.TileEntityGamePartNull;
+import Mod.GamePart.TileEntityGamePartYellow;
+import Mod.Models.SilverArrowRender;
 import Mod.Tick.ClientTickHandler;
 import Mod.TileEntity.TileEntityBin;
 import Mod.TileEntity.TileEntityDisarmTrap;
 import Mod.TileEntity.TileEntityShelf;
 import Mod.TileEntityRenderer.TileEntityBinRender;
 import Mod.TileEntityRenderer.TileEntityDisarmTrapRenderer;
+import Mod.TileEntityRenderer.TileEntityGamePartRender;
 import Mod.TileEntityRenderer.TileEntityShelfRender;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
@@ -24,6 +30,12 @@ public class ClientProxy extends ServerProxy{
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityShelf.class, new TileEntityShelfRender());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityDisarmTrap.class, new TileEntityDisarmTrapRenderer());
         
+        
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityGamePartRed.class, new TileEntityGamePartRender("red"));
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityGamePartBlue.class, new TileEntityGamePartRender("blue"));
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityGamePartGreen.class, new TileEntityGamePartRender("green"));
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityGamePartYellow.class, new TileEntityGamePartRender("yellow"));
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityGamePartNull.class, new TileEntityGamePartRender("null"));
         
         RenderingRegistry.registerEntityRenderingHandler(EntitySilverArrow.class, new SilverArrowRender());
 }

@@ -135,7 +135,6 @@ public ItemStack transferStackInSlot(EntityPlayer player, int numSlot)
                 }
                 updateCrafting(true);
             }
-            //Merge crafting matrix item with supply matrix inventory
             else if(numSlot > 0 && numSlot <= 9)
             {
              if(!this.mergeItemStack(stack2, 10, 28, false))
@@ -147,7 +146,6 @@ public ItemStack transferStackInSlot(EntityPlayer player, int numSlot)
              }
              updateCrafting(true);
             }
-            //Merge Supply matrix item with player inventory
             else if (numSlot >= 10 && numSlot <= 27)
             {
                 if (!this.mergeItemStack(stack2, 28, 64, false))
@@ -155,7 +153,6 @@ public ItemStack transferStackInSlot(EntityPlayer player, int numSlot)
                     return null;
                 }
             }
-            //Merge player inventory item with supply matrix
             else if (numSlot >= 28 && numSlot < 64)
             {
                 if (!this.mergeItemStack(stack2, 10, 28, false))

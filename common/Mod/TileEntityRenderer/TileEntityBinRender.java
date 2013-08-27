@@ -11,7 +11,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import org.lwjgl.opengl.GL11;
 
-import Mod.Render.TrashBinModel;
+import Mod.Models.TrashBinModel;
 
 public class TileEntityBinRender extends TileEntitySpecialRenderer {
     

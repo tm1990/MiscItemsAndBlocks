@@ -22,6 +22,7 @@ public class ModBlockXpStorage extends BlockContainer{
 		
 		setCreativeTab(Main.CreativeTab);
 		setUnlocalizedName("BlockXpStorage");
+		this.setHardness(7);
 
 	}
 	

@@ -128,12 +128,13 @@ public class TileEntityXpStorage extends TileEntity implements IInventory{
 			case 3:
 				
 				break;
+				
+			case 4:
+				
+				player.addChatMessage("[Info]This XpStorage block currently has : " + XpAmount + "  Levels stored");
+				break;
 		}
 		
-	}
-	
-	public TileEntity GetTile(){
-		return this;
 	}
 	
 	public int GetLevels(){

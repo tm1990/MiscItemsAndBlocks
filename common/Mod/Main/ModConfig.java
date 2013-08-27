@@ -1,5 +1,6 @@
 package Mod.Main;
 
+import net.minecraft.block.Block;
 import net.minecraftforge.common.Configuration;
 
 public class ModConfig {
@@ -16,6 +17,15 @@ public class ModConfig {
 	public static int StoneStair;
 	public static int Box;
 	public static int CraftingInv;
+	public static int Dice;
+	public static int SpeedBlock;
+	
+	
+	public static int GamePartRed;
+	public static int GamePartBlue;
+	public static int GamePartYellow;
+	public static int GamePartGreen;
+	public static int GamePartNull;
 	
 	/** Items **/
 	public static int XpExtractor;
@@ -61,6 +71,15 @@ public class ModConfig {
 		StoneStair = config.getBlock("Blocks", "Stone Stair Id", 605).getInt();
 		Box = config.getBlock("Blocks", "Box Id", 606).getInt();
 		CraftingInv = config.getBlock("Blocks", "Crafting table with inv Id", 607).getInt();
+		Dice = config.getBlock("Blocks", "Dice Id", 608).getInt();
+		
+		GamePartRed = config.getBlock("Blocks", "Game piece Red Id", 609).getInt();
+		GamePartBlue = config.getBlock("Blocks", "Game piece Blue Id", 610).getInt();
+		GamePartGreen = config.getBlock("Blocks", "Game piece Green Id", 611).getInt();
+		GamePartYellow = config.getBlock("Blocks", "Game piece Yellow Id", 612).getInt();
+		GamePartNull = config.getBlock("Blocks", "Game piece Default Id", 613).getInt();
+		
+		SpeedBlock = config.getBlock("Blocks", "Speed Block Id", 614).getInt();
 		
         XpExtractor = config.getItem("Items","Xp Extractor Id", 22000).getInt();
         SilverIngot = config.getItem("Items", "Silver Ingot Id", 22001).getInt();
@@ -74,7 +93,7 @@ public class ModConfig {
         JumpingBoots = config.getItem("Items", "Jumping Boots Id", 22009).getInt();
         Cardboard = config.getItem("Items", "Cardboard Id", 22010).getInt();
         CraftingUpgrade = config.getItem("Items", "CraftingTable Chest Upgrade Id", 22011).getInt();
-		
+        
         
         config.save();
 		
