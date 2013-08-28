@@ -26,6 +26,8 @@ init = false;
 if(!Refrence.UP_TO_DATE){
 FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage("A new version of MiscItemsAndBlocks is available.\n Version: " +Refrence.LATEST_VERSION +": " +Refrence.LATEST_CHANGES);
 FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage("This update is " +Refrence.UPDATE_IMPORTANCE +" - " +Refrence.UPDATE_URL);
+}else{
+	System.out.println("Mod up to date!");
 }
 
 }

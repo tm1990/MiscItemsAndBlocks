@@ -15,8 +15,8 @@ public class VersionChecker implements Runnable{
 
 private static VersionChecker instance = new VersionChecker();
 
-private static final String remoteFileLocation = "https://raw.github.com/bau5/Main/master/version.xml";
-private static final String remoteChangesLocation = "https://raw.github.com/bau5/Main/master/changes.xml";
+private static final String remoteFileLocation = "https://raw.github.com/tm1990/MiscItemsAndBlocks/master/version.xml";
+private static final String remoteChangesLocation = "https://raw.github.com/tm1990/MiscItemsAndBlocks/master/changes.xml";
 public static Properties remoteVersionProperties = new Properties();
 public static Properties remoteChangesProperties = new Properties();
 

@@ -27,6 +27,7 @@ import Mod.TileEntity.TileEntityCraftingInv;
 import Mod.TileEntity.TileEntityDisarmTrap;
 import Mod.TileEntity.TileEntityShelf;
 import Mod.TileEntity.TileEntityXpStorage;
+import Mod.VersionChecker.VersionChecker;
 import Mod.WorldGen.SilverOreGen;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
@@ -114,6 +115,8 @@ public static boolean DEV_ENV = false;
         
 
         NetworkRegistry.instance().registerGuiHandler(this, new GuiHandler());
+        
+        VersionChecker.go();
 
     }
     
