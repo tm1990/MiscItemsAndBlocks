@@ -18,21 +18,15 @@ import Mod.Models.GamePartModel;
 public class TileEntityGamePartRender extends TileEntitySpecialRenderer {
     
     private final GamePartModel model;
-    String Color;
     
     ResourceLocation Texutre;
     
    
     public TileEntityGamePartRender(String Color) {
             this.model = new GamePartModel();
-            this.Color = Color;
             
-            if(Color == "null"){
-                this.Texutre = new ResourceLocation("textures/blocks/hardened_clay_stained_white.png");
-            }else{
             this.Texutre = new ResourceLocation("textures/blocks/hardened_clay_stained_" + Color + ".png");
-            }
-    }
+                }
    
     private void adjustRotatePivotViaMeta(World world, int x, int y, int z) {
             int meta = world.getBlockMetadata(x, y, z);

@@ -56,7 +56,6 @@ public class ModBlockDice extends Block{
     	
     
     public Icon DiceSide(int rand){
-
     	switch(rand){
     	
     	case 1:

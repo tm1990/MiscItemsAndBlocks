@@ -20,6 +20,8 @@ public class GuiCraftingInv extends GuiContainer{
 private final ResourceLocation Texture = new ResourceLocation("miscitems" , "textures/gui/CraftingInvGui.png");
 
 
+private static boolean NEI_ACTIVE = false;
+
 public GuiCraftingInv(InventoryPlayer InvPlayer, TileEntityCraftingInv tile) {
 super(new ContainerCraftingInv(InvPlayer, tile));
 
@@ -58,4 +60,11 @@ this.ySize = 197;
 		
 		buttonList.add(new GuiTipButton(1, guiLeft, guiTop, "?", Messages.WorktableTips));
 	}
+	
+	public static void setIsNEIActive(boolean bool){
+NEI_ACTIVE = bool;
+}
+public static boolean isNEIActive(){
+return NEI_ACTIVE;
+}
 }

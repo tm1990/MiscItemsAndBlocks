@@ -12,6 +12,7 @@ import Mod.Crafting.Crafting;
 import Mod.Entity.EntitySilverArrow;
 import Mod.GamePart.TileEntityGamePartBlue;
 import Mod.GamePart.TileEntityGamePartGreen;
+import Mod.GamePart.TileEntityGamePartNull;
 import Mod.GamePart.TileEntityGamePartRed;
 import Mod.GamePart.TileEntityGamePartYellow;
 import Mod.Gui.GuiHandler;
@@ -55,6 +56,9 @@ public class Main {
     @SidedProxy(clientSide = "Mod.Proxies.ClientProxy", serverSide = "Mod.Proxies.ServerProxy")
     public static ServerProxy proxy;
     
+    
+
+public static boolean DEV_ENV = false;
     
     File BlastProofCraftConfig = new File("config/tm1990's mods/BlastProofCraftConfig.cfg");
 	
@@ -103,6 +107,7 @@ public class Main {
         GameRegistry.registerTileEntity(TileEntityGamePartBlue.class, "TileEntityGamePartBlue");
         GameRegistry.registerTileEntity(TileEntityGamePartGreen.class, "TileEntityGamePartGreen");
         GameRegistry.registerTileEntity(TileEntityGamePartYellow.class, "TileEntityGamePartYellow");
+        GameRegistry.registerTileEntity(TileEntityGamePartNull.class, "TileEntityGamePartNull");
         
         
         GameRegistry.registerWorldGenerator(new SilverOreGen());

@@ -67,19 +67,19 @@ public class ModBlocks {
         SpeedBlock = new ModBlockSpeedBlock(ModConfig.SpeedBlock).setUnlocalizedName("SpeedBlock");
         Register(SpeedBlock, "Speed Block");
         
-        GamePartRed = new ModBlockGamePart(ModConfig.GamePartRed, "red").setUnlocalizedName("GamePieceRed");
+        GamePartRed = new ModBlockGamePart(ModConfig.GamePartRed, "Red").setUnlocalizedName("GamePieceRed");
         Register(GamePartRed, "Game Piece [Red]");
         
-        GamePartBlue = new ModBlockGamePart(ModConfig.GamePartBlue, "blue").setUnlocalizedName("GamePieceBlue");
+        GamePartBlue = new ModBlockGamePart(ModConfig.GamePartBlue, "Blue").setUnlocalizedName("GamePieceBlue");
         Register(GamePartBlue, "Game Piece [Blue]");
         
-        GamePartGreen = new ModBlockGamePart(ModConfig.GamePartGreen, "green").setUnlocalizedName("GamePieceGreen");
+        GamePartGreen = new ModBlockGamePart(ModConfig.GamePartGreen, "Green").setUnlocalizedName("GamePieceGreen");
         Register(GamePartGreen, "Game Piece [Green]");
         
-        GamePartYellow = new ModBlockGamePart(ModConfig.GamePartYellow, "yellow").setUnlocalizedName("GamePieceYellow");
+        GamePartYellow = new ModBlockGamePart(ModConfig.GamePartYellow, "Yellow").setUnlocalizedName("GamePieceYellow");
         Register(GamePartYellow, "Game Piece [Yellow]");
         
-        GamePartNull = new ModBlockGamePart(ModConfig.GamePartNull, "null").setUnlocalizedName("GamePieceNull");
+        GamePartNull = new ModBlockGamePart(ModConfig.GamePartNull, "").setUnlocalizedName("GamePieceNull");
         Register(GamePartNull, "Game Piece [Default]");
 
         

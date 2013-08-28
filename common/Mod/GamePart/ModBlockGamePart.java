@@ -27,35 +27,31 @@ public class ModBlockGamePart extends BlockContainer{
 
 	@Override
 	public TileEntity createNewTileEntity(World world) {
+
 		
-		this.Name = Name.toLowerCase();
-		
-		switch(Name){
-		
-		case "blue":
+		if(Name == "Blue"){
+
 			return new TileEntityGamePartBlue();
-			
-		case "red":
-			return new TileEntityGamePartRed();
-			
-		case "yellow":
-			return new TileEntityGamePartYellow();
-		
-		case "green":
-			return new TileEntityGamePartGreen();
-			
-		case "null":
-			return new TileEntityGamePartNull();
-			
-			
-			
-			
-			default :
-				return new TileEntityGamePartRed();
-				
-		
 		}
-	}
+		
+		if(Name == "Red"){
+
+			return new TileEntityGamePartRed();
+		}
+		
+		if(Name == "Yellow"){
+			
+			return new TileEntityGamePartYellow();
+		}
+		
+		if(Name == "Green"){
+
+			return new TileEntityGamePartGreen();
+		}
+				
+		return new TileEntityGamePartNull();
+		}
+	
 	@Override
 	public boolean shouldSideBeRendered(IBlockAccess iblockaccess, int i, int j, int k, int l)
 	{
@@ -100,30 +96,22 @@ public class ModBlockGamePart extends BlockContainer{
     	String Direction = DirectionMath == 0 ? "south" : DirectionMath == 1 ? "west" : DirectionMath == 2 ? "north" : "east";
       
       
-      switch(Direction){
-      
-      
-      case "south":
+    	if(Direction == "south"){
     	  
     	  if(world.getBlockId(x, y, z + 1) == Block.tallGrass.blockID || world.getBlockId(x, y, z + 1) == 0 ){
-    		  if(world.getBlockId(x, y - 1, z + 1)== Block.tallGrass.blockID || world.getBlockId(x, y - 1, z + 1) == 0){
-        		  Id = world.getBlockId(x, y, z);
-        		  world.setBlock(x, y, z, 0);
-        		  world.setBlock(x, y - 1, z + 1, Id);
-    		  }else{
     		  
     		  Id = world.getBlockId(x, y, z);
     		  world.setBlock(x, y, z, 0);
     		  world.setBlock(x, y, z + 1, Id);
     		  
+    	  
     	  }
-    	  }
+    	}
     	  
     	  
     	  
-    	  break;
-    	  
-      case "west":
+
+    	if(Direction == "west"){
     	  
     	  if(world.getBlockId(x - 1, y,z) == Block.tallGrass.blockID || world.getBlockId(x - 1, y,z) == 0){
     		  Id = world.getBlockId(x, y, z);
@@ -132,22 +120,18 @@ public class ModBlockGamePart extends BlockContainer{
     		  
     	  
     	  }
+    	}
     	  
-    	  
-    	  break;
-    	  
-      case "north":
+      if(Direction == "north"){
     	  if(world.getBlockId(x, y, z - 1) == Block.tallGrass.blockID || world.getBlockId(x, y, z - 1) == 0){
     		  Id = world.getBlockId(x, y, z);
     		  world.setBlock(x, y, z, 0);
     		  world.setBlock(x, y, z - 1, Id);
     		  
     	  }
+      }
     	  
-    	  
-    	  break;
-    	  
-      case "east":
+      if(Direction == "east"){
     	  
     	  if(world.getBlockId(x + 1, y,z) == Block.tallGrass.blockID || world.getBlockId(x + 1, y,z) == 0){
     		  Id = world.getBlockId(x, y, z);
@@ -155,16 +139,10 @@ public class ModBlockGamePart extends BlockContainer{
     		  world.setBlock(x + 1, y, z, Id);
     		  
     	  }
-    	  
-    	 
-    	
-    	  
-    	  break;
-    	  
-    	  
-    	  
-    	  
       }
+    	  
+    	  
+    	
     	}else{
     		return false;
     	}
