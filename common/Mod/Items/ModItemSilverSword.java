@@ -24,8 +24,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class ModItemSilverSword extends ItemSword {
-	
-	
+
     public ModItemSilverSword(int i, EnumToolMaterial enumToolMaterial){
         super(i, enumToolMaterial);
         setCreativeTab(Main.CreativeTab);
@@ -46,6 +45,10 @@ public class ModItemSilverSword extends ItemSword {
     public boolean hitEntity(ItemStack itemstack, EntityLivingBase EntityHit, EntityLivingBase EntityAttacker)
     {
     	
+        NBTTagCompound stackCompound = itemstack.hasTagCompound() ? itemstack.getTagCompound() : new NBTTagCompound();
+        
+        NBTTagCompound compound = new NBTTagCompound();
+
     	
     	if(EntityHit instanceof EntityDragon || EntityHit instanceof EntityWither || EntityHit instanceof EntityPlayer){
     	}else{
@@ -53,9 +56,23 @@ public class ModItemSilverSword extends ItemSword {
     		EntityHit.attackEntityFrom(new MiscDamage("Silver Sword", "Was Slain With Silver Sword by " + EntityAttacker.getTranslatedEntityName()), 80F);
     		EntityHit.attackEntityAsMob(EntityHit);
     		
-    		itemstack.damageItem(2, EntityAttacker);
-    	
+			
+	        itemstack.setItemDamage(itemstack.getItemDamage() + 1);
+    		
+    	        
+    			
+    		
+    		
+    		
     	}
+    	
+        compound.setInteger("Kills", itemstack.getItemDamage());
+        compound.setString("LastMob", EntityHit.getTranslatedEntityName());
+        
+        
+        stackCompound.setCompoundTag("SwordData", compound);
+        itemstack.setTagCompound(stackCompound);
+        
     	
     	
 		return false;
@@ -67,11 +84,28 @@ public class ModItemSilverSword extends ItemSword {
     public void addInformation(ItemStack itemstack, EntityPlayer player, List list, boolean par4)
     {
     	
+    	
             list.add("Idea by ErnieFlapps");
-            list.add("");
             list.add("One-hit killes mobs");
+            
+            if(HasInfo(itemstack)){
+  			  NBTTagCompound Compound = itemstack.getTagCompound().getCompoundTag("SwordData");
+            	
+            list.add("Hits: " + Compound.getInteger("Kills"));
+            list.add("Last hit: " + Compound.getString("LastMob"));
+            }else{
+            	
+            	list.add("Hits: 0");
+            	list.add("Last hit: Nothing");
+            }
 
     }
+    
+    public boolean HasInfo(ItemStack stack) {
+        return stack.hasTagCompound() && stack.getTagCompound().hasKey("SwordData");
+    }
+    
+
     
     
     

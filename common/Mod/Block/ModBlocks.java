@@ -23,12 +23,14 @@ public class ModBlocks {
 	public static Block CraftingInv;
 	public static Block Dice;
 	public static Block SpeedBlock;
+	public static Block Pillar;
 	
 	public static Block GamePartRed;
 	public static Block GamePartBlue;
 	public static Block GamePartGreen;
 	public static Block GamePartYellow;
 	public static Block GamePartNull;
+	
 	
 	public static ModBlockStair StoneStair;
 	
@@ -81,6 +83,9 @@ public class ModBlocks {
         
         GamePartNull = new ModBlockGamePart(ModConfig.GamePartNull, "").setUnlocalizedName("GamePieceNull");
         Register(GamePartNull, "Game Piece [Default]");
+        
+        Pillar = new ModBlockPillar(ModConfig.Pillar).setUnlocalizedName("Pillar");
+        Register(Pillar, "Pillar");
 
         
 		RegisterOreDictionary(new ItemStack(SilverOre), "oreSilver");

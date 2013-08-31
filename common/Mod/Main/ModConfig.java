@@ -6,6 +6,7 @@ import net.minecraftforge.common.Configuration;
 public class ModConfig {
 
 	
+	public static Configuration configuration;
 	
 	
 	/** Blocks **/ 
@@ -19,6 +20,7 @@ public class ModConfig {
 	public static int CraftingInv;
 	public static int Dice;
 	public static int SpeedBlock;
+	public static int Pillar;
 	
 	
 	public static int GamePartRed;
@@ -61,6 +63,8 @@ public class ModConfig {
 	
 	public static void Init(Configuration config){
 		
+		configuration = config;
+		
         config.load();
 		
 		XpStorageBlock = config.getBlock("Blocks","Xp Storage Block Id", 600).getInt();
@@ -80,6 +84,7 @@ public class ModConfig {
 		GamePartNull = config.getBlock("Blocks", "Game piece Default Id", 613).getInt();
 		
 		SpeedBlock = config.getBlock("Blocks", "Speed Block Id", 614).getInt();
+		Pillar = config.getBlock("Blocks", "Pillar Block Id", 615).getInt();
 		
         XpExtractor = config.getItem("Items","Xp Extractor Id", 22000).getInt();
         SilverIngot = config.getItem("Items", "Silver Ingot Id", 22001).getInt();
@@ -98,6 +103,17 @@ public class ModConfig {
         config.save();
 		
 	}
+	
+    public static void set(String categoryName, String propertyName, String newValue) {
+
+        configuration.load();
+        if (configuration.getCategoryNames().contains(categoryName)) {
+            if (configuration.getCategory(categoryName).containsKey(propertyName)) {
+                configuration.getCategory(categoryName).get(propertyName).set(newValue);
+            }
+        }
+        configuration.save();
+    }
 	
 	
 }

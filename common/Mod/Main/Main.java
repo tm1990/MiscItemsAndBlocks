@@ -1,11 +1,13 @@
 package Mod.Main;
 
 import java.io.File;
+import java.util.logging.Logger;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.Configuration;
 import Mod.Block.ModBlocks;
+import Mod.Commands.CommandVersion;
 import Mod.Commands.ExpExtractCommand;
 import Mod.Commands.GetXpCommand;
 import Mod.Crafting.Crafting;
@@ -21,10 +23,12 @@ import Mod.Lib.Messages;
 import Mod.Lib.Refrence;
 import Mod.Network.PacketHandler;
 import Mod.Proxies.ServerProxy;
+import Mod.Tick.VersionCheckerTickHandler;
 import Mod.TileEntity.TileEntityBin;
 import Mod.TileEntity.TileEntityBox;
 import Mod.TileEntity.TileEntityCraftingInv;
 import Mod.TileEntity.TileEntityDisarmTrap;
+import Mod.TileEntity.TileEntityPillar;
 import Mod.TileEntity.TileEntityShelf;
 import Mod.TileEntity.TileEntityXpStorage;
 import Mod.VersionChecker.VersionChecker;
@@ -45,11 +49,15 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
+import cpw.mods.fml.common.registry.TickRegistry;
+import cpw.mods.fml.relauncher.Side;
 
 
 @Mod(modid = Refrence.Mod_Id, name = Refrence.Mod_Name, version = Refrence.Version)
 @NetworkMod(clientSideRequired=true, serverSideRequired=false, channels = {"MiscItems"}, packetHandler = PacketHandler.class)
 public class Main {
+	
+	public static final Logger Log = Logger.getLogger("MiscItems");
 	
     @Instance
     public static Main instance = new Main();
@@ -58,18 +66,21 @@ public class Main {
     public static ServerProxy proxy;
     
     
-
-public static boolean DEV_ENV = false;
-    
     File BlastProofCraftConfig = new File("config/tm1990's mods/BlastProofCraftConfig.cfg");
 	
-    @PreInit
-    public void preInit(FMLPreInitializationEvent event){
+	@PreInit
+public void preInit(FMLPreInitializationEvent event) {
     	
     	
         Configuration configMisc = new Configuration(new File("config/tm1990's mods/MiscItemsAndBlocksConfig.cfg"));
     	
     	ModConfig.Init(configMisc);
+    	
+    	VersionChecker.execute();
+    	
+    	TickRegistry.registerTickHandler(new VersionCheckerTickHandler(), Side.CLIENT);
+
+
     	
     	
     	
@@ -109,14 +120,13 @@ public static boolean DEV_ENV = false;
         GameRegistry.registerTileEntity(TileEntityGamePartGreen.class, "TileEntityGamePartGreen");
         GameRegistry.registerTileEntity(TileEntityGamePartYellow.class, "TileEntityGamePartYellow");
         GameRegistry.registerTileEntity(TileEntityGamePartNull.class, "TileEntityGamePartNull");
+        GameRegistry.registerTileEntity(TileEntityPillar.class, "TileEntityPillar");
         
         
         GameRegistry.registerWorldGenerator(new SilverOreGen());
         
 
         NetworkRegistry.instance().registerGuiHandler(this, new GuiHandler());
-        
-        VersionChecker.go();
 
     }
     
@@ -137,6 +147,7 @@ public static boolean DEV_ENV = false;
 	  {
 	    event.registerServerCommand(new ExpExtractCommand());
 	    event.registerServerCommand(new GetXpCommand());
+	    event.registerServerCommand(new CommandVersion());
 	  }
 	
 	

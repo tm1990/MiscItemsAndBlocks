@@ -19,6 +19,7 @@ public class ModBlockSpeedBlock extends Block{
 	public ModBlockSpeedBlock(int par1) {
 		super(par1, Material.rock);
 		this.slipperiness = 1.2F;
+		this.setHardness(0.7F);
 	}
 	
     @SideOnly(Side.CLIENT)

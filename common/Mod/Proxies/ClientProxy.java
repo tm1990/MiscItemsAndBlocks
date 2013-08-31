@@ -1,19 +1,23 @@
 package Mod.Proxies;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.entity.player.EntityPlayer;
 import Mod.Entity.EntitySilverArrow;
 import Mod.GamePart.TileEntityGamePartBlue;
 import Mod.GamePart.TileEntityGamePartGreen;
-import Mod.GamePart.TileEntityGamePartRed;
 import Mod.GamePart.TileEntityGamePartNull;
+import Mod.GamePart.TileEntityGamePartRed;
 import Mod.GamePart.TileEntityGamePartYellow;
 import Mod.Models.SilverArrowRender;
 import Mod.Tick.ClientTickHandler;
 import Mod.TileEntity.TileEntityBin;
 import Mod.TileEntity.TileEntityDisarmTrap;
+import Mod.TileEntity.TileEntityPillar;
 import Mod.TileEntity.TileEntityShelf;
 import Mod.TileEntityRenderer.TileEntityBinRender;
 import Mod.TileEntityRenderer.TileEntityDisarmTrapRenderer;
 import Mod.TileEntityRenderer.TileEntityGamePartRender;
+import Mod.TileEntityRenderer.TileEntityPillarRender;
 import Mod.TileEntityRenderer.TileEntityShelfRender;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
@@ -37,6 +41,8 @@ public class ClientProxy extends ServerProxy{
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityGamePartYellow.class, new TileEntityGamePartRender("yellow"));
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityGamePartNull.class, new TileEntityGamePartRender("white"));
         
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPillar.class, new TileEntityPillarRender());
+        
         RenderingRegistry.registerEntityRenderingHandler(EntitySilverArrow.class, new SilverArrowRender());
 }
     
@@ -53,5 +59,10 @@ public class ClientProxy extends ServerProxy{
     	
     TickRegistry.registerTickHandler(new ClientTickHandler(), Side.CLIENT);
 
+    }
+    
+    @Override
+    public EntityPlayer getPlayer(){
+    	return Minecraft.getMinecraft().thePlayer;
     }
 }
