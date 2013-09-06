@@ -1,22 +1,23 @@
 package Mod.Block;
 
-import Mod.TileEntity.TileEntityPillar;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import Mod.TileEntity.TileEntityPillar;
+import Mod.TileEntity.TileEntitySidewaysPillar;
 
-public class ModBlockPillar extends BlockContainer {
+public class ModBlockSidewaysPillar extends BlockContainer {
 
-	protected ModBlockPillar(int par1) {
+	protected ModBlockSidewaysPillar(int par1) {
 		super(par1, Material.rock);
 		this.setHardness(1F);
 	}
 
 	@Override
 	public TileEntity createNewTileEntity(World world) {
-		return new TileEntityPillar();
+		return new TileEntitySidewaysPillar();
 	}
 
 	
@@ -47,10 +48,10 @@ public class ModBlockPillar extends BlockContainer {
 		 int Id = block.getBlockId(x, y, z);
     	
     	
-		 if(block.getBlockId(x, y + 1, z) == Id && block.getBlockId(x, y - 1, z) == Id){
-				this.setBlockBounds(0.2F, 0, 0.2F, 0.8F, 1, 0.8F);
+		 if(block.getBlockId(x, y, z + 1) == Id && block.getBlockId(x, y, z - 1) == Id){
+				this.setBlockBounds(0.2F, 0.012F, 0F, 0.8F, 0.63F, 1F);
 		 }else{
-				this.setBlockBounds(0.1F, 0, 0.1F, 0.9F, 1, 0.9F);
+				this.setBlockBounds(0.13F, 0.012F, 0F, 0.9F, 0.8F, 1F);
 		 }
     	
     }

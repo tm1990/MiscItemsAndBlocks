@@ -104,8 +104,15 @@ public class GuiXpStorage extends GuiContainer{
 		
 		}
 	
+	
 	public void updateScreen(){
+		
+		if(Minecraft.getMinecraft().isSingleplayer()){
 		textfield.setText("Levels stored : " + tile.GetLevels());
+		}else{
+			textfield.setText("Mp coming soon!");
+		}
+		
 		
 		}
 

@@ -219,7 +219,7 @@ inv[i].stackSize = 0;
 @Override
 public String getInvName()
 {
-return "Project Bench";
+return "CraftingInv";
 }
 
 @Override

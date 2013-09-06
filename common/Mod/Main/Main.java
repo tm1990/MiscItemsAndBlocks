@@ -1,13 +1,14 @@
 package Mod.Main;
 
 import java.io.File;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.Configuration;
+import net.minecraftforge.common.MinecraftForge;
 import Mod.Block.ModBlocks;
-import Mod.Commands.CommandVersion;
 import Mod.Commands.ExpExtractCommand;
 import Mod.Commands.GetXpCommand;
 import Mod.Crafting.Crafting;
@@ -23,16 +24,17 @@ import Mod.Lib.Messages;
 import Mod.Lib.Refrence;
 import Mod.Network.PacketHandler;
 import Mod.Proxies.ServerProxy;
-import Mod.Tick.VersionCheckerTickHandler;
 import Mod.TileEntity.TileEntityBin;
 import Mod.TileEntity.TileEntityBox;
 import Mod.TileEntity.TileEntityCraftingInv;
 import Mod.TileEntity.TileEntityDisarmTrap;
 import Mod.TileEntity.TileEntityPillar;
 import Mod.TileEntity.TileEntityShelf;
+import Mod.TileEntity.TileEntitySidewaysPillar;
 import Mod.TileEntity.TileEntityXpStorage;
 import Mod.VersionChecker.VersionChecker;
 import Mod.WorldGen.SilverOreGen;
+import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.Instance;
@@ -49,8 +51,6 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
-import cpw.mods.fml.common.registry.TickRegistry;
-import cpw.mods.fml.relauncher.Side;
 
 
 @Mod(modid = Refrence.Mod_Id, name = Refrence.Mod_Name, version = Refrence.Version)
@@ -66,19 +66,41 @@ public class Main {
     public static ServerProxy proxy;
     
     
-    File BlastProofCraftConfig = new File("config/tm1990's mods/BlastProofCraftConfig.cfg");
+	public static boolean VERSION_CHECK = true;
 	
-	@PreInit
+    public static final String RELEASE_VERSION = Refrence.Version;
+    public static String LATEST_CHANGES = "[null]";
+    public static String LATEST_VERSION = "[null]";
+    public static String UPDATE_IMPORTANCE = "[null]";
+    public static String UPDATE_URL = "http://adf.ly/U25ua";
+    public static boolean UP_TO_DATE = true;
+    
+    
+    
+	
+@PreInit
 public void preInit(FMLPreInitializationEvent event) {
     	
     	
-        Configuration configMisc = new Configuration(new File("config/tm1990's mods/MiscItemsAndBlocksConfig.cfg"));
-    	
+        Configuration configMisc = new Configuration(new File(event.getModConfigurationDirectory() + "/tm1990's mods/MiscItemsAndBlocksConfig.cfg"));
+        File BlastProofCraftConfig = new File("config/tm1990's mods/BlastProofCraftConfig.cfg");    
+        
+    	try
+    	{
+        
     	ModConfig.Init(configMisc);
     	
-    	VersionChecker.execute();
+    	} catch(Exception ex)
+    	{
+    	FMLLog.log(Level.SEVERE, ex, Refrence.Mod_Id + ": Error encountered while loading config file.");
+    	} finally
+    	{
+    	configMisc.save();
+    	}
     	
-    	TickRegistry.registerTickHandler(new VersionCheckerTickHandler(), Side.CLIENT);
+    	if(VERSION_CHECK)
+    		VersionChecker.go();
+
 
 
     	
@@ -121,9 +143,12 @@ public void preInit(FMLPreInitializationEvent event) {
         GameRegistry.registerTileEntity(TileEntityGamePartYellow.class, "TileEntityGamePartYellow");
         GameRegistry.registerTileEntity(TileEntityGamePartNull.class, "TileEntityGamePartNull");
         GameRegistry.registerTileEntity(TileEntityPillar.class, "TileEntityPillar");
+        GameRegistry.registerTileEntity(TileEntitySidewaysPillar.class, "TileEntitySidewaysPillar");
         
         
         GameRegistry.registerWorldGenerator(new SilverOreGen());
+        
+        MinecraftForge.addGrassSeed(new ItemStack(ModItems.TomatoSeeds), 10);
         
 
         NetworkRegistry.instance().registerGuiHandler(this, new GuiHandler());
@@ -147,7 +172,6 @@ public void preInit(FMLPreInitializationEvent event) {
 	  {
 	    event.registerServerCommand(new ExpExtractCommand());
 	    event.registerServerCommand(new GetXpCommand());
-	    event.registerServerCommand(new CommandVersion());
 	  }
 	
 	

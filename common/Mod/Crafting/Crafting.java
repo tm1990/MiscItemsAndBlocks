@@ -37,7 +37,8 @@ public class Crafting {
 			GameRegistry.addRecipe(new ItemStack(ModItems.JumpingBoots), new Object[] {"   ", "S S", "D D", 'D', Item.diamond, 'S', ModItems.SilverIngot});
 	        GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.CraftingInv), new Object[] {"WWW", "PIP", "PCP", 'W', Block.cloth, 'P', Block.planks, 'C', Block.chest, 'I', Block.workbench});
 	        GameRegistry.addShapedRecipe(new ItemStack(ModItems.CraftingUpgrade), new Object[]{"WWW", "PBP", "PCP", 'W', Block.cloth, 'P', Block.planks, 'B', ModItems.Cardboard, 'C', Block.chest});
-			
+			GameRegistry.addShapelessRecipe(new ItemStack(ModItems.TomatoSeeds, 4), ModItems.Tomato);
+	        
 			
 			
 			

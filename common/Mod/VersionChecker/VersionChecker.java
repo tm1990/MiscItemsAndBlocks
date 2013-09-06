@@ -4,205 +4,124 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.Properties;
 
-import net.minecraftforge.common.Configuration;
 import Mod.Lib.Refrence;
-import Mod.Main.ModConfig;
-import Mod.Main.ModSettings;
-import Mod.Util.Colours;
-import Mod.Util.LogHelper;
-import Mod.Util.Strings;
-
+import Mod.Main.Main;
 import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.registry.LanguageRegistry;
-public class VersionChecker implements Runnable {
+import cpw.mods.fml.common.registry.TickRegistry;
+import cpw.mods.fml.relauncher.Side;
 
-    private static VersionChecker instance = new VersionChecker();
+public class VersionChecker implements Runnable{
 
-    // The (publicly available) remote version number authority file
-    private static final String REMOTE_VERSION_XML_FILE = "https://dl.dropbox.com/s/vctok5s6njcyekp/version.xml";
+private static VersionChecker instance = new VersionChecker();
 
-    public static Properties remoteVersionProperties = new Properties();
+private static final String remoteFileLocation = "https://dl.dropbox.com/sh/nh9ub1ks4ks6u1q/rL5rYJIl4c/Version.xml";
+private static final String remoteChangesLocation = "https://dl.dropbox.com/sh/nh9ub1ks4ks6u1q/EgOjFER3gl/changes.xml";
+public static Properties remoteVersionProperties = new Properties();
+public static Properties remoteChangesProperties = new Properties();
 
-    // All possible results of the remote version number check
-    public static final byte UNINITIALIZED = 0;
-    public static final byte CURRENT = 1;
-    public static final byte OUTDATED = 2;
-    public static final byte ERROR = 3;
-    public static final byte FINAL_ERROR = 4;
-    public static final byte MC_VERSION_NOT_FOUND = 5;
+public static final byte NOT_DONE = 0;
+public static final byte UP_TO_DATE = 1;
+public static final byte OUT_OF_DATE = 2;
+public static final byte FAILED = 3;
 
-    // Var to hold the result of the remote version check, initially set to uninitialized
-    private static byte result = UNINITIALIZED;
-    public static String remoteVersion = null;
-    public static String remoteUpdateLocation = null;
+private static byte result = NOT_DONE;
+public static String remoteVersion = null;
+public static String remoteVersionImportance = null;
+public static String remoteUpdateLocation = null;
 
-    /***
-* Checks the version of the currently running instance of the mod against
-* the remote version authority, and sets the result of the check
-* appropriately
-*/
-    public static void checkVersion() {
+public static void checkVersion(){
+InputStream remoteVersionStream = null;
+result = NOT_DONE;
 
-        InputStream remoteVersionRepoStream = null;
-        result = UNINITIALIZED;
+try{
+URL remoteVersionURL = new URL(remoteFileLocation);
+remoteVersionStream = remoteVersionURL.openStream();
+remoteVersionProperties.loadFromXML(remoteVersionStream);
+String versionFromRemote = remoteVersionProperties.getProperty(Loader.instance().getMCVersionString());
 
-        try {
-            URL remoteVersionURL = new URL(REMOTE_VERSION_XML_FILE);
-            remoteVersionRepoStream = remoteVersionURL.openStream();
-            remoteVersionProperties.loadFromXML(remoteVersionRepoStream);
+if(versionFromRemote != null){
+String[] versionSplit = versionFromRemote.split("\\|");
+if(versionSplit[0] != null)
+remoteVersion = versionSplit[0];
+if(versionSplit[1] != null)
+remoteVersionImportance = versionSplit[1];
+if(remoteVersion != null){
+Main.LATEST_VERSION = remoteVersion;
+Main.UPDATE_IMPORTANCE = remoteVersionImportance;
 
-            String remoteVersionProperty = remoteVersionProperties.getProperty(Loader.instance().getMCVersionString());
+if(remoteVersion.equalsIgnoreCase(Main.RELEASE_VERSION))
+result = UP_TO_DATE;
+else
+result = OUT_OF_DATE;
 
-            if (remoteVersionProperty != null) {
-                String[] remoteVersionTokens = remoteVersionProperty.split("\\|");
+}
+else{
+result = FAILED;
+}
+}
+}catch (Exception e){
+e.printStackTrace();
+}
+finally{
+if(result == NOT_DONE)
+result = FAILED;
+try{
+if(remoteVersionStream != null)
+remoteVersionStream.close();
+}catch(Exception ex){}
+}
 
-                if (remoteVersionTokens.length >= 2) {
-                    remoteVersion = remoteVersionTokens[0];
-                    remoteUpdateLocation = remoteVersionTokens[1];
-                }
-                else {
-                    result = ERROR;
-                }
+}
 
-                if (remoteVersion != null) {
-                    if (!ModSettings.LAST_DISCOVERED_VERSION.equalsIgnoreCase(remoteVersion)) {
-                        ModConfig.set(Configuration.CATEGORY_GENERAL, ModSettings.LAST_DISCOVERED_VERSION_CONFIGNAME, remoteVersion);
-                    }
+public static void checkLatestChanges(){
+InputStream remoteChangesStream = null;
 
-                    if (remoteVersion.equalsIgnoreCase(getVersionForCheck())) {
-                        result = CURRENT;
-                    }
-                    else {
-                        result = OUTDATED;
-                    }
-                }
+try{
+URL remoteChangesURL = new URL(remoteChangesLocation);
+remoteChangesStream = remoteChangesURL.openStream();
+remoteChangesProperties.loadFromXML(remoteChangesStream);
+String changesFromRemote = remoteChangesProperties.getProperty(Main.LATEST_VERSION);
+if(changesFromRemote != null){
+System.out.println(Refrence.Mod_Id + " Latest Changes: " +changesFromRemote);
+Main.LATEST_CHANGES = changesFromRemote;
+}
+}catch(Exception ex){
+ex.printStackTrace();
+}finally{
+try{
+if(remoteChangesStream != null)
+remoteChangesStream.close();
+}catch(Exception ex){}
+}
 
-            }
-            else {
-                result = MC_VERSION_NOT_FOUND;
-            }
-        }
-        catch (Exception e) {
-        }
-        finally {
-            if (result == UNINITIALIZED) {
-                result = ERROR;
-            }
+}
 
-            try {
-                if (remoteVersionRepoStream != null) {
-                    remoteVersionRepoStream.close();
-                }
-            }
-            catch (Exception ex) {
-            }
-        }
-    }
+@Override
+public void run() {
+int tries = 0;
+System.out.println(Refrence.Mod_Id + ": Starting version check.");
 
-    private static String getVersionForCheck() {
+try{
+while(tries < 5 && (result != OUT_OF_DATE && result != UP_TO_DATE)){
+	System.out.println(tries > 0  ? Refrence.Mod_Id + ":  version check try : " + tries : "");
+checkVersion();
+tries++;
+if(result == OUT_OF_DATE){
+Main.UP_TO_DATE = false;
+Main.UPDATE_IMPORTANCE = remoteVersionImportance;
+checkLatestChanges();
+TickRegistry.registerTickHandler(new VersionCheckTicker(), Side.CLIENT);
+}
+if(result == UP_TO_DATE)
+System.out.println(Refrence.Mod_Id + ":  is up to date.");
+}
+}catch(Exception ex){
+ex.printStackTrace();
+}
+}
 
-        String[] versionTokens = Refrence.VERSION_NUMBER.split(" ");
-
-        if (versionTokens.length >= 1)
-            return versionTokens[0];
-        else
-            return Refrence.VERSION_NUMBER;
-    }
-
-    public static void logResult() {
-
-        if (result == CURRENT || result == OUTDATED) {
-            LogHelper.info(getResultMessage() + "1");
-        }
-        else {
-            LogHelper.warning(getResultMessage() + "2");
-        }
-    }
-
-    public static String getResultMessage() {
-
-        if (result == UNINITIALIZED)
-            return LanguageRegistry.instance().getStringLocalization(Strings.UNINITIALIZED_MESSAGE);
-        else if (result == CURRENT) {
-            String returnString = LanguageRegistry.instance().getStringLocalization(Strings.CURRENT_MESSAGE);
-            returnString = returnString.replace("@REMOTE_MOD_VERSION@", remoteVersion);
-            returnString = returnString.replace("@MINECRAFT_VERSION@", Loader.instance().getMCVersionString());
-            return returnString;
-        }
-        else if (result == OUTDATED && remoteVersion != null && remoteUpdateLocation != null) {
-        	System.out.println("Outdated");
-        	
-            String returnString = LanguageRegistry.instance().getStringLocalization(Strings.OUTDATED_MESSAGE);
-            returnString = returnString.replace("@MOD_NAME@", Refrence.Mod_Name);
-            returnString = returnString.replace("@REMOTE_MOD_VERSION@", remoteVersion);
-            returnString = returnString.replace("@MINECRAFT_VERSION@", Loader.instance().getMCVersionString());
-            returnString = returnString.replace("@MOD_UPDATE_LOCATION@", remoteUpdateLocation);
-            return returnString;
-        }
-        else if (result == ERROR)
-            return LanguageRegistry.instance().getStringLocalization(Strings.GENERAL_ERROR_MESSAGE);
-        else if (result == FINAL_ERROR)
-            return LanguageRegistry.instance().getStringLocalization(Strings.FINAL_ERROR_MESSAGE);
-        else if (result == MC_VERSION_NOT_FOUND) {
-            String returnString = LanguageRegistry.instance().getStringLocalization(Strings.MC_VERSION_NOT_FOUND);
-            returnString = returnString.replace("@MOD_NAME@", Refrence.Mod_Name);
-            returnString = returnString.replace("@MINECRAFT_VERSION@", Loader.instance().getMCVersionString());
-            return returnString;
-        }
-        else {
-            result = ERROR;
-            return LanguageRegistry.instance().getStringLocalization(Strings.GENERAL_ERROR_MESSAGE);
-        }
-    }
-
-    public static String getResultMessageForClient() {
-
-        String returnString = LanguageRegistry.instance().getStringLocalization(Strings.OUTDATED_MESSAGE);
-        returnString = returnString.replace("@MOD_NAME@", Colours.TEXT_COLOUR_PREFIX_YELLOW + Refrence.Mod_Name + Colours.TEXT_COLOUR_PREFIX_WHITE);
-        returnString = returnString.replace("@REMOTE_MOD_VERSION@", Colours.TEXT_COLOUR_PREFIX_YELLOW + VersionChecker.remoteVersion + Colours.TEXT_COLOUR_PREFIX_WHITE);
-        returnString = returnString.replace("@MINECRAFT_VERSION@", Colours.TEXT_COLOUR_PREFIX_YELLOW + Loader.instance().getMCVersionString() + Colours.TEXT_COLOUR_PREFIX_WHITE);
-        returnString = returnString.replace("@MOD_UPDATE_LOCATION@", Colours.TEXT_COLOUR_PREFIX_YELLOW + VersionChecker.remoteUpdateLocation + Colours.TEXT_COLOUR_PREFIX_WHITE);
-        return returnString;
-    }
-
-    public static byte getResult() {
-
-        return result;
-    }
-
-    @Override
-    public void run() {
-
-        int count = 0;
-
-        LogHelper.info(LanguageRegistry.instance().getStringLocalization(Strings.VERSION_CHECK_INIT_LOG_MESSAGE) + " " + REMOTE_VERSION_XML_FILE);
-
-        try {
-            while (count < Refrence.VERSION_CHECK_ATTEMPTS - 1 && (result == UNINITIALIZED || result == ERROR)) {
-
-                checkVersion();
-                count++;
-                logResult();
-
-                if (result == UNINITIALIZED || result == ERROR) {
-                    Thread.sleep(10000);
-                }
-            }
-
-            if (result == ERROR) {
-                result = FINAL_ERROR;
-                logResult();
-            }
-        }
-        catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    public static void execute() {
-
-        new Thread(instance).start();
-    }
+public static void go(){
+new Thread(instance).start();
+}
 
 }

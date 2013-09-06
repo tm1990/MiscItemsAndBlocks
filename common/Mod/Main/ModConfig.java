@@ -21,6 +21,9 @@ public class ModConfig {
 	public static int Dice;
 	public static int SpeedBlock;
 	public static int Pillar;
+	public static int SidewaysPillar;
+	public static int Mill;
+	public static int TomatoPlant;
 	
 	
 	public static int GamePartRed;
@@ -38,6 +41,9 @@ public class ModConfig {
 	public static int SilverArrow;
 	public static int Cardboard;
 	public static int CraftingUpgrade;
+	public static int Tomato;
+	public static int Flour;
+	public static int TomatoSeeds;
 	
 	public static int DivingHelmet;
 	public static int FlightChestPlate;
@@ -46,6 +52,8 @@ public class ModConfig {
 
 	/** Booleans **/
 	public static boolean BlastProofOverRe;
+	
+	public static boolean SpawnParticles;
 	
 	
 	public static int XpStorageGuiId = 1;
@@ -85,6 +93,9 @@ public class ModConfig {
 		
 		SpeedBlock = config.getBlock("Blocks", "Speed Block Id", 614).getInt();
 		Pillar = config.getBlock("Blocks", "Pillar Block Id", 615).getInt();
+		SidewaysPillar = config.getBlock("Blocks", "Sideways Pillar Block Id", 616).getInt();
+		TomatoPlant = config.getBlock("Blocks", "Tomato Plant Block Id", 617).getInt();
+		Mill = config.getBlock("Blocks", "Mill Block Id", 618).getInt();
 		
         XpExtractor = config.getItem("Items","Xp Extractor Id", 22000).getInt();
         SilverIngot = config.getItem("Items", "Silver Ingot Id", 22001).getInt();
@@ -98,6 +109,11 @@ public class ModConfig {
         JumpingBoots = config.getItem("Items", "Jumping Boots Id", 22009).getInt();
         Cardboard = config.getItem("Items", "Cardboard Id", 22010).getInt();
         CraftingUpgrade = config.getItem("Items", "CraftingTable Chest Upgrade Id", 22011).getInt();
+        Tomato = config.getItem("Items", "Tomato Id", 22012).getInt();
+        Flour = config.getItem("Items", "Flour Id", 22013).getInt();
+        TomatoSeeds = config.getItem("Items", "Tomato Seeds Id", 22014).getInt();
+        
+        SpawnParticles = config.get("Settings", "Spawn particles?", true).getBoolean(true);
         
         
         config.save();

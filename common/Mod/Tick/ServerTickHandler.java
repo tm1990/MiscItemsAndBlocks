@@ -5,6 +5,7 @@ import java.util.Random;
 
 import Mod.Items.ModItems;
 import Mod.Lib.Refrence;
+import Mod.Main.ModConfig;
 import Mod.VersionChecker.VersionChecker;
 
 
@@ -67,7 +68,7 @@ public class ServerTickHandler implements IScheduledTickHandler{
 	//TODO Fix lag issue with ticking
 	public void onPlayerTick(EntityPlayer player) {
 		
-		if(Counter >= 25){
+		if(Counter >= 50){
 			Counter = 0;
 		
 		if(player.capabilities.isCreativeMode == false){
@@ -78,7 +79,6 @@ public class ServerTickHandler implements IScheduledTickHandler{
 			Jump(player);
 			Full(player);
 			
-			System.out.println("test");
 			
 			}
 		}else{
@@ -99,8 +99,8 @@ public class ServerTickHandler implements IScheduledTickHandler{
              Helmet = true;
 			if(player.isInWater()){
 				
-				player.addPotionEffect(new PotionEffect(Potion.waterBreathing.id, 10, 10));
-				player.addPotionEffect(new PotionEffect(Potion.nightVision.id, 10, 10));
+				player.addPotionEffect(new PotionEffect(Potion.waterBreathing.id, 200, 10));
+				player.addPotionEffect(new PotionEffect(Potion.nightVision.id, 200, 10));
 				
 			}
 			
@@ -128,7 +128,11 @@ public class ServerTickHandler implements IScheduledTickHandler{
 			if(player.onGround == false && player.isInWater() == false && player.capabilities.allowFlying && player.isAirBorne){
 				Random rand = new Random();
 				if(TickCountParticle == 5){
+					
+					if(ModConfig.SpawnParticles){
 			player.worldObj.spawnParticle("cloud", player.posX, player.posY + 0.6, player.posZ, rand.nextFloat() - 0.5, rand.nextFloat() - 0.2, rand.nextFloat() - 0.5);
+					}
+					
 			TickCountParticle = 0;
 				}else{
 					
@@ -162,7 +166,7 @@ public class ServerTickHandler implements IScheduledTickHandler{
 		}else if(player.inventory.armorInventory[1].itemID == ModItems.RunningLeggings.itemID){
 			Leggings = true;
 			if(player.onGround && player.isInWater() == false){
-				player.addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 50, 10));
+				player.addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 200, 10));
 			}
 			
 		}
@@ -176,7 +180,7 @@ public class ServerTickHandler implements IScheduledTickHandler{
 			Boots = true;
 			
 			if(player.onGround && player.isInWater() == false && player.isSneaking() == false){
-				player.addPotionEffect(new PotionEffect(Potion.jump.id, 50, 3));
+				player.addPotionEffect(new PotionEffect(Potion.jump.id, 200, 3));
 			}
 		
 	}
@@ -192,9 +196,9 @@ public class ServerTickHandler implements IScheduledTickHandler{
 						
 						if(player.shouldHeal()){
 							
-							player.addPotionEffect(new PotionEffect(Potion.regeneration.id, 50, 0));
-							player.addPotionEffect(new PotionEffect(Potion.resistance.id, 50, 2));
-							player.addPotionEffect(new PotionEffect(Potion.field_76443_y.id, 50, 1));
+							player.addPotionEffect(new PotionEffect(Potion.regeneration.id, 200, 0));
+							player.addPotionEffect(new PotionEffect(Potion.resistance.id, 200, 2));
+							player.addPotionEffect(new PotionEffect(Potion.field_76443_y.id, 200, 1));
 							
 						}
 						

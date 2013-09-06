@@ -14,11 +14,13 @@ import Mod.TileEntity.TileEntityBin;
 import Mod.TileEntity.TileEntityDisarmTrap;
 import Mod.TileEntity.TileEntityPillar;
 import Mod.TileEntity.TileEntityShelf;
+import Mod.TileEntity.TileEntitySidewaysPillar;
 import Mod.TileEntityRenderer.TileEntityBinRender;
 import Mod.TileEntityRenderer.TileEntityDisarmTrapRenderer;
 import Mod.TileEntityRenderer.TileEntityGamePartRender;
 import Mod.TileEntityRenderer.TileEntityPillarRender;
 import Mod.TileEntityRenderer.TileEntityShelfRender;
+import Mod.TileEntityRenderer.TileEntitySidewaysPillarRender;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.registry.TickRegistry;
@@ -42,6 +44,7 @@ public class ClientProxy extends ServerProxy{
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityGamePartNull.class, new TileEntityGamePartRender("white"));
         
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPillar.class, new TileEntityPillarRender());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySidewaysPillar.class, new TileEntitySidewaysPillarRender());
         
         RenderingRegistry.registerEntityRenderingHandler(EntitySilverArrow.class, new SilverArrowRender());
 }

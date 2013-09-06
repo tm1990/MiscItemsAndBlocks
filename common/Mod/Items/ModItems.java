@@ -2,9 +2,11 @@ package Mod.Items;
 
 import Mod.Main.Main;
 import Mod.Main.ModConfig;
+import net.minecraft.block.Block;
 import net.minecraft.item.EnumArmorMaterial;
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemSeeds;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.EnumHelper;
 import net.minecraftforge.oredict.OreDictionary;
@@ -22,6 +24,9 @@ public class ModItems {
 	public static Item SilverArrow;
 	public static Item Cardboard;
 	public static Item CraftingUpgrade;
+	public static Item Tomato;
+	public static Item Flour;
+	public static ItemSeeds TomatoSeeds;
 	
 	
 	public static Item DivingHelmet;
@@ -73,6 +78,15 @@ public class ModItems {
         
         CraftingUpgrade = new ModItemCraftingChestUpgrade(ModConfig.CraftingUpgrade).setUnlocalizedName("CraftingUpgrade");
         Register(CraftingUpgrade, "Crafting Table Chest Upgrade");
+        
+        Tomato = new ModItemTomato(ModConfig.Tomato, 3, 1F, false).setUnlocalizedName("Tomato");
+        Register(Tomato, "Tomato");
+        
+        Flour = new ModItemFlour(ModConfig.Flour).setUnlocalizedName("Flour");
+        Register(Flour, "Flour");
+        
+        TomatoSeeds = new ModItemTomatoSeeds(ModConfig.TomatoSeeds, ModConfig.TomatoPlant, Block.tilledField.blockID);
+        Register(TomatoSeeds, "Tomato Seeds");
 		
 		
 	RegisterOreDictionary(new ItemStack(SilverIngot), "ingotSilver");

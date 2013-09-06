@@ -91,15 +91,25 @@ public class ModBlockGamePart extends BlockContainer{
     	int DirectionMath = MathHelper.floor_double((double)(player.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
     	
     	String Direction = DirectionMath == 0 ? "south" : DirectionMath == 1 ? "west" : DirectionMath == 2 ? "north" : "east";
-      
+    	
+		  
+		  Id = world.getBlockId(x, y, z);
       
     	if(Direction == "south"){
+    		
+  		  if(world.getBlockId(x, y, z + 1) == Id && world.getBlockId(x, y + 1, z + 1) == 0){
+			  
+    		  world.setBlock(x, y, z, 0);
+    		  world.setBlock(x, y + 1, z + 1, Id);
+    		  
+		  }else{
     	  
     	  if(world.getBlockId(x, y, z + 1) == Block.tallGrass.blockID || world.getBlockId(x, y, z + 1) == 0 ){
     		  
-    		  Id = world.getBlockId(x, y, z);
+
     		  world.setBlock(x, y, z, 0);
     		  world.setBlock(x, y, z + 1, Id);
+    	  }
     		  
     	  
     	  }
@@ -109,31 +119,65 @@ public class ModBlockGamePart extends BlockContainer{
     	  
 
     	if(Direction == "west"){
+    		
+  		  if(world.getBlockId(x - 1, y, z) == Id && world.getBlockId(x - 1, y + 1, z) == 0){
+			  
+    		  world.setBlock(x, y, z, 0);
+    		  world.setBlock(x - 1, y + 1, z, Id);
+    		  
+		  }else{
     	  
     	  if(world.getBlockId(x - 1, y,z) == Block.tallGrass.blockID || world.getBlockId(x - 1, y,z) == 0){
-    		  Id = world.getBlockId(x, y, z);
+
+    		  
     		  world.setBlock(x, y, z, 0);
     		  world.setBlock(x - 1, y, z, Id);
+
+    	  }
     		  
     	  
     	  }
     	}
     	  
       if(Direction == "north"){
+    	  
+		  
+		  if(world.getBlockId(x, y, z - 1) == Id && world.getBlockId(x, y + 1, z - 1) == 0){
+			  
+    		  world.setBlock(x, y, z, 0);
+    		  world.setBlock(x, y + 1, z - 1, Id);
+    		  
+		  }else{
+			  
     	  if(world.getBlockId(x, y, z - 1) == Block.tallGrass.blockID || world.getBlockId(x, y, z - 1) == 0){
-    		  Id = world.getBlockId(x, y, z);
+
+    		  
     		  world.setBlock(x, y, z, 0);
     		  world.setBlock(x, y, z - 1, Id);
+    		  
+    		  
+    		  
+    	  }
     		  
     	  }
       }
     	  
       if(Direction == "east"){
     	  
+		  
+		  if(world.getBlockId(x + 1, y, z) == Id && world.getBlockId(x + 1, y + 1, z) == 0){
+			  
+    		  world.setBlock(x, y, z, 0);
+    		  world.setBlock(x + 1, y + 1, z, Id);
+    		  
+		  }else{
+    	  
     	  if(world.getBlockId(x + 1, y,z) == Block.tallGrass.blockID || world.getBlockId(x + 1, y,z) == 0){
-    		  Id = world.getBlockId(x, y, z);
+    		  
     		  world.setBlock(x, y, z, 0);
     		  world.setBlock(x + 1, y, z, Id);
+
+    		  }
     		  
     	  }
       }
@@ -146,6 +190,56 @@ public class ModBlockGamePart extends BlockContainer{
     	
         return true;
     }
+    
+    public void onBlockAdded(World world, int x, int y, int z) {
+    	
+		 blockFall(world, x, y, z);
+
+    	
+    }
+    
+    public void onNeighborBlockChange(World world, int x, int y, int z, int nId) {
+    	
+    	
+    	//TODO Make it fall when block below is removed
+		// blockFall(world, x, y, z);
+    	
+    }
+    
+    public void setBlockBoundsBasedOnState(IBlockAccess block, int x, int y, int z) {
+    	
+		 int Id = block.getBlockId(x, y, z);
+    	
+    	
+		 if(block.getBlockId(x, y + 1, z) == Id && block.getBlockId(x, y - 1, z) == Id){
+				this.setBlockBounds(0.2F, 0, 0.2F, 0.8F, 1, 0.8F);
+		 }else{
+				this.setBlockBounds(0.1F, 0, 0.1F, 0.9F, 1, 0.9F);
+		 }
+    	
+    }
+    
+    public void blockFall(World world, int x, int y, int z){
+    	int i = 1;
+		 int Id = world.getBlockId(x, y, z);
+		 
+		 while(world.getBlockId(x, y - i, z) == 0){
+			 i++;
+		 }
+		 
+		 if(i > 1){
+			 if(world.getBlockId(x, y - i + 1, z) == 0){
+   		  world.setBlock(x, y, z, 0);
+   		  world.setBlock(x, y - i + 1, z, Id);
+
+ 		 
+
+			 }
+		 }
+
+    	
+    }
+    
     
     
     
