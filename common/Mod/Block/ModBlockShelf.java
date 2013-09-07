@@ -13,6 +13,7 @@ import Mod.TileEntity.TileEntityShelf;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
@@ -37,7 +38,7 @@ public class ModBlockShelf extends BlockContainer{
 		
 		setCreativeTab(Main.CreativeTab);
 		
-        this.setBlockBounds(0F, 0.0F, 0F, 1F, 0.68F, 0.55F);
+
         
 
 	}
@@ -95,35 +96,30 @@ public class ModBlockShelf extends BlockContainer{
 	    
 
 
-    @Override
-    public void setBlockBoundsBasedOnState(IBlockAccess access, int i, int j, int k)
-    {
-     int dir = access.getBlockMetadata(i, j, k);
-
-    if(dir == 0)
-   {
-        this.setBlockBounds(0F, 0.0F, 0F, 1F, 0.68F, 0.55F);
-    }
-    else if(dir == 1)
-    {
-        this.setBlockBounds(0F, 0.0F, 0F, 1F, 0.68F, 0.55F);
-    }
-    else if(dir == 2)
-      {
-        this.setBlockBounds(0F, 0.0F, 0F, 1F, 0.68F, 0.55F);
-     }
-     else if(dir == 3)
-     {
-    	 
-        this.setBlockBounds(0F, 0.0F, 0F, 1F, 0.68F, 0.55F);
-}
-}
     
-    public void onBlockAdded(World par1World, int x, int y, int z) {
-    	
+	    @Override
+	    public void setBlockBoundsBasedOnState(IBlockAccess access, int i, int j, int k)
+	    {
+	     int dir = access.getBlockMetadata(i, j, k);
 
-    	
-    }
+	    if(dir == 1)
+	   {
+	        this.setBlockBounds(0F, 0.0F, 0.5F, 1F, 0.68F, 1F);
+	    }
+	    else if(dir == 2)
+	    {
+	        this.setBlockBounds(0.0F, 0.0F, 0.0F, 0.6F, 0.68F, 1F);
+	    }
+	    else if(dir == 3)
+	      {
+	        this.setBlockBounds(0F, 0.0F, 0F, 1F, 0.68F, 0.6F);
+	     }
+	     else if(dir == 4)
+	     {
+	    	 
+	        this.setBlockBounds(0.4F, 0.0F, 0F, 1F, 0.68F, 1F);
+	}
+	}
 
 @Override
 public void breakBlock(World World, int x, int y, int z, int id, int meta)
@@ -157,6 +153,78 @@ public void breakBlock(World World, int x, int y, int z, int id, int meta)
 			
 		}
 	}
+	
+}
+
+public void onBlockPlacedBy(World par1World, int x, int y, int z, EntityLivingBase par5EntityLivingBase, ItemStack par6ItemStack)
+{
+    int Direction = MathHelper.floor_double((double)(par5EntityLivingBase.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
+
+    if (Direction == 0)
+    {
+    	
+        par1World.setBlockMetadataWithNotify(x, y, z, 1, 2);
+    }
+
+    if (Direction == 1)
+    {
+        par1World.setBlockMetadataWithNotify(x, y, z, 2, 2);
+    }
+
+    if (Direction == 2)
+    {
+        par1World.setBlockMetadataWithNotify(x, y, z, 3, 2);
+    }
+
+    if (Direction == 3)
+    {
+        par1World.setBlockMetadataWithNotify(x, y, z, 4, 2);
+    }
+
+
+}
+
+@Override
+public int onBlockPlaced(World world, int x, int y, int z, int side, float hitx, float hity, float hitz, int meta)
+{
+	
+	return 0;
+	
+}
+
+public boolean canPlaceBlockAt(World world, int x, int y, int z){
+	
+    int Direction = MathHelper.floor_double((double)(Minecraft.getMinecraft().thePlayer.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
+	
+    if(Direction == 0){
+    	
+    	if(world.doesBlockHaveSolidTopSurface(x, y, z + 1)){
+    		return true;
+    	}
+    }
+    
+    if(Direction == 1){
+    	
+    	if(world.doesBlockHaveSolidTopSurface(x - 1, y, z)){
+    		return true;
+    	}
+    }
+    
+    if(Direction == 2){
+    	
+    	if(world.doesBlockHaveSolidTopSurface(x, y, z - 1)){
+    		return true;
+    	}
+    }
+    
+    if(Direction == 3){
+    	
+    	if(world.doesBlockHaveSolidTopSurface(x + 1, y, z)){
+    		return true;
+    	}
+    }
+    
+	return false;
 }
 
 

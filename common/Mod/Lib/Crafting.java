@@ -54,7 +54,19 @@ public class Crafting {
 	        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.GamePartYellow), new Object[]{ModBlocks.GamePartNull, new ItemStack(Item.dyePowder, 1, 11)});
 	        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.GamePartBlue), new Object[]{ModBlocks.GamePartNull, new ItemStack(Item.dyePowder, 1, 4)});
 			
+	        GameRegistry.addShapelessRecipe(new ItemStack(ModItems.PizzaRaw), ModItems.Cheese, ModItems.PizzaBottom, new ItemStack(ModItems.Liquid, 1, 1), Item.fishCooked);
+	        GameRegistry.addShapelessRecipe(new ItemStack(ModItems.PizzaRaw, 1, 1), ModItems.Cheese, ModItems.PizzaBottom, new ItemStack(ModItems.Liquid, 1, 1), Item.porkCooked);
+	        GameRegistry.addShapelessRecipe(new ItemStack(ModItems.PizzaRaw, 1, 2), ModItems.Cheese, ModItems.PizzaBottom, new ItemStack(ModItems.Liquid, 1, 1), Item.beefCooked);
+	        GameRegistry.addShapelessRecipe(new ItemStack(ModItems.PizzaRaw, 1, 3), ModItems.Cheese, ModItems.PizzaBottom, new ItemStack(ModItems.Liquid, 1, 1), Item.chickenCooked);
+
+	        GameRegistry.addShapelessRecipe(new ItemStack(ModItems.Pizza, 1, 0), new ItemStack(ModItems.PizzaRaw, 1, 0), Item.coal);
+	        GameRegistry.addShapelessRecipe(new ItemStack(ModItems.Pizza, 1, 1), new ItemStack(ModItems.PizzaRaw, 1, 1), Item.coal);
+	        GameRegistry.addShapelessRecipe(new ItemStack(ModItems.Pizza, 1, 2), new ItemStack(ModItems.PizzaRaw, 1, 2), Item.coal);
+	        GameRegistry.addShapelessRecipe(new ItemStack(ModItems.Pizza, 1, 3), new ItemStack(ModItems.PizzaRaw, 1, 3), Item.coal);
 			
+	        
+	        
+	        
 			
 			GameRegistry.addShapelessRecipe(new ItemStack(ModItems.SilverNugget, 9), ModItems.SilverIngot);
 			

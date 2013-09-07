@@ -13,7 +13,7 @@ import net.minecraft.item.Item;
 //- ZeuX
 
 
-public class ShelfModel extends ModelBase
+public class ShelfModelFront extends ModelBase
 {
 //fields
  ModelRenderer Shape2;
@@ -22,7 +22,7 @@ public class ShelfModel extends ModelBase
  ModelRenderer Shape4;
  ModelRenderer Shape5;
 
-public ShelfModel()
+public ShelfModelFront()
 {
  textureWidth = 64;
  textureHeight = 64;
@@ -81,3 +81,4 @@ public void setRotationAngles(float f, float f1, float f2, float f3, float f4, f
 }
 
 }
+

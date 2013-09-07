@@ -49,6 +49,9 @@ public class ModConfig {
 	public static int Cheese;
 	public static int Liquid;
 	
+	public static int PizzaRaw;
+	public static int Pizza;
+	
 	public static int DivingHelmet;
 	public static int FlightChestPlate;
 	public static int RunningLeggings;
@@ -115,6 +118,9 @@ public class ModConfig {
         PizzaBottom = config.getItem("Items", "Pizza Bottom Id", 22015).getInt();
         Cheese = config.getItem("Items", "Cheese Id", 22016).getInt();
         Liquid = config.getItem("Items", "Liquid Id", 22017).getInt();
+        
+        PizzaRaw = config.getItem("Items", "PizzaRaw Id", 22018).getInt();
+        Pizza = config.getItem("Items", "Pizza Id", 22019).getInt();
         
         SpawnParticles = config.get("Settings", "Spawn particles?", true).getBoolean(true);
         

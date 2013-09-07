@@ -31,6 +31,9 @@ public class ModItems {
 	public static Item Liquid;
 	public static Item Cheese;
 	
+	public static Item PizzaRaw;
+	public static Item Pizza;
+	
 	
 	public static Item DivingHelmet;
 	public static Item FlightChestPlate;
@@ -99,6 +102,12 @@ public class ModItems {
         
         Cheese = new ModItemCheese(ModConfig.Cheese).setUnlocalizedName("Cheese");
         Register(Cheese, "Cheese");
+        
+        PizzaRaw = new ModItemPizzaRaw(ModConfig.PizzaRaw).setUnlocalizedName("PizzaRaw");
+        RegisterOutName(PizzaRaw, "Pizza Raw");
+        
+        Pizza = new ModItemPizza(ModConfig.Pizza).setUnlocalizedName("Pizza");
+        RegisterOutName(Pizza, "Pizza");
 		
 		
 	RegisterOreDictionary(new ItemStack(SilverIngot), "ingotSilver");

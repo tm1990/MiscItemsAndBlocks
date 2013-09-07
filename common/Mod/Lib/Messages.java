@@ -31,5 +31,8 @@ public class Messages {
 		MillTips[1] = "The mill only work if the output slot has less then 16 items";
 		MillTips[2] = "The mills max item slot size is 16";
 		
+		SquezerTips[0] = "The squezer takes a liquid container and a item";
+		SquezerTips[1] = "Put a liquid container in the left slot then the item in the right";
+		
 	}
 }

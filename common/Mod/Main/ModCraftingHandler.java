@@ -12,8 +12,11 @@ public class ModCraftingHandler implements ICraftingHandler{
 	@Override
 	public void onCrafting(EntityPlayer player, ItemStack item, IInventory craftMatrix) {
 		
+		int id = item.itemID;
+
 		
-		if(item.itemID == ModItems.Cheese.itemID)player.inventory.addItemStackToInventory(new ItemStack(Item.bucketEmpty));
+		
+		if(id == ModItems.PizzaRaw.itemID)player.inventory.addItemStackToInventory(new ItemStack(Item.bucketEmpty));
 		
 		
 	}
