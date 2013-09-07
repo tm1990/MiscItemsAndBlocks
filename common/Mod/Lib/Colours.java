@@ -1,4 +1,4 @@
-package Mod.Util;
+package Mod.Lib;
 
 public class Colours {
 

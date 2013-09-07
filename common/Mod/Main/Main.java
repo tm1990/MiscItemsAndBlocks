@@ -11,7 +11,6 @@ import net.minecraftforge.common.MinecraftForge;
 import Mod.Block.ModBlocks;
 import Mod.Commands.ExpExtractCommand;
 import Mod.Commands.GetXpCommand;
-import Mod.Crafting.Crafting;
 import Mod.Entity.EntitySilverArrow;
 import Mod.GamePart.TileEntityGamePartBlue;
 import Mod.GamePart.TileEntityGamePartGreen;
@@ -20,6 +19,7 @@ import Mod.GamePart.TileEntityGamePartRed;
 import Mod.GamePart.TileEntityGamePartYellow;
 import Mod.Gui.GuiHandler;
 import Mod.Items.ModItems;
+import Mod.Lib.Crafting;
 import Mod.Lib.Messages;
 import Mod.Lib.Refrence;
 import Mod.Network.PacketHandler;
@@ -32,6 +32,7 @@ import Mod.TileEntity.TileEntityMill;
 import Mod.TileEntity.TileEntityPillar;
 import Mod.TileEntity.TileEntityShelf;
 import Mod.TileEntity.TileEntitySidewaysPillar;
+import Mod.TileEntity.TileEntitySquezer;
 import Mod.TileEntity.TileEntityXpStorage;
 import Mod.VersionChecker.VersionChecker;
 import Mod.WorldGen.SilverOreGen;
@@ -70,9 +71,9 @@ public class Main {
 	public static boolean VERSION_CHECK = true;
 	
     public static final String RELEASE_VERSION = Refrence.Version;
-    public static String LATEST_CHANGES = "[null]";
-    public static String LATEST_VERSION = "[null]";
-    public static String UPDATE_IMPORTANCE = "[null]";
+    public static String LATEST_CHANGES = "[nothing]";
+    public static String LATEST_VERSION = "[nothing]";
+    public static String UPDATE_IMPORTANCE = "[nothing]";
     public static String UPDATE_URL = "http://adf.ly/U25ua";
     public static boolean UP_TO_DATE = true;
     
@@ -83,6 +84,8 @@ public class Main {
 public void preInit(FMLPreInitializationEvent event) {
     	
     	
+	GameRegistry.registerCraftingHandler(new ModCraftingHandler());
+	
         Configuration configMisc = new Configuration(new File(event.getModConfigurationDirectory() + "/tm1990's mods/MiscItemsAndBlocksConfig.cfg"));
         File BlastProofCraftConfig = new File("config/tm1990's mods/BlastProofCraftConfig.cfg");    
         
@@ -138,6 +141,7 @@ public void preInit(FMLPreInitializationEvent event) {
         GameRegistry.registerTileEntity(TileEntityBox.class, "TileEntityBox");
         GameRegistry.registerTileEntity(TileEntityCraftingInv.class, "TileEntityCraftingInv");
         GameRegistry.registerTileEntity(TileEntityMill.class, "TileEntityMill");
+        GameRegistry.registerTileEntity(TileEntitySquezer.class, "TileEntitySquezer");
         
         GameRegistry.registerTileEntity(TileEntityGamePartRed.class, "TileEntityGamePartRed");
         GameRegistry.registerTileEntity(TileEntityGamePartBlue.class, "TileEntityGamePartBlue");
@@ -154,6 +158,7 @@ public void preInit(FMLPreInitializationEvent event) {
         
 
         NetworkRegistry.instance().registerGuiHandler(this, new GuiHandler());
+        
 
     }
     

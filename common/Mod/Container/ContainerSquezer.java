@@ -1,28 +1,26 @@
 package Mod.Container;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
-import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+
+import Mod.Slots.SlotLiquidContainer;
 import Mod.Slots.SlotOutput;
-import Mod.TileEntity.TileEntityMill;
+import Mod.TileEntity.TileEntitySquezer;
 
-public class ContainerMill  extends Container {
+public class ContainerSquezer  extends Container {
 
+	public TileEntitySquezer tile;
+	
 	@Override
 	public boolean canInteractWith(EntityPlayer entityplayer) {
 		return tile.isUseableByPlayer(entityplayer);
 	}
 	
-    private TileEntityMill tile;
-    
-    int lastWorkTime = 0;
 	
-    public ContainerMill(InventoryPlayer InvPlayer, TileEntityMill tile)
+    public ContainerSquezer(InventoryPlayer InvPlayer, TileEntitySquezer tile)
     {
     	this.tile = tile;
     	
@@ -37,8 +35,9 @@ public class ContainerMill  extends Container {
     			addSlotToContainer(new Slot(InvPlayer, x + y * 9 + 9, 8 + 18 * x, 84 + y * 18));
     		}
     		
-    		addSlotToContainer(new Slot(tile, 0, 79, 13));
-    		addSlotToContainer(new SlotOutput(tile, 1, 79, 56));
+    		addSlotToContainer(new SlotLiquidContainer(tile, 0, 62, 11));
+    		addSlotToContainer(new Slot(tile, 1, 98, 11));
+    		addSlotToContainer(new SlotOutput(tile, 2, 80, 57));
     	
     }
 

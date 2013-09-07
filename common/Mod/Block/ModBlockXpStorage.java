@@ -44,7 +44,7 @@ public class ModBlockXpStorage extends BlockContainer{
         else
         {
         	
-        	FMLNetworkHandler.openGui(par5EntityPlayer, Main.instance, ModConfig.XpStorageGuiId, par1World, par2, par3, par4);
+        	FMLNetworkHandler.openGui(par5EntityPlayer, Main.instance, 0, par1World, par2, par3, par4);
             return true;
         }
     }

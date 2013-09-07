@@ -16,9 +16,12 @@ import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.Packet132TileEntityData;
 import net.minecraft.tileentity.TileEntity;
 
-public class TileEntityMill extends TileEntity implements IInventory{
+public class TileEntityMill extends TileEntityInvBase{
 
-	public ItemStack[] Items;
+	public TileEntityMill() {
+		super(2, "Mill", 16);
+	}
+
 	
 	public int WorkTime = 0;
 	public static int FinishTime = 300;
@@ -26,99 +29,7 @@ public class TileEntityMill extends TileEntity implements IInventory{
 	
 	Random rand = new Random();
 	
-	public TileEntityMill(){
-		
-		Items = new ItemStack[2];
-		
-	}
-	
-	
-	@Override
-	public int getSizeInventory() {
-		return Items.length;
-	}
 
-	@Override
-	public ItemStack getStackInSlot(int i) {
-		return Items[i];
-	}
-
-	@Override
-	public ItemStack decrStackSize(int i, int j) {
-		ItemStack itemstack = getStackInSlot(i);
-		
-		if(itemstack != null){
-			
-			if(itemstack.stackSize <= j){
-				
-				setInventorySlotContents(i, null);
-			}else{
-				
-				itemstack = itemstack.splitStack(j);
-				onInventoryChanged();
-				
-			}
-			
-		}
-		
-		return itemstack;
-	}
-
-	@Override
-	public ItemStack getStackInSlotOnClosing(int i) {
-		ItemStack item = getStackInSlot(i);
-		
-		setInventorySlotContents(i, null);
-		
-		return item;
-	}
-
-	@Override
-	public void setInventorySlotContents(int i, ItemStack itemstack) {
-	
-		Items[i] = itemstack;
-		
-		if(itemstack != null && itemstack.stackSize > getInventoryStackLimit()){
-			itemstack.stackSize = getInventoryStackLimit();
-			
-		}
-		
-		onInventoryChanged();
-		
-	}
-
-	@Override
-	public String getInvName() {
-		return "ShelfInv";
-	}
-
-	@Override
-	public boolean isInvNameLocalized() {
-		return false;
-	}
-
-	@Override
-	public int getInventoryStackLimit() {
-		return 16;
-	}
-
-	@Override
-	public boolean isUseableByPlayer(EntityPlayer entityplayer) {
-		return entityplayer.getDistanceSq(xCoord + 0.5, yCoord + 0.5, zCoord + 0.5) <= 64;
-	}
-
-	@Override
-	public void openChest() {}
-
-	@Override
-	public void closeChest() {}
-
-	@Override
-	public boolean isItemValidForSlot(int i, ItemStack itemstack) {
-		return true;
-		
-	}
-	
 	
 
         
@@ -177,18 +88,20 @@ public class TileEntityMill extends TileEntity implements IInventory{
         {
         	
         	if(this.getStackInSlot(0) != null){
-        	if(this.getStackInSlot(0).itemID == Item.wheat.itemID){
+        	if(CanItemWork()){
         		if(this.getStackInSlot(1) == null || this.getStackInSlot(1).stackSize <= 0 || this.getStackInSlot(1).stackSize < 16){
 
         		
         		if(WorkTime == FinishTime){
         			WorkTime = 0;
+        			
+        			ItemStack finishItem = OutputItem();
 
         			
         			this.decrStackSize(0, 1);
         			
         			if(this.getStackInSlot(1) == null || Items[1].stackSize <= 0){
-        				this.setInventorySlotContents(1, new ItemStack(ModItems.Flour));
+        				this.setInventorySlotContents(1, finishItem);
         			}else{
         				
         				Items[1].stackSize = Items[1].stackSize + 1;
@@ -210,7 +123,24 @@ public class TileEntityMill extends TileEntity implements IInventory{
         	}
         	}
         }
+        
+        public boolean CanItemWork(){
+        	ItemStack itemstack = this.getStackInSlot(0);
+        	
+        	if(itemstack.itemID == Item.wheat.itemID) return true;
+        	
+        	
+        	return false;
+        }
 
+        
+        public ItemStack OutputItem(){
+        	int id = this.getStackInSlot(0).itemID;
+        	
+        	if(id == Item.wheat.itemID) return new ItemStack(ModItems.Flour);
+        	
+        	return null;
+        }
 
 
 

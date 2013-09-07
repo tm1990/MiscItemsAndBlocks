@@ -105,7 +105,7 @@ public class ModBlockCraftingInv extends BlockContainer{
         {
         	
         	
-        	FMLNetworkHandler.openGui(par5EntityPlayer, Main.instance, ModConfig.CraftingInvGuiId, par1World, par2, par3, par4);
+        	FMLNetworkHandler.openGui(par5EntityPlayer, Main.instance, 0, par1World, par2, par3, par4);
             return true;
         }
     }

@@ -1,4 +1,4 @@
-package Mod.Gui;
+package Mod.Slots;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;

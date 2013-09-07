@@ -1,4 +1,4 @@
-package Mod.Crafting;
+package Mod.Lib;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -38,7 +38,21 @@ public class Crafting {
 	        GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.CraftingInv), new Object[] {"WWW", "PIP", "PCP", 'W', Block.cloth, 'P', Block.planks, 'C', Block.chest, 'I', Block.workbench});
 	        GameRegistry.addShapedRecipe(new ItemStack(ModItems.CraftingUpgrade), new Object[]{"WWW", "PBP", "PCP", 'W', Block.cloth, 'P', Block.planks, 'B', ModItems.Cardboard, 'C', Block.chest});
 			GameRegistry.addShapelessRecipe(new ItemStack(ModItems.TomatoSeeds, 4), ModItems.Tomato);
+			GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.SpeedBlock, 8), new Object[]{"III", "BDB", "BBB", 'I', Block.ice, 'B', Block.blockIron, 'D', Item.diamond});
+			GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.Dice), new Object[]{"PPP", "PDP", "PPP", 'P', Block.planks, 'D', Item.dyePowder});
+			GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.Mill), new Object[]{"CSC", "SPS", "CCC", 'C', Block.cobblestone, 'S', Block.stone, 'P', Block.pistonBase});
+			GameRegistry.addShapedRecipe(new ItemStack(ModItems.PizzaBottom), new Object[]{"FFF", 'F', ModItems.Flour});
+			GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.Squezer), new Object[]{"CIC", "IPI", "CCC", 'C', Block.cobblestone, 'I', Item.ingotIron, 'P', Block.pistonBase});
+			GameRegistry.addShapelessRecipe(new ItemStack(ModItems.Cheese), Item.bucketMilk);
+			
+	        GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.Pillar, 4), new Object[]{"QQQ", " Q ", "QQQ", 'Q', Block.blockNetherQuartz});
+	        GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.SidewaysPillar, 4), new Object[]{"Q Q", "QQQ", "Q Q", 'Q', Block.blockNetherQuartz});
 	        
+	        GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.GamePartNull, 4), new Object[]{"III", " I ", "III", 'I', Item.ingotIron});
+	        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.GamePartGreen), new Object[]{ModBlocks.GamePartNull, new ItemStack(Item.dyePowder, 1, 2)});
+	        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.GamePartRed), new Object[]{ModBlocks.GamePartNull, new ItemStack(Item.dyePowder, 1, 1)});
+	        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.GamePartYellow), new Object[]{ModBlocks.GamePartNull, new ItemStack(Item.dyePowder, 1, 11)});
+	        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.GamePartBlue), new Object[]{ModBlocks.GamePartNull, new ItemStack(Item.dyePowder, 1, 4)});
 			
 			
 			

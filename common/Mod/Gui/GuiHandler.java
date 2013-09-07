@@ -8,12 +8,14 @@ import Mod.Container.ContainerBox;
 import Mod.Container.ContainerCraftingInv;
 import Mod.Container.ContainerMill;
 import Mod.Container.ContainerShelf;
+import Mod.Container.ContainerSquezer;
 import Mod.Container.ContainerXpStorage;
 import Mod.TileEntity.TileEntityBin;
 import Mod.TileEntity.TileEntityBox;
 import Mod.TileEntity.TileEntityCraftingInv;
 import Mod.TileEntity.TileEntityMill;
 import Mod.TileEntity.TileEntityShelf;
+import Mod.TileEntity.TileEntitySquezer;
 import Mod.TileEntity.TileEntityXpStorage;
 import cpw.mods.fml.common.network.IGuiHandler;
 
@@ -62,6 +64,11 @@ public class GuiHandler implements IGuiHandler{
         if(tile_entity instanceof TileEntityMill){
         	
         	return new ContainerMill(player.inventory, (TileEntityMill) tile_entity);
+        }
+        
+        if(tile_entity instanceof TileEntitySquezer){
+        	
+        	return new ContainerSquezer(player.inventory, (TileEntitySquezer) tile_entity);
         }
         
         
@@ -115,6 +122,11 @@ public class GuiHandler implements IGuiHandler{
         if(tile_entity instanceof TileEntityMill){
         	
         	return new GuiMill(player.inventory, (TileEntityMill) tile_entity);
+        }
+        
+        if(tile_entity instanceof TileEntitySquezer){
+        	
+        	return new GuiSquezer(player.inventory, (TileEntitySquezer) tile_entity);
         }
         
         

@@ -27,6 +27,9 @@ public class ModItems {
 	public static Item Tomato;
 	public static Item Flour;
 	public static ItemSeeds TomatoSeeds;
+	public static Item PizzaBottom;
+	public static Item Liquid;
+	public static Item Cheese;
 	
 	
 	public static Item DivingHelmet;
@@ -87,6 +90,15 @@ public class ModItems {
         
         TomatoSeeds = new ModItemTomatoSeeds(ModConfig.TomatoSeeds, ModConfig.TomatoPlant, Block.tilledField.blockID);
         Register(TomatoSeeds, "Tomato Seeds");
+        
+        PizzaBottom = new ModItemPizzaBottom(ModConfig.PizzaBottom).setUnlocalizedName("PizzaBottom");
+        Register(PizzaBottom, "Pizza Bottom");
+        
+        Liquid = new ModItemLiquid(ModConfig.Liquid).setUnlocalizedName("Liquid");
+        RegisterOutName(Liquid, "Liquid");
+        
+        Cheese = new ModItemCheese(ModConfig.Cheese).setUnlocalizedName("Cheese");
+        Register(Cheese, "Cheese");
 		
 		
 	RegisterOreDictionary(new ItemStack(SilverIngot), "ingotSilver");
@@ -109,6 +121,13 @@ public class ModItems {
 		
 		
         LanguageRegistry.addName(Item, Name);
+        GameRegistry.registerItem(Item, Name.toLowerCase().replace(" ", ""));
+        Item.setCreativeTab(Main.CreativeTab);
+	}
+	
+	public static void RegisterOutName(Item Item, String Name){
+		
+		
         GameRegistry.registerItem(Item, Name.toLowerCase().replace(" ", ""));
         Item.setCreativeTab(Main.CreativeTab);
 	}

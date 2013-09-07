@@ -27,6 +27,7 @@ public class ModBlocks {
 	public static Block SidewaysPillar;
 	public static Block TomatoPlant;
 	public static Block Mill;
+	public static Block Squezer;
 	
 	public static Block GamePartRed;
 	public static Block GamePartBlue;
@@ -41,29 +42,29 @@ public class ModBlocks {
 	
 	public static void Init(){
 		
-		XpStorage = new ModBlockXpStorage(ModConfig.XpStorageBlock);
+		XpStorage = new ModBlockXpStorage(ModConfig.XpStorageBlock).setUnlocalizedName("XpStorage");
 		Register(XpStorage, "Xp Storage Block", true);
 		
-		Bin = new ModBlockBin(ModConfig.Bins);
+		Bin = new ModBlockBin(ModConfig.Bins).setUnlocalizedName("TrashBin");
 		Register(Bin, "Trash Bin", true);
 		
-		Shelf = new ModBlockShelf(ModConfig.Shelf);
+		Shelf = new ModBlockShelf(ModConfig.Shelf).setUnlocalizedName("Shelf");
 	    Register(Shelf, "Shelf", true); 
 		
-		DisarmTrap = new ModBlockDisarmTrap(ModConfig.Trap);
+		DisarmTrap = new ModBlockDisarmTrap(ModConfig.Trap).setUnlocalizedName("DisamrTrap");
 		Register(DisarmTrap, "Disarm Trap", true);
 		
-		SilverOre = new ModBlockSilverOre(ModConfig.SilverOre);
+		SilverOre = new ModBlockSilverOre(ModConfig.SilverOre).setUnlocalizedName("SilverPre");
 		Register(SilverOre, "Silver Ore", true);
         RegisterHarvestLevel(SilverOre, "pickaxe", 3);
 
         StoneStair = new ModBlockStair(ModConfig.StoneStair, Block.stone, 0, "StoneStair");
         Register(StoneStair, "Stone Stair", true);
         
-        Box = new ModBlockBox(ModConfig.Box);
+        Box = new ModBlockBox(ModConfig.Box).setUnlocalizedName("Box");
         Register(Box, "Cardboard Box", true);
         
-        CraftingInv = new ModBlockCraftingInv(ModConfig.CraftingInv);
+        CraftingInv = new ModBlockCraftingInv(ModConfig.CraftingInv).setUnlocalizedName("CraftingInv");
         Register(CraftingInv, "Worktable", true);
         
         Dice = new ModBlockDice(ModConfig.Dice).setUnlocalizedName("Dice");
@@ -96,8 +97,11 @@ public class ModBlocks {
         TomatoPlant = new ModBlockTomatoPlant(ModConfig.TomatoPlant).setUnlocalizedName("TomatoPlant");
         Register(TomatoPlant, "Tomato Plant", false);
 
-        Mill = new ModBlockMill(ModConfig.Mill);
+        Mill = new ModBlockMill(ModConfig.Mill).setUnlocalizedName("Mill");
         Register(Mill, "Mill", true);
+
+        Squezer = new ModBlockSquezer(ModConfig.Squezer).setUnlocalizedName("Squezer");
+        Register(Squezer, "Squezer", true);
         
 		RegisterOreDictionary(new ItemStack(SilverOre), "oreSilver");
 		

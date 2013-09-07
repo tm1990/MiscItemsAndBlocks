@@ -9,6 +9,7 @@ public class Messages {
 	public static String[] CardboardBoxTipes = new String[10];
 	public static String[] ShelfTipes = new String[10];
 	public static String[] MillTips = new String[10];
+	public static String[] SquezerTips = new String[10];
 	
 	public static void Init(){
 		
@@ -27,6 +28,8 @@ public class Messages {
 		ShelfTipes[1] = "The shelf is still in a early Work In Progress state";
 		
 		MillTips[0] = "The mill is used to make flour out of wheat";
+		MillTips[1] = "The mill only work if the output slot has less then 16 items";
+		MillTips[2] = "The mills max item slot size is 16";
 		
 	}
 }

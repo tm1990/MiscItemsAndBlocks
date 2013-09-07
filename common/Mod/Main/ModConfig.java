@@ -24,6 +24,7 @@ public class ModConfig {
 	public static int SidewaysPillar;
 	public static int Mill;
 	public static int TomatoPlant;
+	public static int Squezer;
 	
 	
 	public static int GamePartRed;
@@ -44,6 +45,9 @@ public class ModConfig {
 	public static int Tomato;
 	public static int Flour;
 	public static int TomatoSeeds;
+	public static int PizzaBottom;
+	public static int Cheese;
+	public static int Liquid;
 	
 	public static int DivingHelmet;
 	public static int FlightChestPlate;
@@ -55,12 +59,7 @@ public class ModConfig {
 	
 	public static boolean SpawnParticles;
 	
-	
-	public static int XpStorageGuiId = 1;
-	public static int BinGuiId = 2;
-	public static int ShelfGuiId = 3;
-	public static int BoxGuiId = 4;
-	public static int CraftingInvGuiId = 5;
+
 	
 	
 	
@@ -96,6 +95,7 @@ public class ModConfig {
 		SidewaysPillar = config.getBlock("Blocks", "Sideways Pillar Block Id", 616).getInt();
 		TomatoPlant = config.getBlock("Blocks", "Tomato Plant Block Id", 617).getInt();
 		Mill = config.getBlock("Blocks", "Mill Block Id", 618).getInt();
+		Squezer = config.getBlock("Blocks", "Squezer Block Id", 619).getInt();
 		
         XpExtractor = config.getItem("Items","Xp Extractor Id", 22000).getInt();
         SilverIngot = config.getItem("Items", "Silver Ingot Id", 22001).getInt();
@@ -112,6 +112,9 @@ public class ModConfig {
         Tomato = config.getItem("Items", "Tomato Id", 22012).getInt();
         Flour = config.getItem("Items", "Flour Id", 22013).getInt();
         TomatoSeeds = config.getItem("Items", "Tomato Seeds Id", 22014).getInt();
+        PizzaBottom = config.getItem("Items", "Pizza Bottom Id", 22015).getInt();
+        Cheese = config.getItem("Items", "Cheese Id", 22016).getInt();
+        Liquid = config.getItem("Items", "Liquid Id", 22017).getInt();
         
         SpawnParticles = config.get("Settings", "Spawn particles?", true).getBoolean(true);
         
