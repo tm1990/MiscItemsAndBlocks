@@ -8,6 +8,7 @@ public class Messages {
 	public static String[] WorktableTips = new String[10];
 	public static String[] CardboardBoxTipes = new String[10];
 	public static String[] ShelfTipes = new String[10];
+	public static String[] MillTips = new String[10];
 	
 	public static void Init(){
 		
@@ -24,6 +25,8 @@ public class Messages {
 		
 		ShelfTipes[0] = "The shelf is a block where you can store items for display";
 		ShelfTipes[1] = "The shelf is still in a early Work In Progress state";
+		
+		MillTips[0] = "The mill is used to make flour out of wheat";
 		
 	}
 }

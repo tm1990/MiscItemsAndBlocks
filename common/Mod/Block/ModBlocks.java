@@ -26,6 +26,7 @@ public class ModBlocks {
 	public static Block Pillar;
 	public static Block SidewaysPillar;
 	public static Block TomatoPlant;
+	public static Block Mill;
 	
 	public static Block GamePartRed;
 	public static Block GamePartBlue;
@@ -95,6 +96,8 @@ public class ModBlocks {
         TomatoPlant = new ModBlockTomatoPlant(ModConfig.TomatoPlant).setUnlocalizedName("TomatoPlant");
         Register(TomatoPlant, "Tomato Plant", false);
 
+        Mill = new ModBlockMill(ModConfig.Mill);
+        Register(Mill, "Mill", true);
         
 		RegisterOreDictionary(new ItemStack(SilverOre), "oreSilver");
 		

@@ -13,7 +13,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.world.World;
 import Mod.Gui.SlotCraftingInv;
-import Mod.Gui.SlotGhost;
 import Mod.TileEntity.TileEntityBox;
 import Mod.TileEntity.TileEntityCraftingInv;
 

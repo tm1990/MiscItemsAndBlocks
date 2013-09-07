@@ -28,6 +28,7 @@ import Mod.TileEntity.TileEntityBin;
 import Mod.TileEntity.TileEntityBox;
 import Mod.TileEntity.TileEntityCraftingInv;
 import Mod.TileEntity.TileEntityDisarmTrap;
+import Mod.TileEntity.TileEntityMill;
 import Mod.TileEntity.TileEntityPillar;
 import Mod.TileEntity.TileEntityShelf;
 import Mod.TileEntity.TileEntitySidewaysPillar;
@@ -136,6 +137,7 @@ public void preInit(FMLPreInitializationEvent event) {
         GameRegistry.registerTileEntity(TileEntityDisarmTrap.class, "TileEntityTrap");
         GameRegistry.registerTileEntity(TileEntityBox.class, "TileEntityBox");
         GameRegistry.registerTileEntity(TileEntityCraftingInv.class, "TileEntityCraftingInv");
+        GameRegistry.registerTileEntity(TileEntityMill.class, "TileEntityMill");
         
         GameRegistry.registerTileEntity(TileEntityGamePartRed.class, "TileEntityGamePartRed");
         GameRegistry.registerTileEntity(TileEntityGamePartBlue.class, "TileEntityGamePartBlue");

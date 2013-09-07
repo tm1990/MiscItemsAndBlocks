@@ -2,9 +2,11 @@ package Mod.Block;
 
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import Mod.Lib.Refrence;
 import Mod.TileEntity.TileEntityPillar;
 import Mod.TileEntity.TileEntitySidewaysPillar;
 
@@ -54,5 +56,12 @@ public class ModBlockSidewaysPillar extends BlockContainer {
 				this.setBlockBounds(0.13F, 0.012F, 0F, 0.9F, 0.8F, 1F);
 		 }
     	
+    }
+    
+    public void registerIcons(IconRegister par1IconRegister)
+    {
+    	
+        this.blockIcon = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "SidewaysPillar");
+        
     }
 }

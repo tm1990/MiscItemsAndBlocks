@@ -6,11 +6,13 @@ import net.minecraft.world.World;
 import Mod.Container.ContainerBin;
 import Mod.Container.ContainerBox;
 import Mod.Container.ContainerCraftingInv;
+import Mod.Container.ContainerMill;
 import Mod.Container.ContainerShelf;
 import Mod.Container.ContainerXpStorage;
 import Mod.TileEntity.TileEntityBin;
 import Mod.TileEntity.TileEntityBox;
 import Mod.TileEntity.TileEntityCraftingInv;
+import Mod.TileEntity.TileEntityMill;
 import Mod.TileEntity.TileEntityShelf;
 import Mod.TileEntity.TileEntityXpStorage;
 import cpw.mods.fml.common.network.IGuiHandler;
@@ -57,6 +59,12 @@ public class GuiHandler implements IGuiHandler{
         	return new ContainerCraftingInv(player.inventory, (TileEntityCraftingInv) tile_entity);
         }
         
+        if(tile_entity instanceof TileEntityMill){
+        	
+        	return new ContainerMill(player.inventory, (TileEntityMill) tile_entity);
+        }
+        
+        
         return null;
     }
         
@@ -102,6 +110,11 @@ public class GuiHandler implements IGuiHandler{
         if(tile_entity instanceof TileEntityCraftingInv){
         	
         	return new GuiCraftingInv(player.inventory, (TileEntityCraftingInv) tile_entity);
+        }
+        
+        if(tile_entity instanceof TileEntityMill){
+        	
+        	return new GuiMill(player.inventory, (TileEntityMill) tile_entity);
         }
         
         

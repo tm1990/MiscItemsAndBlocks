@@ -1,8 +1,10 @@
 package Mod.Block;
 
+import Mod.Lib.Refrence;
 import Mod.TileEntity.TileEntityPillar;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -53,5 +55,12 @@ public class ModBlockPillar extends BlockContainer {
 				this.setBlockBounds(0.1F, 0, 0.1F, 0.9F, 1, 0.9F);
 		 }
     	
+    }
+    
+    public void registerIcons(IconRegister par1IconRegister)
+    {
+    	
+        this.blockIcon = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "Pillar");
+        
     }
 }
