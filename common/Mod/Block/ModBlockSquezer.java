@@ -24,6 +24,7 @@ public class ModBlockSquezer extends BlockContainer{
 
 	public ModBlockSquezer(int par1) {
 		super(par1, Material.rock);
+		this.setHardness(3);
 	}
 	
 	Icon IconTop;
@@ -46,73 +47,36 @@ public class ModBlockSquezer extends BlockContainer{
     }
     
 	
-	@SideOnly(Side.CLIENT)
 	@Override
-    public Icon getIcon(int par1, int par2)
-    {
-        return par1 == 1 ? this.IconTop : (par1 == 0 ? this.IconTop : (par1 != par2 ? this.IconSide : this.IconFront));
-    }
+	public Icon getIcon(int side, int metadata)
+	{
+		boolean isActive = ((metadata >> 3) == 1);
+		int facing = (metadata & MASK_DIR);
+		
+		return (side == getSideFromFacing(facing) ? IconFront : (side == 1  ? this.IconTop : side == 0 ? this.IconBottom : this.IconSide));
+	}
     
-    private void setDefaultDirection(World par1World, int par2, int par3, int par4)
-    {
-        if (!par1World.isRemote)
-        {
-            int l = par1World.getBlockId(par2, par3, par4 - 1);
-            int i1 = par1World.getBlockId(par2, par3, par4 + 1);
-            int j1 = par1World.getBlockId(par2 - 1, par3, par4);
-            int k1 = par1World.getBlockId(par2 + 1, par3, par4);
-            byte b0 = 3;
 
-            if (Block.opaqueCubeLookup[l] && !Block.opaqueCubeLookup[i1])
-            {
-                b0 = 3;
-            }
-
-            if (Block.opaqueCubeLookup[i1] && !Block.opaqueCubeLookup[l])
-            {
-                b0 = 2;
-            }
-
-            if (Block.opaqueCubeLookup[j1] && !Block.opaqueCubeLookup[k1])
-            {
-                b0 = 5;
-            }
-
-            if (Block.opaqueCubeLookup[k1] && !Block.opaqueCubeLookup[j1])
-            {
-                b0 = 4;
-            }
-
-            par1World.setBlockMetadataWithNotify(par2, par3, par4, b0, 2);
-        }
-    }
     
-    public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLivingBase, ItemStack par6ItemStack)
-    {
-        int l = MathHelper.floor_double((double)(par5EntityLivingBase.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
-
-        if (l == 0)
-        {
-            par1World.setBlockMetadataWithNotify(par2, par3, par4, 2, 2);
-        }
-
-        if (l == 1)
-        {
-            par1World.setBlockMetadataWithNotify(par2, par3, par4, 5, 2);
-        }
-
-        if (l == 2)
-        {
-            par1World.setBlockMetadataWithNotify(par2, par3, par4, 3, 2);
-        }
-
-        if (l == 3)
-        {
-            par1World.setBlockMetadataWithNotify(par2, par3, par4, 4, 2);
-        }
-
-
-    }
+	@Override
+	public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack itemStack)
+	{
+		int metadata = 0;
+		int facing = META_DIR_WEST;
+		
+		int dir = MathHelper.floor_double((double)(entity.rotationYaw * 4f / 360f) + 0.5) & 3;
+		if(dir == 0)
+			facing = META_DIR_NORTH;
+		if(dir == 1)
+			facing = META_DIR_EAST;
+		if(dir == 2)
+			facing = META_DIR_SOUTH;
+		if(dir == 3)
+			facing = META_DIR_WEST;
+		
+		metadata |= facing;
+		world.setBlockMetadataWithNotify(x, y, z, metadata, 2);
+	}
 
 
 	@Override
@@ -173,6 +137,36 @@ public class ModBlockSquezer extends BlockContainer{
 		}
     
     }
+    
+	public static final int META_ISACTIVE = 0x00000008;
+	public static final int MASK_DIR = 0x00000007;
+	public static final int META_DIR_NORTH = 0x00000001;
+	public static final int META_DIR_SOUTH = 0x00000002;
+	public static final int META_DIR_EAST = 0x00000003;
+	public static final int META_DIR_WEST = 0x00000000;
+    
+    
+	private static int getSideFromFacing(int facing)
+	{
+		switch(facing)
+		{
+		case META_DIR_WEST:
+			return 4;
+			
+		case META_DIR_EAST:
+			return 5;
+			
+		case META_DIR_NORTH:
+			return 2;
+			
+		case META_DIR_SOUTH:
+			return 3;
+			
+		default:
+			return 4;
+		}
+	}
+    
 }
     
 

@@ -9,18 +9,22 @@ import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
 
 import Mod.Container.ContainerMill;
+import Mod.Container.ContainerPizzaOven;
 import Mod.Lib.Messages;
 import Mod.TileEntity.TileEntityMill;
+import Mod.TileEntity.TileEntityOvenCore;
 
+public class GuiPizzaOven extends GuiContainer{
 
-public class GuiMill extends GuiContainer{
-
-	private TileEntityMill tile;
-	private final ResourceLocation Texture = new ResourceLocation("miscitems" , "textures/gui/MillGui.png");
+	private TileEntityOvenCore tile;
+	private final ResourceLocation Texture = new ResourceLocation("miscitems" , "textures/gui/PizzaOvenGui.png");
 	
 	
-	public GuiMill(InventoryPlayer InvPlayer, TileEntityMill tile) {
-		super(new ContainerMill(InvPlayer, tile));
+	public GuiPizzaOven(InventoryPlayer InvPlayer, TileEntityOvenCore tile) {
+		super(new ContainerPizzaOven(InvPlayer, tile));
+		
+		this.xSize = 176;
+		this.ySize = 166;
 		
 		this.tile = tile;
 	}
@@ -30,7 +34,7 @@ public class GuiMill extends GuiContainer{
 
           fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, 4210752);
           
-          fontRenderer.drawString("Mill", 7, 3, 4210752);
+          fontRenderer.drawString("Oven", 7, 3, 4210752);
        
           
           
@@ -48,12 +52,24 @@ public class GuiMill extends GuiContainer{
 	         drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
 	         
 	         
+	         int Heat = this.tile.GetHeat();
+	         int Fuel = this.tile.GetFuel();
 	         int Time = this.tile.GetWorkTime();
 	         
+	         if(Fuel > 0)
+	             this.drawTexturedModalRect(x + 69, y + 29, 176, 3, 5, Fuel + 5);
+	         
 
+	         if(this.tile.CanWork())
+	             this.drawTexturedModalRect(x + 84, y + 38, 181, 14, 7, 7);
+	         else
+	             this.drawTexturedModalRect(x + 84, y + 38, 181, 21, 7, 7);
+	         
 	         if(Time > 0)
-             this.drawTexturedModalRect(x + 81, y + 34, 176, 3, 14, Time / 21);
-
+	        	 this.drawTexturedModalRect(x + 100, y + 33, 176, 28, Time / 12, 17);
+	         
+	         
+	          fontRenderer.drawString("Heat: " + Heat + "%", x + 14, y + 37, 0x00000);
 
 	         
 
@@ -65,9 +81,6 @@ public class GuiMill extends GuiContainer{
 		buttonList.clear();
 		
 		
-		buttonList.add(new GuiTipButton(1, guiLeft, guiTop, "?", Messages.MillTips));
+		buttonList.add(new GuiTipButton(1, guiLeft, guiTop, "?", Messages.PizzaOvenTips));
 	}
-	
-	
-
 }

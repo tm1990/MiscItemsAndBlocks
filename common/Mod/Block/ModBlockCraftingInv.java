@@ -33,6 +33,7 @@ public class ModBlockCraftingInv extends BlockContainer{
 	protected ModBlockCraftingInv(int par1) {
 		super(par1, Material.wood);
 		setStepSound(soundWoodFootstep);
+		this.setHardness(1.5F);
 	}
 
 	@Override

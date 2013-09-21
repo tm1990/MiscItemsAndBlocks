@@ -28,6 +28,11 @@ public class ModBlocks {
 	public static Block TomatoPlant;
 	public static Block Mill;
 	public static Block Squezer;
+	public static Block OrangeSapling;
+	public static Block OrangeLeaf;
+	public static Block PizzaOven;
+	public static Block OrangeLog;
+	public static Block OrangePlanks;
 	
 	public static Block GamePartRed;
 	public static Block GamePartBlue;
@@ -103,7 +108,30 @@ public class ModBlocks {
         Squezer = new ModBlockSquezer(ModConfig.Squezer).setUnlocalizedName("Squezer");
         Register(Squezer, "Squezer", true);
         
+        OrangeLeaf = new ModBlockOrangeLeaf(ModConfig.OrangeLeaf).setUnlocalizedName("OrangeLeaf");
+        Register(OrangeLeaf, "Orange Leaves", true);
+        
+        OrangeSapling = new ModBlockOrangeSapling(ModConfig.OrangeSapling).setUnlocalizedName("OrangeSapling");
+        Register(OrangeSapling, "Orange Sapling", true);
+        
+        
+        //Renamed to Oven
+        PizzaOven = new ModBlockOvenCore(ModConfig.PizzaOven).setUnlocalizedName("PizzaOven");
+        Register(PizzaOven, "Oven", true);
+        
+        OrangeLog = new ModBlockOrangeLog(ModConfig.OrangeLog).setUnlocalizedName("OrangeLog");
+        Register(OrangeLog, "Orange Tree Wood", true);
+        
+        OrangePlanks = new ModBlockOrangePlanks(ModConfig.OrangePlanks).setUnlocalizedName("OrangePlanks");
+        Register(OrangePlanks, "Orange Tree Planks", true);
+        
+        
+        
+        
+        
 		RegisterOreDictionary(new ItemStack(SilverOre), "oreSilver");
+		RegisterOreDictionary(new ItemStack(OrangeLog), "log");
+		RegisterOreDictionary(new ItemStack(OrangePlanks), "planks");
 		
 		RegisterHarvestLevel(Box, "axe", 1);
 		

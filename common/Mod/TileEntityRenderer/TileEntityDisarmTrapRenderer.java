@@ -35,7 +35,7 @@ public class TileEntityDisarmTrapRenderer extends TileEntitySpecialRenderer {
             GL11.glTranslatef((float) x + 0.5F, (float) y + 1.5F, (float) z + 0.5F);
             
             
-            func_110628_a(new ResourceLocation("textures/blocks/iron_block.png"));
+            bindTexture(new ResourceLocation("textures/blocks/iron_block.png"));
             
             
          GL11.glPushMatrix();

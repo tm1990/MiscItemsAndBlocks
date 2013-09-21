@@ -15,12 +15,18 @@ import Mod.TileEntity.TileEntitySquezer;
 
 public class GuiSquezer extends GuiContainer{
 
-	 TileEntitySquezer tile = new TileEntitySquezer();
+	 private TileEntitySquezer tile;
+	 
 	private final ResourceLocation Texture = new ResourceLocation("miscitems" , "textures/gui/SquezerGui.png");
 	
 	
 	public GuiSquezer(InventoryPlayer InvPlayer, TileEntitySquezer tile) {
 		super(new ContainerSquezer(InvPlayer, tile));
+		
+		this.tile = tile;
+		
+		this.xSize = 176;
+		this.ySize = 166;
 	}
 	
  @Override
@@ -29,6 +35,8 @@ public class GuiSquezer extends GuiContainer{
          fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, 4210752);
          
          fontRenderer.drawString("Squezer", 7, 3, 4210752);
+         fontRenderer.drawString("Liquid", 32, 13, 4210752);
+         fontRenderer.drawString("Item", 117, 13, 4210752);
       
          
          
@@ -39,11 +47,19 @@ public class GuiSquezer extends GuiContainer{
 	{
 	    GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
 
-		 Minecraft.getMinecraft().func_110434_K().func_110577_a(Texture);
+	    Minecraft.getMinecraft().renderEngine.bindTexture(Texture);
 	         
-	         int k = (this.width - this.xSize) / 2;
-	         int l = (this.height - this.ySize) / 2;
+	        int x = (this.width - this.xSize) / 2;
+	        int y = (this.height - this.ySize) / 2;
 	         drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
+	         
+	         int Time = this.tile.GetWorkTime();
+	         if(Time > 0)
+             this.drawTexturedModalRect(x + 66, y + 28, 176, 3, 43, Time / 16);
+	         
+
+
+	         
 
 
 	         

@@ -44,6 +44,7 @@ public class Crafting {
 			GameRegistry.addShapedRecipe(new ItemStack(ModItems.PizzaBottom), new Object[]{"FFF", 'F', ModItems.Flour});
 			GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.Squezer), new Object[]{"CIC", "IPI", "CCC", 'C', Block.cobblestone, 'I', Item.ingotIron, 'P', Block.pistonBase});
 			GameRegistry.addShapelessRecipe(new ItemStack(ModItems.Cheese), Item.bucketMilk);
+			GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.PizzaOven), new Object[] {"SSS", "SFS", "SSS", 'S', Block.stone, 'F', Block.furnaceIdle});
 			
 	        GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.Pillar, 4), new Object[]{"QQQ", " Q ", "QQQ", 'Q', Block.blockNetherQuartz});
 	        GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.SidewaysPillar, 4), new Object[]{"Q Q", "QQQ", "Q Q", 'Q', Block.blockNetherQuartz});
@@ -59,11 +60,14 @@ public class Crafting {
 	        GameRegistry.addShapelessRecipe(new ItemStack(ModItems.PizzaRaw, 1, 2), ModItems.Cheese, ModItems.PizzaBottom, new ItemStack(ModItems.Liquid, 1, 1), Item.beefCooked);
 	        GameRegistry.addShapelessRecipe(new ItemStack(ModItems.PizzaRaw, 1, 3), ModItems.Cheese, ModItems.PizzaBottom, new ItemStack(ModItems.Liquid, 1, 1), Item.chickenCooked);
 
-	        GameRegistry.addShapelessRecipe(new ItemStack(ModItems.Pizza, 1, 0), new ItemStack(ModItems.PizzaRaw, 1, 0), Item.coal);
-	        GameRegistry.addShapelessRecipe(new ItemStack(ModItems.Pizza, 1, 1), new ItemStack(ModItems.PizzaRaw, 1, 1), Item.coal);
-	        GameRegistry.addShapelessRecipe(new ItemStack(ModItems.Pizza, 1, 2), new ItemStack(ModItems.PizzaRaw, 1, 2), Item.coal);
-	        GameRegistry.addShapelessRecipe(new ItemStack(ModItems.Pizza, 1, 3), new ItemStack(ModItems.PizzaRaw, 1, 3), Item.coal);
 			
+	        
+	        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.OrangePlanks, 4), ModBlocks.OrangeLog);
+	        GameRegistry.addRecipe(new ItemStack(Item.stick), new Object[]{"P", "P", 'P', ModBlocks.OrangePlanks});
+	        GameRegistry.addRecipe(new ItemStack(Block.chest), new Object[]{"PPP", "P P", "PPP", 'P', ModBlocks.OrangePlanks});
+	        GameRegistry.addRecipe(new ItemStack(Item.doorWood), new Object[]{"PP", "PP", "PP", 'P', ModBlocks.OrangePlanks});
+	        GameRegistry.addRecipe(new ItemStack(Block.trapdoor), new Object[]{"PPP", "PPP", 'P', ModBlocks.OrangePlanks});
+	        GameRegistry.addRecipe(new ItemStack(Block.workbench), new Object[]{"PP", "PP", 'P', ModBlocks.OrangePlanks});
 	        
 	        
 	        
@@ -72,5 +76,7 @@ public class Crafting {
 			
 			
 			GameRegistry.addSmelting(ModBlocks.SilverOre.blockID, new ItemStack(ModItems.SilverIngot), 2.0F);
+			GameRegistry.addSmelting(ModBlocks.OrangeLog.blockID, new ItemStack(Item.coal, 1, 1), 1.2F);
+			GameRegistry.addSmelting(ModItems.Flour.itemID, new ItemStack(Item.bread), 1F);
 	}
 }

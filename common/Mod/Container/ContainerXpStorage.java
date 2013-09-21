@@ -1,10 +1,13 @@
 package Mod.Container;
 
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import Mod.TileEntity.TileEntityXpStorage;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
+import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
@@ -12,6 +15,7 @@ public class ContainerXpStorage extends Container
 {
 
     private TileEntityXpStorage tile;
+    int LastXp = 0;
 
     public ContainerXpStorage(InventoryPlayer InvPlayer, TileEntityXpStorage tile)
     {
@@ -103,6 +107,38 @@ public class ContainerXpStorage extends Container
 	public TileEntityXpStorage getTile() {
 		return tile;
 	}
+	
+	 public void addCraftingToCrafters(ICrafting par1ICrafting)
+	    {
+	        super.addCraftingToCrafters(par1ICrafting);
+	        par1ICrafting.sendProgressBarUpdate(this, 0, this.tile.GetLevels());
+	    }
+
+	    public void detectAndSendChanges()
+	    {
+	        super.detectAndSendChanges();
+
+	        for (int i = 0; i < this.crafters.size(); ++i)
+	        {
+	            ICrafting icrafting = (ICrafting)this.crafters.get(i);
+
+	            if (this.LastXp != this.tile.GetLevels())
+	            {
+	                icrafting.sendProgressBarUpdate(this, 0, this.tile.GetLevels());
+	            }
+	        }
+
+	        this.LastXp = this.tile.GetLevels();
+	    }
+
+	    @SideOnly(Side.CLIENT)
+	    public void updateProgressBar(int par1, int par2)
+	    {
+	        if (par1 == 0)
+	        {
+	            this.tile.SetLevels(par2);
+	        }
+	    }
 }
 
 

@@ -103,6 +103,7 @@ public class TileEntitySquezer extends TileEntityInvBase {
     	
     	if(id1 == Item.glassBottle.itemID && id2 == Item.appleRed.itemID) return new ItemStack(ModItems.Liquid, 1, 0);
     	if(id1 == Item.bucketEmpty.itemID && id2 == ModItems.Tomato.itemID) return new ItemStack(ModItems.Liquid, 1, 1);
+    	if(id1 == Item.glassBottle.itemID && id2 == ModItems.Orange.itemID)return new ItemStack(ModItems.Liquid, 1, 2);
     	
     	
 
@@ -116,6 +117,17 @@ public class TileEntitySquezer extends TileEntityInvBase {
     	return GetOutput() != null && this.getStackInSlot(2) == null || this.getStackInSlot(2).stackSize == 0;
     	
     }
+    
+    public int GetWorkTime(){
+    	
+    	return this.WorkTime;
+    }
+    
+    public void setWorkTime(int amount){
+    	
+    	WorkTime = amount;
+    }
+    
     
     
   	

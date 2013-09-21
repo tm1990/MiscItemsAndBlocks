@@ -7,13 +7,16 @@ import Mod.Container.ContainerBin;
 import Mod.Container.ContainerBox;
 import Mod.Container.ContainerCraftingInv;
 import Mod.Container.ContainerMill;
+import Mod.Container.ContainerPizzaOven;
 import Mod.Container.ContainerShelf;
 import Mod.Container.ContainerSquezer;
 import Mod.Container.ContainerXpStorage;
+import Mod.Main.ModConfig;
 import Mod.TileEntity.TileEntityBin;
 import Mod.TileEntity.TileEntityBox;
 import Mod.TileEntity.TileEntityCraftingInv;
 import Mod.TileEntity.TileEntityMill;
+import Mod.TileEntity.TileEntityOvenCore;
 import Mod.TileEntity.TileEntityShelf;
 import Mod.TileEntity.TileEntitySquezer;
 import Mod.TileEntity.TileEntityXpStorage;
@@ -30,12 +33,16 @@ public class GuiHandler implements IGuiHandler{
         TileEntity tile_entity = world.getBlockTileEntity(x, y, z);
         
 
+        
+        if(tile_entity instanceof TileEntityOvenCore){
+        	
+        	return new ContainerPizzaOven(player.inventory, (TileEntityOvenCore) tile_entity);
+        }
 
         
         if(tile_entity instanceof TileEntityXpStorage){
 
-        	tile = (TileEntityXpStorage) tile_entity;
-            return new ContainerXpStorage(player.inventory, tile);
+            return new ContainerXpStorage(player.inventory, (TileEntityXpStorage) tile_entity);
 
         }
         
@@ -72,6 +79,7 @@ public class GuiHandler implements IGuiHandler{
         }
         
         
+        
         return null;
     }
         
@@ -85,14 +93,6 @@ public class GuiHandler implements IGuiHandler{
 
 
         if(tile_entity instanceof TileEntityXpStorage){
-        	
-        	if(tile != null){
-            	System.out.println("XpStorage gui opend on client!");
-            return new GuiXpStorage(player.inventory, tile);
-        	}
-        	
-        	
-        	System.out.println("XpStorage gui opend on server!");
             return new GuiXpStorage(player.inventory, (TileEntityXpStorage) tile_entity);
 
         }
@@ -129,6 +129,12 @@ public class GuiHandler implements IGuiHandler{
         	return new GuiSquezer(player.inventory, (TileEntitySquezer) tile_entity);
         }
         
+        
+        
+        if(tile_entity instanceof TileEntityOvenCore){
+        	
+        	return new GuiPizzaOven(player.inventory, (TileEntityOvenCore) tile_entity);
+        }
         
 
 

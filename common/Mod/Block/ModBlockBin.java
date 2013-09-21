@@ -20,7 +20,7 @@ public class ModBlockBin extends BlockContainer{
 		super(par1, Material.iron);
 		setCreativeTab(Main.CreativeTab);
 		setUnlocalizedName("Bin");
-        this.setBlockBounds(0.2F, 0.0F, 0.2F, 0.8F, 0.6F, 0.8F);
+        this.setBlockBounds(0.13F, 0.0F, 0.13F, 0.87F, 0.8F, 0.87F);
 		setCreativeTab(Main.CreativeTab);
 		this.setHardness(5);
 	}

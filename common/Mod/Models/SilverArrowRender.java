@@ -22,7 +22,7 @@ public class SilverArrowRender extends Render
 
     public void renderArrow(EntitySilverArrow par1EntityArrow, double par2, double par4, double par6, float par8, float par9)
     {
-        this.func_110777_b(par1EntityArrow);
+        this.bindEntityTexture(par1EntityArrow);
         GL11.glPushMatrix();
         GL11.glTranslatef((float)par2, (float)par4, (float)par6);
         GL11.glRotatef(par1EntityArrow.prevRotationYaw + (par1EntityArrow.rotationYaw - par1EntityArrow.prevRotationYaw) * par9 - 90.0F, 0.0F, 1.0F, 0.0F);
@@ -86,10 +86,6 @@ public class SilverArrowRender extends Render
         return field_110780_a;
     }
 
-    protected ResourceLocation func_110775_a(Entity par1Entity)
-    {
-        return this.func_110779_a((EntitySilverArrow)par1Entity);
-    }
 
     /**
      * Actually renders the given argument. This is a synthetic bridge method, always casting down its argument and then
@@ -101,4 +97,9 @@ public class SilverArrowRender extends Render
     {
         this.renderArrow((EntitySilverArrow)par1Entity, par2, par4, par6, par8, par9);
     }
+
+	@Override
+	protected ResourceLocation getEntityTexture(Entity entity) {
+		return this.func_110779_a((EntitySilverArrow)entity);
+	}
 }

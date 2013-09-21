@@ -9,8 +9,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.MinecraftForge;
 import Mod.Block.ModBlocks;
-import Mod.Commands.ExpExtractCommand;
-import Mod.Commands.GetXpCommand;
 import Mod.Entity.EntitySilverArrow;
 import Mod.GamePart.TileEntityGamePartBlue;
 import Mod.GamePart.TileEntityGamePartGreen;
@@ -22,6 +20,7 @@ import Mod.Items.ModItems;
 import Mod.Lib.Crafting;
 import Mod.Lib.Messages;
 import Mod.Lib.Refrence;
+import Mod.Misc.BoneMealEvent;
 import Mod.Network.PacketHandler;
 import Mod.Proxies.ServerProxy;
 import Mod.TileEntity.TileEntityBin;
@@ -29,25 +28,24 @@ import Mod.TileEntity.TileEntityBox;
 import Mod.TileEntity.TileEntityCraftingInv;
 import Mod.TileEntity.TileEntityDisarmTrap;
 import Mod.TileEntity.TileEntityMill;
+import Mod.TileEntity.TileEntityOvenCore;
 import Mod.TileEntity.TileEntityPillar;
 import Mod.TileEntity.TileEntityShelf;
 import Mod.TileEntity.TileEntitySidewaysPillar;
 import Mod.TileEntity.TileEntitySquezer;
 import Mod.TileEntity.TileEntityXpStorage;
 import Mod.VersionChecker.VersionChecker;
-import Mod.WorldGen.SilverOreGen;
+import Mod.WorldGen.ModWorldGenerator;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.Mod.PostInit;
 import cpw.mods.fml.common.Mod.PreInit;
-import cpw.mods.fml.common.Mod.ServerStarting;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.EntityRegistry;
@@ -142,6 +140,7 @@ public void preInit(FMLPreInitializationEvent event) {
         GameRegistry.registerTileEntity(TileEntityCraftingInv.class, "TileEntityCraftingInv");
         GameRegistry.registerTileEntity(TileEntityMill.class, "TileEntityMill");
         GameRegistry.registerTileEntity(TileEntitySquezer.class, "TileEntitySquezer");
+        GameRegistry.registerTileEntity(TileEntityOvenCore.class, "TileEntityOvenCore");
         
         GameRegistry.registerTileEntity(TileEntityGamePartRed.class, "TileEntityGamePartRed");
         GameRegistry.registerTileEntity(TileEntityGamePartBlue.class, "TileEntityGamePartBlue");
@@ -152,9 +151,11 @@ public void preInit(FMLPreInitializationEvent event) {
         GameRegistry.registerTileEntity(TileEntitySidewaysPillar.class, "TileEntitySidewaysPillar");
         
         
-        GameRegistry.registerWorldGenerator(new SilverOreGen());
+        GameRegistry.registerWorldGenerator(new ModWorldGenerator());
         
         MinecraftForge.addGrassSeed(new ItemStack(ModItems.TomatoSeeds), 10);
+        
+        MinecraftForge.EVENT_BUS.register(new BoneMealEvent());
         
 
         NetworkRegistry.instance().registerGuiHandler(this, new GuiHandler());
@@ -173,13 +174,6 @@ public void preInit(FMLPreInitializationEvent event) {
 	            return new ItemStack(ModItems.XpExtractor, 1, 0);
 	    }
 	};
-	
-	  @ServerStarting
-	  public void serverLoad(FMLServerStartingEvent event)
-	  {
-	    event.registerServerCommand(new ExpExtractCommand());
-	    event.registerServerCommand(new GetXpCommand());
-	  }
 	
 	
        

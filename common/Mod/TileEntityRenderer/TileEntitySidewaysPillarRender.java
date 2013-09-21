@@ -11,10 +11,10 @@ import net.minecraft.world.World;
 
 import org.lwjgl.opengl.GL11;
 
-import Mod.Models.PillarSideways;
-import Mod.Models.SidewaysPillarOne;
-import Mod.Models.SidewaysPillarTwo;
 import Mod.Models.SidwaysPillarMiddle;
+import Mod.PillarModels.PillarSideways;
+import Mod.PillarModels.SidewaysPillarOne;
+import Mod.PillarModels.SidewaysPillarTwo;
 
 public class TileEntitySidewaysPillarRender extends TileEntitySpecialRenderer {
     
@@ -52,7 +52,7 @@ public class TileEntitySidewaysPillarRender extends TileEntitySpecialRenderer {
             GL11.glTranslatef((float) x + 0.5F, (float) y + 1.5F, (float) z + 0.5F);
 
             
-            func_110628_a(Texutre);
+            bindTexture(Texutre);
             
             
          GL11.glPushMatrix();

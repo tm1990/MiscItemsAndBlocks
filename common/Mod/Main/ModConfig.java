@@ -25,6 +25,12 @@ public class ModConfig {
 	public static int Mill;
 	public static int TomatoPlant;
 	public static int Squezer;
+	public static int PizzaOven;
+	public static int OrangeLog;
+	public static int OrangePlanks;
+	
+	public static int OrangeSapling;
+	public static int OrangeLeaf;
 	
 	
 	public static int GamePartRed;
@@ -48,6 +54,9 @@ public class ModConfig {
 	public static int PizzaBottom;
 	public static int Cheese;
 	public static int Liquid;
+	public static int DisarmStick;
+	
+	public static int Orange;
 	
 	public static int PizzaRaw;
 	public static int Pizza;
@@ -61,6 +70,7 @@ public class ModConfig {
 	public static boolean BlastProofOverRe;
 	
 	public static boolean SpawnParticles;
+
 	
 
 	
@@ -99,6 +109,12 @@ public class ModConfig {
 		TomatoPlant = config.getBlock("Blocks", "Tomato Plant Block Id", 617).getInt();
 		Mill = config.getBlock("Blocks", "Mill Block Id", 618).getInt();
 		Squezer = config.getBlock("Blocks", "Squezer Block Id", 619).getInt();
+		OrangeSapling = config.getBlock("Blocks", "Orange Sapling Block Id", 620).getInt();
+		OrangeLeaf = config.getBlock("Blocks", "Orange Leaf Block Id", 621).getInt();
+		PizzaOven = config.getBlock("Blocks", "Oven Core Block Id", 622).getInt();
+		OrangeLog = config.getBlock("Blocks", "Orange Log Block Id", 623).getInt();
+		OrangePlanks = config.getBlock("Blocks", "Orange Planks Block Id", 624).getInt();
+		
 		
         XpExtractor = config.getItem("Items","Xp Extractor Id", 22000).getInt();
         SilverIngot = config.getItem("Items", "Silver Ingot Id", 22001).getInt();
@@ -121,6 +137,9 @@ public class ModConfig {
         
         PizzaRaw = config.getItem("Items", "PizzaRaw Id", 22018).getInt();
         Pizza = config.getItem("Items", "Pizza Id", 22019).getInt();
+        
+        Orange = config.getItem("Items", "Orange Id", 22020).getInt();
+        DisarmStick = config.getItem("Items", "Disarm stick Id", 22021).getInt();
         
         SpawnParticles = config.get("Settings", "Spawn particles?", true).getBoolean(true);
         

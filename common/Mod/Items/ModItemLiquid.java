@@ -24,6 +24,7 @@ public class ModItemLiquid extends Item{
 	
 	Icon AppleJuice;
 	Icon TomatoSauce;
+	Icon OrangeJuice;
 	
 	public ModItemLiquid(int par1) {
 		super(par1);
@@ -40,6 +41,7 @@ public class ModItemLiquid extends Item{
     {
     	
         this.AppleJuice = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "AppleJuice");
+        this.OrangeJuice = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "OrangeJuice");
         this.TomatoSauce = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "TomatoSauce");
     }
     
@@ -80,6 +82,9 @@ public class ModItemLiquid extends Item{
     		
     	case 1:
     		return this.TomatoSauce;
+    		
+    	case 2:
+    		return this.OrangeJuice;
     	
     	default:
     		return null;
@@ -93,6 +98,7 @@ public class ModItemLiquid extends Item{
     	
     	if(meta == 0)return "Apple Juice";
     	if(meta == 1)return "Tomato Sauce";
+    	if(meta == 2)return "Orange Juice";
     	
     	
     	
@@ -104,6 +110,7 @@ public class ModItemLiquid extends Item{
         super.getSubItems(par1, par2CreativeTabs, list);
         
         list.add(new ItemStack(par1, 1, 1));
+        list.add(new ItemStack(par1, 1, 2));
         
     }
     
@@ -119,7 +126,7 @@ public class ModItemLiquid extends Item{
     
     public boolean Drinkable(int meta){
     	
-    	if(meta == 0)return true;
+    	if(GetEffect(meta) != null)return true;
     	
     	return false;
     }
@@ -127,6 +134,7 @@ public class ModItemLiquid extends Item{
     public PotionEffect GetEffect(int meta){
     	
     	if(meta == 0)return new PotionEffect(Potion.regeneration.id, 300);
+    	if(meta == 2)return new PotionEffect(Potion.regeneration.id, 600);
     	
     	return null;
     }
@@ -134,6 +142,7 @@ public class ModItemLiquid extends Item{
     public ItemStack ReturnItem(int meta){
     	
     	if(meta == 0)return new ItemStack(Item.glassBottle);
+    	if(meta == 2)return new ItemStack(Item.glassBottle);
     	
     	return null;
     }
@@ -145,6 +154,7 @@ public class ModItemLiquid extends Item{
             
             if(meta == 0){list.add("Somthing good to drink."); list.add("Gives regen for 15sec");}
             if(meta == 1)list.add("Used to make pizza");
+            if(meta == 2){list.add("Somthing good to drink."); list.add("Gives regen for 30sec");}
     }
 
 }

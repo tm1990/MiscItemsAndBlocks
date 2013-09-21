@@ -25,7 +25,7 @@ public class GuiXpStorage extends GuiContainer{
 	
 	GuiTextField textfield;
 	
-	TileEntityXpStorage tile;
+	private TileEntityXpStorage tile;
 	
 
  
@@ -58,8 +58,14 @@ public class GuiXpStorage extends GuiContainer{
 	{
 	    GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
 
-		 Minecraft.getMinecraft().func_110434_K().func_110577_a(Texture);
+	    Minecraft.getMinecraft().renderEngine.bindTexture(Texture);
 	         drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
+	         
+	         int Xp = this.tile.GetLevels();
+
+	         
+	 		textfield.setText("Levels stored : " + Xp);
+
 
 	         
 
@@ -74,7 +80,6 @@ public class GuiXpStorage extends GuiContainer{
 		buttonList.add(new GuiButton(1, guiLeft + 20,  guiTop + 39, 60, 20, "Withdraw"));
 		buttonList.add(new GuiButton(2, guiLeft + 96, guiTop + 39, 60, 20, "Deposit"));
 		buttonList.add(new GuiTipButton(3, guiLeft, guiTop, "?", Messages.XpStorageTips));
-		buttonList.add(new GuiButton(4, guiLeft + 52, guiTop + 61, 75, 20, "Xp Stored"));
 		
 		textfield = new GuiTextField(fontRenderer, 24, 15, 120, 20);
 		
@@ -105,16 +110,6 @@ public class GuiXpStorage extends GuiContainer{
 		}
 	
 	
-	public void updateScreen(){
-		
-		if(Minecraft.getMinecraft().isSingleplayer()){
-		textfield.setText("Levels stored : " + tile.GetLevels());
-		}else{
-			textfield.setText("Mp coming soon!");
-		}
-		
-		
-		}
 
 
 	

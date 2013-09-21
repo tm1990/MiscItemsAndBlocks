@@ -13,15 +13,6 @@ public class TileEntityDisarmTrap extends TileEntity{
 
 	
 	
-	public Packet getDescriptionPacket() {
-        NBTTagCompound nbtTag = new NBTTagCompound();
-        this.writeToNBT(nbtTag);
-        return new Packet132TileEntityData(this.xCoord, this.yCoord, this.zCoord, 1, nbtTag);
-        }
-
-        public void onDataPacket(INetworkManager net, Packet132TileEntityData packet) {
-        readFromNBT(packet.customParam1);
-        }
 }
 
 

@@ -16,6 +16,9 @@ public class TileEntityBin extends TileEntity implements IInventory{
 
 	private ItemStack[] Items;
 	
+	int Time;
+	int FinishTime = 25;
+	
 	public TileEntityBin(){
 		
 		Items = new ItemStack[1];
@@ -81,22 +84,37 @@ public class TileEntityBin extends TileEntity implements IInventory{
 	}
 
 	
-	public Packet getDescriptionPacket() {
-        NBTTagCompound nbtTag = new NBTTagCompound();
-        this.writeToNBT(nbtTag);
-        return new Packet132TileEntityData(this.xCoord, this.yCoord, this.zCoord, 1, nbtTag);
-        }
+	
+	
+    public void updateEntity()
+    {
+    	
+    	
+    	
+    	if(this.getStackInSlot(0) != null){
+    		
+    		
+        	if(this.getStackInSlot(0).stackSize == 1){
+        		this.setInventorySlotContents(0, null);
+        	}
+    	
+    		
+    	if(Time == FinishTime){
+    		Time = 0;
+    		this.decrStackSize(0, 1);
+    	}else{
+    		Time++;
+    	}
+    	}else{
+    		Time = 0;
+    	}
+    	
+    	
+    	
+    	
+    }
+	
 
-        public void onDataPacket(INetworkManager net, Packet132TileEntityData packet) {
-        readFromNBT(packet.customParam1);
-        }
-        
-        public void onInventoryChanged(){
-        	setInventorySlotContents(0, null);
-        	
-        	
-        	
-        }
         
 
         

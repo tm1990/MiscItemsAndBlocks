@@ -109,8 +109,7 @@ public class TileEntityXpStorage extends TileEntity implements IInventory{
 				player.addExperienceLevel(1);
 				XpAmount = XpAmount - 1;
 				}
-				
-				System.out.println(player.experienceLevel + ":" + XpAmount);
+
 				
 				break;
 				
@@ -120,20 +119,15 @@ public class TileEntityXpStorage extends TileEntity implements IInventory{
 				player.addExperienceLevel(-1);
 				XpAmount = XpAmount + 1;
 				}
-				
-				System.out.println(player.experienceLevel + ":" + XpAmount);
+
 				
 				break;
 				
 			case 3:
 				
 				break;
-				
-			case 4:
-				
-				player.addChatMessage("[Info]This XpStorage block currently has : " + XpAmount + "  Levels stored");
-				break;
 		}
+
 		
 	}
 	

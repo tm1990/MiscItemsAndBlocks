@@ -27,10 +27,12 @@ public class ModItems {
 	public static Item Tomato;
 	public static Item Flour;
 	public static ItemSeeds TomatoSeeds;
-	public static Item PizzaBottom;
 	public static Item Liquid;
 	public static Item Cheese;
+	public static Item Orange;
+	public static Item DisarmStick;
 	
+	public static Item PizzaBottom;
 	public static Item PizzaRaw;
 	public static Item Pizza;
 	
@@ -95,7 +97,7 @@ public class ModItems {
         Register(TomatoSeeds, "Tomato Seeds");
         
         PizzaBottom = new ModItemPizzaBottom(ModConfig.PizzaBottom).setUnlocalizedName("PizzaBottom");
-        Register(PizzaBottom, "Pizza Bottom");
+        Register(PizzaBottom, "Pizza Base");
         
         Liquid = new ModItemLiquid(ModConfig.Liquid).setUnlocalizedName("Liquid");
         RegisterOutName(Liquid, "Liquid");
@@ -108,6 +110,13 @@ public class ModItems {
         
         Pizza = new ModItemPizza(ModConfig.Pizza).setUnlocalizedName("Pizza");
         RegisterOutName(Pizza, "Pizza");
+        
+        Orange = new ModItemOrange(ModConfig.Orange).setUnlocalizedName("Orange");
+        Register(Orange, "Orange");
+        
+        DisarmStick = new ModItemDisarmStick(ModConfig.DisarmStick).setUnlocalizedName("DisarmStick");
+        Register(DisarmStick, "Disarm Stick");
+        
 		
 		
 	RegisterOreDictionary(new ItemStack(SilverIngot), "ingotSilver");

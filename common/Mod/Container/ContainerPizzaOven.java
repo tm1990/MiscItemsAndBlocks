@@ -1,7 +1,5 @@
 package Mod.Container;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -10,19 +8,23 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import Mod.Slots.SlotOutput;
 import Mod.TileEntity.TileEntityMill;
+import Mod.TileEntity.TileEntityOvenCore;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
-public class ContainerMill  extends Container {
+public class ContainerPizzaOven  extends Container {
 
 	@Override
 	public boolean canInteractWith(EntityPlayer entityplayer) {
 		return tile.isUseableByPlayer(entityplayer);
 	}
 	
-    private TileEntityMill tile;
+    private TileEntityOvenCore tile;
     
     int lastWorkTime = 0;
+    int lastHeat = 0;
 	
-    public ContainerMill(InventoryPlayer InvPlayer, TileEntityMill tile)
+    public ContainerPizzaOven(InventoryPlayer InvPlayer, TileEntityOvenCore tile)
     {
     	this.tile = tile;
     	
@@ -37,8 +39,9 @@ public class ContainerMill  extends Container {
     			addSlotToContainer(new Slot(InvPlayer, x + y * 9 + 9, 8 + 18 * x, 84 + y * 18));
     		}
     		
-    		addSlotToContainer(new Slot(tile, 0, 79, 13));
-    		addSlotToContainer(new SlotOutput(tile, 1, 79, 56));
+    		addSlotToContainer(new Slot(tile, 0, 80, 54));
+    		addSlotToContainer(new Slot(tile, 1, 80, 13));
+    		addSlotToContainer(new SlotOutput(tile, 2, 134, 33));
     	
     }
 
@@ -57,6 +60,7 @@ public class ContainerMill  extends Container {
     {
         super.addCraftingToCrafters(par1ICrafting);
         par1ICrafting.sendProgressBarUpdate(this, 0, this.tile.GetWorkTime());
+        par1ICrafting.sendProgressBarUpdate(this, 1, this.tile.GetHeat());
     }
 
     public void detectAndSendChanges()
@@ -71,8 +75,14 @@ public class ContainerMill  extends Container {
             {
                 icrafting.sendProgressBarUpdate(this, 0, this.tile.GetWorkTime());
             }
+            
+            if (this.lastHeat != this.tile.GetHeat())
+            {
+                icrafting.sendProgressBarUpdate(this, 1, this.tile.GetHeat());
+            }
         }
 
+        this.lastHeat = this.tile.GetHeat();
         this.lastWorkTime = this.tile.GetWorkTime();
     }
 
@@ -81,7 +91,11 @@ public class ContainerMill  extends Container {
     {
         if (par1 == 0)
         {
-            this.tile.setWorkTime(par2);
+            this.tile.SetWorkTime(par2);
+        }
+        
+        if(par1 == 1){
+        	this.tile.SetHeat(par2);
         }
     }
 	  

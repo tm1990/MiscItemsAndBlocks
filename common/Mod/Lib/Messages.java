@@ -10,6 +10,7 @@ public class Messages {
 	public static String[] ShelfTipes = new String[10];
 	public static String[] MillTips = new String[10];
 	public static String[] SquezerTips = new String[10];
+	public static String[] PizzaOvenTips = new String[10];
 	
 	public static void Init(){
 		
@@ -33,6 +34,8 @@ public class Messages {
 		
 		SquezerTips[0] = "The squezer takes a liquid container and a item";
 		SquezerTips[1] = "Put a liquid container in the left slot then the item in the right";
+		
+		PizzaOvenTips[0] = "The pizza oven can only smelt raw pizzas";
 		
 	}
 }

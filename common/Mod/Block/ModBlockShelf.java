@@ -192,40 +192,7 @@ public int onBlockPlaced(World world, int x, int y, int z, int side, float hitx,
 	
 }
 
-public boolean canPlaceBlockAt(World world, int x, int y, int z){
-	
-    int Direction = MathHelper.floor_double((double)(Minecraft.getMinecraft().thePlayer.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
-	
-    if(Direction == 0){
-    	
-    	if(world.doesBlockHaveSolidTopSurface(x, y, z + 1)){
-    		return true;
-    	}
-    }
-    
-    if(Direction == 1){
-    	
-    	if(world.doesBlockHaveSolidTopSurface(x - 1, y, z)){
-    		return true;
-    	}
-    }
-    
-    if(Direction == 2){
-    	
-    	if(world.doesBlockHaveSolidTopSurface(x, y, z - 1)){
-    		return true;
-    	}
-    }
-    
-    if(Direction == 3){
-    	
-    	if(world.doesBlockHaveSolidTopSurface(x + 1, y, z)){
-    		return true;
-    	}
-    }
-    
-	return false;
-}
+
 
 
 

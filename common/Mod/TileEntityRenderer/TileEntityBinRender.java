@@ -34,7 +34,7 @@ public class TileEntityBinRender extends TileEntitySpecialRenderer {
             GL11.glTranslatef((float) x + 0.5F, (float) y + 1.5F, (float) z + 0.5F);
             
             
-            func_110628_a(new ResourceLocation("miscitems" , "textures/models/BinModel.png"));
+            bindTexture(new ResourceLocation("miscitems" , "textures/models/BinModel.png"));
             
             
          GL11.glPushMatrix();

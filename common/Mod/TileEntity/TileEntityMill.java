@@ -141,6 +141,16 @@ public class TileEntityMill extends TileEntityInvBase{
         	
         	return null;
         }
+        
+        public int GetWorkTime(){
+        	
+        	return this.WorkTime;
+        }
+        
+        public void setWorkTime(int amount){
+        	
+        	WorkTime = amount;
+        }
 
 
 

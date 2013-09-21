@@ -22,7 +22,7 @@ public class MiscDamage extends DamageSource{
         
         String Message = par1EntityLivingBase.getTranslatedEntityName() + " " + DeathMessage;
         
-        return entitylivingbase1 != null ? ChatMessageComponent.func_111082_b(Message, new Object[] {par1EntityLivingBase.getTranslatedEntityName(), entitylivingbase1.getTranslatedEntityName()}): ChatMessageComponent.func_111082_b(Message, new Object[] {par1EntityLivingBase.getTranslatedEntityName()});
+        return entitylivingbase1 != null ? ChatMessageComponent.createFromText(Message) : null;
     }
 
 }
