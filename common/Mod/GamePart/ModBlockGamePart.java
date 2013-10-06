@@ -199,10 +199,8 @@ public class ModBlockGamePart extends BlockContainer{
     }
     
     public void onNeighborBlockChange(World world, int x, int y, int z, int nId) {
-    	
-    	
-    	//TODO Make it fall when block below is removed
-		// blockFall(world, x, y, z);
+
+		 blockFall(world, x, y, z);
     	
     }
     
@@ -220,22 +218,16 @@ public class ModBlockGamePart extends BlockContainer{
     }
     
     public void blockFall(World world, int x, int y, int z){
-    	int i = 1;
-		 int Id = world.getBlockId(x, y, z);
-		 
-		 while(world.getBlockId(x, y - i, z) == 0){
-			 i++;
-		 }
-		 
-		 if(i > 1){
-			 if(world.getBlockId(x, y - i + 1, z) == 0){
-   		  world.setBlock(x, y, z, 0);
-   		  world.setBlock(x, y - i + 1, z, Id);
 
- 		 
-
-			 }
-		 }
+    	
+    	if(world.getBlockId(x, y - 1, z) == 0 || world.getBlockId(x, y - 1, z) == Block.tallGrass.blockID){
+    		
+    		int BlockID = world.getBlockId(x, y, z);
+    		
+    		world.setBlock(x, y, z, 0);
+    		world.setBlock(x, y - 1, z, BlockID);
+    		
+    	}
 
     	
     }

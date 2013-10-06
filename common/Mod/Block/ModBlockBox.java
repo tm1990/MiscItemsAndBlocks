@@ -95,7 +95,7 @@ public class ModBlockBox extends BlockContainer{
 	    				
 	    				
 	    				World.spawnEntityInWorld(droppedItem);
-	    				
+	    				super.breakBlock(World, x, y, z, id, meta);
 	    			}
 	    			
 	    		}

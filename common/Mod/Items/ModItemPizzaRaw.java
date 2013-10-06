@@ -40,7 +40,6 @@ public class ModItemPizzaRaw extends ItemFood{
     
     public Icon getIconFromDamage(int meta)
     {
-
     		return PizzaRaw;
     	
     }

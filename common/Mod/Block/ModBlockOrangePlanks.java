@@ -9,7 +9,7 @@ public class ModBlockOrangePlanks extends Block{
 
 	public ModBlockOrangePlanks(int par1) {
 		super(par1, Material.wood);
-		
+		this.setHardness(0.4F);
 		this.setStepSound(soundWoodFootstep);
 	}
 	

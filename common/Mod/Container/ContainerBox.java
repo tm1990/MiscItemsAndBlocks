@@ -4,6 +4,7 @@ import Mod.TileEntity.TileEntityBox;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
@@ -65,14 +66,14 @@ public class ContainerBox extends Container{
 	            ItemStack itemstack1 = slot.getStack();
 	            itemstack = itemstack1.copy();
 
-	            if (par2 < this.numRows * 5)
+	            if (par2 < this.numRows * 9)
 	            {
-	                if (!this.mergeItemStack(itemstack1, this.numRows * 5, this.inventorySlots.size(), true))
+	                if (!this.mergeItemStack(itemstack1, this.numRows * 9, this.inventorySlots.size(), true))
 	                {
 	                    return null;
 	                }
 	            }
-	            else if (!this.mergeItemStack(itemstack1, 0, this.numRows * 5, false))
+	            else if (!this.mergeItemStack(itemstack1, 0, this.numRows * 9, false))
 	            {
 	                return null;
 	            }
@@ -89,6 +90,16 @@ public class ContainerBox extends Container{
 
 	        return itemstack;
 	    }
-
+	 
+	    public void onContainerClosed(EntityPlayer par1EntityPlayer)
+	    {
+	        super.onContainerClosed(par1EntityPlayer);
+	        this.tile.closeChest();
+	    }
+	    
+	    public IInventory getLowerChestInventory()
+	    {
+	        return this.tile;
+	    }
 
 }

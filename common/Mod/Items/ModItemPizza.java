@@ -20,6 +20,7 @@ public class ModItemPizza extends ItemFood{
 
 	public ModItemPizza(int par1) {
 		super(par1, 6, false);
+		this.maxStackSize = 1;
 		
 		this.setPotionEffect(Potion.field_76443_y.id, 10, 2, 1F);
 
@@ -37,8 +38,6 @@ public class ModItemPizza extends ItemFood{
     
     public Icon getIconFromDamage(int meta)
     {
-
-
     		return Pizza;
 
     }

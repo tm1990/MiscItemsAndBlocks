@@ -12,7 +12,6 @@ public class ModConfig {
 	/** Blocks **/ 
 	public static int XpStorageBlock;
 	public static int Bins;
-	public static int Shelf;
 	public static int Trap;
 	public static int SilverOre;
 	public static int StoneStair;
@@ -28,6 +27,15 @@ public class ModConfig {
 	public static int PizzaOven;
 	public static int OrangeLog;
 	public static int OrangePlanks;
+	
+	public static int LockableChest;
+	
+	
+	public static int PowerCable;
+	public static int Charger;
+	public static int SolarPanel;
+	public static int WindMill;
+	public static int Generator;
 	
 	public static int OrangeSapling;
 	public static int OrangeLeaf;
@@ -55,6 +63,22 @@ public class ModConfig {
 	public static int Cheese;
 	public static int Liquid;
 	public static int DisarmStick;
+	
+	public static int Battery;
+	public static int BigBattery;
+	public static int AdvancedBattery;
+	public static int CreativeBattery;
+	
+	public static int Drill;
+	public static int ElectricShears;
+	public static int ElectricBow;
+	
+	public static int ModuleConnecter;
+	public static int Circuit;
+	public static int SolarCells;
+	public static int Turbine;
+	
+	public static int Key;
 	
 	public static int Orange;
 	
@@ -87,9 +111,8 @@ public class ModConfig {
 		
         config.load();
 		
-		XpStorageBlock = config.getBlock("Blocks","Xp Storage Block Id", 600).getInt();
-		Bins = config.getBlock("Blocks","Trash Bin Block Id", 601).getInt();
-		Shelf = config.getBlock("Blocks","Shelf Block Id", 602).getInt();
+		XpStorageBlock = config.getBlock("Blocks","Xp Storage Block Id", 601).getInt();
+		Bins = config.getBlock("Blocks","Trash Bin Block Id", 602).getInt();
 		Trap = config.getBlock("Blocks","Disarm Trap Block Id", 603).getInt();
 		SilverOre = config.getBlock("Blocks", "Silver Ore Id", 604).getInt();
 		StoneStair = config.getBlock("Blocks", "Stone Stair Id", 605).getInt();
@@ -111,9 +134,17 @@ public class ModConfig {
 		Squezer = config.getBlock("Blocks", "Squezer Block Id", 619).getInt();
 		OrangeSapling = config.getBlock("Blocks", "Orange Sapling Block Id", 620).getInt();
 		OrangeLeaf = config.getBlock("Blocks", "Orange Leaf Block Id", 621).getInt();
-		PizzaOven = config.getBlock("Blocks", "Oven Core Block Id", 622).getInt();
+		PizzaOven = config.getBlock("Blocks", "Oven Block Id", 622).getInt();
 		OrangeLog = config.getBlock("Blocks", "Orange Log Block Id", 623).getInt();
 		OrangePlanks = config.getBlock("Blocks", "Orange Planks Block Id", 624).getInt();
+		
+		Charger = config.getBlock("Blocks", "Charger Block Id", 625).getInt();
+		SolarPanel = config.getBlock("Blocks", "Solar Panel Block Id", 626).getInt();
+		WindMill = config.getBlock("Blocks", "Wind Mill Block Id", 627).getInt();
+		Generator = config.getBlock("Blocks", "Generator Block Id", 628).getInt();
+		PowerCable = config.getBlock("Blocks", "Power Cable Block Id", 629).getInt();
+		
+		LockableChest = config.getBlock("Blocks", "Lockable chest Block Id", 630).getInt();
 		
 		
         XpExtractor = config.getItem("Items","Xp Extractor Id", 22000).getInt();
@@ -140,6 +171,21 @@ public class ModConfig {
         
         Orange = config.getItem("Items", "Orange Id", 22020).getInt();
         DisarmStick = config.getItem("Items", "Disarm stick Id", 22021).getInt();
+        Drill = config.getItem("Items", "Drill Id", 22022).getInt();
+        
+        Circuit = config.getItem("Item", "Circuit Id",  22023).getInt();
+        ModuleConnecter = config.getItem("Item", "Module Connecter Id",  22024).getInt();
+        SolarCells = config.getItem("Items", "Solar cells Id", 22025).getInt();
+        Turbine = config.getItem("Items", "Turbine Id", 22026).getInt();
+        
+        Battery = config.getItem("Items", "Battery Id", 22027).getInt();
+        BigBattery = config.getItem("Items", "Big Battery Id", 22028).getInt();
+        AdvancedBattery = config.getItem("Items", "Advanced Battery Id", 22029).getInt();
+        
+        ElectricShears = config.getItem("Items", "Electric Shears Id", 22030).getInt();
+        ElectricBow = config.getItem("Items", "Electric Bow Id", 22031).getInt();
+        
+        Key = config.getItem("Items", "Key Id", 22032).getInt();
         
         SpawnParticles = config.get("Settings", "Spawn particles?", true).getBoolean(true);
         

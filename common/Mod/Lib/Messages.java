@@ -11,6 +11,7 @@ public class Messages {
 	public static String[] MillTips = new String[10];
 	public static String[] SquezerTips = new String[10];
 	public static String[] PizzaOvenTips = new String[10];
+	public static String[] ChargerTips = new String[10];
 	
 	public static void Init(){
 		
@@ -35,7 +36,11 @@ public class Messages {
 		SquezerTips[0] = "The squezer takes a liquid container and a item";
 		SquezerTips[1] = "Put a liquid container in the left slot then the item in the right";
 		
-		PizzaOvenTips[0] = "The pizza oven can only smelt raw pizzas";
+		PizzaOvenTips[0] = "The oven is used to cook food";
+		PizzaOvenTips[1] = "The higher the heat is the faster it will cook the item";
+		
+		ChargerTips[0] = "The charger block will not generate power itself it require another block to do it";
+		ChargerTips[1] = "If the charger has power it can recharge any electric tool from this mod";
 		
 	}
 }

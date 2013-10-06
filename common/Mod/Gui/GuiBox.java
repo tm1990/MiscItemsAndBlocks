@@ -9,11 +9,8 @@ import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
 
 import Mod.Container.ContainerBox;
-import Mod.Container.ContainerShelf;
 import Mod.Lib.Messages;
-import Mod.TileEntity.TileEntityBin;
 import Mod.TileEntity.TileEntityBox;
-import Mod.TileEntity.TileEntityShelf;
 
 public class GuiBox extends GuiContainer{
 

@@ -29,8 +29,7 @@ public class Crafting {
 	        GameRegistry.addRecipe(new ItemStack(ModItems.FlightChestPlate), new Object[] {"IFI", "ISI", "III", 'I', ModItems.SilverIngot, 'S', Item.netherStar, 'F', Item.feather});
 			GameRegistry.addRecipe(new ItemStack(ModBlocks.DisarmTrap), new Object[] {"ISI", "SPS", "ISI", 'I', Item.ingotIron, 'S', ModItems.SilverIngot, 'P', Block.pressurePlateIron});
 	        GameRegistry.addRecipe(new ItemStack(ModBlocks.Bin), new Object[] {"I I", "IBI", " I ", 'I', Item.ingotIron, 'B', Item.bucketEmpty});
-	        GameRegistry.addRecipe(new ItemStack(ModBlocks.Shelf), new Object[] {"SPS", "SPS", "SPS", 'S', Item.stick, 'P', Block.pressurePlatePlanks});
-			GameRegistry.addShapelessRecipe(new ItemStack(ModItems.Cardboard, 2), new Object[]{Item.paper, Item.paper, Item.paper});
+            GameRegistry.addShapelessRecipe(new ItemStack(ModItems.Cardboard, 2), new Object[]{Item.paper, Item.paper, Item.paper});
 			GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.Box), new Object[]{"CCC", "C C", "CCC", 'C', ModItems.Cardboard});
 			GameRegistry.addRecipe(new ItemStack(ModItems.DivingHelmet), new Object[] {"SNS", "SGS", "   ", 'S', ModItems.SilverIngot, 'N', Item.netherStar, 'G', Block.glass});
 			GameRegistry.addRecipe(new ItemStack(ModItems.RunningLeggings), new Object[]{"SNS", "S S", "S S", 'S', ModItems.SilverIngot, 'N', Item.netherStar});
@@ -45,6 +44,24 @@ public class Crafting {
 			GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.Squezer), new Object[]{"CIC", "IPI", "CCC", 'C', Block.cobblestone, 'I', Item.ingotIron, 'P', Block.pistonBase});
 			GameRegistry.addShapelessRecipe(new ItemStack(ModItems.Cheese), Item.bucketMilk);
 			GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.PizzaOven), new Object[] {"SSS", "SFS", "SSS", 'S', Block.stone, 'F', Block.furnaceIdle});
+			
+			GameRegistry.addShapedRecipe(new ItemStack(ModItems.Drill), new Object[]{"DD ", "DSI", " IP", 'D', Item.diamond, 'P', ModItems.Battery, 'I', Item.ingotIron, 'S', new ItemStack(ModItems.Circuit, 1, 0)});
+			GameRegistry.addShapedRecipe(new ItemStack(ModItems.Battery, 1, 16), new Object[]{" C ", "IRI", "IRI", 'C', new ItemStack(ModItems.Circuit, 1, 0), 'I', Item.ingotIron, 'R', Item.redstone});
+			GameRegistry.addShapedRecipe(new ItemStack(ModItems.ElectricShears), new Object[]{"ISI", "IBI", "ICI", 'I', Item.ingotIron, 'S', Item.shears, 'B', ModItems.Battery, 'C', new ItemStack(ModItems.Circuit, 1, 0)});
+			GameRegistry.addShapedRecipe(new ItemStack(ModItems.ElectricBow), new Object[]{" IS", "ICB", " IS", 'I', Item.ingotIron, 'S', Item.silk, 'C', new ItemStack(ModItems.Circuit), 'B', ModItems.Battery});
+			
+			GameRegistry.addShapedRecipe(new ItemStack(ModItems.Circuit, 1, 1), new Object[]{"ICI", "RDR", "ICI", 'I', Item.ingotIron, 'C', new ItemStack(ModItems.Circuit, 1, 0), 'R', Item.redstone, 'D', Item.diamond});
+			GameRegistry.addShapedRecipe(new ItemStack(ModItems.Circuit, 1, 0), new Object[]{"WIW", "IRI", "WIW", 'W', new ItemStack(Block.cloth, 1, 13), 'I', Item.ingotIron, 'R', Item.redstone});
+			GameRegistry.addShapedRecipe(new ItemStack(ModItems.ModuleConnecter), new Object[]{"III", "ICI", "III", 'I', Item.ingotIron, 'C', new ItemStack(ModItems.Circuit, 1, 0)});
+			GameRegistry.addShapedRecipe(new ItemStack(ModItems.SolarCells), new Object[]{"IGI", "GCG", "IGI", 'I', Item.ingotIron, 'G', Block.glass, 'C', new ItemStack(ModItems.Circuit, 1, 0)});
+			GameRegistry.addShapedRecipe(new ItemStack(ModItems.Turbine), new Object[]{"S S", " P ", "S S", 'S', Item.stick, 'P', Block.planks});
+			
+			GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.Charger), new Object[]{"IMI", "RCR", "IRI", 'I', Item.ingotIron, 'R', new ItemStack(ModItems.Battery, 1, 16), 'C', new ItemStack(ModItems.Circuit, 1, 0), 'M', ModItems.ModuleConnecter});
+			GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.SolarPanel), new Object[]{"IGI", "GCG", "IMI", 'I', Item.ingotIron, 'G', ModItems.SolarCells, 'C', new ItemStack(ModItems.Circuit, 1, 1), 'M', ModItems.ModuleConnecter});
+			GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.WindMill), new Object[]{"III", "SCS", "IMI", 'I', Item.ingotIron, 'S', ModItems.Turbine, 'C', new ItemStack(ModItems.Circuit, 1, 0), 'M', ModItems.ModuleConnecter});
+			GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.Generator), new Object[]{"III", "ICI", "IMI", 'I', Item.ingotIron, 'C', new ItemStack(ModItems.Circuit, 1, 0), 'M', ModItems.ModuleConnecter});
+			GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.PowerCable, 32), new Object[]{"IGI", "RDR", "IGI", 'I', Item.ingotIron, 'G', new ItemStack(ModItems.Circuit, 1, 1), 'R', Item.redstone, 'D', Item.diamond});
+			
 			
 	        GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.Pillar, 4), new Object[]{"QQQ", " Q ", "QQQ", 'Q', Block.blockNetherQuartz});
 	        GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.SidewaysPillar, 4), new Object[]{"Q Q", "QQQ", "Q Q", 'Q', Block.blockNetherQuartz});
@@ -63,11 +80,13 @@ public class Crafting {
 			
 	        
 	        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.OrangePlanks, 4), ModBlocks.OrangeLog);
-	        GameRegistry.addRecipe(new ItemStack(Item.stick), new Object[]{"P", "P", 'P', ModBlocks.OrangePlanks});
+	        GameRegistry.addRecipe(new ItemStack(Item.stick, 4), new Object[]{"P", "P", 'P', ModBlocks.OrangePlanks});
 	        GameRegistry.addRecipe(new ItemStack(Block.chest), new Object[]{"PPP", "P P", "PPP", 'P', ModBlocks.OrangePlanks});
 	        GameRegistry.addRecipe(new ItemStack(Item.doorWood), new Object[]{"PP", "PP", "PP", 'P', ModBlocks.OrangePlanks});
-	        GameRegistry.addRecipe(new ItemStack(Block.trapdoor), new Object[]{"PPP", "PPP", 'P', ModBlocks.OrangePlanks});
+	        GameRegistry.addRecipe(new ItemStack(Block.trapdoor, 2), new Object[]{"PPP", "PPP", 'P', ModBlocks.OrangePlanks});
 	        GameRegistry.addRecipe(new ItemStack(Block.workbench), new Object[]{"PP", "PP", 'P', ModBlocks.OrangePlanks});
+	        GameRegistry.addRecipe(new ItemStack(Item.bed), new Object[]{"WWW", "PPP", 'W', Block.cloth, 'P', ModBlocks.OrangePlanks});
+
 	        
 	        
 	        

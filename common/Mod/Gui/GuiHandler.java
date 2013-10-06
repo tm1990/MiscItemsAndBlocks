@@ -5,19 +5,24 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import Mod.Container.ContainerBin;
 import Mod.Container.ContainerBox;
+import Mod.Container.ContainerCharger;
 import Mod.Container.ContainerCraftingInv;
+import Mod.Container.ContainerGenerator;
+import Mod.Container.ContainerLockableChest;
 import Mod.Container.ContainerMill;
 import Mod.Container.ContainerPizzaOven;
-import Mod.Container.ContainerShelf;
+import Mod.Container.ContainerSolarPanel;
 import Mod.Container.ContainerSquezer;
 import Mod.Container.ContainerXpStorage;
-import Mod.Main.ModConfig;
 import Mod.TileEntity.TileEntityBin;
 import Mod.TileEntity.TileEntityBox;
+import Mod.TileEntity.TileEntityCharger;
 import Mod.TileEntity.TileEntityCraftingInv;
+import Mod.TileEntity.TileEntityGenerator;
+import Mod.TileEntity.TileEntityLockableChest;
 import Mod.TileEntity.TileEntityMill;
 import Mod.TileEntity.TileEntityOvenCore;
-import Mod.TileEntity.TileEntityShelf;
+import Mod.TileEntity.TileEntitySolarPanel;
 import Mod.TileEntity.TileEntitySquezer;
 import Mod.TileEntity.TileEntityXpStorage;
 import cpw.mods.fml.common.network.IGuiHandler;
@@ -38,6 +43,11 @@ public class GuiHandler implements IGuiHandler{
         	
         	return new ContainerPizzaOven(player.inventory, (TileEntityOvenCore) tile_entity);
         }
+        
+        if(tile_entity instanceof TileEntityCharger){
+        	
+        	return new ContainerCharger(player.inventory, (TileEntityCharger) tile_entity);
+        }
 
         
         if(tile_entity instanceof TileEntityXpStorage){
@@ -51,12 +61,7 @@ public class GuiHandler implements IGuiHandler{
             return new ContainerBin(player.inventory, (TileEntityBin) tile_entity);
 
         }
-        
-        if(tile_entity instanceof TileEntityShelf){
 
-            return new ContainerShelf(player.inventory, (TileEntityShelf) tile_entity);
-
-        }
         
         if(tile_entity instanceof TileEntityBox){
         	
@@ -76,6 +81,21 @@ public class GuiHandler implements IGuiHandler{
         if(tile_entity instanceof TileEntitySquezer){
         	
         	return new ContainerSquezer(player.inventory, (TileEntitySquezer) tile_entity);
+        }
+        
+        if(tile_entity instanceof TileEntitySolarPanel){
+        	
+        	return new ContainerSolarPanel(player.inventory, (TileEntitySolarPanel) tile_entity);
+        }
+        
+        if(tile_entity instanceof TileEntityGenerator){
+        	
+        	return new ContainerGenerator(player.inventory, (TileEntityGenerator) tile_entity);
+        }
+        
+        if(tile_entity instanceof TileEntityLockableChest){
+        	
+        	return new ContainerLockableChest(player.inventory, (TileEntityLockableChest) tile_entity);
         }
         
         
@@ -102,12 +122,7 @@ public class GuiHandler implements IGuiHandler{
             return new GuiTrashBin(player.inventory, (TileEntityBin) tile_entity);
 
         }
-        
-        if(tile_entity instanceof TileEntityShelf){
 
-            return new GuiShelf(player.inventory, (TileEntityShelf) tile_entity);
-
-        }
         
         if(tile_entity instanceof TileEntityBox){
         	
@@ -136,6 +151,25 @@ public class GuiHandler implements IGuiHandler{
         	return new GuiPizzaOven(player.inventory, (TileEntityOvenCore) tile_entity);
         }
         
+        if(tile_entity instanceof TileEntityCharger){
+        	
+        	return new GuiCharger(player.inventory, (TileEntityCharger) tile_entity);
+        }
+        
+        if(tile_entity instanceof TileEntitySolarPanel){
+        	
+        	return new GuiSolarPanel(player.inventory, (TileEntitySolarPanel) tile_entity);
+        }
+        
+        if(tile_entity instanceof TileEntityGenerator){
+        	
+        	return new GuiGenerator(player.inventory, (TileEntityGenerator) tile_entity);
+        }
+        
+        if(tile_entity instanceof TileEntityLockableChest){
+        	
+        	return new GuiLockableChest(player.inventory, (TileEntityLockableChest) tile_entity);
+        }
 
 
         return null;

@@ -9,6 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.MinecraftForge;
 import Mod.Block.ModBlocks;
+import Mod.Entity.EntityPowerArrow;
 import Mod.Entity.EntitySilverArrow;
 import Mod.GamePart.TileEntityGamePartBlue;
 import Mod.GamePart.TileEntityGamePartGreen;
@@ -25,14 +26,19 @@ import Mod.Network.PacketHandler;
 import Mod.Proxies.ServerProxy;
 import Mod.TileEntity.TileEntityBin;
 import Mod.TileEntity.TileEntityBox;
+import Mod.TileEntity.TileEntityCharger;
 import Mod.TileEntity.TileEntityCraftingInv;
 import Mod.TileEntity.TileEntityDisarmTrap;
+import Mod.TileEntity.TileEntityGenerator;
+import Mod.TileEntity.TileEntityLockableChest;
 import Mod.TileEntity.TileEntityMill;
 import Mod.TileEntity.TileEntityOvenCore;
 import Mod.TileEntity.TileEntityPillar;
-import Mod.TileEntity.TileEntityShelf;
+import Mod.TileEntity.TileEntityPowerCable;
 import Mod.TileEntity.TileEntitySidewaysPillar;
+import Mod.TileEntity.TileEntitySolarPanel;
 import Mod.TileEntity.TileEntitySquezer;
+import Mod.TileEntity.TileEntityWindMill;
 import Mod.TileEntity.TileEntityXpStorage;
 import Mod.VersionChecker.VersionChecker;
 import Mod.WorldGen.ModWorldGenerator;
@@ -128,19 +134,29 @@ public void preInit(FMLPreInitializationEvent event) {
         
         EntityRegistry.registerGlobalEntityID(EntitySilverArrow.class, "SilverArrow", EntityRegistry.findGlobalUniqueEntityId());
         EntityRegistry.registerModEntity(EntitySilverArrow.class, "SilverArrow", 0, this, 128, 1, true);
+        
+        EntityRegistry.registerGlobalEntityID(EntityPowerArrow.class, "PowerArrow", EntityRegistry.findGlobalUniqueEntityId());
+        EntityRegistry.registerModEntity(EntityPowerArrow.class, "PowerArrow", 1, this, 128, 1, true);
     	
         LanguageRegistry.instance().addStringLocalization("itemGroup."+Refrence.Mod_Name, "en_US", Refrence.Mod_Name);
         LanguageRegistry.instance().addStringLocalization("entity.SilverArrow.name", "Silver Arrow");
+        LanguageRegistry.instance().addStringLocalization("entity.PowerArrow.name", "Power Arrow");
         
         GameRegistry.registerTileEntity(TileEntityXpStorage.class, "XpStorage");
         GameRegistry.registerTileEntity(TileEntityBin.class, "TileEntityBin");
-        GameRegistry.registerTileEntity(TileEntityShelf.class, "TileEntityShelf");
         GameRegistry.registerTileEntity(TileEntityDisarmTrap.class, "TileEntityTrap");
         GameRegistry.registerTileEntity(TileEntityBox.class, "TileEntityBox");
         GameRegistry.registerTileEntity(TileEntityCraftingInv.class, "TileEntityCraftingInv");
         GameRegistry.registerTileEntity(TileEntityMill.class, "TileEntityMill");
         GameRegistry.registerTileEntity(TileEntitySquezer.class, "TileEntitySquezer");
         GameRegistry.registerTileEntity(TileEntityOvenCore.class, "TileEntityOvenCore");
+        GameRegistry.registerTileEntity(TileEntityLockableChest.class, "TileEntityLockableChest");
+        
+        GameRegistry.registerTileEntity(TileEntityCharger.class, "TileEntityCharger");
+        GameRegistry.registerTileEntity(TileEntitySolarPanel.class, "TileEntitySolarPanel");
+        GameRegistry.registerTileEntity(TileEntityWindMill.class, "TileEntityWindMill");
+        GameRegistry.registerTileEntity(TileEntityGenerator.class, "TileEntityGenerator");
+        GameRegistry.registerTileEntity(TileEntityPowerCable.class, "TileEntityPowerCable");
         
         GameRegistry.registerTileEntity(TileEntityGamePartRed.class, "TileEntityGamePartRed");
         GameRegistry.registerTileEntity(TileEntityGamePartBlue.class, "TileEntityGamePartBlue");

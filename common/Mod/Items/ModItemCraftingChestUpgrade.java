@@ -30,7 +30,8 @@ public class ModItemCraftingChestUpgrade extends Item{
     @Override
     public void addInformation(ItemStack itemstack, EntityPlayer player, List list, boolean par4)
     {
-            list.add("Shift-right click on crafting table to add a chest");
+            list.add("Shift-right click on crafting table");
+            list.add("to upgrade it to a work table.");
     }
     
     public boolean onItemUse(ItemStack item, EntityPlayer player, World world, int x, int y, int z, int par7, float par8, float par9, float par10)

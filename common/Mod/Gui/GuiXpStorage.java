@@ -21,7 +21,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class GuiXpStorage extends GuiContainer{
 	
 	
-	private final ResourceLocation Texture = new ResourceLocation("miscitems" , "textures/gui/XpStorageGui.png");
+	private final ResourceLocation Texture = new ResourceLocation("miscitems" , "textures/gui/GuiBlank.png");
 	
 	GuiTextField textfield;
 	

@@ -127,7 +127,7 @@ public class TileEntityMill extends TileEntityInvBase{
         public boolean CanItemWork(){
         	ItemStack itemstack = this.getStackInSlot(0);
         	
-        	if(itemstack.itemID == Item.wheat.itemID) return true;
+        	if(OutputItem() != null)return true;
         	
         	
         	return false;
@@ -138,6 +138,7 @@ public class TileEntityMill extends TileEntityInvBase{
         	int id = this.getStackInSlot(0).itemID;
         	
         	if(id == Item.wheat.itemID) return new ItemStack(ModItems.Flour);
+        	if(id == Item.rottenFlesh.itemID)return new ItemStack(Item.leather);
         	
         	return null;
         }

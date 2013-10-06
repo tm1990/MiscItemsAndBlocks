@@ -85,7 +85,7 @@ public class ModBlockTomatoPlant extends BlockCrops {
 	        {
 	            int l = par1World.getBlockMetadata(par2, par3, par4);
 
-	            if (l < 7)
+	            if (l < 5)
 	            {
 	                float f = this.getGrowthRate(par1World, par2, par3, par4);
 
@@ -198,7 +198,7 @@ public class ModBlockTomatoPlant extends BlockCrops {
 	    
 	    public int idDropped(int par1, Random par2Random, int par3)
 	    {
-	        return par1 == 4 ? this.getCropItem() : this.getSeedItem();
+	        return par1 >= 4 ? this.getCropItem() : this.getSeedItem();
 	    }
 
 

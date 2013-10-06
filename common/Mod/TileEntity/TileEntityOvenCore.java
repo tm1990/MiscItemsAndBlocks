@@ -110,7 +110,11 @@ public class TileEntityOvenCore extends TileEntityInvBase implements ISidedInven
     		if(IsFuel(this.getStackInSlot(0)) && Heat < 100){
     			
     			Fuel = Fuel + rand.nextInt(FuelValue(this.getStackInSlot(0)));
+    			if(this.getStackInSlot(0).itemID == Item.bucketLava.itemID){
+    				this.setInventorySlotContents(0, new ItemStack(Item.bucketEmpty));
+    			}else{
     					this.decrStackSize(0, 1);
+    			}
     			
     			if(Fuel > 20){
     				Fuel = 20;
@@ -120,7 +124,8 @@ public class TileEntityOvenCore extends TileEntityInvBase implements ISidedInven
 
     }else if (Fuel > 0 && Heat <= 100){
     
-    	if(this.worldObj.getBlockId(xCoord, yCoord - 1, zCoord) == Block.fire.blockID || this.worldObj.getBlockId(xCoord, yCoord - 1, zCoord) == Block.lavaMoving.blockID || this.worldObj.getBlockId(xCoord, yCoord - 1, zCoord) == Block.lavaStill.blockID){
+    	if(Heat < 100)
+    	if(this.worldObj.getBlockId(xCoord, yCoord - 1, zCoord) == Block.fire.blockID){
     		Heat = Heat + 1 + rand.nextInt(4);
     	}else{
     	Heat++;
@@ -136,14 +141,27 @@ public class TileEntityOvenCore extends TileEntityInvBase implements ISidedInven
     	
 
     		
-    		if(Heat < 4 && counter == Heatup && this.worldObj.getBlockId(xCoord, yCoord - 1, zCoord) == Block.fire.blockID || this.worldObj.getBlockId(xCoord, yCoord - 1, zCoord) == Block.lavaMoving.blockID || this.worldObj.getBlockId(xCoord, yCoord - 1, zCoord) == Block.lavaStill.blockID){
+    		if(Heat < 4 && counter == Heatup && this.worldObj.getBlockId(xCoord, yCoord - 1, zCoord) == Block.fire.blockID){
     			Heat++;
     			counter = 0;
+    			if(Heat > 100){
+    	    		Heat = 100;
+    	    		
+    	    	}
     		}else{
-    			if(this.worldObj.getBlockId(xCoord, yCoord - 1, zCoord) == Block.fire.blockID || this.worldObj.getBlockId(xCoord, yCoord - 1, zCoord) == Block.lavaMoving.blockID || this.worldObj.getBlockId(xCoord, yCoord - 1, zCoord) == Block.lavaStill.blockID)
+    			if(Heat > 100)
+    	    		Heat = 100;
+    			
+    			if(Heat < 100)
+    			if(this.worldObj.getBlockId(xCoord, yCoord - 1, zCoord) == Block.fire.blockID)
     		counter++;
+    	    		
+
     			else
     				counter = 0;
+    			
+    			if(Heat > 100)
+    	    		Heat = 100;
     			
     	    	if(Heat > 0){
     		if(rand.nextInt(100) == 5){
@@ -249,6 +267,7 @@ public class TileEntityOvenCore extends TileEntityInvBase implements ISidedInven
     	if(id == Item.coal.itemID)return 7;
     	if(id == Block.wood.blockID)return 4;
     	if(id == Block.planks.blockID)return 2;
+    	if(id == Item.bucketLava.itemID)return 40;
     	
     	}
 

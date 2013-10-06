@@ -32,6 +32,21 @@ public class ModItems {
 	public static Item Orange;
 	public static Item DisarmStick;
 	
+	public static Item Drill;
+	public static Item ElectricShears;
+	public static Item ElectricBow;
+	
+	public static Item Battery;
+	public static Item BigBattery;
+	public static Item AdvancedBattery;
+	
+	public static Item Circuit;
+	public static Item ModuleConnecter;
+	public static Item SolarCells;
+	public static Item Turbine;
+	
+	public static Item Key;
+	
 	public static Item PizzaBottom;
 	public static Item PizzaRaw;
 	public static Item Pizza;
@@ -85,7 +100,7 @@ public class ModItems {
         Register(Cardboard, "Cardboard");
         
         CraftingUpgrade = new ModItemCraftingChestUpgrade(ModConfig.CraftingUpgrade).setUnlocalizedName("CraftingUpgrade");
-        Register(CraftingUpgrade, "Crafting Table Chest Upgrade");
+        Register(CraftingUpgrade, "Worktable Upgrade");
         
         Tomato = new ModItemTomato(ModConfig.Tomato, 3, 1F, false).setUnlocalizedName("Tomato");
         Register(Tomato, "Tomato");
@@ -116,6 +131,39 @@ public class ModItems {
         
         DisarmStick = new ModItemDisarmStick(ModConfig.DisarmStick).setUnlocalizedName("DisarmStick");
         Register(DisarmStick, "Disarm Stick");
+        
+        Drill = new ModItemDrill(ModConfig.Drill, EnumToolMaterial.EMERALD).setUnlocalizedName("Drill");
+        Register(Drill, "Drill");
+        
+        Circuit = new ModItemCircuit(ModConfig.Circuit).setUnlocalizedName("Circuit");
+        Register(Circuit, "Circuit Board");
+        
+        ModuleConnecter = new ModItemModuleConnecter(ModConfig.ModuleConnecter).setUnlocalizedName("ModuleConnecter");
+        Register(ModuleConnecter, "Module Connecter Part");
+        
+        SolarCells = new ModItemSolarCells(ModConfig.SolarCells).setUnlocalizedName("SolarCells");
+        Register(SolarCells, "Solar Cells");
+        
+        Turbine = new ModItemTurbine(ModConfig.Turbine).setUnlocalizedName("Turbine");
+        Register(Turbine, "Turbine");
+        
+        Battery = new ModItemBattery(ModConfig.Battery).setUnlocalizedName("Battery");
+        Register(Battery, "Battery");
+        
+        BigBattery = new ModItemBigBattery(ModConfig.BigBattery).setUnlocalizedName("BigBattery");
+        Register(BigBattery, "Big Battery");
+        
+        AdvancedBattery = new ModItemAdvancedBattery(ModConfig.AdvancedBattery).setUnlocalizedName("AdvancedBattery");
+        Register(AdvancedBattery, "Advanced Battery");
+        
+        ElectricShears = new ModItemElectricShear(ModConfig.ElectricShears).setUnlocalizedName("ELShears");
+        Register(ElectricShears, "Electric Shears");
+        
+        ElectricBow = new ModItemElectricBow(ModConfig.ElectricBow).setUnlocalizedName("ElBow");
+        Register(ElectricBow, "Electric Bow");
+        
+        Key = new ModItemKey(ModConfig.Key).setUnlocalizedName("Key");
+        Register(Key, "Chest Key");
         
 		
 		

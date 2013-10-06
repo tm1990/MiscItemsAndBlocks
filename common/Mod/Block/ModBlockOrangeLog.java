@@ -21,12 +21,15 @@ public class ModBlockOrangeLog extends BlockRotatedPillar {
 	protected ModBlockOrangeLog(int par1) {
 		super(par1, Material.wood);
 		this.setStepSound(soundWoodFootstep);
+		this.setHardness(0.4F);
 	}
 	
     @SideOnly(Side.CLIENT)
-    private Icon[] field_111052_c = new Icon[1];
+    private Icon tree_side;
     @SideOnly(Side.CLIENT)
-    private Icon[] tree_top = new Icon[1];
+    private Icon tree_top;
+    
+    Icon[] tree_sides = new Icon[2];
 
 
     public int quantityDropped(Random par1Random)
@@ -67,20 +70,16 @@ public class ModBlockOrangeLog extends BlockRotatedPillar {
     }
 
     @SideOnly(Side.CLIENT)
-
-
     protected Icon getSideIcon(int par1)
     {
-        return this.field_111052_c[par1];
+        return this.tree_sides[par1];
     }
-
-    @SideOnly(Side.CLIENT)
-
-
+    
     protected Icon getEndIcon(int par1)
     {
-        return this.tree_top[par1];
+        return tree_top;
     }
+
 
 
     public static int limitToValidMetadata(int par0)
@@ -94,18 +93,13 @@ public class ModBlockOrangeLog extends BlockRotatedPillar {
     public void registerIcons(IconRegister par1IconRegister)
     {
 
-    	for(int i = 0; i < tree_top.length; i++){
-    		
-    		
-    		tree_top[i] = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "OrangeLog_top_" + i);
-    	}
+    		tree_top = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "OrangeLog_top");
+
+    		tree_side = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "OrangeLog");
     	
-    	for(int i = 0; i < field_111052_c.length; i++){
+    		tree_sides[0] = tree_side;
+    		tree_sides[1] = tree_side;
     		
-    		
-    		field_111052_c[i] = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "OrangeLog_" + i);
-    	}
-    	
     }
 
     @Override

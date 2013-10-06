@@ -1,10 +1,14 @@
 package Mod.Block;
 
 import net.minecraft.block.Block;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
 import Mod.GamePart.ModBlockGamePart;
+import Mod.ItemBlock.ModItemBlockLockableChest;
+import Mod.ItemBlock.ModItemBlockPowerCable;
+import Mod.ItemBlock.ModItemBlockTrashBin;
 import Mod.Main.Main;
 import Mod.Main.ModConfig;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -16,7 +20,6 @@ public class ModBlocks {
 	
 	public static Block XpStorage;
 	public static Block Bin;
-	public static Block Shelf;
 	public static Block DisarmTrap;
 	public static Block SilverOre;
 	public static Block Box;
@@ -33,6 +36,14 @@ public class ModBlocks {
 	public static Block PizzaOven;
 	public static Block OrangeLog;
 	public static Block OrangePlanks;
+	
+	public static Block PowerCable;
+	public static Block Charger;
+	public static Block SolarPanel;
+	public static Block WindMill;
+	public static Block Generator;
+	
+	public static Block LockableChest;
 	
 	public static Block GamePartRed;
 	public static Block GamePartBlue;
@@ -51,10 +62,7 @@ public class ModBlocks {
 		Register(XpStorage, "Xp Storage Block", true);
 		
 		Bin = new ModBlockBin(ModConfig.Bins).setUnlocalizedName("TrashBin");
-		Register(Bin, "Trash Bin", true);
-		
-		Shelf = new ModBlockShelf(ModConfig.Shelf).setUnlocalizedName("Shelf");
-	    Register(Shelf, "Shelf", true); 
+		Register(Bin, ModItemBlockTrashBin.class,"Trash Bin", true);
 		
 		DisarmTrap = new ModBlockDisarmTrap(ModConfig.Trap).setUnlocalizedName("DisamrTrap");
 		Register(DisarmTrap, "Disarm Trap", true);
@@ -109,7 +117,7 @@ public class ModBlocks {
         Register(Squezer, "Squezer", true);
         
         OrangeLeaf = new ModBlockOrangeLeaf(ModConfig.OrangeLeaf).setUnlocalizedName("OrangeLeaf");
-        Register(OrangeLeaf, "Orange Leaves", true);
+        Register(OrangeLeaf, "Orange Tree Leaves", true);
         
         OrangeSapling = new ModBlockOrangeSapling(ModConfig.OrangeSapling).setUnlocalizedName("OrangeSapling");
         Register(OrangeSapling, "Orange Sapling", true);
@@ -125,6 +133,23 @@ public class ModBlocks {
         OrangePlanks = new ModBlockOrangePlanks(ModConfig.OrangePlanks).setUnlocalizedName("OrangePlanks");
         Register(OrangePlanks, "Orange Tree Planks", true);
         
+        Charger = new ModBlockCharger(ModConfig.Charger).setUnlocalizedName("Charger");
+        Register(Charger, "Charger", true);
+        
+        SolarPanel = new ModBlockSolarPanel(ModConfig.SolarPanel).setUnlocalizedName("SolarPanel");
+        Register(SolarPanel, "Solar Panel", true);
+        
+        WindMill = new ModBlockWindMill(ModConfig.WindMill).setUnlocalizedName("WindMill");
+        Register(WindMill, "Wind Mill", true);
+        
+        Generator = new ModBlockGenerator(ModConfig.Generator).setUnlocalizedName("Generator");
+        Register(Generator, "Coal Generator", true);
+        
+        PowerCable = new ModBlockPowerCable(ModConfig.PowerCable).setUnlocalizedName("PowerCable").setCreativeTab(Main.CreativeTab);
+        Register(PowerCable, ModItemBlockPowerCable.class, "Power Cable", true);
+        
+        LockableChest = new ModBlockLockableChest(ModConfig.LockableChest).setUnlocalizedName("LockableChest").setCreativeTab(Main.CreativeTab);
+        Register(LockableChest , ModItemBlockLockableChest .class, "Lockable Chest", true);
         
         
         
@@ -157,6 +182,21 @@ public class ModBlocks {
 		        GameRegistry.registerBlock(Block, Name.toLowerCase().replace(" ", ""));
 	        }else{
 		        GameRegistry.registerBlock(Block, Name.toLowerCase());
+	        }
+	        
+	        if(AddTab)
+	        Block.setCreativeTab(Main.CreativeTab);
+
+		}
+		
+public static void Register(Block Block, Class<? extends ItemBlock> itemclass, String Name, boolean AddTab){
+			
+			
+	        LanguageRegistry.addName(Block, Name);
+	        if(Name.contains(" ")){
+		        GameRegistry.registerBlock(Block, itemclass, Name.toLowerCase().replace(" ", ""));
+	        }else{
+		        GameRegistry.registerBlock(Block, itemclass, Name.toLowerCase());
 	        }
 	        
 	        if(AddTab)

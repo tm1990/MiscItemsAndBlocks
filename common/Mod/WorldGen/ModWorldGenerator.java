@@ -5,6 +5,7 @@ import java.util.Random;
 import Mod.Block.ModBlocks;
 
 import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -34,21 +35,24 @@ public class ModWorldGenerator extends WorldGenerator implements IWorldGenerator
 	
     private void generateSurface(World world, Random random, int ChunkX, int ChunkZ) {
 
-    	for(int i = 0; i < 11; i++){
+    	
+    	for(int i = 0; i < 3; i++){
+    		if(world.getBiomeGenForCoords(ChunkX, ChunkZ) == BiomeGenBase.plains){
+    		
     		int Xcoord1 = ChunkX + random.nextInt(16);
     		int Ycoord1 = random.nextInt(90);
     		int Zcoord1 = ChunkZ + random.nextInt(16);
     		
     		(new WorldGenOrangeTree(false, 6, 0, 0, false)).generate(world, random, Xcoord1, Ycoord1, Zcoord1);
     	}
+    	}
     	
-        for(int k = 0; k < 1; k++){
             int firstChunkXCoord = ChunkX + random.nextInt(16);
             int firstBlockYCoord = random.nextInt(24);
             int firstChunkZCoord = ChunkX + random.nextInt(16);
-            
-            (new WorldGenMinable(ModBlocks.SilverOre.blockID, 7)).generate(world, random, firstChunkXCoord, firstBlockYCoord, firstChunkZCoord);
-        }
+
+            (new ModSilverWorldGen()).generate(world, random, firstChunkXCoord, firstBlockYCoord, firstChunkZCoord);
+        
     			
     		}
     

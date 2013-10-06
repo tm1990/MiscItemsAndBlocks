@@ -5,14 +5,17 @@ import java.util.List;
 import Mod.Entity.EntitySilverArrow;
 import Mod.Lib.Refrence;
 import Mod.Main.Main;
+import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
+import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemTool;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
@@ -21,7 +24,7 @@ import net.minecraftforge.event.entity.player.ArrowNockEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class ModItemSilverBow extends Item
+public class ModItemSilverBow extends ItemTool
 {
 	
 	private Icon _icon1;
@@ -31,7 +34,7 @@ private Icon _icon4;
 
     public ModItemSilverBow(int par1)
     {
-        super(par1);
+        super(par1, 0 , EnumToolMaterial.WOOD, new Block[]{});
         this.maxStackSize = 1;
         this.setMaxDamage(384);
     }

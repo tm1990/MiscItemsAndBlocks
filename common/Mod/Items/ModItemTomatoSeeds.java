@@ -28,7 +28,7 @@ public class ModItemTomatoSeeds extends ItemSeeds implements IPlantable{
 	    @Override
 	    public void addInformation(ItemStack itemstack, EntityPlayer player, List list, boolean par4)
 	    {
-	            list.add("Seeds");
+	            list.add("Can be planted to grow tomatos.");
 	    }
 
 }

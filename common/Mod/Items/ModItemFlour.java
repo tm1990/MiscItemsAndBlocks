@@ -24,5 +24,10 @@ public class ModItemFlour extends Item{
 		   
 	   }
 	   
+	    @Override
+	    public void addInformation(ItemStack itemstack, EntityPlayer player, List list, boolean par4)
+	    {
+	            list.add("Can be smelted into bread or crafted into a pizza base.");
+	    }
 	
 }
