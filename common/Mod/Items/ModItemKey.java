@@ -2,6 +2,7 @@ package Mod.Items;
 
 import java.util.List;
 
+import Mod.Block.ModBlockLockableChest;
 import Mod.Block.ModBlocks;
 import Mod.Lib.Refrence;
 import Mod.TileEntity.TileEntityLockableChest;
@@ -93,10 +94,49 @@ public class ModItemKey extends ItemTool{
 		    		}else{
 		    			if(world.isRemote)
 		    			player.addChatMessage("Chest already locked!");
+		    			
 		    		}
 		    		}else{
-		    			if(world.isRemote)
+		    			if(world.isRemote){
+		    				if(player.isSneaking()){
+		    				
+		    					
+	    	    				NBTTagCompound Compound = item.getTagCompound().getCompoundTag("ChestData");
+	    	    				
+		    				if(Compound.getInteger("LocX") == x){
+			    				if(Compound.getInteger("LocY") == y){
+				    				if(Compound.getInteger("LocZ") == z){
+				    					
+    			    			
+				    					int blockid = world.getBlockId(x, y, z);
+				    					int meta = world.getBlockMetadata(x, y, z);
+				    					Block block = Block.blocksList[blockid];
+				    					
+				    					if(block == ModBlocks.LockableChest){
+				    						ModBlockLockableChest Mod_Block = (ModBlockLockableChest)block;
+				    						
+				    						Mod_Block.breakBlock(world, x, y, z, blockid, meta);
+				    						
+				    						for(int i = 0; i < tile.getSizeInventory(); i++){
+				    							tile.setInventorySlotContents(i, null);
+				    						}
+				    						
+				    						world.setBlock(x, y, z, 0);
+				    						
+				    						
+				    					}
+    			    			    		
+    			    			    		return true;
+				    				}	
+			    				}
+		    				
+		    				}
+		    				}
+		    				
+		    				
+		    				
 		    				player.addChatMessage("Key is already linked to a chest!");
+		    			}
 		    		}
 		    		
 		    	}

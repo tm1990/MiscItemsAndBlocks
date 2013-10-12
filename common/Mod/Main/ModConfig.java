@@ -28,6 +28,8 @@ public class ModConfig {
 	public static int OrangeLog;
 	public static int OrangePlanks;
 	
+	public static int ItemPedestal;
+	
 	public static int LockableChest;
 	
 	
@@ -145,6 +147,8 @@ public class ModConfig {
 		PowerCable = config.getBlock("Blocks", "Power Cable Block Id", 629).getInt();
 		
 		LockableChest = config.getBlock("Blocks", "Lockable chest Block Id", 630).getInt();
+		
+		ItemPedestal = config.getBlock("Blocks", "Item Pedestal Block Id", 631).getInt();
 		
 		
         XpExtractor = config.getItem("Items","Xp Extractor Id", 22000).getInt();

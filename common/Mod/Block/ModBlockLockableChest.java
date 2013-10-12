@@ -26,6 +26,7 @@ public class ModBlockLockableChest extends BlockContainer{
 		super(par1, Material.iron);
         this.setBlockBounds(0.0625F, 0.0F, 0.0625F, 0.9375F, 0.875F, 0.9375F);
         this.setHardness(1);
+        this.setBlockUnbreakable();
         
 	}
 
@@ -54,6 +55,20 @@ public class ModBlockLockableChest extends BlockContainer{
 	    		tile = (TileEntityLockableChest)world.getBlockTileEntity(x, y, z);
 	    		
     			ItemStack item = player.inventory.getCurrentItem();
+    			
+    			
+    			if(player.isSneaking()){
+    	    		if(player.inventory.getCurrentItem() != null && player.inventory.getCurrentItem().itemID == ModItems.Key.itemID){
+    	    			
+
+    	    			
+    	    		}
+    	    			
+    				
+    				
+    				
+    			}
+    			
     			
     			if(item == null || item.itemID != ModItems.Key.itemID){
     				player.addChatMessage("You require a key to access this chest!");
@@ -94,6 +109,12 @@ public class ModBlockLockableChest extends BlockContainer{
 		    				if(Compound.getInteger("LocY") == y){
 			    				if(Compound.getInteger("LocZ") == z){
 			    					
+			    					
+			    					if(!tile.IsLocked) {
+			    						item.setTagCompound(null);
+				    					player.addChatMessage("This chest requires a new key.");
+				    					return false;
+			    					}
 			    					
 			    					player.addChatMessage("Opend the chest with the correct key.");
 			    					
@@ -174,8 +195,61 @@ public class ModBlockLockableChest extends BlockContainer{
 	    @Override
 	    public void breakBlock(World World, int x, int y, int z, int id, int meta)
 	    {
-	   
-	    }
+	    	
+	    	System.out.println("block broken!");
+	TileEntity tile = World.getBlockTileEntity(x, y, z);
+	
+	if(tile != null && tile instanceof IInventory){
+		IInventory inv = (IInventory)tile;
+		
+		for(int i = 0; i < inv.getSizeInventory(); i++){
+			ItemStack stack = inv.getStackInSlotOnClosing(i);
+			ItemStack Item = inv.getStackInSlot(i);
+			
+			if(stack != null){
+				float spawnX = x + World.rand.nextFloat();
+				float spawnY = y + World.rand.nextFloat();
+				float spawnZ = z + World.rand.nextFloat();
+				
+				
+				EntityItem droppedItem = new EntityItem(World, spawnX, spawnY, spawnZ, stack);
+				
+				float mult = 0.05F;
+				
+				droppedItem.motionX = (-0.5 + World.rand.nextFloat()) * mult;
+				droppedItem.motionY = (4 + World.rand.nextFloat()) * mult;
+				droppedItem.motionZ = (-0.5 + World.rand.nextFloat()) * mult;
+				
+				
+				World.spawnEntityInWorld(droppedItem);
+				
+				
+				super.breakBlock(World, x, y, z, id, meta);
+			}
+			
+		}
+
+	}
+	    		
+	    		
+	    		if(tile instanceof TileEntityLockableChest){
+	    			TileEntityLockableChest tile_entity = (TileEntityLockableChest)tile;
+	    			tile_entity.x = 0;
+	    			tile_entity.y = 0;
+	    			tile_entity.z = 0;
+	    			
+	    			tile_entity.Player = "null";
+	    			tile_entity.IsLocked = false;
+	    			
+	    			tile_entity.EmptyInv();
+	    			
+	    			
+	    		}
+	    
+	    			
+	    		
+	    	}
+	    
 
 
 	    	

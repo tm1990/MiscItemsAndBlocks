@@ -13,11 +13,13 @@ import Mod.GamePart.TileEntityGamePartRed;
 import Mod.GamePart.TileEntityGamePartYellow;
 import Mod.Models.PowerArrowRender;
 import Mod.Models.SilverArrowRender;
+import Mod.Render.ItemPedestalItemRender;
 import Mod.Render.LockableChestItemRender;
 import Mod.Render.TrashBinItemRender;
 import Mod.Tick.ClientTickHandler;
 import Mod.TileEntity.TileEntityBin;
 import Mod.TileEntity.TileEntityDisarmTrap;
+import Mod.TileEntity.TileEntityItemPedestal;
 import Mod.TileEntity.TileEntityLockableChest;
 import Mod.TileEntity.TileEntityPillar;
 import Mod.TileEntity.TileEntityPowerCable;
@@ -25,6 +27,7 @@ import Mod.TileEntity.TileEntitySidewaysPillar;
 import Mod.TileEntityRenderer.TileEntityBinRender;
 import Mod.TileEntityRenderer.TileEntityDisarmTrapRenderer;
 import Mod.TileEntityRenderer.TileEntityGamePartRender;
+import Mod.TileEntityRenderer.TileEntityItemPedestalRender;
 import Mod.TileEntityRenderer.TileEntityLockableChestRender;
 import Mod.TileEntityRenderer.TileEntityPillarRender;
 import Mod.TileEntityRenderer.TileEntityPowerCableRender;
@@ -45,7 +48,7 @@ public class ClientProxy extends ServerProxy{
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityDisarmTrap.class, new TileEntityDisarmTrapRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPowerCable.class, new TileEntityPowerCableRender());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityLockableChest.class, new TileEntityLockableChestRender());
-        
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityItemPedestal.class, new TileEntityItemPedestalRender());
         
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityGamePartRed.class, new TileEntityGamePartRender("red"));
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityGamePartBlue.class, new TileEntityGamePartRender("blue"));
@@ -56,11 +59,14 @@ public class ClientProxy extends ServerProxy{
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPillar.class, new TileEntityPillarRender());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySidewaysPillar.class, new TileEntitySidewaysPillarRender());
         
+        
         RenderingRegistry.registerEntityRenderingHandler(EntitySilverArrow.class, new SilverArrowRender());
         RenderingRegistry.registerEntityRenderingHandler(EntityPowerArrow.class, new PowerArrowRender());
         
+        
         MinecraftForgeClient.registerItemRenderer(ModBlocks.LockableChest.blockID, new LockableChestItemRender());
         MinecraftForgeClient.registerItemRenderer(ModBlocks.Bin.blockID, new TrashBinItemRender());
+        MinecraftForgeClient.registerItemRenderer(ModBlocks.ItemPedestal.blockID, new ItemPedestalItemRender());
 
 }
     

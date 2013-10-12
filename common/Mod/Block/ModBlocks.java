@@ -6,6 +6,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
 import Mod.GamePart.ModBlockGamePart;
+import Mod.ItemBlock.ModItemBlockItemPedestal;
 import Mod.ItemBlock.ModItemBlockLockableChest;
 import Mod.ItemBlock.ModItemBlockPowerCable;
 import Mod.ItemBlock.ModItemBlockTrashBin;
@@ -36,6 +37,8 @@ public class ModBlocks {
 	public static Block PizzaOven;
 	public static Block OrangeLog;
 	public static Block OrangePlanks;
+	
+	public static Block ItemPedestal;
 	
 	public static Block PowerCable;
 	public static Block Charger;
@@ -150,6 +153,9 @@ public class ModBlocks {
         
         LockableChest = new ModBlockLockableChest(ModConfig.LockableChest).setUnlocalizedName("LockableChest").setCreativeTab(Main.CreativeTab);
         Register(LockableChest , ModItemBlockLockableChest .class, "Lockable Chest", true);
+        
+        ItemPedestal = new ModBlockItemPedestal(ModConfig.ItemPedestal).setUnlocalizedName("ItemPedestal").setCreativeTab(Main.CreativeTab);
+        Register(ItemPedestal, ModItemBlockItemPedestal.class, "Item Pedestal", true);
         
         
         

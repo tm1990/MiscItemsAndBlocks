@@ -83,7 +83,6 @@ public class TileEntityLockableChest extends TileEntityInvBase{
    	
     public void updateEntity()
     {
-        float f = 5.0F;
         
         if(x != 0 || y != 0 || z != 0 || Player != "null"){
         	IsLocked = true;
@@ -91,6 +90,20 @@ public class TileEntityLockableChest extends TileEntityInvBase{
         	IsLocked = false;
         }
         
+    }
+    
+    
+    public void EmptyInv(){
+    	
+    	
+    	for(int i = 0; i < this.getSizeInventory(); i++){
+    		System.out.println(this.getStackInSlot(i) + ":" + i);
+    		
+    		this.setInventorySlotContents(i, null);
+    		
+    	}
+    	
+    	
     }
     
     public void SetX(int i){x = i;}

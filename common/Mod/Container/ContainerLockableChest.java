@@ -12,7 +12,7 @@ public class ContainerLockableChest extends Container{
 
     private TileEntityLockableChest tile;
     
-    int numRows = 3;
+    int numRows = 6;
 	
     public ContainerLockableChest(InventoryPlayer InvPlayer, TileEntityLockableChest tile)
     {
@@ -58,14 +58,14 @@ public class ContainerLockableChest extends Container{
 	            ItemStack itemstack1 = slot.getStack();
 	            itemstack = itemstack1.copy();
 
-	            if (par2 < this.numRows * 5)
+	            if (par2 < this.numRows * 9)
 	            {
-	                if (!this.mergeItemStack(itemstack1, this.numRows * 5, this.inventorySlots.size(), true))
+	                if (!this.mergeItemStack(itemstack1, this.numRows * 9, this.inventorySlots.size(), true))
 	                {
 	                    return null;
 	                }
 	            }
-	            else if (!this.mergeItemStack(itemstack1, 0, this.numRows * 5, false))
+	            else if (!this.mergeItemStack(itemstack1, 0, this.numRows * 9, false))
 	            {
 	                return null;
 	            }
