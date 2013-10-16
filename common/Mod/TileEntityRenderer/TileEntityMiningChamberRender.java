@@ -16,19 +16,19 @@ import net.minecraft.world.World;
 
 import org.lwjgl.opengl.GL11;
 
-import Mod.Models.ItemPedestalModel;
-import Mod.TileEntity.TileEntityItemPedestal;
+import Mod.Models.MiningChamberModel;
+import Mod.TileEntity.TileEntityMiningChamber;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class TileEntityItemPedestalRender extends TileEntitySpecialRenderer {
+public class TileEntityMiningChamberRender extends TileEntitySpecialRenderer {
     
-    private final ItemPedestalModel model;
+    private final MiningChamberModel model;
     private final RenderItem customRenderItem;
    
-    public TileEntityItemPedestalRender() {
-            this.model = new ItemPedestalModel();
+    public TileEntityMiningChamberRender() {
+            this.model = new MiningChamberModel();
             customRenderItem = new RenderItem() {
 
                 @Override
@@ -50,8 +50,8 @@ public class TileEntityItemPedestalRender extends TileEntitySpecialRenderer {
    
     @Override
     public void renderTileEntityAt(TileEntity te, double x, double y, double z, float scale) {
-    	if(te instanceof TileEntityItemPedestal){
-    	TileEntityItemPedestal tile = (TileEntityItemPedestal)te;
+    	if(te instanceof TileEntityMiningChamber){
+    	TileEntityMiningChamber tile = (TileEntityMiningChamber)te;
     		
     		
     		
@@ -61,7 +61,7 @@ public class TileEntityItemPedestalRender extends TileEntitySpecialRenderer {
             GL11.glTranslatef((float) x + 0.5F, (float) y + 1.5F, (float) z + 0.5F);
             GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
 
-            bindTexture(new ResourceLocation("miscitems" , "textures/models/ItemPedestal.png"));
+            bindTexture(new ResourceLocation("miscitems" , "textures/models/MiningChamber.png"));
             
             this.model.render((Entity)null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
             
@@ -70,17 +70,17 @@ public class TileEntityItemPedestalRender extends TileEntitySpecialRenderer {
          
 
      
-            if(tile.getStackInSlot(0) != null){
-            float scaleFactor = getGhostItemScaleFactor(tile.getStackInSlot(0));
+            if(tile.getStackInSlot(tile.ToolSlot) != null){
+            float scaleFactor = getGhostItemScaleFactor(tile.getStackInSlot(tile.ToolSlot));
             float rotationAngle = (float) (520.0 * (System.currentTimeMillis() & 0x3FFFL) / 0x3FFFL);
 
             EntityItem ghostEntityItem = new EntityItem(te.worldObj);
             ghostEntityItem.hoverStart = 0.0F;
-            ghostEntityItem.setEntityItemStack(tile.getStackInSlot(0));
+            ghostEntityItem.setEntityItemStack(tile.getStackInSlot(tile.ToolSlot));
 
-            GL11.glTranslatef((float) x + 0.5F, (float) y + 1.62F, (float) z + 0.5F);
+            GL11.glTranslatef((float) x + 0.5F, (float) y + 0.32F, (float) z + 0.5F);
             
-            GL11.glScalef(scaleFactor + 0.24F, scaleFactor + 0.24F, scaleFactor + 0.24F);
+            GL11.glScalef(scaleFactor + 0.34F, scaleFactor + 0.34F, scaleFactor + 0.34F);
             GL11.glRotatef(rotationAngle, 0.0F, 1.0F, 0.0F);
 
             customRenderItem.doRenderItem(ghostEntityItem, 0, 0, 0, 0, 0);

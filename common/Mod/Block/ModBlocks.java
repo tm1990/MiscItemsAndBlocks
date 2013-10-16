@@ -8,6 +8,7 @@ import net.minecraftforge.oredict.OreDictionary;
 import Mod.GamePart.ModBlockGamePart;
 import Mod.ItemBlock.ModItemBlockItemPedestal;
 import Mod.ItemBlock.ModItemBlockLockableChest;
+import Mod.ItemBlock.ModItemBlockMiningChamber;
 import Mod.ItemBlock.ModItemBlockPowerCable;
 import Mod.ItemBlock.ModItemBlockTrashBin;
 import Mod.Main.Main;
@@ -39,6 +40,7 @@ public class ModBlocks {
 	public static Block OrangePlanks;
 	
 	public static Block ItemPedestal;
+	public static Block MiningChamber;
 	
 	public static Block PowerCable;
 	public static Block Charger;
@@ -156,6 +158,9 @@ public class ModBlocks {
         
         ItemPedestal = new ModBlockItemPedestal(ModConfig.ItemPedestal).setUnlocalizedName("ItemPedestal").setCreativeTab(Main.CreativeTab);
         Register(ItemPedestal, ModItemBlockItemPedestal.class, "Item Pedestal", true);
+        
+        MiningChamber = new ModBlockMiningChamber(ModConfig.MiningChamber).setUnlocalizedName("MiningChamber").setCreativeTab(Main.CreativeTab);
+        Register(MiningChamber, ModItemBlockMiningChamber.class, "Mining Chamber", true);
         
         
         

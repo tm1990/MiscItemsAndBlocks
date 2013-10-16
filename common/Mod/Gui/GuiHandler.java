@@ -10,6 +10,7 @@ import Mod.Container.ContainerCraftingInv;
 import Mod.Container.ContainerGenerator;
 import Mod.Container.ContainerLockableChest;
 import Mod.Container.ContainerMill;
+import Mod.Container.ContainerMiningChamber;
 import Mod.Container.ContainerPizzaOven;
 import Mod.Container.ContainerSolarPanel;
 import Mod.Container.ContainerSquezer;
@@ -21,6 +22,7 @@ import Mod.TileEntity.TileEntityCraftingInv;
 import Mod.TileEntity.TileEntityGenerator;
 import Mod.TileEntity.TileEntityLockableChest;
 import Mod.TileEntity.TileEntityMill;
+import Mod.TileEntity.TileEntityMiningChamber;
 import Mod.TileEntity.TileEntityOvenCore;
 import Mod.TileEntity.TileEntitySolarPanel;
 import Mod.TileEntity.TileEntitySquezer;
@@ -42,6 +44,11 @@ public class GuiHandler implements IGuiHandler{
         if(tile_entity instanceof TileEntityOvenCore){
         	
         	return new ContainerPizzaOven(player.inventory, (TileEntityOvenCore) tile_entity);
+        }
+        
+        if(tile_entity instanceof TileEntityMiningChamber){
+        	
+        	return new ContainerMiningChamber(player.inventory, (TileEntityMiningChamber) tile_entity);
         }
         
         if(tile_entity instanceof TileEntityCharger){
@@ -170,6 +177,12 @@ public class GuiHandler implements IGuiHandler{
         	
         	return new GuiLockableChest(player.inventory, (TileEntityLockableChest) tile_entity);
         }
+        
+        if(tile_entity instanceof TileEntityMiningChamber){
+        	
+        	return new GuiMiningChamber(player.inventory, (TileEntityMiningChamber) tile_entity);
+        }
+
 
 
         return null;

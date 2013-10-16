@@ -29,6 +29,7 @@ public class ModConfig {
 	public static int OrangePlanks;
 	
 	public static int ItemPedestal;
+	public static int MiningChamber;
 	
 	public static int LockableChest;
 	
@@ -149,6 +150,7 @@ public class ModConfig {
 		LockableChest = config.getBlock("Blocks", "Lockable chest Block Id", 630).getInt();
 		
 		ItemPedestal = config.getBlock("Blocks", "Item Pedestal Block Id", 631).getInt();
+		MiningChamber = config.getBlock("Blocks", "Mining Chamber Block Id", 632).getInt();
 		
 		
         XpExtractor = config.getItem("Items","Xp Extractor Id", 22000).getInt();

@@ -2,6 +2,7 @@ package Mod.TileEntity;
 
 import Mod.Block.ModBlockCharger;
 import Mod.Block.ModBlockPowerCable;
+import Mod.Block.ModBlockPowerMachine;
 import Mod.Block.ModBlockPowerModule;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
@@ -57,12 +58,12 @@ public class TileEntityPowerCable extends TileEntity{
   
     	
     	boolean Top, Bottom, Left, Right, Front, Back;
-        Bottom = IsPowerBlock(world, X, Y - 1, Z, true, false);
-        Top = IsPowerBlock(world, X, Y + 1, Z, true, true);
-        Front = IsPowerBlock(world, X, Y, Z + 1, false, false);
-        Back = IsPowerBlock(world, X, Y, Z - 1, false, false);
-        Right = IsPowerBlock(world, X - 1, Y, Z, false, false);
-        Left = IsPowerBlock(world, X + 1, Y, Z, false, false);
+        Bottom = IsPowerBlock(world, X, Y - 1, Z, true, false, true);
+        Top = IsPowerBlock(world, X, Y + 1, Z, true, true, true);
+        Front = IsPowerBlock(world, X, Y, Z + 1, false, false, false);
+        Back = IsPowerBlock(world, X, Y, Z - 1, false, false, false);
+        Right = IsPowerBlock(world, X - 1, Y, Z, false, false, false);
+        Left = IsPowerBlock(world, X + 1, Y, Z, false, false, false);
         
         if(Bottom)
         	SendPowerToCable(world, X, Y - 1, Z);
@@ -151,11 +152,14 @@ public class TileEntityPowerCable extends TileEntity{
     	Power = i;
     }
     
- public boolean IsPowerBlock(World world, int x, int y, int z, boolean CanBeCharger, boolean CanBeModule){
+ public boolean IsPowerBlock(World world, int x, int y, int z, boolean CanBeCharger, boolean CanBeModule, boolean CanBeMachine){
     	
     	int BlockID = world.getBlockId(x, y, z);
     	
     	Block block = Block.blocksList[BlockID];
+    	
+    	if(CanBeMachine)
+    		if(block instanceof ModBlockPowerMachine)return true;
     	
     	if(block instanceof ModBlockPowerCable)return true;
     	if(CanBeModule)
@@ -179,7 +183,9 @@ public class TileEntityPowerCable extends TileEntity{
 	}
 	 }
  }
-       
+   
+ 
+   
 
 }
 

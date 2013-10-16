@@ -33,6 +33,7 @@ import Mod.TileEntity.TileEntityGenerator;
 import Mod.TileEntity.TileEntityItemPedestal;
 import Mod.TileEntity.TileEntityLockableChest;
 import Mod.TileEntity.TileEntityMill;
+import Mod.TileEntity.TileEntityMiningChamber;
 import Mod.TileEntity.TileEntityOvenCore;
 import Mod.TileEntity.TileEntityPillar;
 import Mod.TileEntity.TileEntityPowerCable;
@@ -154,6 +155,7 @@ public void preInit(FMLPreInitializationEvent event) {
         GameRegistry.registerTileEntity(TileEntityLockableChest.class, "TileEntityLockableChest");
         
         GameRegistry.registerTileEntity(TileEntityItemPedestal.class, "TileEntityItemPedestal");
+        GameRegistry.registerTileEntity(TileEntityMiningChamber.class, "TileEntityMiningChamber");
         
         GameRegistry.registerTileEntity(TileEntityCharger.class, "TileEntityCharger");
         GameRegistry.registerTileEntity(TileEntitySolarPanel.class, "TileEntitySolarPanel");

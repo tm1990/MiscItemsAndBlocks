@@ -13,6 +13,7 @@ import org.lwjgl.opengl.GL11;
 
 import Mod.Block.ModBlockCharger;
 import Mod.Block.ModBlockPowerCable;
+import Mod.Block.ModBlockPowerMachine;
 import Mod.Block.ModBlockPowerModule;
 import Mod.Block.ModBlocks;
 import Mod.Models.ModelPowerCable;
@@ -48,17 +49,17 @@ public class TileEntityPowerCableRender extends TileEntitySpecialRenderer {
             
             boolean top, bottom, front, back, right, left;
             
-            bottom = IsPowerBlock(world, X, Y - 1, Z, true, false);
+            bottom = IsPowerBlock(world, X, Y - 1, Z, true, false, true);
             
-            top = IsPowerBlock(world, X, Y + 1, Z, true, true);
+            top = IsPowerBlock(world, X, Y + 1, Z, true, true, true);
             
-            front = IsPowerBlock(world, X, Y, Z + 1, false, false);
+            front = IsPowerBlock(world, X, Y, Z + 1, false, false, false);
             
-            back = IsPowerBlock(world, X, Y, Z - 1, false, false);
+            back = IsPowerBlock(world, X, Y, Z - 1, false, false, false);
             
-            right = IsPowerBlock(world, X - 1, Y, Z, false, false);
+            right = IsPowerBlock(world, X - 1, Y, Z, false, false, false);
             
-            left = IsPowerBlock(world, X + 1, Y, Z, false, false);
+            left = IsPowerBlock(world, X + 1, Y, Z, false, false, false);
             
          GL11.glPushMatrix();
             GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
@@ -79,7 +80,7 @@ public class TileEntityPowerCableRender extends TileEntitySpecialRenderer {
             OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit,  (float) modulousModifier,  divModifier);
     }
     
-    public boolean IsPowerBlock(World world, int x, int y, int z, boolean CanBeCharger, boolean CanBeModule){
+    public boolean IsPowerBlock(World world, int x, int y, int z, boolean CanBeCharger, boolean CanBeModule, boolean CanBeMachine){
     	
     	int BlockID = world.getBlockId(x, y, z);
     	
@@ -90,6 +91,8 @@ public class TileEntityPowerCableRender extends TileEntitySpecialRenderer {
     	if(block instanceof ModBlockPowerModule)return true;
     	if(CanBeCharger)
     	if(block instanceof ModBlockCharger)return true;
+    	if(CanBeMachine)
+    	if(block instanceof ModBlockPowerMachine)return true;
 
     	
     	return false;

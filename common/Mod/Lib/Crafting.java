@@ -45,6 +45,11 @@ public class Crafting {
 			GameRegistry.addShapelessRecipe(new ItemStack(ModItems.Cheese), Item.bucketMilk);
 			GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.PizzaOven), new Object[] {"SSS", "SFS", "SSS", 'S', Block.stone, 'F', Block.furnaceIdle});
 			
+			GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.LockableChest), new Object[]{"IKI", "ICI", "III", 'I', Item.ingotIron, 'K', ModItems.Key, 'C', Block.chest});
+			GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.ItemPedestal, 2), new Object[]{"I I", " S ", "SSS", 'I', Item.ingotIron, 'S', Block.stone});
+			GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.MiningChamber), new Object[]{"ISI", "IPI", "SSS", 'I', Item.ingotIron, 'S', Block.stone, 'P', Item.pickaxeDiamond});
+			GameRegistry.addShapedRecipe(new ItemStack(ModItems.Key), new Object[]{"GGG", " GG", 'G', Item.ingotGold});
+			
 			GameRegistry.addShapedRecipe(new ItemStack(ModItems.Drill), new Object[]{"DD ", "DSI", " IP", 'D', Item.diamond, 'P', ModItems.Battery, 'I', Item.ingotIron, 'S', new ItemStack(ModItems.Circuit, 1, 0)});
 			GameRegistry.addShapedRecipe(new ItemStack(ModItems.Battery, 1, 16), new Object[]{" C ", "IRI", "IRI", 'C', new ItemStack(ModItems.Circuit, 1, 0), 'I', Item.ingotIron, 'R', Item.redstone});
 			GameRegistry.addShapedRecipe(new ItemStack(ModItems.ElectricShears), new Object[]{"ISI", "IBI", "ICI", 'I', Item.ingotIron, 'S', Item.shears, 'B', ModItems.Battery, 'C', new ItemStack(ModItems.Circuit, 1, 0)});

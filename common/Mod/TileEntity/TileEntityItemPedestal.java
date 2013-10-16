@@ -160,22 +160,45 @@ public class TileEntityItemPedestal extends TileEntity implements IInventory{
 	    
 	    public ItemStack Recipe(ItemStack[] items){
 	    	
+	    	if(Check(items, null, Item.blazeRod, null, Item.blazeRod, Item.enderPearl, Item.blazeRod, null, Item.blazeRod, null))
+	    	return new ItemStack(Item.eyeOfEnder, 8);
 	    	
-	    	if(items[0] == null)
-	    			if(Item(items[1], Item.blazeRod))
-	    					if(items[2] == null)
-	    					    if(Item(items[3],Item.blazeRod))
-	    							if(Item(items[4],Item.enderPearl))
-	    									if(Item(items[5],Item.blazeRod))
-	    											if(items[6] == null)
-	    											    if(Item(items[7],Item.blazeRod))
-	    													if(items[8] == null)
-	    	return new ItemStack(Item.eyeOfEnder, 4);
+	    	if(Check(items, Item.ingotIron, Item.ingotIron, Item.ingotIron, Item.ingotIron, Item.ingotGold, Item.ingotIron, Item.ingotIron, Item.ingotIron, Item.ingotIron))
+    	   return new ItemStack(Item.ingotGold, 4);
+	    	
+	    	if(Check(items, Item.ingotGold, Item.ingotGold, Item.ingotGold, Item.ingotGold, Item.diamond, Item.ingotGold, Item.ingotGold, Item.ingotGold, Item.ingotGold))
+    	   return new ItemStack(Item.diamond, 4);
+	    	
+	    	if(Check(items, null, Item.diamond, null, Item.diamond, Item.diamond, Item.diamond, null, Item.diamond, null))
+    	   return new ItemStack(Item.ingotGold, 5);
+	    	
+	    	if(Check(items, null, Item.ingotGold, null, Item.ingotGold, Item.ingotGold, Item.ingotGold, null, Item.ingotGold, null))
+	     	   return new ItemStack(Item.ingotIron, 5);
 	    	
 	    	return null;
 	    }
 	    
+	    public boolean Check(ItemStack item[], Item item1, Item item2, Item item3, Item item4, Item item5, Item item6, Item item7, Item item8, Item item9){
+	    	
+	    	
+	    	if(Item(item[0], item1))
+    			if(Item(item[1], item2))
+    					if(Item(item[2], item3))
+    					    if(Item(item[3], item4))
+    							if(Item(item[4], item5))
+    									if(Item(item[5], item6))
+    											if(Item(item[6], item7))
+    											    if(Item(item[7], item8))
+    													if(Item(item[8], item9))
+    														return true;
+
+	    	return false;
+	    }
+	    
 	    public boolean Item(ItemStack item, Item checkItem){
+	    	
+	    	if(checkItem == null)
+	    		return true;
 	    	
 	    	return item != null && item.getItem() == checkItem;
 	    }
@@ -199,6 +222,12 @@ public class TileEntityItemPedestal extends TileEntity implements IInventory{
       			SetItem(null, this.xCoord - 1, this.yCoord, this.zCoord);
       			SetItem(null, this.xCoord, this.yCoord, this.zCoord + 1);
       			SetItem(null, this.xCoord, this.yCoord, this.zCoord - 1);
+      			
+      			SetItem(null, this.xCoord + 1, this.yCoord, this.zCoord - 1);
+      			SetItem(null, this.xCoord - 1, this.yCoord, this.zCoord - 1);
+      			SetItem(null, this.xCoord + 1, this.yCoord, this.zCoord + 1);
+      			SetItem(null, this.xCoord - 1, this.yCoord, this.zCoord + 1);
+      			
       			
       			
       			

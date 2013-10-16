@@ -4,13 +4,13 @@ import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.network.INetworkManager;
 import net.minecraft.network.packet.Packet250CustomPayload;
-
+import Mod.Container.ContainerMiningChamber;
 import Mod.Container.ContainerXpStorage;
+import Mod.TileEntity.TileEntityMiningChamber;
 import Mod.TileEntity.TileEntityXpStorage;
 
 import com.google.common.io.ByteArrayDataInput;
@@ -54,8 +54,15 @@ public class PacketHandler implements IPacketHandler{
 				if (container != null && container instanceof ContainerXpStorage) {
 					TileEntityXpStorage XpStorage = ((ContainerXpStorage)container).getTile();
 					XpStorage.receiveButtonEvent(buttonId);
+				}else if (container != null && container instanceof ContainerMiningChamber) {
+					TileEntityMiningChamber MiningChamber = ((ContainerMiningChamber)container).getTile();
+					MiningChamber.receiveButtonEvent(buttonId);
 				}
+				
+				
 				break;
+				
+
 		}
 		
 
