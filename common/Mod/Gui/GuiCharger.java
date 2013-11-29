@@ -50,7 +50,7 @@ public class GuiCharger extends GuiContainer{
 	         drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
 
 	         int Power = this.tile.GetPower();
-	         fontRenderer.drawString("Power: " + Power + "/" + tile.MaxPower, x + 50, y + 42, 4210752);
+	         fontRenderer.drawString("Power: " + Power + "/" + tile.MaxPower, x + 45, y + 42, 4210752);
 
 	         
 
@@ -61,6 +61,5 @@ public class GuiCharger extends GuiContainer{
 		super.initGui();
 		buttonList.clear();
 		
-		buttonList.add(new GuiTipButton(1, guiLeft, guiTop, "?", Messages.ChargerTips));
 	}
 }

@@ -7,37 +7,38 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.network.packet.Packet;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import Mod.Misc.ItemHelper;
+import Mod.Network.PacketTileWithItemUpdate;
+import Mod.Network.PacketTypeHandler;
 
-public class TileEntityItemPedestal extends TileEntity implements IInventory{
+public class TileEntityItemPedestal extends ModTileEntity implements IInventory{
 
-	public ItemStack[] items = new ItemStack[this.getSizeInventory()];
+	public ItemStack[] items;
 	
 	public TileEntityItemPedestal() {
+		items = new ItemStack[1];
 	}
 	
-	int i = 0;
 	ItemStack finsishItem;
 	
 
 	
-	 @Override
+	  @Override
 	    public void readFromNBT(NBTTagCompound nbtTagCompound) {
 
 	        super.readFromNBT(nbtTagCompound);
-
 	        NBTTagList tagList = nbtTagCompound.getTagList("Items");
 	        items = new ItemStack[this.getSizeInventory()];
 	        for (int i = 0; i < tagList.tagCount(); ++i) {
 	            NBTTagCompound tagCompound = (NBTTagCompound) tagList.tagAt(i);
 	            byte slotIndex = tagCompound.getByte("Slot");
 	            if (slotIndex >= 0 && slotIndex < items.length) {
-	                items[slotIndex] = ItemStack.loadItemStackFromNBT(tagCompound);
+	            	items[slotIndex] = ItemStack.loadItemStackFromNBT(tagCompound);
 	            }
 	        }
-	        
-	        i = nbtTagCompound.getInteger("Time");
 	    }
 
 	    @Override
@@ -55,9 +56,9 @@ public class TileEntityItemPedestal extends TileEntity implements IInventory{
 	            }
 	        }
 	        nbtTagCompound.setTag("Items", tagList);
-	        
-	        nbtTagCompound.setInteger("Time", i);
 	    }
+	    
+	    
 	    public ItemStack[] workItems = new ItemStack[9];
 		private ItemStack finishItem;
   		
@@ -164,10 +165,10 @@ public class TileEntityItemPedestal extends TileEntity implements IInventory{
 	    	return new ItemStack(Item.eyeOfEnder, 8);
 	    	
 	    	if(Check(items, Item.ingotIron, Item.ingotIron, Item.ingotIron, Item.ingotIron, Item.ingotGold, Item.ingotIron, Item.ingotIron, Item.ingotIron, Item.ingotIron))
-    	   return new ItemStack(Item.ingotGold, 4);
+    	   return new ItemStack(Item.ingotGold, 3);
 	    	
 	    	if(Check(items, Item.ingotGold, Item.ingotGold, Item.ingotGold, Item.ingotGold, Item.diamond, Item.ingotGold, Item.ingotGold, Item.ingotGold, Item.ingotGold))
-    	   return new ItemStack(Item.diamond, 4);
+    	   return new ItemStack(Item.diamond, 3);
 	    	
 	    	if(Check(items, null, Item.diamond, null, Item.diamond, Item.diamond, Item.diamond, null, Item.diamond, null))
     	   return new ItemStack(Item.ingotGold, 5);
@@ -286,7 +287,7 @@ public class TileEntityItemPedestal extends TileEntity implements IInventory{
 
 	@Override
 	public int getSizeInventory() {
-		return 1;
+		return 64;
 	}
 
 
@@ -378,6 +379,17 @@ public class TileEntityItemPedestal extends TileEntity implements IInventory{
 	public boolean isItemValidForSlot(int i, ItemStack itemstack) {
 		return false;
 	}
+	
+	   @Override
+	    public Packet getDescriptionPacket() {
+
+	        ItemStack itemStack = getStackInSlot(0);
+
+	        if (itemStack != null && itemStack.stackSize > 0)
+	            return PacketTypeHandler.populatePacket(new PacketTileWithItemUpdate(xCoord, yCoord, zCoord, orientation, state, customName, itemStack.itemID, itemStack.getItemDamage(), itemStack.stackSize, ItemHelper.getColor(itemStack)));
+	        else
+	            return super.getDescriptionPacket();
+	    }
   	
   	
 }

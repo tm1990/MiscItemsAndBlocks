@@ -13,6 +13,7 @@ import org.lwjgl.opengl.GL11;
 
 import Mod.Block.ModBlockDisarmTrap;
 import Mod.Models.TrapModel;
+import Mod.TileEntity.TileEntityDisarmTrap;
 
 public class TileEntityDisarmTrapRenderer extends TileEntitySpecialRenderer {
     
@@ -33,16 +34,46 @@ public class TileEntityDisarmTrapRenderer extends TileEntitySpecialRenderer {
     public void renderTileEntityAt(TileEntity te, double x, double y, double z, float scale) {
             GL11.glPushMatrix();
             GL11.glTranslatef((float) x + 0.5F, (float) y + 1.5F, (float) z + 0.5F);
+
             
             
-            bindTexture(new ResourceLocation("textures/blocks/iron_block.png"));
-            
+            if(!te.hasWorldObj()){
+                bindTexture(new ResourceLocation("textures/blocks/quartz_block_top.png"));
+                GL11.glPushMatrix();
+                GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
+                this.model.render((Entity)null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F, true);
+                GL11.glPopMatrix();
+                GL11.glPopMatrix();
+            }else{
+            	TileEntity tile_entity = te.worldObj.getBlockTileEntity(te.xCoord, te.yCoord, te.zCoord);
+            	
+            	if(tile_entity instanceof TileEntityDisarmTrap){
+            		TileEntityDisarmTrap tile = (TileEntityDisarmTrap)tile_entity;
+            		
+            		if(tile.GetBlock() == null){
+                        bindTexture(new ResourceLocation("textures/blocks/quartz_block_top.png"));
+            		}else{
+                        bindTexture(new ResourceLocation("textures/blocks/" + tile.GetBlock().getBlockTextureFromSide(0).getIconName() + ".png"));
+            		}
+            		
+            		
+            	}
+            	
+                
+                
+
             
          GL11.glPushMatrix();
             GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
-            this.model.render((Entity)null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
+            
+
+            int Meta = te.worldObj.getBlockMetadata(te.xCoord, te.yCoord, te.zCoord);
+            
+            this.model.render((Entity)null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F, Meta != 1);
             GL11.glPopMatrix();
             GL11.glPopMatrix();
+            
+            }
     }
      
     private void adjustLightFixture(World world, int i, int j, int k, Block block) {

@@ -1,7 +1,5 @@
 package Mod.Items;
 
-import Mod.Main.Main;
-import Mod.Main.ModConfig;
 import net.minecraft.block.Block;
 import net.minecraft.item.EnumArmorMaterial;
 import net.minecraft.item.EnumToolMaterial;
@@ -10,6 +8,8 @@ import net.minecraft.item.ItemSeeds;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.EnumHelper;
 import net.minecraftforge.oredict.OreDictionary;
+import Mod.Main.Main;
+import Mod.Main.ModConfig;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
@@ -45,11 +45,17 @@ public class ModItems {
 	public static Item SolarCells;
 	public static Item Turbine;
 	
-	public static Item Key;
 	
 	public static Item PizzaBottom;
 	public static Item PizzaRaw;
 	public static Item Pizza;
+	
+	public static Item Upgrades;
+	public static Item Wrench;
+	public static Item IronPlate;
+	public static Item HeatDrill;
+	
+	public static Item PaintBrush;
 	
 	
 	public static Item DivingHelmet;
@@ -162,8 +168,21 @@ public class ModItems {
         ElectricBow = new ModItemElectricBow(ModConfig.ElectricBow).setUnlocalizedName("ElBow");
         Register(ElectricBow, "Electric Bow");
         
-        Key = new ModItemKey(ModConfig.Key).setUnlocalizedName("Key");
-        Register(Key, "Chest Key");
+       Upgrades = new ModItemUpgrades(ModConfig.Upgrades).setUnlocalizedName("Upgrades");
+        RegisterOutName(Upgrades, "Upgrades");
+        
+        Wrench = new ModItemWrench(ModConfig.Wrench).setUnlocalizedName("Wrench");
+        Register(Wrench, "Wrench");
+        
+        IronPlate = new ModItemIronPlate(ModConfig.IronPlate).setUnlocalizedName("IronPlate");
+        Register(IronPlate, "Iron Plate");
+        
+        HeatDrill = new ModItemHeatDrill(ModConfig.HeatDrill).setUnlocalizedName("HeatDrill");
+        Register(HeatDrill, "Heat Drill");
+        
+        PaintBrush = new ModItemPaintBrush(ModConfig.PaintBrush).setUnlocalizedName("PaintBrush");
+        RegisterOutName(PaintBrush, "Paint Brush");
+        
         
 		
 		

@@ -23,11 +23,7 @@ public class ModItemTomato extends ItemFood{
 		   
 	   }
 	   
-	    @Override
-	    public void addInformation(ItemStack itemstack, EntityPlayer player, List list, boolean par4)
-	    {
-	            list.add("Food");
-	    }
+
 	
 	
 

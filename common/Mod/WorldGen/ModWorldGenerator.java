@@ -47,12 +47,11 @@ public class ModWorldGenerator extends WorldGenerator implements IWorldGenerator
     	}
     	}
     	
-            int firstChunkXCoord = ChunkX + random.nextInt(16);
-            int firstBlockYCoord = random.nextInt(24);
-            int firstChunkZCoord = ChunkX + random.nextInt(16);
+    	for(int x = 0; x < 5; x++){
 
-            (new ModSilverWorldGen()).generate(world, random, firstChunkXCoord, firstBlockYCoord, firstChunkZCoord);
+            (new ModSilverWorldGen()).generate(world, random, ChunkX, 0, ChunkZ);
         
+    	}
     			
     		}
     

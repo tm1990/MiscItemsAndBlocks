@@ -1,8 +1,8 @@
 package Mod.Proxies;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ForgeDirection;
 import Mod.Tick.ClientTickHandler;
 import Mod.Tick.ServerTickHandler;
 import cpw.mods.fml.common.Loader;
@@ -39,29 +39,18 @@ public class ServerProxy {
 return Loader.instance().getMinecraftModContainer().getVersion();
 }
 
-/* INSTANCES */
-public Object getClient() {
-return null;
+
+
+public void sendRequestEventPacket(byte eventType, int originX, int originY, int originZ, byte sideHit, byte rangeX, byte rangeY, byte rangeZ, String data) {
+
 }
 
-public World getClientWorld() {
-return null;
+public void handleTileEntityPacket(int x, int y, int z, ForgeDirection orientation, byte state, String customName) {
+
 }
 
-public EntityPlayer getPlayer() {
-return null;
+public void handleTileWithItemPacket(int x, int y, int z, ForgeDirection orientation, byte state, String customName, int itemID, int metaData, int stackSize, int color) {
+
 }
 
-/* SIMULATION */
-public boolean isSimulating(World world) {
-return !world.isRemote;
-}
-
-public boolean isRenderWorld(World world) {
-return world.isRemote;
-}
-
-public String getCurrentLanguage() {
-return null;
-}
 }

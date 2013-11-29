@@ -31,15 +31,15 @@ import Mod.TileEntity.TileEntityCraftingInv;
 import Mod.TileEntity.TileEntityDisarmTrap;
 import Mod.TileEntity.TileEntityGenerator;
 import Mod.TileEntity.TileEntityItemPedestal;
-import Mod.TileEntity.TileEntityLockableChest;
 import Mod.TileEntity.TileEntityMill;
 import Mod.TileEntity.TileEntityMiningChamber;
 import Mod.TileEntity.TileEntityOvenCore;
+import Mod.TileEntity.TileEntityPaintBlock;
 import Mod.TileEntity.TileEntityPillar;
 import Mod.TileEntity.TileEntityPowerCable;
-import Mod.TileEntity.TileEntitySidewaysPillar;
 import Mod.TileEntity.TileEntitySolarPanel;
 import Mod.TileEntity.TileEntitySquezer;
+import Mod.TileEntity.TileEntityTable;
 import Mod.TileEntity.TileEntityWindMill;
 import Mod.TileEntity.TileEntityXpStorage;
 import Mod.VersionChecker.VersionChecker;
@@ -62,7 +62,7 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 
 
 @Mod(modid = Refrence.Mod_Id, name = Refrence.Mod_Name, version = Refrence.Version)
-@NetworkMod(clientSideRequired=true, serverSideRequired=false, channels = {"MiscItems"}, packetHandler = PacketHandler.class)
+@NetworkMod(clientSideRequired=true, serverSideRequired=false, channels = Refrence.Channel, packetHandler = PacketHandler.class)
 public class Main {
 	
 	public static final Logger Log = Logger.getLogger("MiscItems");
@@ -152,7 +152,6 @@ public void preInit(FMLPreInitializationEvent event) {
         GameRegistry.registerTileEntity(TileEntityMill.class, "TileEntityMill");
         GameRegistry.registerTileEntity(TileEntitySquezer.class, "TileEntitySquezer");
         GameRegistry.registerTileEntity(TileEntityOvenCore.class, "TileEntityOvenCore");
-        GameRegistry.registerTileEntity(TileEntityLockableChest.class, "TileEntityLockableChest");
         
         GameRegistry.registerTileEntity(TileEntityItemPedestal.class, "TileEntityItemPedestal");
         GameRegistry.registerTileEntity(TileEntityMiningChamber.class, "TileEntityMiningChamber");
@@ -169,7 +168,9 @@ public void preInit(FMLPreInitializationEvent event) {
         GameRegistry.registerTileEntity(TileEntityGamePartYellow.class, "TileEntityGamePartYellow");
         GameRegistry.registerTileEntity(TileEntityGamePartNull.class, "TileEntityGamePartNull");
         GameRegistry.registerTileEntity(TileEntityPillar.class, "TileEntityPillar");
-        GameRegistry.registerTileEntity(TileEntitySidewaysPillar.class, "TileEntitySidewaysPillar");
+        
+        GameRegistry.registerTileEntity(TileEntityTable.class, "TileEntityTable");
+        GameRegistry.registerTileEntity(TileEntityPaintBlock.class, "TileEntityPaintBlock");
         
         
         GameRegistry.registerWorldGenerator(new ModWorldGenerator());

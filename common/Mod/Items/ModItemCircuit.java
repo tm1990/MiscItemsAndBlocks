@@ -36,10 +36,10 @@ public class ModItemCircuit extends Item{
 	    	
 	    	int meta = itemstack.getItemDamage();
 	    	if(meta == 0)
-	            list.add("Used to make electirc machines and tools.");
+	            list.add("Used to make electric machines and tools.");
 	    	
 	    	if(meta == 1)
-	    		list.add("Used to make advanced electirc machines and tools.");
+	    		list.add("Used to make advanced electric machines and tools.");
 	    }
 	    
 	    

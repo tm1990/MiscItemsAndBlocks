@@ -76,9 +76,23 @@ public class ModBlockGamePart extends BlockContainer{
     {
     	
     	if(Name != "null"){
-    	this.blockIcon = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "GamePart" + Name);
+    		
+    		if(Name == "Yellow")
+    	    	this.blockIcon = par1IconRegister.registerIcon("hardened_clay_stained_yellow");
+    		
+    		if(Name == "Green")
+    	    	this.blockIcon = par1IconRegister.registerIcon("hardened_clay_stained_green");
+    		
+    		if(Name == "Red")
+    	    	this.blockIcon = par1IconRegister.registerIcon("hardened_clay_stained_red");
+    		
+    		if(Name == "Blue")
+    	    	this.blockIcon = par1IconRegister.registerIcon("hardened_clay_stained_blue");
+    		
+    		
+    		
     	}else{
-        	this.blockIcon = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "GamePart");
+        	this.blockIcon = par1IconRegister.registerIcon("quartz_block_side");
     	}
     }
     @Override

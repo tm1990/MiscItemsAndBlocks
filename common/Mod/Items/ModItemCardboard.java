@@ -24,9 +24,5 @@ public class ModItemCardboard extends Item{
     	this.itemIcon = par1IconRegister.registerIcon(Refrence.Mod_Id + ":Cardboard");
     }
     
-    @Override
-    public void addInformation(ItemStack itemstack, EntityPlayer player, List list, boolean par4)
-    {
-            list.add("Used to craft Cardboard Box");
-    }
+
 }

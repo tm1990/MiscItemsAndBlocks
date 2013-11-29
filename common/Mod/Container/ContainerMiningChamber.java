@@ -34,26 +34,21 @@ public class ContainerMiningChamber  extends Container {
     	
     	for(int x = 0; x < 9; x++){
     		
-    		addSlotToContainer(new Slot(InvPlayer, x, 8 + 18 * x, 190));
+    		addSlotToContainer(new Slot(InvPlayer, x, 8 + 18 * x, 181));
     	}
     	
     	for(int y = 0; y < 3; y++){
     		for(int x = 0; x < 9; x++){
     			
-    			addSlotToContainer(new Slot(InvPlayer, x + y * 9 + 9, 8 + 18 * x, 132 + y * 18));
+    			addSlotToContainer(new Slot(InvPlayer, x + y * 9 + 9, 8 + 18 * x, 123 + y * 18));
     		}
 
     }
     	
     	
     	
-    	for(int y = 0; y < 3; y++){
-    		for(int x = 0; x < 9; x++){
-    			addSlotToContainer(new Slot(tile, x + y * 9, 8 + 18 * x, 65 + y * 18));
-    		}
-    }
     	
-    	addSlotToContainer(new Slot(tile, tile.ToolSlot, 16, 29));
+    	addSlotToContainer(new Slot(tile, tile.ToolSlot, 24, 24));
 
 }
     

@@ -7,7 +7,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 
-public class TileEntityInvBase  extends TileEntity implements IInventory{
+public class TileEntityInvBase  extends ModTileEntity implements IInventory{
 	
 
 	public String Name;

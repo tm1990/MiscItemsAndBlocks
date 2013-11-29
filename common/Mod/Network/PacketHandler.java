@@ -40,11 +40,17 @@ public class PacketHandler implements IPacketHandler{
 
 	@Override
 	public void onPacketData(INetworkManager manager, Packet250CustomPayload packet, Player player) {
-		ByteArrayDataInput reader = ByteStreams.newDataInput(packet.data);
 		
+	       
+	       
+		
+	       ByteArrayDataInput reader = ByteStreams.newDataInput(packet.data);
 		EntityPlayer entityPlayer = (EntityPlayer)player;
 		
 		byte packetId = reader.readByte();
+		
+		
+		
 		
 		switch (packetId) {
 			case 1:		
@@ -59,11 +65,14 @@ public class PacketHandler implements IPacketHandler{
 					MiningChamber.receiveButtonEvent(buttonId);
 				}
 				
+				return;
 				
-				break;
 				
 
 		}
+		
+	       ModPacket ModPacket = PacketTypeHandler.buildPacket(packet.data);
+	       ModPacket.execute(manager, player);
 		
 
 	}

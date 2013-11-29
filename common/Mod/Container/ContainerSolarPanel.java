@@ -19,6 +19,7 @@ public class ContainerSolarPanel  extends Container {
 	
     private TileEntitySolarPanel tile;
 
+    int LastMeta;
 	
     public ContainerSolarPanel(InventoryPlayer InvPlayer, TileEntitySolarPanel tile)
     {
@@ -51,7 +52,38 @@ public class ContainerSolarPanel  extends Container {
     
  
 
+    public void addCraftingToCrafters(ICrafting par1ICrafting)
+    {
+        super.addCraftingToCrafters(par1ICrafting);
+        par1ICrafting.sendProgressBarUpdate(this, 0, this.tile.GetMeta());
+    }
 
+    public void detectAndSendChanges()
+    {
+        super.detectAndSendChanges();
+
+        for (int i = 0; i < this.crafters.size(); ++i)
+        {
+            ICrafting icrafting = (ICrafting)this.crafters.get(i);
+
+            if (this.LastMeta != this.tile.GetMeta())
+            {
+                icrafting.sendProgressBarUpdate(this, 0, this.tile.GetMeta());
+            }
+        }
+
+        this.LastMeta = this.tile.GetMeta();
+    }
+
+    @SideOnly(Side.CLIENT)
+    public void updateProgressBar(int par1, int par2)
+    {
+        if (par1 == 0)
+        {
+            this.tile.SetMeta(par2);
+        }
+    }
+	  
 
 	  
 

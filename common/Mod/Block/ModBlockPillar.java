@@ -47,50 +47,18 @@ public class ModBlockPillar extends BlockContainer {
         return false;
 }
 	
-    public void setBlockBoundsBasedOnState(IBlockAccess block, int x, int y, int z) {
+    public void setBlockBoundsBasedOnState(IBlockAccess par1IBlockAccess, int par2, int par3, int par4) {
     	
-		 int Id = block.getBlockId(x, y, z);
-    	
-    	
-		 if(block.getBlockId(x, y + 1, z) == Id && block.getBlockId(x, y - 1, z) == Id){
-				this.setBlockBounds(0.2F, 0, 0.2F, 0.8F, 1, 0.8F);
-		 }else{
-				this.setBlockBounds(0.1F, 0, 0.1F, 0.9F, 1, 0.9F);
-		 }
+		 this.setBlockBounds(0.1F, 0.1F, 0.1F, 0.9F, 0.9F, 0.9F);
     	
     }
+
     
     public void registerIcons(IconRegister par1IconRegister)
     {
     	
-        this.blockIcon = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "Pillar");
+        this.blockIcon = par1IconRegister.registerIcon("quartz_block_side");
         
     }
-    
-    public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLivingBase, ItemStack par6ItemStack)
-    {
-        int l = MathHelper.floor_double((double)(par5EntityLivingBase.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
-
-        if (l == 0)
-        {
-            par1World.setBlockMetadataWithNotify(par2, par3, par4, 1, 2);
-        }
-
-        if (l == 1)
-        {
-            par1World.setBlockMetadataWithNotify(par2, par3, par4, 2, 2);
-        }
-
-        if (l == 2)
-        {
-            par1World.setBlockMetadataWithNotify(par2, par3, par4, 3, 2);
-        }
-
-        if (l == 3)
-        {
-            par1World.setBlockMetadataWithNotify(par2, par3, par4, 4, 2);
-        }
-
-
-    }
+ 
 }

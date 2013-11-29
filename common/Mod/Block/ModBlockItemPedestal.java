@@ -1,6 +1,8 @@
 package Mod.Block;
 
+import cpw.mods.fml.common.network.FMLNetworkHandler;
 import Mod.Lib.Refrence;
+import Mod.Main.Main;
 import Mod.TileEntity.TileEntityItemPedestal;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
@@ -18,6 +20,7 @@ public class ModBlockItemPedestal extends BlockContainer{
 	public ModBlockItemPedestal(int par1) {
 		super(par1, Material.rock);
 		this.setBlockBounds(0F, 0F, 0F, 1F, 1.7F, 1F);
+		this.setHardness(2F);
 	}
 	
 
@@ -52,8 +55,11 @@ public class ModBlockItemPedestal extends BlockContainer{
 	  @Override
 	    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
 	    {
-	        if (player.isSneaking())
-	            return false;
+	        if (player.isSneaking()){
+	        	FMLNetworkHandler.openGui(player, Main.instance, 0, world, x, y, z);
+	            return true;
+	            
+	        }
 	        TileEntity tile_entity = world.getBlockTileEntity(x, y, z);
 	        
 	        
@@ -67,6 +73,9 @@ public class ModBlockItemPedestal extends BlockContainer{
 					 player.inventory.addItemStackToInventory(tile.getStackInSlot(0));
 	    				tile.setInventorySlotContents(0, null);
 					  return true;
+				  }else{
+			        	FMLNetworkHandler.openGui(player, Main.instance, 0, world, x, y, z);
+			            return true;
 				  }
 
 			  }else if (player.inventory.getCurrentItem() != null){
@@ -88,9 +97,10 @@ public class ModBlockItemPedestal extends BlockContainer{
 			  
 			  
 		  }
+		  }
 	        }
 
-		  }
+		  
 		  
 		  
 		  return true;

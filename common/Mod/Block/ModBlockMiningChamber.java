@@ -17,6 +17,7 @@ public class ModBlockMiningChamber extends ModBlockPowerMachine{
 
 	protected ModBlockMiningChamber(int par1) {
 		super(par1, Material.rock);
+		this.setHardness(2F);
 	}
 
 	@Override
@@ -50,6 +51,7 @@ public class ModBlockMiningChamber extends ModBlockPowerMachine{
     @Override
     public void breakBlock(World World, int x, int y, int z, int id, int meta)
     {
+		super.breakBlock(World, x, y, z, id, meta);
     	TileEntity tile = World.getBlockTileEntity(x, y, z);
     	
     	if(tile != null && tile instanceof IInventory){
@@ -74,7 +76,7 @@ public class ModBlockMiningChamber extends ModBlockPowerMachine{
     				
     				
     				World.spawnEntityInWorld(droppedItem);
-    				super.breakBlock(World, x, y, z, id, meta);
+
     			}
     			
     		}

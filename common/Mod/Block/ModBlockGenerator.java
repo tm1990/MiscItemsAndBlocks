@@ -1,11 +1,15 @@
 package Mod.Block;
 
+import cpw.mods.fml.common.network.FMLNetworkHandler;
 import Mod.Lib.Refrence;
+import Mod.Main.Main;
 import Mod.TileEntity.TileEntityGenerator;
+import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -13,10 +17,11 @@ import net.minecraft.util.Icon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-public class ModBlockGenerator extends ModBlockPowerModule{
+public class ModBlockGenerator extends BlockContainer{
 
 	protected ModBlockGenerator(int par1) {
 		super(par1, Material.iron);
+		this.setHardness(2);
 	}
 	
 	public static final int META_ISACTIVE = 0x00000008;
@@ -35,33 +40,7 @@ public class ModBlockGenerator extends ModBlockPowerModule{
 		return new TileEntityGenerator();
 	}
 
-	@Override
-	public boolean CanWork(World world, int X, int Y, int Z) {
-		
-		TileEntityGenerator tile;
-		
-		if(world.getBlockTileEntity(X, Y, Z) instanceof TileEntityGenerator){
-			tile = (TileEntityGenerator)world.getBlockTileEntity(X, Y, Z);
-			
-			if(tile.GetFuel() > 0){
-				return true;
-			}else{
-				return false;
-			}
-			}
-		
-		return false;
-	}
 
-	@Override
-	public int PowerGenerated() {
-		return 3;
-	}
-
-	@Override
-	public int WorkTime() {
-		return 10;
-	}
 	
 	private static int getSideFromFacing(int facing)
 	{
@@ -90,7 +69,6 @@ public class ModBlockGenerator extends ModBlockPowerModule{
 	        this.IconTop = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "ModuleBlank");
 	        this.IconSide = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "ModuleBlank");
 	        this.IconFront = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "GeneratorFront");
-	        this.blockIcon = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "Module");
 	        
 	    }
 	    
@@ -100,7 +78,7 @@ public class ModBlockGenerator extends ModBlockPowerModule{
 			boolean isActive = ((metadata >> 3) == 1);
 			int facing = (metadata & MASK_DIR);
 			
-			return (side == getSideFromFacing(facing) ? (IconFront) : (side == 1 ? this.IconTop : side == 0 ? this.blockIcon : this.IconSide));
+			return (side == getSideFromFacing(facing) ? (IconFront) : (side == 1 ? this.IconTop : side == 0 ? IconTop : this.IconSide));
 		}
 	    
 		@Override
@@ -158,17 +136,22 @@ public class ModBlockGenerator extends ModBlockPowerModule{
 		    	}
 		    }
 		  
-		    public void OnWork(World world, int x, int y, int z){
-				
-				TileEntityGenerator tile;
-		    	
-				if(world.getBlockTileEntity(x, y, z) instanceof TileEntityGenerator){
-					tile = (TileEntityGenerator)world.getBlockTileEntity(x, y, z);
-					
-					tile.SetFuel(tile.GetFuel() - 1);
-					
-				}
-		    	
+		    
+		    public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9)
+		    {
+		        if (par1World.isRemote)
+		        {
+		        	
+		            return true;
+		        }
+		        else
+		        {
+		        	
+		        	
+		        	
+		        	FMLNetworkHandler.openGui(par5EntityPlayer, Main.instance, 0, par1World, par2, par3, par4);
+		            return true;
+		        }
 		    }
 
 }

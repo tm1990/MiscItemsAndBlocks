@@ -51,9 +51,44 @@ public class GuiSolarPanel extends GuiContainer{
 	         
 	         
 
-	         String Mode = this.tile.GetMessage();
-	         String State = this.tile.GetState();
+	         
+	     	String Mode = "No Charger";
+	    	String State = "off";
+	    	
+
+    		int MetaData = tile.GetMeta();
+
+    		if(MetaData == 1 || MetaData == 0){
+    			
+    			Mode = "Currently Generating";
+    			State = "on";
+    			
+    		}else if (MetaData == 2){
+    			
+    			Mode = "Solar panel cant see the sky";
+    			State = "blocked";
+    			
+    		}else if (MetaData == 3){
+    			
+    			Mode = "Solar panel cant see the sun";
+    			State = "rain";
+    			
+    		}else if (MetaData == 4){
+    			
+    			Mode = "Solar panel cant see the sun";
+    			State = "night";
+    			
+    		}else{
+    			Mode = "No Power Storage!";
+    			State = "";
+    		}
+	    	
+	    	
+	    	
 	         textfield.setText(Mode);
+	         
+	         
+	         
 	         
 	         if(State == "on"){
 	             this.drawTexturedModalRect(x + 79, y + 14, 176, 3, 18, 18);

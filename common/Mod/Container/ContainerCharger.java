@@ -8,6 +8,7 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import Mod.Slots.SlotOutput;
 import Mod.Slots.SlotPowerStorage;
+import Mod.Slots.SlotUpgrades;
 import Mod.TileEntity.TileEntityCharger;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -22,6 +23,7 @@ public class ContainerCharger  extends Container {
     private TileEntityCharger tile;
     
     int LastPower;
+    int LastMaxPower;
 
 	
     public ContainerCharger(InventoryPlayer InvPlayer, TileEntityCharger tile)
@@ -41,6 +43,11 @@ public class ContainerCharger  extends Container {
     		
     		addSlotToContainer(new SlotPowerStorage(tile, 0, 79, 14));
     		addSlotToContainer(new SlotPowerStorage(tile, 1, 79, 59));
+    		
+    		addSlotToContainer(new SlotUpgrades(tile, 2, 152, 8));
+    		addSlotToContainer(new SlotUpgrades(tile, 3, 152, 26));
+    		addSlotToContainer(new SlotUpgrades(tile, 4, 152, 44));
+    		addSlotToContainer(new SlotUpgrades(tile, 5, 152, 62));
     	
     }
 
@@ -60,6 +67,7 @@ public class ContainerCharger  extends Container {
     {
         super.addCraftingToCrafters(par1ICrafting);
         par1ICrafting.sendProgressBarUpdate(this, 0, this.tile.GetPower());
+        par1ICrafting.sendProgressBarUpdate(this, 1, this.tile.GetMaxPower());
     }
 
     public void detectAndSendChanges()
@@ -75,9 +83,15 @@ public class ContainerCharger  extends Container {
                 icrafting.sendProgressBarUpdate(this, 0, this.tile.GetPower());
             }
             
+            if (this.LastMaxPower != this.tile.GetMaxPower())
+            {
+                icrafting.sendProgressBarUpdate(this, 1, this.tile.GetMaxPower());
+            }
+            
         }
 
         this.LastPower = this.tile.GetPower();
+        this.LastMaxPower = this.tile.GetMaxPower();
     }
 
     @SideOnly(Side.CLIENT)
@@ -86,6 +100,11 @@ public class ContainerCharger  extends Container {
         if (par1 == 0)
         {
             this.tile.SetPower(par2);
+        }
+        
+        if (par1 == 1)
+        {
+            this.tile.SetMaxPower(par2);
         }
         
 

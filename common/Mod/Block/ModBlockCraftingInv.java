@@ -83,9 +83,8 @@ public class ModBlockCraftingInv extends BlockContainer{
 					droppedItem.motionZ = (-0.5 + World.rand.nextFloat()) * mult;
 					
 					
-					if(i != 27){
-					World.spawnEntityInWorld(droppedItem);
-					}
+    				World.spawnEntityInWorld(droppedItem);
+    				super.breakBlock(World, x, y, z, id, meta);
 					
 				}
 				

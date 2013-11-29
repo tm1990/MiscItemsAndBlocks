@@ -23,16 +23,16 @@ public class GuiMiningChamber extends GuiContainer{
 		super(new ContainerMiningChamber(InvPlayer, tile));
 		
 		this.xSize = 176;
-		this.ySize = 214;
+		this.ySize = 205;
 		
 		this.tile = tile;
 	}
 	
   @Override
   protected void drawGuiContainerForegroundLayer(int param1, int param2) {
-//63
+
           fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, 4210752);
-          fontRenderer.drawString("Mining Chamber", 53, 12, 4210752);
+          fontRenderer.drawString("Mining Chamber", 59, 7, 4210752);
           
           
   }
@@ -53,9 +53,16 @@ public class GuiMiningChamber extends GuiContainer{
 	         int CurrentY = this.tile.GetMinedY();
 	         int LastY = this.tile.GetLastY();
 	         
-	         fontRenderer.drawString("Power: " + Power + "/" + tile.MaxPower, x + 53, y + 24, 0x000000);
-	         fontRenderer.drawString("Blocks Mined: " + BlocksMined, x + 53, y + 34, 0x000000);
-	         fontRenderer.drawString("Mining y: " + CurrentY + "/" + LastY, x + 53, y + 44, 0x000000);
+	         int YLeft = CurrentY - LastY;
+	         
+	         fontRenderer.drawString("Power: " + Power + "/" + tile.MaxPower, x + 59, y + 17, 0x000000);
+	         fontRenderer.drawString("Blocks Mined: " + BlocksMined, x + 59, y + 27, 0x000000);
+	         if(YLeft > 0)
+	         fontRenderer.drawString("Mining " + YLeft + " deeper.", x + 59, y + 37, 0x000000);
+	         else
+		         fontRenderer.drawString("Mining 0 deeper.", x + 59, y + 37, 0x000000);
+	         fontRenderer.drawString("Mining down to: " + LastY, x + 59, y + 47, 0x000000);
+	         fontRenderer.drawString("Currently at: " + CurrentY, x + 59, y + 57, 0x000000);
 	         
 	         
 
@@ -68,10 +75,10 @@ public class GuiMiningChamber extends GuiContainer{
 		buttonList.clear();
 		
 		
-		buttonList.add(new GuiButton(1, guiLeft + 5,  guiTop + 7, 12, 14, "y+"));
-		buttonList.add(new GuiButton(2, guiLeft + 18, guiTop + 7, 12, 14, "y-"));
-		buttonList.add(new GuiButton(3, guiLeft + 31, guiTop + 7, 18, 14, "Mine"));
-		buttonList.add(new GuiButton(4, guiLeft + 3,  guiTop + 51, 46, 12, "Current y"));
+		buttonList.add(new GuiButton(1, guiLeft + 61, guiTop + 80, 19, 20, "y-"));
+		buttonList.add(new GuiButton(2, guiLeft + 40,  guiTop + 80, 19, 20, "y+"));
+		buttonList.add(new GuiButton(3, guiLeft + 5, guiTop + 80, 33, 20, "Mine"));
+		buttonList.add(new GuiButton(4, guiLeft + 82,  guiTop + 80, 53, 20, "Current y"));
 		
 		
 		

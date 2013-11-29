@@ -43,13 +43,19 @@ public class TileEntityGamePartRender extends TileEntitySpecialRenderer {
             
             bindTexture(Texutre);
             
-            int Id = te.worldObj.getBlockId(te.xCoord, te.yCoord, te.zCoord);
+            int Id = 0;
+            if(te.hasWorldObj())
+            	Id = te.worldObj.getBlockId(te.xCoord, te.yCoord, te.zCoord);
             
             
          GL11.glPushMatrix();
          GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
 
+         if(te.hasWorldObj())
          this.model.render((Entity)null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F, te.worldObj.getBlockId(te.xCoord, te.yCoord + 1, te.zCoord) != Id, te.worldObj.getBlockId(te.xCoord, te.yCoord - 1, te.zCoord) != Id);
+         else
+             this.model.render((Entity)null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F, true, true);
+         
          
          
             GL11.glPopMatrix();

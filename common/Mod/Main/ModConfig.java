@@ -20,18 +20,22 @@ public class ModConfig {
 	public static int Dice;
 	public static int SpeedBlock;
 	public static int Pillar;
-	public static int SidewaysPillar;
 	public static int Mill;
 	public static int TomatoPlant;
 	public static int Squezer;
 	public static int PizzaOven;
 	public static int OrangeLog;
 	public static int OrangePlanks;
+	public static int Table;
+	public static int MachinePart;
+	
+	public static int PaintBlock;
+	
+	//TODO public static int CamouflageBlock;
 	
 	public static int ItemPedestal;
 	public static int MiningChamber;
-	
-	public static int LockableChest;
+
 	
 	
 	public static int PowerCable;
@@ -81,7 +85,13 @@ public class ModConfig {
 	public static int SolarCells;
 	public static int Turbine;
 	
-	public static int Key;
+	public static int Upgrades;
+	
+	public static int Wrench;
+	public static int IronPlate;
+	
+	public static int HeatDrill;
+	
 	
 	public static int Orange;
 	
@@ -92,6 +102,8 @@ public class ModConfig {
 	public static int FlightChestPlate;
 	public static int RunningLeggings;
 	public static int JumpingBoots;
+	
+	public static int PaintBrush;
 
 	/** Booleans **/
 	public static boolean BlastProofOverRe;
@@ -131,7 +143,6 @@ public class ModConfig {
 		
 		SpeedBlock = config.getBlock("Blocks", "Speed Block Id", 614).getInt();
 		Pillar = config.getBlock("Blocks", "Pillar Block Id", 615).getInt();
-		SidewaysPillar = config.getBlock("Blocks", "Sideways Pillar Block Id", 616).getInt();
 		TomatoPlant = config.getBlock("Blocks", "Tomato Plant Block Id", 617).getInt();
 		Mill = config.getBlock("Blocks", "Mill Block Id", 618).getInt();
 		Squezer = config.getBlock("Blocks", "Squezer Block Id", 619).getInt();
@@ -147,10 +158,15 @@ public class ModConfig {
 		Generator = config.getBlock("Blocks", "Generator Block Id", 628).getInt();
 		PowerCable = config.getBlock("Blocks", "Power Cable Block Id", 629).getInt();
 		
-		LockableChest = config.getBlock("Blocks", "Lockable chest Block Id", 630).getInt();
 		
-		ItemPedestal = config.getBlock("Blocks", "Item Pedestal Block Id", 631).getInt();
-		MiningChamber = config.getBlock("Blocks", "Mining Chamber Block Id", 632).getInt();
+		ItemPedestal = config.getBlock("Blocks", "Item Pedestal Block Id", 630).getInt();
+		MiningChamber = config.getBlock("Blocks", "Mining Chamber Block Id", 631).getInt();
+		
+		Table = config.getBlock("Blocks", "Table Block Id", 632).getInt();
+		MachinePart = config.getBlock("Blocks", "Machine Part Block Id", 633).getInt();
+		
+		PaintBlock = config.getBlock("Blocks", "Paint Block Id", 634).getInt();
+		
 		
 		
         XpExtractor = config.getItem("Items","Xp Extractor Id", 22000).getInt();
@@ -191,7 +207,12 @@ public class ModConfig {
         ElectricShears = config.getItem("Items", "Electric Shears Id", 22030).getInt();
         ElectricBow = config.getItem("Items", "Electric Bow Id", 22031).getInt();
         
-        Key = config.getItem("Items", "Key Id", 22032).getInt();
+        Upgrades = config.getItem("Item", "Upgrades Id", 22032).getInt();
+        Wrench = config.getItem("Item", "Wrench Id", 22033).getInt();
+        IronPlate = config.getItem("Item", "Iron Plate Id", 22034).getInt();
+        HeatDrill = config.getItem("Item", "Heat Drill Id", 22035).getInt();
+        PaintBrush = config.getItem("Item", "Paint Brush Id", 22036).getInt();
+
         
         SpawnParticles = config.get("Settings", "Spawn particles?", true).getBoolean(true);
         

@@ -4,11 +4,12 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.world.World;
 
-public class TileEntityGenerator extends TileEntityInvBase{
+public class TileEntityGenerator extends TileEntityPowerGeneration{
 
 	public TileEntityGenerator() {
-		super(1, "CoalGenerator", 64);
+		super(1, "CoalGenerator", 64, 1);
 	}
 	
 	
@@ -114,5 +115,20 @@ public class TileEntityGenerator extends TileEntityInvBase{
     public void SetTimeLeft(int i){
     	TimeLeft = i;
     }
+
+	@Override
+	public boolean CanWork(World world, int X, int Y, int Z) {
+
+
+		return GetFuel() > 0;
+	}
+
+
+	@Override
+	public int WorkTime() {
+		return 10;
+	}
+	
+   
 
 }

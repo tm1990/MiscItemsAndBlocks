@@ -8,7 +8,6 @@ import Mod.Container.ContainerBox;
 import Mod.Container.ContainerCharger;
 import Mod.Container.ContainerCraftingInv;
 import Mod.Container.ContainerGenerator;
-import Mod.Container.ContainerLockableChest;
 import Mod.Container.ContainerMill;
 import Mod.Container.ContainerMiningChamber;
 import Mod.Container.ContainerPizzaOven;
@@ -20,7 +19,6 @@ import Mod.TileEntity.TileEntityBox;
 import Mod.TileEntity.TileEntityCharger;
 import Mod.TileEntity.TileEntityCraftingInv;
 import Mod.TileEntity.TileEntityGenerator;
-import Mod.TileEntity.TileEntityLockableChest;
 import Mod.TileEntity.TileEntityMill;
 import Mod.TileEntity.TileEntityMiningChamber;
 import Mod.TileEntity.TileEntityOvenCore;
@@ -45,6 +43,8 @@ public class GuiHandler implements IGuiHandler{
         	
         	return new ContainerPizzaOven(player.inventory, (TileEntityOvenCore) tile_entity);
         }
+        
+
         
         if(tile_entity instanceof TileEntityMiningChamber){
         	
@@ -99,11 +99,7 @@ public class GuiHandler implements IGuiHandler{
         	
         	return new ContainerGenerator(player.inventory, (TileEntityGenerator) tile_entity);
         }
-        
-        if(tile_entity instanceof TileEntityLockableChest){
-        	
-        	return new ContainerLockableChest(player.inventory, (TileEntityLockableChest) tile_entity);
-        }
+
         
         
         
@@ -123,6 +119,8 @@ public class GuiHandler implements IGuiHandler{
             return new GuiXpStorage(player.inventory, (TileEntityXpStorage) tile_entity);
 
         }
+        
+
         
         if(tile_entity instanceof TileEntityBin){
 
@@ -173,10 +171,7 @@ public class GuiHandler implements IGuiHandler{
         	return new GuiGenerator(player.inventory, (TileEntityGenerator) tile_entity);
         }
         
-        if(tile_entity instanceof TileEntityLockableChest){
-        	
-        	return new GuiLockableChest(player.inventory, (TileEntityLockableChest) tile_entity);
-        }
+
         
         if(tile_entity instanceof TileEntityMiningChamber){
         	

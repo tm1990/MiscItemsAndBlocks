@@ -6,10 +6,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
 import Mod.GamePart.ModBlockGamePart;
+import Mod.ItemBlock.ModItemBlockDisarmTrap;
+import Mod.ItemBlock.ModItemBlockGamePiece;
 import Mod.ItemBlock.ModItemBlockItemPedestal;
-import Mod.ItemBlock.ModItemBlockLockableChest;
 import Mod.ItemBlock.ModItemBlockMiningChamber;
 import Mod.ItemBlock.ModItemBlockPowerCable;
+import Mod.ItemBlock.ModItemBlockTable;
 import Mod.ItemBlock.ModItemBlockTrashBin;
 import Mod.Main.Main;
 import Mod.Main.ModConfig;
@@ -29,7 +31,6 @@ public class ModBlocks {
 	public static Block Dice;
 	public static Block SpeedBlock;
 	public static Block Pillar;
-	public static Block SidewaysPillar;
 	public static Block TomatoPlant;
 	public static Block Mill;
 	public static Block Squezer;
@@ -38,6 +39,9 @@ public class ModBlocks {
 	public static Block PizzaOven;
 	public static Block OrangeLog;
 	public static Block OrangePlanks;
+	public static Block Table;
+	
+	public static Block PaintBlock;
 	
 	public static Block ItemPedestal;
 	public static Block MiningChamber;
@@ -48,7 +52,8 @@ public class ModBlocks {
 	public static Block WindMill;
 	public static Block Generator;
 	
-	public static Block LockableChest;
+	public static Block MachinePart;
+
 	
 	public static Block GamePartRed;
 	public static Block GamePartBlue;
@@ -70,7 +75,7 @@ public class ModBlocks {
 		Register(Bin, ModItemBlockTrashBin.class,"Trash Bin", true);
 		
 		DisarmTrap = new ModBlockDisarmTrap(ModConfig.Trap).setUnlocalizedName("DisamrTrap");
-		Register(DisarmTrap, "Disarm Trap", true);
+		Register(DisarmTrap, ModItemBlockDisarmTrap.class,"Disarm Trap", true);
 		
 		SilverOre = new ModBlockSilverOre(ModConfig.SilverOre).setUnlocalizedName("SilverPre");
 		Register(SilverOre, "Silver Ore", true);
@@ -92,25 +97,22 @@ public class ModBlocks {
         Register(SpeedBlock, "Speed Block", true);
         
         GamePartRed = new ModBlockGamePart(ModConfig.GamePartRed, "Red").setUnlocalizedName("GamePieceRed");
-        Register(GamePartRed, "Game Piece [Red]", true);
+        Register(GamePartRed, ModItemBlockGamePiece.class, "Game Piece [Red]", true);
         
         GamePartBlue = new ModBlockGamePart(ModConfig.GamePartBlue, "Blue").setUnlocalizedName("GamePieceBlue");
-        Register(GamePartBlue, "Game Piece [Blue]", true);
+        Register(GamePartBlue, ModItemBlockGamePiece.class,"Game Piece [Blue]", true);
         
         GamePartGreen = new ModBlockGamePart(ModConfig.GamePartGreen, "Green").setUnlocalizedName("GamePieceGreen");
-        Register(GamePartGreen, "Game Piece [Green]", true);
+        Register(GamePartGreen, ModItemBlockGamePiece.class, "Game Piece [Green]", true);
         
         GamePartYellow = new ModBlockGamePart(ModConfig.GamePartYellow, "Yellow").setUnlocalizedName("GamePieceYellow");
-        Register(GamePartYellow, "Game Piece [Yellow]", true);
+        Register(GamePartYellow, ModItemBlockGamePiece.class, "Game Piece [Yellow]", true);
         
         GamePartNull = new ModBlockGamePart(ModConfig.GamePartNull, "").setUnlocalizedName("GamePieceNull");
-        Register(GamePartNull, "Game Piece [Default]", true);
+        Register(GamePartNull, ModItemBlockGamePiece.class, "Game Piece [Default]", true);
         
         Pillar = new ModBlockPillar(ModConfig.Pillar).setUnlocalizedName("Pillar");
-        Register(Pillar, "Pillar", true);
-        
-        SidewaysPillar = new ModBlockSidewaysPillar(ModConfig.SidewaysPillar).setUnlocalizedName("SidewaysPillar");
-        Register(SidewaysPillar, "Sideways Pillar", true);
+        Register(Pillar, ModItemBlockPillar.class,"Pillar", true);
         
         TomatoPlant = new ModBlockTomatoPlant(ModConfig.TomatoPlant).setUnlocalizedName("TomatoPlant");
         Register(TomatoPlant, "Tomato Plant", false);
@@ -153,14 +155,21 @@ public class ModBlocks {
         PowerCable = new ModBlockPowerCable(ModConfig.PowerCable).setUnlocalizedName("PowerCable").setCreativeTab(Main.CreativeTab);
         Register(PowerCable, ModItemBlockPowerCable.class, "Power Cable", true);
         
-        LockableChest = new ModBlockLockableChest(ModConfig.LockableChest).setUnlocalizedName("LockableChest").setCreativeTab(Main.CreativeTab);
-        Register(LockableChest , ModItemBlockLockableChest .class, "Lockable Chest", true);
         
         ItemPedestal = new ModBlockItemPedestal(ModConfig.ItemPedestal).setUnlocalizedName("ItemPedestal").setCreativeTab(Main.CreativeTab);
         Register(ItemPedestal, ModItemBlockItemPedestal.class, "Item Pedestal", true);
         
         MiningChamber = new ModBlockMiningChamber(ModConfig.MiningChamber).setUnlocalizedName("MiningChamber").setCreativeTab(Main.CreativeTab);
         Register(MiningChamber, ModItemBlockMiningChamber.class, "Mining Chamber", true);
+        
+        Table = new ModBlockTable(ModConfig.Table).setUnlocalizedName("Table");
+        Register(Table, ModItemBlockTable.class ,"Table", true);
+        
+        MachinePart = new ModBlockMachinePart(ModConfig.MachinePart).setUnlocalizedName("MachinePart");
+        Register(MachinePart, "Machine Part", true);
+        
+        PaintBlock = new ModBlockPaintBlock(ModConfig.PaintBlock);
+        Register(PaintBlock, "Paint Block", true);
         
         
         
