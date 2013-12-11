@@ -17,7 +17,7 @@ public class TileEntityBin extends TileEntity implements IInventory{
 	private ItemStack[] Items;
 	
 	int Time;
-	int FinishTime = 25;
+	int FinishTime = 10;
 	
 	public TileEntityBin(){
 		
@@ -36,10 +36,25 @@ public class TileEntityBin extends TileEntity implements IInventory{
 
 	@Override
 	public ItemStack decrStackSize(int i, int j) {
-		Items[i].stackSize = Items[i].stackSize - j;
+		ItemStack itemstack = getStackInSlot(i);
 		
-		return Items[i];
+		if(itemstack != null){
+			
+			if(itemstack.stackSize <= j){
+				
+				setInventorySlotContents(i, null);
+			}else{
+				
+				itemstack = itemstack.splitStack(j);
+				onInventoryChanged();
+				
+			}
+			
+		}
+		
+		return itemstack;
 	}
+
 
 	@Override
 	public ItemStack getStackInSlotOnClosing(int i) {
@@ -91,28 +106,27 @@ public class TileEntityBin extends TileEntity implements IInventory{
     	
     	
     	
+    		
     	if(this.getStackInSlot(0) != null){
-    		
-    		
-        	if(this.getStackInSlot(0).stackSize == 1){
-        		this.setInventorySlotContents(0, null);
-        	}
-    	
-    		
     	if(Time == FinishTime){
     		Time = 0;
+
     		this.decrStackSize(0, 1);
     	}else{
     		Time++;
     	}
-    	}else{
-    		Time = 0;
+
+    		}else{
+    			Time = 0;
+    		}
+    	
+    	
     	}
     	
     	
     	
     	
-    }
+    
 	
 
         

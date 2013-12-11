@@ -24,9 +24,5 @@ public class ModItemSilverIngot extends Item{
 		   
 	   }
 	   
-	    @Override
-	    public void addInformation(ItemStack itemstack, EntityPlayer player, List list, boolean par4)
-	    {
-	            list.add("Idea by ErnieFlapps");
-	    }
+
 }

@@ -1,5 +1,6 @@
 package Mod.Items;
 
+import java.awt.Color;
 import java.util.List;
 
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -13,13 +14,14 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 import Mod.Lib.Refrence;
+import Mod.Main.Main;
 import Mod.TileEntity.TileEntityPaintBlock;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class ModItemPaintBrush extends Item{
 
-	Icon[] icons = new Icon[5];
+	Icon[] icons = new Icon[6];
 
 			
 	int Change = 1;
@@ -39,6 +41,7 @@ public class ModItemPaintBrush extends Item{
 		   this.icons[2] = reg.registerIcon(Refrence.Mod_Id + ":" + "PaintBrushGreen");
 		   this.icons[3] = reg.registerIcon(Refrence.Mod_Id + ":" + "PaintBrushBlue");
 		   this.icons[4] = reg.registerIcon(Refrence.Mod_Id + ":" + "PaintBrushCopy");
+		   this.icons[5] = reg.registerIcon(Refrence.Mod_Id + ":" + "PaintBrushEdit");
 		   
 	   }
 	   
@@ -51,6 +54,7 @@ public class ModItemPaintBrush extends Item{
 	    	if(meta == 2)return EnumChatFormatting.GREEN + "Green Paint Brush";
 	    	if(meta == 3)return EnumChatFormatting.BLUE + "Blue Paint Brush";
 	    	if(meta == 4)return EnumChatFormatting.GOLD + "Paint Copy Brush";
+	    	if(meta == 5)return EnumChatFormatting.GOLD + "Paint Editor Brush";
 	    	
 	    	
 	    	
@@ -65,6 +69,7 @@ public class ModItemPaintBrush extends Item{
 	        list.add(new ItemStack(par1, 1, 2));
 	        list.add(new ItemStack(par1, 1, 3));
 	        list.add(new ItemStack(par1, 1, 4));
+	        list.add(new ItemStack(par1, 1, 5));
 	        
 	    }
 	    
@@ -80,6 +85,10 @@ public class ModItemPaintBrush extends Item{
 	    	
 	    	NBTTagCompound nbt = new NBTTagCompound();
 	    	
+	    	if(player.isSneaking())
+	    	if(stack.getItemDamage() == 5){
+				player.openGui(Main.instance, 1, world, 0, 0, 0);
+	    	}
 	    	
 	    		
 	    		
@@ -127,10 +136,14 @@ public class ModItemPaintBrush extends Item{
 		    			  
 		    			  
 		    			  
+		    			  
 		  	            stackCompound.setCompoundTag("Data", compound);
 			            stack.setTagCompound(stackCompound);
 
 	    			}
+	    			
+	    			
+	    			
 	    			}else{
 	    				
 	    				if(Meta == 1 && tile.GetRed() >= 254)
@@ -165,6 +178,18 @@ public class ModItemPaintBrush extends Item{
 		  	    			  tile.SetGreen(Compound.getInteger("Green"));
 		  	    			  tile.SetBlue(Compound.getInteger("Blue"));
 		  	    			  
+		    				}else if (Meta == 5){
+		    					
+
+			    				if(HasInfo(stack)){
+
+			  	    			  NBTTagCompound Compound = stack.getTagCompound().getCompoundTag("Data");
+			  	    			  
+			  	    			  tile.SetRed(Compound.getInteger("Red"));
+			  	    			  tile.SetGreen(Compound.getInteger("Green"));
+			  	    			  tile.SetBlue(Compound.getInteger("Blue"));
+			  	    			  
+			    				}
 		    				}
 		    			}
 		    			
@@ -186,7 +211,7 @@ public class ModItemPaintBrush extends Item{
 	    @Override
 	    public void addInformation(ItemStack itemstack, EntityPlayer player, List list, boolean par4)
 	    {
-	    	if(itemstack.getItemDamage() == 4){
+	    	if(itemstack.getItemDamage() == 4 || itemstack.getItemDamage() == 5){
 	    		
 	    		if(HasInfo(itemstack)){
 	    			
@@ -210,4 +235,6 @@ public class ModItemPaintBrush extends Item{
 	    public boolean HasInfo(ItemStack stack) {
 	        return stack.hasTagCompound() && stack.getTagCompound().hasKey("Data");
 	    }
+	    
+
 }

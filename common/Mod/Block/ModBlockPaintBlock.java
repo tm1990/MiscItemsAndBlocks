@@ -15,8 +15,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ModBlockPaintBlock extends BlockContainer{
 
-    private int layer = 0;
-    private int renderSide = 0;
 	
 	protected ModBlockPaintBlock(int par1) {
 		super(par1, Material.cloth);

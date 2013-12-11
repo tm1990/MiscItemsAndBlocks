@@ -7,6 +7,7 @@ import Mod.Container.ContainerBin;
 import Mod.Container.ContainerBox;
 import Mod.Container.ContainerCharger;
 import Mod.Container.ContainerCraftingInv;
+import Mod.Container.ContainerElectricFurnace;
 import Mod.Container.ContainerGenerator;
 import Mod.Container.ContainerMill;
 import Mod.Container.ContainerMiningChamber;
@@ -18,6 +19,7 @@ import Mod.TileEntity.TileEntityBin;
 import Mod.TileEntity.TileEntityBox;
 import Mod.TileEntity.TileEntityCharger;
 import Mod.TileEntity.TileEntityCraftingInv;
+import Mod.TileEntity.TileEntityElectricFurnace;
 import Mod.TileEntity.TileEntityGenerator;
 import Mod.TileEntity.TileEntityMill;
 import Mod.TileEntity.TileEntityMiningChamber;
@@ -39,12 +41,17 @@ public class GuiHandler implements IGuiHandler{
         
 
         
+        
+        
         if(tile_entity instanceof TileEntityOvenCore){
         	
         	return new ContainerPizzaOven(player.inventory, (TileEntityOvenCore) tile_entity);
         }
         
-
+        if(tile_entity instanceof TileEntityElectricFurnace){
+        	
+        	return new ContainerElectricFurnace(player.inventory, (TileEntityElectricFurnace) tile_entity);
+        }
         
         if(tile_entity instanceof TileEntityMiningChamber){
         	
@@ -118,6 +125,15 @@ public class GuiHandler implements IGuiHandler{
         if(tile_entity instanceof TileEntityXpStorage){
             return new GuiXpStorage(player.inventory, (TileEntityXpStorage) tile_entity);
 
+        }
+        
+        if(tile_entity instanceof TileEntityElectricFurnace){
+            return new GuiElectricFurnace(player.inventory, (TileEntityElectricFurnace) tile_entity);
+
+        }
+        
+        if(ID == 1){
+        	return new GuiPaintBrush(player.inventory.getCurrentItem());
         }
         
 

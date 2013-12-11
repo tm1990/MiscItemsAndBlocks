@@ -43,6 +43,8 @@ public class ModBlocks {
 	
 	public static Block PaintBlock;
 	
+	public static Block ElectricFurnace;
+	
 	public static Block ItemPedestal;
 	public static Block MiningChamber;
 	
@@ -121,13 +123,13 @@ public class ModBlocks {
         Register(Mill, "Mill", true);
 
         Squezer = new ModBlockSquezer(ModConfig.Squezer).setUnlocalizedName("Squezer");
-        Register(Squezer, "Squezer", true);
+        Register(Squezer, "Squeezer", true);
         
         OrangeLeaf = new ModBlockOrangeLeaf(ModConfig.OrangeLeaf).setUnlocalizedName("OrangeLeaf");
         Register(OrangeLeaf, "Orange Tree Leaves", true);
         
         OrangeSapling = new ModBlockOrangeSapling(ModConfig.OrangeSapling).setUnlocalizedName("OrangeSapling");
-        Register(OrangeSapling, "Orange Sapling", true);
+        Register(OrangeSapling, "Orange Tree Sapling", true);
         
         
         //Renamed to Oven
@@ -168,15 +170,19 @@ public class ModBlocks {
         MachinePart = new ModBlockMachinePart(ModConfig.MachinePart).setUnlocalizedName("MachinePart");
         Register(MachinePart, "Machine Part", true);
         
-        PaintBlock = new ModBlockPaintBlock(ModConfig.PaintBlock);
+        PaintBlock = new ModBlockPaintBlock(ModConfig.PaintBlock).setUnlocalizedName("PaintBlock");
         Register(PaintBlock, "Paint Block", true);
+        
+        ElectricFurnace = new ModBlockElectricFurnace(ModConfig.ElFurnace).setUnlocalizedName("ElFurnace");
+        Register(ElectricFurnace, "Electric Furnace", true);
         
         
         
         
 		RegisterOreDictionary(new ItemStack(SilverOre), "oreSilver");
-		RegisterOreDictionary(new ItemStack(OrangeLog), "log");
-		RegisterOreDictionary(new ItemStack(OrangePlanks), "planks");
+		RegisterOreDictionary(new ItemStack(OrangeLog), "logWood");
+		RegisterOreDictionary(new ItemStack(OrangePlanks), "plankWood");
+		//OreDictionary.registerOre("plankWood", ModBlocks.OrangePlanks);
 		
 		RegisterHarvestLevel(Box, "axe", 1);
 		

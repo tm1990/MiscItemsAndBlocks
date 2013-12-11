@@ -23,7 +23,6 @@ public class ModItems {
 	public static Item SilverBow;
 	public static Item SilverArrow;
 	public static Item Cardboard;
-	public static Item CraftingUpgrade;
 	public static Item Tomato;
 	public static Item Flour;
 	public static ItemSeeds TomatoSeeds;
@@ -104,9 +103,6 @@ public class ModItems {
         
         Cardboard = new ModItemCardboard(ModConfig.Cardboard).setUnlocalizedName("Cardboard");
         Register(Cardboard, "Cardboard");
-        
-        CraftingUpgrade = new ModItemCraftingChestUpgrade(ModConfig.CraftingUpgrade).setUnlocalizedName("CraftingUpgrade");
-        Register(CraftingUpgrade, "Worktable Upgrade");
         
         Tomato = new ModItemTomato(ModConfig.Tomato, 3, 1F, false).setUnlocalizedName("Tomato");
         Register(Tomato, "Tomato");

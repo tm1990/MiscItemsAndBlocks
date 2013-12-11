@@ -135,10 +135,10 @@ public class TileEntityMill extends TileEntityInvBase{
 
         
         public ItemStack OutputItem(){
-        	int id = this.getStackInSlot(0).itemID;
+        	Item item = this.getStackInSlot(0).getItem();
         	
-        	if(id == Item.wheat.itemID) return new ItemStack(ModItems.Flour);
-        	if(id == Item.rottenFlesh.itemID)return new ItemStack(Item.leather);
+        	if(item == Item.wheat) return new ItemStack(ModItems.Flour);
+        	if(item == Item.rottenFlesh)return new ItemStack(Item.leather);
         	
         	return null;
         }

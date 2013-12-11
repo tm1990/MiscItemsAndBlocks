@@ -29,6 +29,7 @@ import Mod.TileEntity.TileEntityBox;
 import Mod.TileEntity.TileEntityCharger;
 import Mod.TileEntity.TileEntityCraftingInv;
 import Mod.TileEntity.TileEntityDisarmTrap;
+import Mod.TileEntity.TileEntityElectricFurnace;
 import Mod.TileEntity.TileEntityGenerator;
 import Mod.TileEntity.TileEntityItemPedestal;
 import Mod.TileEntity.TileEntityMill;
@@ -92,8 +93,7 @@ public void preInit(FMLPreInitializationEvent event) {
     	
 	GameRegistry.registerCraftingHandler(new ModCraftingHandler());
 	
-        Configuration configMisc = new Configuration(new File(event.getModConfigurationDirectory() + "/tm1990's mods/MiscItemsAndBlocksConfig.cfg"));
-        File BlastProofCraftConfig = new File("config/tm1990's mods/BlastProofCraftConfig.cfg");    
+        Configuration configMisc = new Configuration(new File(event.getModConfigurationDirectory() + "/tm1990's mods/MiscItemsAndBlocksConfig.cfg")); 
         
     	try
     	{
@@ -168,6 +168,8 @@ public void preInit(FMLPreInitializationEvent event) {
         GameRegistry.registerTileEntity(TileEntityGamePartYellow.class, "TileEntityGamePartYellow");
         GameRegistry.registerTileEntity(TileEntityGamePartNull.class, "TileEntityGamePartNull");
         GameRegistry.registerTileEntity(TileEntityPillar.class, "TileEntityPillar");
+        
+        GameRegistry.registerTileEntity(TileEntityElectricFurnace.class, "TileEntityElectricFurnace");
         
         GameRegistry.registerTileEntity(TileEntityTable.class, "TileEntityTable");
         GameRegistry.registerTileEntity(TileEntityPaintBlock.class, "TileEntityPaintBlock");

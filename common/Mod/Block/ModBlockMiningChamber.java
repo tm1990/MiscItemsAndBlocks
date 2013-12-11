@@ -51,7 +51,6 @@ public class ModBlockMiningChamber extends ModBlockPowerMachine{
     @Override
     public void breakBlock(World World, int x, int y, int z, int id, int meta)
     {
-		super.breakBlock(World, x, y, z, id, meta);
     	TileEntity tile = World.getBlockTileEntity(x, y, z);
     	
     	if(tile != null && tile instanceof IInventory){
@@ -81,5 +80,6 @@ public class ModBlockMiningChamber extends ModBlockPowerMachine{
     			
     		}
     	}
+		super.breakBlock(World, x, y, z, id, meta);
     }
 }

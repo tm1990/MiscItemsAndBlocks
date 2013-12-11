@@ -18,6 +18,25 @@ public class ModCraftingHandler implements ICraftingHandler{
 		
 		if(id == ModItems.PizzaRaw.itemID)player.inventory.addItemStackToInventory(new ItemStack(Item.bucketEmpty));
 		
+		if(id == ModItems.PaintBrush.itemID){
+			if(item.getItemDamage() == 4){
+				player.inventory.addItemStackToInventory(new ItemStack(ModItems.PaintBrush, 1, 1));
+				player.inventory.addItemStackToInventory(new ItemStack(ModItems.PaintBrush, 1, 2));
+				player.inventory.addItemStackToInventory(new ItemStack(ModItems.PaintBrush, 1, 3));
+
+				
+				
+			}else if(item.getItemDamage() == 5){
+				player.inventory.addItemStackToInventory(new ItemStack(ModItems.PaintBrush, 1, 1));
+				player.inventory.addItemStackToInventory(new ItemStack(ModItems.PaintBrush, 1, 2));
+				player.inventory.addItemStackToInventory(new ItemStack(ModItems.PaintBrush, 1, 3));
+				player.inventory.addItemStackToInventory(new ItemStack(ModItems.PaintBrush, 1, 4));
+
+				
+				
+			}
+		}
+		
 		
 	}
 

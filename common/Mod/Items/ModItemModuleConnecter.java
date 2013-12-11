@@ -26,7 +26,7 @@ public class ModItemModuleConnecter extends Item{
 	    @Override
 	    public void addInformation(ItemStack itemstack, EntityPlayer player, List list, boolean par4)
 	    {
-	            list.add("Used to make power modules.");
+	            list.add("Used to make power cables.");
 	    }
 
 }

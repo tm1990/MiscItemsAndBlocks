@@ -91,11 +91,12 @@ public class ModBlockCharger extends BlockContainer{
 	    				
 	    				
 	    				World.spawnEntityInWorld(droppedItem);
-	    				super.breakBlock(World, x, y, z, id, meta);
+
 	    			}
 	    			
 	    		}
 	    	}
+			super.breakBlock(World, x, y, z, id, meta);
 	    }
 
 }

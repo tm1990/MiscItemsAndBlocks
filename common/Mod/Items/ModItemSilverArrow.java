@@ -28,7 +28,6 @@ public class ModItemSilverArrow extends Item
     @Override
     public void addInformation(ItemStack itemstack, EntityPlayer player, List list, boolean par4)
     {
-            list.add("Idea by ErnieFlapps");
             list.add("");
             list.add("Used with silver bow");
     }

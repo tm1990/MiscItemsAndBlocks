@@ -103,13 +103,13 @@ public class TileEntitySquezer extends TileEntityInvBase implements ISidedInvent
     
     public ItemStack GetOutput(){
     	
-    	int id1 = this.getStackInSlot(0).itemID;
-    	int id2 = this.getStackInSlot(1).itemID;
+    	Item item_1 = this.getStackInSlot(0).getItem();
+    	Item item_2 = this.getStackInSlot(1).getItem();
     	
-    	if(id1 == Item.glassBottle.itemID && id2 == Item.appleRed.itemID) return new ItemStack(ModItems.Liquid, 1, 0);
-    	if(id1 == Item.bucketEmpty.itemID && id2 == ModItems.Tomato.itemID) return new ItemStack(ModItems.Liquid, 1, 1);
-    	if(id1 == Item.glassBottle.itemID && id2 == ModItems.Orange.itemID)return new ItemStack(ModItems.Liquid, 1, 2);
-    	if(id1 == Item.glassBottle.itemID && id2 == Item.carrot.itemID)return new ItemStack(ModItems.Liquid, 1, 3);
+    	if(item_1 == Item.glassBottle && item_2 == Item.appleRed) return new ItemStack(ModItems.Liquid, 1, 0);
+    	if(item_1 == Item.bucketEmpty && item_2 == ModItems.Tomato) return new ItemStack(ModItems.Liquid, 1, 1);
+    	if(item_1 == Item.glassBottle && item_2 == ModItems.Orange)return new ItemStack(ModItems.Liquid, 1, 2);
+    	if(item_1 == Item.glassBottle && item_2 == Item.carrot)return new ItemStack(ModItems.Liquid, 1, 3);
     	
     	
 
@@ -119,8 +119,11 @@ public class TileEntitySquezer extends TileEntityInvBase implements ISidedInvent
     
     
     public boolean CanWork(){
+    	
+    	if(GetOutput() == null)
+    		return false;
 
-    	return GetOutput() != null && this.getStackInSlot(2) == null || this.getStackInSlot(2).stackSize == 0;
+    	return GetOutput() != null && this.getStackInSlot(2) == null;
     	
     }
     

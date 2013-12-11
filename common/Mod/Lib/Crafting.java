@@ -18,9 +18,12 @@ public class Crafting {
 	public static void RegisterRecipes(){
 		
 		
-		OreDictionary.registerOre("plankWood", ModBlocks.OrangePlanks);
+        GameRegistry.addRecipe(new ShapedOreRecipe(ModBlocks.CraftingInv, new Object[] {"WWW", "PIP", "PCP", 'W', Block.cloth, Character.valueOf('P'), "plankWood", 'C', Block.chest, 'I', Block.workbench}));
+		GameRegistry.addRecipe(new ShapedOreRecipe(ModBlocks.Dice, new Object[]{"PPP", "PDP", "PPP", Character.valueOf('P'), "plankWood", 'D', Item.dyePowder}));
+		GameRegistry.addRecipe(new ShapedOreRecipe(ModBlocks.Table, new Object[]{"CCC", "HHH", "P P", 'C', new ItemStack(Block.carpet, 1, 14), Character.valueOf('P'), "plankWood", Character.valueOf('H'), "slabWood"}));	
+		GameRegistry.addRecipe(new ShapedOreRecipe(ModItems.Turbine, new Object[]{"S S", " P ", "S S", 'S', Item.stick, Character.valueOf('P'), "plankWood"}));
 
-			
+		
 			GameRegistry.addShapedRecipe(new ItemStack(ModItems.XpExtractor), new Object[] {" D ", "IGI", "IGI", 'I', Item.ingotIron, 'G', Block.glass, 'D', Item.diamond});
 			GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.XpStorage), new Object[] {"BIB", "IEI", "BIB", 'I', Block.obsidian, 'B', Block.blockIron, 'E', ModItems.XpExtractor});
 	        GameRegistry.addShapedRecipe(new ItemStack(ModItems.SilverIngot), new Object[] {"NNN", "NNN", "NNN", 'N', ModItems.SilverNugget});
@@ -38,18 +41,16 @@ public class Crafting {
 			GameRegistry.addRecipe(new ItemStack(ModItems.DivingHelmet), new Object[] {"SNS", "SGS", "   ", 'S', ModItems.SilverIngot, 'N', Item.netherStar, 'G', Block.glass});
 			GameRegistry.addRecipe(new ItemStack(ModItems.RunningLeggings), new Object[]{"SNS", "S S", "S S", 'S', ModItems.SilverIngot, 'N', Item.netherStar});
 			GameRegistry.addRecipe(new ItemStack(ModItems.JumpingBoots), new Object[] {"   ", "S S", "D D", 'D', Item.diamond, 'S', ModItems.SilverIngot});
-	        GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.CraftingInv), new Object[] {"WWW", "PIP", "PCP", 'W', Block.cloth, 'P', Block.planks, 'C', Block.chest, 'I', Block.workbench});
-	        GameRegistry.addShapedRecipe(new ItemStack(ModItems.CraftingUpgrade), new Object[]{"WWW", "PBP", "PCP", 'W', Block.cloth, 'P', Block.planks, 'B', ModItems.Cardboard, 'C', Block.chest});
+
+			GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.PaintBlock, 8), new Object[]{"CCC", "CSC", "CCC", 'C', Block.cloth, 'S', Item.stick});
+
 			GameRegistry.addShapelessRecipe(new ItemStack(ModItems.TomatoSeeds, 4), ModItems.Tomato);
 			GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.SpeedBlock, 8), new Object[]{"III", "BDB", "BBB", 'I', Block.ice, 'B', Block.blockIron, 'D', Item.diamond});
-			GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.Dice), new Object[]{"PPP", "PDP", "PPP", 'P', Block.planks, 'D', Item.dyePowder});
 			GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.Mill), new Object[]{"CSC", "SPS", "CCC", 'C', Block.cobblestone, 'S', Block.stone, 'P', Block.pistonBase});
 			GameRegistry.addShapedRecipe(new ItemStack(ModItems.PizzaBottom), new Object[]{"FFF", 'F', ModItems.Flour});
 			GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.Squezer), new Object[]{"CIC", "IPI", "CCC", 'C', Block.cobblestone, 'I', Item.ingotIron, 'P', Block.pistonBase});
 			GameRegistry.addShapelessRecipe(new ItemStack(ModItems.Cheese), Item.bucketMilk);
-			GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.PizzaOven), new Object[] {"SSS", "SFS", "SSS", 'S', Block.stone, 'F', Block.furnaceIdle});
-			GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.Table), new Object[]{"CCC", "HHH", "P P", 'C', new ItemStack(Block.carpet, 1, 14), 'P', Block.planks, 'H', Block.woodSingleSlab});
-			GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.PaintBlock, 8), new Object[]{"CCC", "CSC", "CCC", 'C', Block.cloth, 'S', Item.stick});
+			GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.PizzaOven), new Object[] {"SSS", "SFS", "SSS", 'S', Block.stone, 'F', Block.furnaceIdle});		
 			GameRegistry.addShapedRecipe(new ItemStack(ModItems.PaintBrush), new Object[]{"  C", " S ", "S  ", 'C', Block.cloth, 'S', Item.stick});
 			
 			GameRegistry.addShapelessRecipe(new ItemStack(ModItems.PaintBrush, 1, 1), new Object[]{new ItemStack(ModItems.PaintBrush, 1, 0), new ItemStack(Item.dyePowder, 1, 1)});
@@ -57,6 +58,7 @@ public class Crafting {
 			GameRegistry.addShapelessRecipe(new ItemStack(ModItems.PaintBrush, 1, 3), new Object[]{new ItemStack(ModItems.PaintBrush, 1, 0), new ItemStack(Item.dyePowder, 1, 4)});
 			
 			GameRegistry.addShapedRecipe(new ItemStack(ModItems.PaintBrush, 1, 4), new Object[]{" R ", "GPB", " F ", 'R', new ItemStack(ModItems.PaintBrush, 1, 1 ), 'G', new ItemStack(ModItems.PaintBrush, 1, 2 ), 'B', new ItemStack(ModItems.PaintBrush, 1, 3 ), 'P', Item.paper, 'F', new ItemStack(ModItems.PaintBrush, 1, 0)});
+			GameRegistry.addShapedRecipe(new ItemStack(ModItems.PaintBrush, 1, 5), new Object[]{" R ", "GPB", " F ", 'R', new ItemStack(ModItems.PaintBrush, 1, 1 ), 'G', new ItemStack(ModItems.PaintBrush, 1, 2 ), 'B', new ItemStack(ModItems.PaintBrush, 1, 3 ), 'P', Item.paper, 'F', new ItemStack(ModItems.PaintBrush, 1, 4)});
 			
 			
 			GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.MachinePart), new Object[]{"PPP", "P P", "PPP", 'P', new ItemStack(ModItems.IronPlate, 1, 0)});
@@ -90,7 +92,6 @@ public class Crafting {
 			GameRegistry.addShapedRecipe(new ItemStack(ModItems.Circuit, 1, 0), new Object[]{"WIW", "IRI", "WIW", 'W', ModItems.Cardboard, 'I', new ItemStack(ModItems.IronPlate, 1, 0), 'R', Item.redstone});
 			GameRegistry.addShapedRecipe(new ItemStack(ModItems.ModuleConnecter), new Object[]{"III", "ICI", "III", 'I', new ItemStack(ModItems.IronPlate, 1, 0), 'C', new ItemStack(ModItems.Circuit, 1, 0)});
 			GameRegistry.addShapedRecipe(new ItemStack(ModItems.SolarCells), new Object[]{"IGI", "GCG", "IGI", 'I', new ItemStack(ModItems.IronPlate, 1, 0), 'G', Block.glass, 'C', new ItemStack(ModItems.Circuit, 1, 0)});
-			GameRegistry.addShapedRecipe(new ItemStack(ModItems.Turbine), new Object[]{"S S", " P ", "S S", 'S', Item.stick, 'P', Block.planks});
 			
 			GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.Charger), new Object[]{"ICI", "RMR", "IRI", 'I', new ItemStack(ModItems.IronPlate, 1, 2), 'R', new ItemStack(ModItems.Battery, 1, 16), 'C', new ItemStack(ModItems.Circuit, 1, 0), 'M', ModBlocks.MachinePart});
 			GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.SolarPanel), new Object[]{"IGI", "GMG", "ICI", 'I', new ItemStack(ModItems.IronPlate, 1, 2), 'G', ModItems.SolarCells, 'C', new ItemStack(ModItems.Circuit, 1, 1), 'M', ModBlocks.MachinePart});
@@ -103,6 +104,8 @@ public class Crafting {
 			
 	        GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.Pillar, 4), new Object[]{"QQQ", " Q ", "QQQ", 'Q', Block.blockNetherQuartz});
 
+	        GameRegistry.addRecipe(new ItemStack(ModBlocks.ElectricFurnace), new Object[]{"PMP", "PFP", "PCP", 'P', new ItemStack(ModItems.IronPlate, 1, 2), 'M', ModBlocks.MachinePart, 'F', Block.furnaceIdle, 'C', new ItemStack(ModItems.Circuit, 1, 1)});
+	        
 	        GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.GamePartNull, 4), new Object[]{"III", " I ", "III", 'I', Item.ingotIron});
 	        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.GamePartGreen), new Object[]{ModBlocks.GamePartNull, new ItemStack(Item.dyePowder, 1, 2)});
 	        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.GamePartRed), new Object[]{ModBlocks.GamePartNull, new ItemStack(Item.dyePowder, 1, 1)});
@@ -117,12 +120,6 @@ public class Crafting {
 			
 	        
 	        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.OrangePlanks, 4), ModBlocks.OrangeLog);
-//	        GameRegistry.addRecipe(new ItemStack(Item.stick, 4), new Object[]{"P", "P", 'P', ModBlocks.OrangePlanks});
-//	        GameRegistry.addRecipe(new ItemStack(Block.chest), new Object[]{"PPP", "P P", "PPP", 'P', ModBlocks.OrangePlanks});
-//	        GameRegistry.addRecipe(new ItemStack(Item.doorWood), new Object[]{"PP", "PP", "PP", 'P', ModBlocks.OrangePlanks});
-//	        GameRegistry.addRecipe(new ItemStack(Block.trapdoor, 2), new Object[]{"PPP", "PPP", 'P', ModBlocks.OrangePlanks});
-//	        GameRegistry.addRecipe(new ItemStack(Block.workbench), new Object[]{"PP", "PP", 'P', ModBlocks.OrangePlanks});
-//	        GameRegistry.addRecipe(new ItemStack(Item.bed), new Object[]{"WWW", "PPP", 'W', Block.cloth, 'P', ModBlocks.OrangePlanks});
 
 	        
 	        

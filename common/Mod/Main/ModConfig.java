@@ -31,6 +31,8 @@ public class ModConfig {
 	
 	public static int PaintBlock;
 	
+	public static int ElFurnace;
+	
 	//TODO public static int CamouflageBlock;
 	
 	public static int ItemPedestal;
@@ -62,7 +64,6 @@ public class ModConfig {
 	public static int SilverBow;
 	public static int SilverArrow;
 	public static int Cardboard;
-	public static int CraftingUpgrade;
 	public static int Tomato;
 	public static int Flour;
 	public static int TomatoSeeds;
@@ -166,6 +167,7 @@ public class ModConfig {
 		MachinePart = config.getBlock("Blocks", "Machine Part Block Id", 633).getInt();
 		
 		PaintBlock = config.getBlock("Blocks", "Paint Block Id", 634).getInt();
+		ElFurnace = config.getBlock("Blocks", "Electric furance Block Id", 635).getInt();
 		
 		
 		
@@ -180,7 +182,6 @@ public class ModConfig {
         RunningLeggings = config.getItem("Items", "Running Leggings Id", 22008).getInt();
         JumpingBoots = config.getItem("Items", "Jumping Boots Id", 22009).getInt();
         Cardboard = config.getItem("Items", "Cardboard Id", 22010).getInt();
-        CraftingUpgrade = config.getItem("Items", "CraftingTable Chest Upgrade Id", 22011).getInt();
         Tomato = config.getItem("Items", "Tomato Id", 22012).getInt();
         Flour = config.getItem("Items", "Flour Id", 22013).getInt();
         TomatoSeeds = config.getItem("Items", "Tomato Seeds Id", 22014).getInt();

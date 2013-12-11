@@ -79,11 +79,12 @@ public class ModBlockMill extends BlockContainer{
 					if(i != 27){
 					World.spawnEntityInWorld(droppedItem);
 					}
-					super.breakBlock(World, x, y, z, id, meta);
+
 					
 				}
 				
 			}
+			super.breakBlock(World, x, y, z, id, meta);
 			
 		}
 

@@ -85,7 +85,6 @@ public class ModItemSilverSword extends ItemSword {
     {
     	
     	
-            list.add("Idea by ErnieFlapps");
             list.add("One-hit killes mobs");
             
             if(HasInfo(itemstack)){
