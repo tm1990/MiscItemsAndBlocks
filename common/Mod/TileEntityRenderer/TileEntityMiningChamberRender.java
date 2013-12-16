@@ -63,7 +63,7 @@ public class TileEntityMiningChamberRender extends TileEntitySpecialRenderer {
 
             bindTexture(new ResourceLocation("miscitems" , "textures/models/MiningChamber.png"));
             
-            this.model.render((Entity)null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
+            this.model.render((Entity)null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F, te, te.xCoord, te.yCoord, te.zCoord);
             
          GL11.glPopMatrix();
          GL11.glPushMatrix();
@@ -78,9 +78,9 @@ public class TileEntityMiningChamberRender extends TileEntitySpecialRenderer {
             ghostEntityItem.hoverStart = 0.0F;
             ghostEntityItem.setEntityItemStack(tile.getStackInSlot(tile.ToolSlot));
 
-            GL11.glTranslatef((float) x + 0.5F, (float) y + 0.32F, (float) z + 0.5F);
+            GL11.glTranslatef((float) x + 0.5F, (float) y + 1F, (float) z + 0.5F);
             
-            GL11.glScalef(scaleFactor + 0.34F, scaleFactor + 0.34F, scaleFactor + 0.34F);
+            GL11.glScalef(scaleFactor + 0.004F, scaleFactor + 0.004F, scaleFactor + 0.004F);
             GL11.glRotatef(rotationAngle, 0.0F, 1.0F, 0.0F);
 
             customRenderItem.doRenderItem(ghostEntityItem, 0, 0, 0, 0, 0);

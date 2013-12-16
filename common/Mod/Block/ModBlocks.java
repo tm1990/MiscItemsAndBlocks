@@ -162,7 +162,7 @@ public class ModBlocks {
         Register(ItemPedestal, ModItemBlockItemPedestal.class, "Item Pedestal", true);
         
         MiningChamber = new ModBlockMiningChamber(ModConfig.MiningChamber).setUnlocalizedName("MiningChamber").setCreativeTab(Main.CreativeTab);
-        Register(MiningChamber, ModItemBlockMiningChamber.class, "Mining Chamber", true);
+        Register(MiningChamber, ModItemBlockMiningChamber.class, "Mining Station", true);
         
         Table = new ModBlockTable(ModConfig.Table).setUnlocalizedName("Table");
         Register(Table, ModItemBlockTable.class ,"Table", true);

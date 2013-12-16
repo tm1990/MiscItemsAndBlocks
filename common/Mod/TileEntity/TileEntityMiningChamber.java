@@ -1,25 +1,21 @@
 package Mod.TileEntity;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.item.ItemPickaxe;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemTool;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
+import net.minecraft.network.packet.Packet;
+import net.minecraft.world.World;
 import Mod.LibMisc.BlockUtil;
 import Mod.LibMisc.Utils;
 import Mod.Misc.ItemHelper;
 import Mod.Network.PacketTileWithItemUpdate;
 import Mod.Network.PacketTypeHandler;
-
-import net.minecraft.block.Block;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
-import net.minecraft.network.packet.Packet;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
 
 public class TileEntityMiningChamber extends TileEntityPowerInv{
 
@@ -36,6 +32,8 @@ public class TileEntityMiningChamber extends TileEntityPowerInv{
 	boolean CanMine = true;
 	boolean Ready = false;
 	int CurrentBlock = 0;
+	
+	public boolean Running;
 	
 	int Fortune = 0;
 	int MiningTime = 0;
@@ -70,6 +68,14 @@ public class TileEntityMiningChamber extends TileEntityPowerInv{
 	
 	public boolean Ready(){
 		return Ready;
+	}
+	
+	public boolean IsRunning(){
+		return Running;
+	}
+	
+	public boolean CanMine(){
+		return CanMine;
 	}
 	
 	public void SetBlocksMined(int i){
@@ -171,6 +177,7 @@ public class TileEntityMiningChamber extends TileEntityPowerInv{
     public void updateEntity()
     {
     	
+    	
     	int Eff = EnchantmentHelper.getEnchantmentLevel(32, this.getStackInSlot(ToolSlot));
     	int Luck = EnchantmentHelper.getEnchantmentLevel(35, this.getStackInSlot(ToolSlot));
     	
@@ -190,51 +197,26 @@ public class TileEntityMiningChamber extends TileEntityPowerInv{
     	if(CurrentBlock < 0 || CurrentBlock > 9){
     		CurrentBlock = 0;
     	}
-    
     	
-    	if(Time >= MiningTime){
+    
+    	if(Power > 0 && this.getStackInSlot(this.ToolSlot) != null && this.getStackInSlot(ToolSlot).getItem() instanceof ItemPickaxe){
+
+    		
+    	if(Ready && Time >= MiningTime){
     		Time = 0;
-    		if(CanMine && Ready){
 
-    		
-    		
-    		
-    		
-    		
-    		TileEntityItemPedestal tile1;
-        	TileEntityItemPedestal tile2;
-        	TileEntityItemPedestal tile3;
-        	TileEntityItemPedestal tile4;
-        	
 
-        	TileEntity tile_entity_1 = this.worldObj.getBlockTileEntity(xCoord + 2, yCoord, zCoord);
-        	TileEntity tile_entity_2 = this.worldObj.getBlockTileEntity(xCoord - 2, yCoord, zCoord);
-        	TileEntity tile_entity_3 = this.worldObj.getBlockTileEntity(xCoord, yCoord, zCoord + 2);
-        	TileEntity tile_entity_4 = this.worldObj.getBlockTileEntity(xCoord, yCoord, zCoord - 2);
-        	
-        	
-        	if(Power > 0 && this.getStackInSlot(this.ToolSlot) != null && this.getStackInSlot(this.ToolSlot).getItem() == Item.pickaxeDiamond)
-        	if(tile_entity_1 instanceof TileEntityItemPedestal){
-        		tile1 = (TileEntityItemPedestal)tile_entity_1;
-        		if(tile_entity_2 instanceof TileEntityItemPedestal){
-        			tile2 = (TileEntityItemPedestal)tile_entity_2;
-        			if(tile_entity_3 instanceof TileEntityItemPedestal){
-        				tile3 = (TileEntityItemPedestal)tile_entity_3;
-        				if(tile_entity_4 instanceof TileEntityItemPedestal){
-        					tile4 = (TileEntityItemPedestal)tile_entity_4;
-        					if(tile1.getStackInSlot(0) != null && tile2.getStackInSlot(0) != null && tile3.getStackInSlot(0) != null && tile4.getStackInSlot(0) != null)
-        					if(tile1.getStackInSlot(0).getItem() == Item.enderPearl && tile2.getStackInSlot(0).getItem() == Item.enderPearl  && tile3.getStackInSlot(0).getItem() == Item.enderPearl  && tile4.getStackInSlot(0).getItem() == Item.enderPearl){
+			SetValue(1);
 
+    	
+        	
         				
         					if(MinedY == 0){
         						MinedY = this.yCoord - 1;
         					}
         					
-        					if(MinedY <= LastY){
-        						CanMine = false;
-        						return;
-        					}
         					
+
         					int x = this.xCoord;
         					int y = this.MinedY;
         					int z = this.zCoord;
@@ -274,30 +256,70 @@ public class TileEntityMiningChamber extends TileEntityPowerInv{
         					
         					if(Power < 0 ){
         						Power = 0;
+        						SetValue(0);
+        					}else if (Power == 0){
+        						SetValue(0);
         					}
         						
+        					
+        					if(MinedY <= LastY){
+        						SetValue(0);
+        						return;
         					}
         						
         					
+        						
         					
         					
         					}
-        				}
-        			}
 
-        		}
         		
+        	
+        	}else{
+        		Time++;
         	}
     		
-    		}
     		
-    		
+    	
+    	
     	}else{
-    		Time++;
-    	}
+    		if(Power > 0 && GetValue() != 2 && this.getStackInSlot(this.ToolSlot) != null && !(this.getStackInSlot(ToolSlot).getItem() instanceof ItemPickaxe)){
+				SetValue(2);
+    		}else if (this.getStackInSlot(ToolSlot) == null){
+    			SetValue(0);
+    		}
+
+    		CanMine = false;
+    	
+    		}
+    	
+
+    		
+    		
+
 
     	
     }
+    
+    public void SetValue(int i){
+		this.worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, i, 2);
+		System.out.println("Setting " + i);
+		
+		if(i != 1)
+		Ready = false;
+		
+		if(i == 0 || i == 2){
+			CanMine = false;
+			
+		}else{
+			CanMine = true;
+		}
+    }
+    
+    public int GetValue(){
+    	return this.worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
+    }
+    
     
     public boolean IsAirBlock(int x, int y, int z){
     	World world = this.worldObj;
