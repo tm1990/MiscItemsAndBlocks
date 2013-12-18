@@ -215,6 +215,8 @@ public class TileEntityMiningChamber extends TileEntityPowerInv{
     	if(this.getStackInSlot(ToolSlot) != null ){
     		if(Power > 0){
     		if(this.getStackInSlot(ToolSlot).getItem() instanceof ItemPickaxe){
+    			int DamageLeft = this.getStackInSlot(ToolSlot).getMaxDamage() - this.getStackInSlot(ToolSlot).getItemDamage();
+    			if(DamageLeft > 1){
     			
     			if(Ready){
     				SetValue(1);
@@ -222,6 +224,12 @@ public class TileEntityMiningChamber extends TileEntityPowerInv{
     				SetValue(3);
     				return;
     			}
+    			
+    			}else{
+    				SetValue(3);
+    				return;
+    			}
+    	    	
     		}else{
     			SetValue(2);
     			return;
@@ -235,9 +243,10 @@ public class TileEntityMiningChamber extends TileEntityPowerInv{
 	    		SetValue(0);
 	    		return;
 	    	}
-    	
-    	
+    		
     	}
+    	
+    	
     	
     	
     	if(MinedY <= LastY){
@@ -335,6 +344,8 @@ public class TileEntityMiningChamber extends TileEntityPowerInv{
         
         
     	
+                this.SetPower(this.GetPower() - 2);
+                this.getStackInSlot(ToolSlot).attemptDamageItem(1, this.worldObj.rand);
         
         this.worldObj.destroyBlock(x, y, z, false);
         Time = 0;
