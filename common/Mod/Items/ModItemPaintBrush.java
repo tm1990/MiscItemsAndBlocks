@@ -101,8 +101,6 @@ public class ModItemPaintBrush extends Item{
 	    			
 	    			int Meta = stack.getItemDamage();
 	    			
-	    			if(!world.isRemote)
-	    			System.out.println("Red: " + tile.GetRed() + " Green: " + tile.GetGreen() + " Blue : " + tile.GetBlue());
     				
 	    			
 	    			if(player.isSneaking()){

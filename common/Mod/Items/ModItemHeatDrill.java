@@ -19,6 +19,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
 
 public class ModItemHeatDrill extends ModItemPowerTool{
@@ -77,7 +78,7 @@ public class ModItemHeatDrill extends ModItemPowerTool{
 	                for (ItemStack s : stacks) {
 	                        if (s != null) {
 
-	                        	Smelt(s, x, y, z, player.worldObj);
+	                        	Smelt(s, x, y, z, player.worldObj, player);
 	                        
 	                        }
 	                }
@@ -106,32 +107,14 @@ public class ModItemHeatDrill extends ModItemPowerTool{
 
 	            list.add("Power left: " + i);
 	            if(itemstack.getItemDamage() == itemstack.getMaxDamage())
-	            	list.add("Out of power recharge!");
+	            	list.add(EnumChatFormatting.RED + "Out of power recharge!");
 
 	            
 	    }
 	   
-	   public void Smelt(ItemStack stack, int x, int y, int z, World world){
+	   public void Smelt(ItemStack stack, int x, int y, int z, World world, EntityPlayer player){
 			ItemStack result = FurnaceRecipes.smelting().getSmeltingResult(stack);
-        	if(result != null){
-
-        		if(result.stackSize <= 0){
-        			result.stackSize = 1;
-        		}
-
-        		
-        		EntityItem item = new EntityItem(world, x, y + world.rand.nextInt(1), z , result);
-        		item.lifespan = 1200;
-        		
-        		world.spawnEntityInWorld(item);
-
-        		
-        	}else{
-        		EntityItem item = new EntityItem(world, x, y + world.rand.nextInt(1), z , stack);
-        		item.lifespan = 1200;
-        		
-        		world.spawnEntityInWorld(item);
-        	}
+        	player.inventory.addItemStackToInventory(result);
 	   }
 	   
 	    public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int par7, float par8, float par9, float par10)
@@ -144,6 +127,9 @@ public class ModItemHeatDrill extends ModItemPowerTool{
 	    	if(block != null){
 	    		
 		        List<ItemStack> stacks = block.getBlockDropped(player.worldObj, x, y, z, player.worldObj.getBlockMetadata(x, y, z), Luck);
+		        
+		        ItemStack stack1 = new ItemStack(block);
+    			ItemStack result1 = FurnaceRecipes.smelting().getSmeltingResult(stack1);
 
 		        if (stacks != null) {
 		                for (ItemStack s : stacks) {
@@ -153,7 +139,7 @@ public class ModItemHeatDrill extends ModItemPowerTool{
 	                    			if(result != null){
 
 		                        	
-		                        	if(result.itemID < 256){
+		                        	if(result.itemID < 256 || result.itemID > 421 && result.itemID < 4096){
 
 
 		                    				
@@ -163,6 +149,18 @@ public class ModItemHeatDrill extends ModItemPowerTool{
 		                    			}
 		                        
 		                        
+	                    			}else{
+	                    				if(result1 != null){
+	    		                        	if(result1.itemID < 256 || result1.itemID > 421 && result1.itemID < 4096){
+
+
+			                    				
+			                    				world.setBlock(x, y, z, result1.itemID);
+			                    				player.inventory.getCurrentItem().damageItem(1, player);
+			                    				
+			                    			}
+	                    				}
+	                    				
 	                    			}
 		                        }
 		                }

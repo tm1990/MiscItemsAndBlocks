@@ -10,16 +10,14 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.EnumToolMaterial;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemTool;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.Icon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
-import net.minecraftforge.common.MinecraftForge;
 import Mod.Block.ModBlocks;
 import Mod.Lib.Refrence;
 import cpw.mods.fml.relauncher.Side;
@@ -126,14 +124,14 @@ public class ModItemDrill extends ModItemPowerTool{
 	            
 	            list.add("Power left: " + i);
 	            if(itemstack.getItemDamage() == itemstack.getMaxDamage())
-	            	list.add("Out of power recharge!");
+	            	list.add(EnumChatFormatting.RED + "Out of power recharge!");
 	            
 	            if(HasInfo(itemstack)){
 	    			  NBTTagCompound Compound = itemstack.getTagCompound().getCompoundTag("Data");
 	    			  
-	    		list.add("Mode: " + Compound.getString("Mode"));	  
+	    		list.add(EnumChatFormatting.GOLD + "Mode: " + Compound.getString("Mode"));	  
 	            }else{
-	            	list.add("Mode: Normal");
+	            	list.add(EnumChatFormatting.GOLD + "Mode: Normal");
 	            }
 	            
 	    }
@@ -151,9 +149,11 @@ public class ModItemDrill extends ModItemPowerTool{
 	    	
 	    	if(player.isSneaking()){
 
-	    		if(!HasInfo(item))
+	    		if(!HasInfo(item)){
 	    			compound.setString("Mode", "Bigger");
-	    		
+	    		if(world.isRemote)
+  				  player.addChatMessage("Drill Mode set to : Bigger (3x3)");
+	    		}
 	    		
 	    		if(HasInfo(item)){
 	    			  NBTTagCompound Compound = item.getTagCompound().getCompoundTag("Data");
@@ -161,13 +161,19 @@ public class ModItemDrill extends ModItemPowerTool{
 	    			  if(Compound.getString("Mode") == "Normal"){
 	    				  
 	    				  compound.setString("Mode", "Bigger");
+	    		    		if(world.isRemote)
+	    				  player.addChatMessage("Drill Mode set to : Bigger (3x3)");
 	    				  
 	    			  }else if (Compound.getString("Mode") == "Bigger"){
 	    				  compound.setString("Mode", "Biggest");
+	    		    		if(world.isRemote)
+	    				  player.addChatMessage("Drill Mode set to : Biggest (5x5)");
 	    				  
 	    			  }else if (Compound.getString("Mode") == "Biggest"){
 	    				  compound.setString("Mode", "Normal");
-	
+	    		    		if(world.isRemote)
+	    				  player.addChatMessage("Drill Mode set to : Normal (1x1)");
+	    				  
 	    			  }else{
 	    				  compound.setString("Mode", "Bigger");
 	    			  }

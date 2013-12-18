@@ -26,6 +26,7 @@ public class ContainerMiningChamber  extends Container {
     int LastBlocksMined;
     int LastY;
     int LastLastY;
+    int LastHoleSize;
 
 	
     public ContainerMiningChamber(InventoryPlayer InvPlayer, TileEntityMiningChamber tile)
@@ -34,13 +35,13 @@ public class ContainerMiningChamber  extends Container {
     	
     	for(int x = 0; x < 9; x++){
     		
-    		addSlotToContainer(new Slot(InvPlayer, x, 8 + 18 * x, 181));
+    		addSlotToContainer(new Slot(InvPlayer, x, 8 + 18 * x, 211));
     	}
     	
     	for(int y = 0; y < 3; y++){
     		for(int x = 0; x < 9; x++){
     			
-    			addSlotToContainer(new Slot(InvPlayer, x + y * 9 + 9, 8 + 18 * x, 123 + y * 18));
+    			addSlotToContainer(new Slot(InvPlayer, x + y * 9 + 9, 8 + 18 * x, 153 + y * 18));
     		}
 
     }
@@ -95,9 +96,9 @@ public class ContainerMiningChamber  extends Container {
     {
         super.addCraftingToCrafters(par1ICrafting);
         par1ICrafting.sendProgressBarUpdate(this, 0, this.tile.GetPower());
-        par1ICrafting.sendProgressBarUpdate(this, 1, this.tile.GetBlocksMined());
-        par1ICrafting.sendProgressBarUpdate(this, 2, this.tile.GetMinedY());
-        par1ICrafting.sendProgressBarUpdate(this, 3, this.tile.GetLastY());
+        par1ICrafting.sendProgressBarUpdate(this, 1, this.tile.GetMinedY());
+        par1ICrafting.sendProgressBarUpdate(this, 2, this.tile.GetLastY());
+        par1ICrafting.sendProgressBarUpdate(this, 3, this.tile.GetSize());
     }
 
     public void detectAndSendChanges()
@@ -113,27 +114,28 @@ public class ContainerMiningChamber  extends Container {
                 icrafting.sendProgressBarUpdate(this, 0, this.tile.GetPower());
             }
             
-            if (this.LastBlocksMined != this.tile.GetBlocksMined())
-            {
-                icrafting.sendProgressBarUpdate(this, 1, this.tile.GetBlocksMined());
-            }
             
             if (this.LastY != this.tile.GetMinedY())
             {
-                icrafting.sendProgressBarUpdate(this, 2, this.tile.GetMinedY());
+                icrafting.sendProgressBarUpdate(this, 1, this.tile.GetMinedY());
             }
             
             if (this.LastLastY != this.tile.GetLastY())
             {
-                icrafting.sendProgressBarUpdate(this, 3, this.tile.GetLastY());
+                icrafting.sendProgressBarUpdate(this, 2, this.tile.GetLastY());
+            }
+            
+            if (this.LastHoleSize != this.tile.GetSize())
+            {
+                icrafting.sendProgressBarUpdate(this, 3, this.tile.GetSize());
             }
             
         }
 
         this.LastPower = this.tile.GetPower();
-        this.LastBlocksMined = this.tile.GetBlocksMined();
         this.LastY = this.tile.GetMinedY();
         this.LastLastY = this.tile.GetLastY();
+        this.LastHoleSize = this.tile.GetSize();
     }
 
     @SideOnly(Side.CLIENT)
@@ -144,19 +146,20 @@ public class ContainerMiningChamber  extends Container {
             this.tile.SetPower(par2);
         }
         
-        if (par1 == 1)
-        {
-            this.tile.SetBlocksMined(par2);
-        }
         
-        if (par1 == 2)
+        if (par1 == 1)
         {
             this.tile.SetMinedY(par2);
         }
         
-        if (par1 == 3)
+        if (par1 == 2)
         {
             this.tile.SetLastY(par2);
+        }
+        
+        if (par1 == 3)
+        {
+            this.tile.SetSize(par2);
         }
         
 

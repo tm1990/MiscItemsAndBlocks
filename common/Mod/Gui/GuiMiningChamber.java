@@ -23,7 +23,7 @@ public class GuiMiningChamber extends GuiContainer{
 		super(new ContainerMiningChamber(InvPlayer, tile));
 		
 		this.xSize = 176;
-		this.ySize = 205;
+		this.ySize = 235;
 		
 		this.tile = tile;
 	}
@@ -49,14 +49,14 @@ public class GuiMiningChamber extends GuiContainer{
 	         drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
 
 	         int Power = this.tile.GetPower();
-	         int BlocksMined = this.tile.GetBlocksMined();
 	         int CurrentY = this.tile.GetMinedY();
 	         int LastY = this.tile.GetLastY();
+	         int HoleSize = this.tile.GetSize();
 	         
 	         int YLeft = CurrentY - LastY;
 	         
 	         fontRenderer.drawString("Power: " + Power + "/" + tile.MaxPower, x + 59, y + 17, 0x000000);
-	         fontRenderer.drawString("Blocks Mined: " + BlocksMined, x + 59, y + 27, 0x000000);
+	         fontRenderer.drawString("Hole Size: " + HoleSize + "x" + HoleSize, x + 59, y + 27, 0x000000);
 	         if(YLeft > 0)
 	         fontRenderer.drawString("Mining " + YLeft + " deeper.", x + 59, y + 37, 0x000000);
 	         else
@@ -74,11 +74,17 @@ public class GuiMiningChamber extends GuiContainer{
 		super.initGui();
 		buttonList.clear();
 		
+		int Meta = this.tile.worldObj.getBlockMetadata(tile.xCoord, tile.yCoord, tile.zCoord);
 		
-		buttonList.add(new GuiButton(1, guiLeft + 61, guiTop + 80, 19, 20, "y-"));
-		buttonList.add(new GuiButton(2, guiLeft + 40,  guiTop + 80, 19, 20, "y+"));
-		buttonList.add(new GuiButton(3, guiLeft + 5, guiTop + 80, 33, 20, "Mine"));
-		buttonList.add(new GuiButton(4, guiLeft + 82,  guiTop + 80, 53, 20, "Current y"));
+		buttonList.add(new GuiButton(1, guiLeft + 48, guiTop + 86, 19, 20, "y-"));
+		buttonList.add(new GuiButton(2, guiLeft + 70,  guiTop + 86, 19, 20, "y+"));
+		
+		buttonList.add(new GuiButton(3, guiLeft + 5, guiTop + 86, 40, 20, Meta == 1 ? "Stop" : "Start"));
+
+		buttonList.add(new GuiButton(4, guiLeft + 92,  guiTop + 86, 79, 20, "Set to start y"));
+		
+		buttonList.add(new GuiButton(5, guiLeft + 5,  guiTop + 111, 50, 20, "Size +"));
+		buttonList.add(new GuiButton(6, guiLeft + 58,  guiTop + 111, 50, 20, "Size -"));
 		
 		
 		

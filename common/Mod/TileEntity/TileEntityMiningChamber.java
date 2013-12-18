@@ -2,15 +2,14 @@ package Mod.TileEntity;
 
 import java.util.List;
 
+import net.minecraft.block.Block;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemTool;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.packet.Packet;
-import net.minecraft.world.World;
 import Mod.LibMisc.BlockUtil;
 import Mod.LibMisc.Utils;
 import Mod.Misc.ItemHelper;
@@ -27,7 +26,6 @@ public class TileEntityMiningChamber extends TileEntityPowerInv{
 	int PowerTime = 0;
 	int Time = 0;
 	int MinedY = 0;
-	int BlocksMined = 0;
 	int GenerateTime = 0;
 	boolean CanMine = true;
 	boolean Ready = false;
@@ -42,9 +40,26 @@ public class TileEntityMiningChamber extends TileEntityPowerInv{
 	public static int ToolSlot = 0;
 	
 	 int LastY = 0;
+	 
+	 //TODO Add gui buttons to increase/decrese size
+	 
+	 // Hole size = Size*Size
+	 public int Size = 3;
+	 
+	 public int NumberX = 0;
+	 public int NumberZ = 0;
 	
 	
+	public int GetSize(){
+		return Size;
+	}
 	
+	public void SetSize(int i){
+		if(i > 11){
+			i = 11;
+		}
+		Size = i;
+	}
 	
 	public int GetPower(){
 		return Power;
@@ -54,9 +69,6 @@ public class TileEntityMiningChamber extends TileEntityPowerInv{
 		Power = i;
 	}
 	
-	public int GetBlocksMined(){
-		return BlocksMined;
-	}
 	
 	public int GetMinedY(){
 		return MinedY;
@@ -77,10 +89,7 @@ public class TileEntityMiningChamber extends TileEntityPowerInv{
 	public boolean CanMine(){
 		return CanMine;
 	}
-	
-	public void SetBlocksMined(int i){
-		BlocksMined = i;
-	}
+
 	
 	public void SetMinedY(int i){
 		MinedY = i;
@@ -114,7 +123,6 @@ public class TileEntityMiningChamber extends TileEntityPowerInv{
 		compound.setTag("Items", Items);
 		compound.setInteger("Power", Power);
 		
-		compound.setInteger("Mined", BlocksMined);
 		compound.setInteger("Y", MinedY);
 		
 		compound.setInteger("LastY", LastY);
@@ -126,6 +134,9 @@ public class TileEntityMiningChamber extends TileEntityPowerInv{
 		
 		compound.setInteger("Luck", Fortune);
 		compound.setInteger("MiningTime", MiningTime);
+		
+		compound.setInteger("NumZ", NumberZ);
+		compound.setInteger("NumX", NumberX);
 
 		
 		
@@ -156,7 +167,6 @@ public class TileEntityMiningChamber extends TileEntityPowerInv{
 		
 		Power = compound.getInteger("Power");
 		
-		BlocksMined = compound.getInteger("Mined");
 		MinedY = compound.getInteger("Y");
 		
 		LastY = compound.getInteger("LastY");
@@ -168,6 +178,9 @@ public class TileEntityMiningChamber extends TileEntityPowerInv{
 		
 		Fortune = compound.getInteger("Luck");
 		MiningTime = compound.getInteger("MiningTime");
+		
+		NumberZ = compound.getInteger("NumZ");
+		NumberX = compound.getInteger("NumX");
 
 		
 		
@@ -177,6 +190,9 @@ public class TileEntityMiningChamber extends TileEntityPowerInv{
     public void updateEntity()
     {
     	
+    	
+    	if(MinedY == 0)
+    		MinedY = this.yCoord - 1;
     	
     	int Eff = EnchantmentHelper.getEnchantmentLevel(32, this.getStackInSlot(ToolSlot));
     	int Luck = EnchantmentHelper.getEnchantmentLevel(35, this.getStackInSlot(ToolSlot));
@@ -194,105 +210,90 @@ public class TileEntityMiningChamber extends TileEntityPowerInv{
     		Fortune = Luck;
     	}
     	
-    	if(CurrentBlock < 0 || CurrentBlock > 9){
-    		CurrentBlock = 0;
+    	
+    	if(!this.worldObj.isRemote){
+    	if(this.getStackInSlot(ToolSlot) != null ){
+    		if(Power > 0){
+    		if(this.getStackInSlot(ToolSlot).getItem() instanceof ItemPickaxe){
+    			
+    			if(Ready){
+    				SetValue(1);
+    			}else{
+    				SetValue(3);
+    				return;
+    			}
+    		}else{
+    			SetValue(2);
+    			return;
+    		}
+    	}else{
+    		SetValue(0);
+    		return;
+    	}
+    		
+    	}else{
+	    		SetValue(0);
+	    		return;
+	    	}
+    	
+    	
     	}
     	
-    
-    	if(Power > 0 && this.getStackInSlot(this.ToolSlot) != null && this.getStackInSlot(ToolSlot).getItem() instanceof ItemPickaxe){
-
-    		
-    	if(Ready && Time >= MiningTime){
+    	
+    	if(MinedY <= LastY){
+    		SetValue(0);
+    		Ready = false;
+    		return;
+    	}
+    	
+    	
+    	
+    	
+    	
+    	
+    	if(GetValue() == 1){
+    	
+    	if(Time == MiningTime){
     		Time = 0;
-
-
-			SetValue(1);
-
-    	
-        	
-        				
-        					if(MinedY == 0){
-        						MinedY = this.yCoord - 1;
-        					}
-        					
-        					
-
-        					int x = this.xCoord;
-        					int y = this.MinedY;
-        					int z = this.zCoord;
-        					
-        					CurrentBlock++;
-        					
-        					if(Power > 0){
-        					
-        					if(CurrentBlock == 1 && !IsAirBlock(x, y, z))
-        					MineBlock(x, y, z);
-        					else if(CurrentBlock == 2 && !IsAirBlock(x + 1, y, z))
-        					MineBlock(x + 1, y, z);
-        					else if (CurrentBlock == 3 && !IsAirBlock(x - 1, y, z))
-        					MineBlock(x - 1, y, z);
-        					else if (CurrentBlock == 4 && !IsAirBlock(x, y, z + 1))
-        					MineBlock(x, y, z + 1);
-        					else if (CurrentBlock == 5 && !IsAirBlock(x, y, z - 1))
-        					MineBlock(x, y, z - 1);
-        					else if (CurrentBlock == 6 && !IsAirBlock(x + 1, y, z + 1))
-        					MineBlock(x + 1, y, z + 1);
-        					else if (CurrentBlock == 7 && !IsAirBlock(x + 1, y, z - 1))
-        					MineBlock(x + 1, y, z - 1);
-        					else if (CurrentBlock == 8 && !IsAirBlock(x - 1, y, z + 1))
-        					MineBlock(x - 1, y, z + 1);
-        					else if (CurrentBlock == 9 && !IsAirBlock(x - 1, y, z - 1))
-        					MineBlock(x - 1, y, z - 1);
-        					
-        					
-        					if(CurrentBlock == 9){
-        					MinedY--;
-        					CurrentBlock = 0;
-        					}
-        					
-        					
-        					this.getStackInSlot(this.ToolSlot).attemptDamageItem(1, this.worldObj.rand);
-        					Power = this.GetPower() - (3 + this.worldObj.rand.nextInt(9));
-        					
-        					if(Power < 0 ){
-        						Power = 0;
-        						SetValue(0);
-        					}else if (Power == 0){
-        						SetValue(0);
-        					}
-        						
-        					
-        					if(MinedY <= LastY){
-        						SetValue(0);
-        						return;
-        					}
-        						
-        					
-        						
-        					
-        					
-        					}
-
-        		
-        	
-        	}else{
-        		Time++;
-        	}
     		
     		
-    	
-    	
+    		
+    		if(!this.worldObj.isRemote){
+    		MineBlock((this.xCoord + NumberX) - (int)Size / 2, MinedY, (this.zCoord + NumberZ) - (int)Size / 2);
+    		
+    		
+    		
+    		NumberX++;
+    		
+    		
+    		if(NumberX >= Size){
+
+    			if(NumberZ >= Size - 1){
+    				MinedY--;
+    				NumberZ = 0;
+    				NumberX = 0;
+    			}else{
+
+    				
+    				NumberX = 0;
+    				NumberZ++;
+    				}
+    			
+    		}
+
+    		
+    	}
+    		
+    		
+    		
+    		
     	}else{
-    		if(Power > 0 && GetValue() != 2 && this.getStackInSlot(this.ToolSlot) != null && !(this.getStackInSlot(ToolSlot).getItem() instanceof ItemPickaxe)){
-				SetValue(2);
-    		}else if (this.getStackInSlot(ToolSlot) == null){
-    			SetValue(0);
-    		}
-
-    		CanMine = false;
+    		Time++;
+    		return;
+    	}
     	
-    		}
     	
+    	}
 
     		
     		
@@ -302,18 +303,11 @@ public class TileEntityMiningChamber extends TileEntityPowerInv{
     }
     
     public void SetValue(int i){
+    	if(GetValue() != i){
 		this.worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, i, 2);
 		System.out.println("Setting " + i);
-		
-		if(i != 1)
-		Ready = false;
-		
-		if(i == 0 || i == 2){
-			CanMine = false;
-			
-		}else{
-			CanMine = true;
-		}
+    	}
+
     }
     
     public int GetValue(){
@@ -321,17 +315,13 @@ public class TileEntityMiningChamber extends TileEntityPowerInv{
     }
     
     
-    public boolean IsAirBlock(int x, int y, int z){
-    	World world = this.worldObj;
-    	
-    	return world.isAirBlock(x, y, z);
-    }
-    
     
     public void MineBlock(int x, int y, int z){
 
+    	if(this.worldObj.getBlockId(x, y, z) != 0){
+    	if(Block.blocksList[this.worldObj.getBlockId(x, y, z)].getBlockHardness(this.worldObj, x, y, z) != -1){
     	
-    	BlocksMined++;
+
     	
         List<ItemStack> stacks = BlockUtil.getItemStackFromBlock(worldObj, x, y, z, Fortune);
 
@@ -341,13 +331,19 @@ public class TileEntityMiningChamber extends TileEntityPowerInv{
                                 mineStack(s);
                         }
                 }
-        }
+        
+        
+        
+    	
         
         this.worldObj.destroyBlock(x, y, z, false);
+        Time = 0;
     	
     	}
+    	}
+    }
     	
-    	
+    }
     	
     
 
@@ -393,9 +389,28 @@ public class TileEntityMiningChamber extends TileEntityPowerInv{
     		Ready = false;
     		break;
     		
-    
-	
+    //Size +
+    	case 5:
+    		if(Size + 2 > 11)
+    			Size = 11;
+    		else
+    			Size = Size + 2;
+    		break;
+    		
+    		// Size -
+    		
+    	case 6:
+    		if(Size - 2 < 1)
+    			Size = 1;
+    		else
+    			Size = Size - 2;
+    		
+    		break;
+    		
+    		
     	}
+    	
+    	
 
     }
     

@@ -85,7 +85,7 @@ public class ModItemSilverSword extends ItemSword {
     {
     	
     	
-            list.add("One-hit killes mobs");
+            list.add("One hit killes most mobs");
             
             if(HasInfo(itemstack)){
   			  NBTTagCompound Compound = itemstack.getTagCompound().getCompoundTag("SwordData");
