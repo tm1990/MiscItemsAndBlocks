@@ -40,6 +40,7 @@ public class TileEntityGenerator extends TileEntityPowerGeneration{
 		
 		compound.setInteger("Power", this.Power);
 		compound.setInteger("TimeLeft", this.TimeLeft);
+		isProvidingPower = compound.getBoolean("Providing");
 
 	}
 	
@@ -65,6 +66,7 @@ public class TileEntityGenerator extends TileEntityPowerGeneration{
 		
 		Power = compound.getInteger("Power");
 		TimeLeft = compound.getInteger("TimeLeft");
+		compound.setBoolean("Providing", isProvidingPower);
 
 		
 
@@ -74,7 +76,7 @@ public class TileEntityGenerator extends TileEntityPowerGeneration{
     public void updateEntity()
     {
     
-    	if(Power < 100)
+    	if(Power < 1)
     	if(this.getStackInSlot(0) != null){
     		if(this.getStackInSlot(0).itemID == Item.coal.itemID){
     			if(TimeLeft == MaxTime){
@@ -90,6 +92,8 @@ public class TileEntityGenerator extends TileEntityPowerGeneration{
     			
     		}
     	}
+    	
+    	super.updateEntity();
     	
     	
     }
@@ -127,6 +131,11 @@ public class TileEntityGenerator extends TileEntityPowerGeneration{
 	@Override
 	public int WorkTime() {
 		return 10;
+	}
+
+	@Override
+	public int PowerProduced() {
+		return 1;
 	}
 	
    

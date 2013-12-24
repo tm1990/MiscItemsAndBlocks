@@ -175,6 +175,13 @@ public class TileEntityElectricFurnace extends TileEntityPowerInv implements ISi
 	public boolean canExtractItem(int i, ItemStack itemstack, int j) {
 		return j != 0 || i != 1;
 	}
+
+
+
+	@Override
+	public boolean CanAcceptPower() {
+		return true;
+	}
 	
 	
 }

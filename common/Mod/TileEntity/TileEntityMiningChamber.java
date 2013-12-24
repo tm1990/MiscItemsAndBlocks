@@ -19,7 +19,7 @@ import Mod.Network.PacketTypeHandler;
 public class TileEntityMiningChamber extends TileEntityPowerInv{
 
 	public TileEntityMiningChamber() {
-		super(1, "MiningCHamber", 64, MaxPower);
+		super(1, "Mining Chamber", 64, MaxPower);
 	}
 	
 	int Power = this.GetPower();
@@ -29,7 +29,6 @@ public class TileEntityMiningChamber extends TileEntityPowerInv{
 	int GenerateTime = 0;
 	boolean CanMine = true;
 	boolean Ready = false;
-	int CurrentBlock = 0;
 	
 	public boolean Running;
 	
@@ -41,10 +40,10 @@ public class TileEntityMiningChamber extends TileEntityPowerInv{
 	
 	 int LastY = 0;
 	 
-	 //TODO Add gui buttons to increase/decrese size
 	 
-	 // Hole size = Size*Size
+	 // Hole size = SizexSize
 	 public int Size = 3;
+	 public static int MaxSize = 11;
 	 
 	 public int NumberX = 0;
 	 public int NumberZ = 0;
@@ -55,8 +54,8 @@ public class TileEntityMiningChamber extends TileEntityPowerInv{
 	}
 	
 	public void SetSize(int i){
-		if(i > 11){
-			i = 11;
+		if(i > MaxSize){
+			i = MaxSize;
 		}
 		Size = i;
 	}
@@ -130,13 +129,14 @@ public class TileEntityMiningChamber extends TileEntityPowerInv{
 		compound.setBoolean("Can", CanMine);
 		compound.setBoolean("Ready", Ready);
 		
-		compound.setInteger("Current", CurrentBlock);
 		
 		compound.setInteger("Luck", Fortune);
 		compound.setInteger("MiningTime", MiningTime);
 		
 		compound.setInteger("NumZ", NumberZ);
 		compound.setInteger("NumX", NumberX);
+		
+		compound.setInteger("Size", Size);
 
 		
 		
@@ -174,13 +174,14 @@ public class TileEntityMiningChamber extends TileEntityPowerInv{
 		CanMine = compound.getBoolean("Can");
 		Ready = compound.getBoolean("Ready");
 		
-		CurrentBlock = compound.getInteger("Current");
 		
 		Fortune = compound.getInteger("Luck");
 		MiningTime = compound.getInteger("MiningTime");
 		
 		NumberZ = compound.getInteger("NumZ");
 		NumberX = compound.getInteger("NumX");
+		
+		Size = compound.getInteger("Size");
 
 		
 		
@@ -226,7 +227,7 @@ public class TileEntityMiningChamber extends TileEntityPowerInv{
     			}
     			
     			}else{
-    				SetValue(3);
+    				SetValue(2);
     				return;
     			}
     	    	
@@ -314,7 +315,6 @@ public class TileEntityMiningChamber extends TileEntityPowerInv{
     public void SetValue(int i){
     	if(GetValue() != i){
 		this.worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, i, 2);
-		System.out.println("Setting " + i);
     	}
 
     }
@@ -344,7 +344,7 @@ public class TileEntityMiningChamber extends TileEntityPowerInv{
         
         
     	
-                this.SetPower(this.GetPower() - 2);
+                this.SetPower(this.GetPower() - 1);
                 this.getStackInSlot(ToolSlot).attemptDamageItem(1, this.worldObj.rand);
         
         this.worldObj.destroyBlock(x, y, z, false);
@@ -460,6 +460,11 @@ public class TileEntityMiningChamber extends TileEntityPowerInv{
                 worldObj.spawnEntityInWorld(entityitem);
         }
 }
+
+	@Override
+	public boolean CanAcceptPower() {
+		return true;
+	}
     
    
 }

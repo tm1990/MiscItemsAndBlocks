@@ -7,7 +7,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 
-public class TileEntityPowerInv  extends TileEntityInvBase implements IInventory{
+public abstract class TileEntityPowerInv  extends TileEntityInvBase implements IInventory{
 	
 
 	public TileEntityPowerInv(int Slots, String Name, int Size, int PowerMax) {
@@ -39,6 +39,8 @@ public class TileEntityPowerInv  extends TileEntityInvBase implements IInventory
 
 	@Override
 	public void closeChest() {}
+	
+	public abstract boolean CanAcceptPower();
 
 	@Override
 	public boolean isItemValidForSlot(int i, ItemStack itemstack) {

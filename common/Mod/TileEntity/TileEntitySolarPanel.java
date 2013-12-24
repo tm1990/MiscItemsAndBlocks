@@ -80,4 +80,9 @@ public class TileEntitySolarPanel extends TileEntityPowerGeneration{
 	            return true;
 	        }
 	    }
+
+	@Override
+	public int PowerProduced() {
+		return 10;
+	}
 }

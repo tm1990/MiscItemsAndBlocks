@@ -15,7 +15,7 @@ public class TileEntityCharger extends TileEntityInvBase{
 	}
 	
 	int Power = 0;
-	int Ticks = 10;
+	int Ticks = 5;
 	int GenerateTime = 0;
 	int CurrentTick = 0;
 	public int PrimePower = 5000;
@@ -43,48 +43,21 @@ public class TileEntityCharger extends TileEntityInvBase{
 	   @Override
 	public void writeToNBT(NBTTagCompound compound){
 		super.writeToNBT(compound);
-		this.nbt = compound;
 		
-		NBTTagList Items = new NBTTagList();
-		
-		for (int i = 0; i < getSizeInventory(); i++){
-			
-			ItemStack stack = getStackInSlot(i);
-			if(stack != null){
-				
-				NBTTagCompound item = new NBTTagCompound();
-				item.setByte("Slot", (byte)i);
-				stack.writeToNBT(item);
-				Items.appendTag(item);
-			}
-		}
 
 		
 		compound.setInteger("Power", this.Power);
+		compound.setInteger("MaxPower", MaxPower);
 
 	}
 	
 	@Override
 	public void readFromNBT(NBTTagCompound compound){
 		super.readFromNBT(compound);
-		this.nbt = compound;
-		
 
-		NBTTagList items = compound.getTagList("Items");
-		
-		for(int i = 0; i < items.tagCount(); i++){
-			
-			NBTTagCompound item = (NBTTagCompound)items.tagAt(i);
-			int slot = item.getByte("Slot");
-			
-			if(slot >= 0 && slot < getSizeInventory()){
-				setInventorySlotContents(slot, ItemStack.loadItemStackFromNBT(item));
-				
-			}
-			
-		}
 		
 		Power = compound.getInteger("Power");
+		MaxPower = compound.getInteger("MaxPower");
 
 		
 
@@ -176,7 +149,16 @@ public class TileEntityCharger extends TileEntityInvBase{
     	}
     	
     	
+
     	
+    	if(Power > MaxPower){
+    		Power = MaxPower;
+    	}
+    	
+    	}
+    	
+    	
+      	
     	if(CurrentTick == Ticks){
     		CurrentTick = 0;
     		
@@ -186,21 +168,26 @@ public class TileEntityCharger extends TileEntityInvBase{
     		if(this.worldObj.getBlockTileEntity(xCoord, yCoord - 1, zCoord) instanceof TileEntityCharger){
     			TileEntityCharger tile = (TileEntityCharger)this.worldObj.getBlockTileEntity(xCoord, yCoord - 1, zCoord);
     			if(Power > 0){
-    				if(tile.GetPower() < tile.MaxPower){
+    				if(tile.GetPower() < tile.GetMaxPower()){
     					this.SetPower(this.GetPower() - 1);
     					tile.SetPower(tile.GetPower() + 1);
     				}
     			}
     		}
     		
+    		
+    		
 
     		if(this.worldObj.getBlockTileEntity(xCoord, yCoord - 1, zCoord) instanceof TileEntityPowerCable){
     			TileEntityPowerCable tile = (TileEntityPowerCable)this.worldObj.getBlockTileEntity(xCoord, yCoord - 1, zCoord);
+    			if(this.worldObj.getBlockMetadata(xCoord, yCoord - 1, zCoord) != 1 && this.worldObj.getBlockMetadata(xCoord, yCoord - 1, zCoord) != 3){
     			if(Power > 0){
     				if(tile.GetPower() < tile.MaxPower){
     					this.SetPower(this.GetPower() - 1);
     					tile.SetPower(tile.GetPower() + 1);
     				}
+    			
+    			}
     			}
     		}
 
@@ -208,12 +195,6 @@ public class TileEntityCharger extends TileEntityInvBase{
     		
     	}else{
     		CurrentTick++;
-    	}
-    	
-    	if(Power > MaxPower){
-    		Power = MaxPower;
-    	}
-    	
     	}
     	
     	if(Power > MaxPower){

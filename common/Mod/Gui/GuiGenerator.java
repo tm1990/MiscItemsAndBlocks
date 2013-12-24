@@ -65,8 +65,6 @@ public class GuiGenerator extends GuiContainer{
 	         else if(TimeLeft > 60 && TimeLeft <= 80)
 	        	 this.drawTexturedModalRect(x + 80, y + 53, 176, 3, 14, 14);
 	        	 
-	        	 
-	          fontRenderer.drawString("Power Stored: " + Fuel + "/100", x + 57, y + 75, 4210752);
 	         
 	         
 	         

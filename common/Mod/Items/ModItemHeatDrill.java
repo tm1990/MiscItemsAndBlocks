@@ -112,9 +112,28 @@ public class ModItemHeatDrill extends ModItemPowerTool{
 	            
 	    }
 	   
-	   public void Smelt(ItemStack stack, int x, int y, int z, World world, EntityPlayer player){
+	public void Smelt(ItemStack stack, int x, int y, int z, World world, EntityPlayer player){
+
 			ItemStack result = FurnaceRecipes.smelting().getSmeltingResult(stack);
-        	player.inventory.addItemStackToInventory(result);
+			if(result != null){
+				ItemStack smeltingStack;
+				if(result.stackSize > 1){
+					   smeltingStack = new ItemStack(result.getItem(), result.stackSize, result.getItemDamage());
+				}else{
+			   smeltingStack = new ItemStack(result.getItem(), 1, result.getItemDamage());
+				}
+				
+				EntityItem item = new EntityItem(world, x, y, z, smeltingStack);
+				world.spawnEntityInWorld(item);
+			}else{
+
+				EntityItem item = new EntityItem(world, x, y, z, stack);
+				world.spawnEntityInWorld(item);
+
+				
+			
+
+			}
 	   }
 	   
 	    public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int par7, float par8, float par9, float par10)

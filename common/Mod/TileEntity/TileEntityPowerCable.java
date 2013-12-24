@@ -68,6 +68,7 @@ public class TileEntityPowerCable extends TileEntity{
         Top = IsPowerBlock(world, X, Y + 1, Z);
         
         
+        
         if(Top)
         	SendPowerToPowerReciver(world, X, Y + 1, Z);
         
@@ -125,6 +126,10 @@ public class TileEntityPowerCable extends TileEntity{
     	if(tile instanceof TileEntityPowerCable)return true;
     	if(Meta != 1 && Meta != 3)
     	if(tile instanceof TileEntityCharger)return true;
+    	
+    	// 1 No Machines
+    	// 2 No Cables
+    	// 1 & 3 No chargers
 
     	
     	return false;
@@ -135,47 +140,8 @@ public class TileEntityPowerCable extends TileEntity{
 	 
 	 if(!world.isRemote){
 	 
-		if(CurrentTick >= Ticks){
-			CurrentTick = 0;
 
-			TileEntity tileEnt = worldObj.getBlockTileEntity(x, y, z);
-			
-			if(Meta != 1)
-			if(tileEnt instanceof TileEntityPowerGeneration){
-				TileEntityPowerGeneration tile = (TileEntityPowerGeneration)tileEnt;
-
-				if(tile.WorkTime() >= GenerateTime * 50){
-					if(Power < MaxPower){
-						
-						if(!(tile instanceof TileEntityGenerator)){
-					GenerateTime = 0;
-					tile.OnWork(worldObj, x, y, z);
-    				Power = Power + 1;
-						}else{
-							TileEntityGenerator tileE = (TileEntityGenerator)tile;
-							
-							if(tileE.GetFuel() > 0){
-							GenerateTime = 0;
-							tileE.OnWork(worldObj, x, y, z);
-							Power = Power + 1;
-							}
-							
-						}
-
-
-						}
-					
-				}else{
-					GenerateTime++;
-				}
-				
-			}
-		}else{
-			CurrentTick++;
-		}
-	 
-
-	 if(Meta != 1)
+	 if(Meta != 1){
 		if(world.getBlockTileEntity(x, y, z) instanceof TileEntityPowerInv){
     		TileEntityPowerInv tile = (TileEntityPowerInv)world.getBlockTileEntity(x, y, z);
     		
@@ -188,10 +154,34 @@ public class TileEntityPowerCable extends TileEntity{
     			tile.SetPower(tile.PowerMax);
     		}
     		
-    	}
+    	}else{
 		
 
 		
+		if(Meta != 3){
+			if( world.getBlockTileEntity(x, y, z) instanceof TileEntityCharger){
+				TileEntityCharger tile = (TileEntityCharger)world.getBlockTileEntity(x, y, z);
+				
+				if(y <= this.yCoord){
+					if(tile.GetPower() < tile.MaxPower && tile.GetPower() + 1 <= tile.GetMaxPower()){
+						if(Power > 0){
+							SetPower(GetPower() - 1);
+							tile.SetPower(tile.GetPower() + 1);
+							
+							
+						}
+					}
+					
+					
+				}
+				
+			}
+			
+			
+		}
+    	}
+		
+	 }
 
 	 int Meta2 = world.getBlockMetadata(x, y, z);
 
@@ -206,47 +196,11 @@ public class TileEntityPowerCable extends TileEntity{
 		 if (Meta != 2 && Meta != 4 && Meta2 != 4)
 		 Cable(world, x, y, z);
 
-	 
 
-	 
-
-	 
-		
-	 if(Meta != 1 && Meta != 3)
-		if(world.getBlockTileEntity(x, y, z) instanceof TileEntityCharger){
-    		TileEntityCharger tile = (TileEntityCharger)world.getBlockTileEntity(x, y, z);
-    		
-
-    		if(y > yCoord){
-    		if(Power < MaxPower){
-    			if(tile.GetPower() > 0){
-    				tile.SetPower(tile.GetPower() - 1);
-					this.SetPower(this.GetPower() + 1);
-    				
-    			}
-    		}
-    		}
-
-		}	
-	 if(Meta != 1 && Meta != 3)
-		if(world.getBlockTileEntity(x, y, z) instanceof TileEntityCharger){
-    		TileEntityCharger tile = (TileEntityCharger)world.getBlockTileEntity(x, y, z);
-    		
-    		
-
-    		if(y <= yCoord){
-    			if(tile.GetPower() < tile.GetMaxPower()){
-    				if(Power > 0){
-    					this.SetPower(this.GetPower() - 1);
-    					tile.SetPower(tile.GetPower() + 1);
-    				
-    			}
-    		
-    		}
-    		}
-		}
+	 }
+	
  }
- }
+ 
 
 
 	 
