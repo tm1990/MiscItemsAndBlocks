@@ -3,20 +3,13 @@ package Mod.Tick;
 import java.util.EnumSet;
 import java.util.Random;
 
-import Mod.Items.ModItems;
-import Mod.Lib.Refrence;
-import Mod.Main.ModConfig;
-import Mod.VersionChecker.VersionChecker;
-
-
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-
+import Mod.Items.ModItemAntiFallChest;
+import Mod.Items.ModItems;
+import Mod.Main.ModConfig;
 import cpw.mods.fml.common.IScheduledTickHandler;
-import cpw.mods.fml.common.ITickHandler;
 import cpw.mods.fml.common.TickType;
 
 public class ServerTickHandler implements IScheduledTickHandler{
@@ -65,11 +58,14 @@ public class ServerTickHandler implements IScheduledTickHandler{
 	}
 	
 	
-	//TODO Fix lag issue with ticking
 	public void onPlayerTick(EntityPlayer player) {
+		
+
 		
 		if(Counter >= 50){
 			Counter = 0;
+			
+			
 		
 		if(player.capabilities.isCreativeMode == false){
 			

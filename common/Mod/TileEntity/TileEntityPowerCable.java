@@ -13,10 +13,7 @@ public class TileEntityPowerCable extends TileEntity{
        
        int Power = 0;
        int MaxPower = 4;
-       
-   	   int Ticks = 100;
-   	   int CurrentTick = 0;
-       int GenerateTime = 0;
+
        
        
        
@@ -25,8 +22,6 @@ public class TileEntityPowerCable extends TileEntity{
 	public void writeToNBT(NBTTagCompound compound){
 		super.writeToNBT(compound);
 		compound.setInteger("Power", this.Power);
-		compound.setInteger("Time", this.GenerateTime);
-
 	}
 	
 	@Override
@@ -35,8 +30,9 @@ public class TileEntityPowerCable extends TileEntity{
 	
 		
 		Power = compound.getInteger("Power");
-		GenerateTime = compound.getInteger("Time");
 
+		
+		
 		
 
 		
@@ -138,7 +134,6 @@ public class TileEntityPowerCable extends TileEntity{
 	 
  	int Meta = this.worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
 	 
-	 if(!world.isRemote){
 	 
 
 	 if(Meta != 1){
@@ -197,7 +192,7 @@ public class TileEntityPowerCable extends TileEntity{
 		 Cable(world, x, y, z);
 
 
-	 }
+	 
 	
  }
  

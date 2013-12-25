@@ -8,6 +8,7 @@ import net.minecraft.item.ItemSeeds;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.EnumHelper;
 import net.minecraftforge.oredict.OreDictionary;
+import Mod.Lib.Refrence;
 import Mod.Main.Main;
 import Mod.Main.ModConfig;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -61,6 +62,10 @@ public class ModItems {
 	public static Item FlightChestPlate;
 	public static Item RunningLeggings;
 	public static Item JumpingBoots;
+	
+	public static Item FloatBlockPlacer;
+	
+	public static Item AntiFallChestPlate;
 	
 	
 	
@@ -179,6 +184,13 @@ public class ModItems {
         PaintBrush = new ModItemPaintBrush(ModConfig.PaintBrush).setUnlocalizedName("PaintBrush");
         RegisterOutName(PaintBrush, "Paint Brush");
         
+        FloatBlockPlacer = new ModItemFloatBlockPlacer(ModConfig.FloatBlockPlacer).setUnlocalizedName("FloatPlacer").setTextureName(Refrence.Mod_Id + ":FloatBlockPlacer");
+        Register(FloatBlockPlacer, "Floating Platform Placer");
+        
+        Main.proxy.addArmor("AntiFall");
+        
+        AntiFallChestPlate = (new ModItemAntiFallChest(ModConfig.AntiFallChest, 1, 1)).setUnlocalizedName("AntiFallChestPlate").setTextureName(Refrence.Mod_Id + ":AntiFallChest");
+        Register(AntiFallChestPlate, "Anti-fall and flight Chestplate");
         
 		
 		

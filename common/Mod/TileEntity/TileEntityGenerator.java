@@ -124,7 +124,7 @@ public class TileEntityGenerator extends TileEntityPowerGeneration{
 	public boolean CanWork(World world, int X, int Y, int Z) {
 
 
-		return GetFuel() > 0;
+		return Power > 0;
 	}
 
 
@@ -137,6 +137,12 @@ public class TileEntityGenerator extends TileEntityPowerGeneration{
 	public int PowerProduced() {
 		return 1;
 	}
+	
+    public void OnWork(World world, int x, int y, int z){
+    	Power = 0;
+    	
+    	
+    }
 	
    
 

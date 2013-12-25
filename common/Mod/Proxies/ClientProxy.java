@@ -5,6 +5,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.MinecraftForge;
 import Mod.Block.ModBlocks;
 import Mod.Entity.EntityPowerArrow;
 import Mod.Entity.EntitySilverArrow;
@@ -18,6 +19,7 @@ import Mod.GamePart.TileEntityGamePartGreen;
 import Mod.GamePart.TileEntityGamePartNull;
 import Mod.GamePart.TileEntityGamePartRed;
 import Mod.GamePart.TileEntityGamePartYellow;
+import Mod.Gui.GuiListener;
 import Mod.ItemRender.DisarmTrapItemRender;
 import Mod.ItemRender.ItemPedestalItemRender;
 import Mod.ItemRender.MiningChamberItemRender;
@@ -116,6 +118,11 @@ public class ClientProxy extends ServerProxy{
 
     }
     
+    
+	public void RegisterListeners(){
+		
+		MinecraftForge.EVENT_BUS.register(new GuiListener());
+	}
     
     @Override
     public void sendRequestEventPacket(byte eventType, int originX, int originY, int originZ, byte sideHit, byte rangeX, byte rangeY, byte rangeZ, String data) {

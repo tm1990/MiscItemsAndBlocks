@@ -40,6 +40,7 @@ public class ModBlocks {
 	public static Block OrangeLog;
 	public static Block OrangePlanks;
 	public static Block Table;
+	public static Block TimedBlock;
 	
 	public static Block PaintBlock;
 	
@@ -175,6 +176,9 @@ public class ModBlocks {
         
         ElectricFurnace = new ModBlockElectricFurnace(ModConfig.ElFurnace).setUnlocalizedName("ElFurnace");
         Register(ElectricFurnace, "Electric Furnace", true);
+        
+        TimedBlock = new ModBlockTimedBlock(ModConfig.TimedBlock).setUnlocalizedName("TimedBlock");
+        Register(TimedBlock, "Float Block", false);
         
         
         

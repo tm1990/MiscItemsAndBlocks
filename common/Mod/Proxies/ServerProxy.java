@@ -26,6 +26,11 @@ public class ServerProxy {
 	  TickRegistry.registerTickHandler(new ServerTickHandler(), Side.SERVER);
 	 }
 
+	
+	public void RegisterListeners(){
+		
+		
+	}
 
 	public void registerClientTickHandler() {
 

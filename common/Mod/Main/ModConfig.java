@@ -28,6 +28,7 @@ public class ModConfig {
 	public static int OrangePlanks;
 	public static int Table;
 	public static int MachinePart;
+	public static int TimedBlock;
 	
 	public static int PaintBlock;
 	
@@ -105,6 +106,9 @@ public class ModConfig {
 	public static int JumpingBoots;
 	
 	public static int PaintBrush;
+	
+	public static int FloatBlockPlacer;
+	public static int AntiFallChest;
 
 	/** Booleans **/
 	public static boolean BlastProofOverRe;
@@ -168,6 +172,7 @@ public class ModConfig {
 		
 		PaintBlock = config.getBlock("Blocks", "Paint Block Id", 634).getInt();
 		ElFurnace = config.getBlock("Blocks", "Electric furance Block Id", 635).getInt();
+		TimedBlock = config.getBlock("Blocks", "Timed Block Id", 636).getInt();
 		
 		
 		
@@ -213,6 +218,8 @@ public class ModConfig {
         IronPlate = config.getItem("Item", "Iron Plate Id", 22034).getInt();
         HeatDrill = config.getItem("Item", "Heat Drill Id", 22035).getInt();
         PaintBrush = config.getItem("Item", "Paint Brush Id", 22036).getInt();
+        FloatBlockPlacer = config.getItem("Item", "Float Block Placer Id", 22037).getInt();
+        AntiFallChest = config.getItem("Item", "Anti Fall Chestplate Id", 22038).getInt();
 
         
         SpawnParticles = config.get("Settings", "Spawn particles?", true).getBoolean(true);

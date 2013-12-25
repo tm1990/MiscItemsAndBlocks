@@ -6,6 +6,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
+import Mod.Items.ModItemElArmor;
 import Mod.Items.ModItemPowerTool;
 
 public class TileEntityCharger extends TileEntityInvBase{
@@ -46,8 +47,10 @@ public class TileEntityCharger extends TileEntityInvBase{
 		
 
 		
-		compound.setInteger("Power", this.Power);
+		compound.setInteger("Power", Power);
 		compound.setInteger("MaxPower", MaxPower);
+		
+		compound.setInteger("Tick", CurrentTick);
 
 	}
 	
@@ -58,6 +61,9 @@ public class TileEntityCharger extends TileEntityInvBase{
 		
 		Power = compound.getInteger("Power");
 		MaxPower = compound.getInteger("MaxPower");
+		
+		CurrentTick = compound.getInteger("Tick");
+		
 
 		
 
@@ -67,6 +73,8 @@ public class TileEntityCharger extends TileEntityInvBase{
 	
     public void updateEntity()
     {
+    	
+
 
     	int Bigger = 0;
     	
@@ -102,11 +110,6 @@ public class TileEntityCharger extends TileEntityInvBase{
     	}
     	
     	
-
-    	
-    	if(Power > MaxPower){
-    		Power = MaxPower;
-    	}
     	
     	
     	
@@ -120,7 +123,7 @@ public class TileEntityCharger extends TileEntityInvBase{
     	int ItemID = itemStack.itemID;
     	Item item = Item.itemsList[ItemID];
 		
-		if(item instanceof ModItemPowerTool){
+		if(item instanceof ModItemPowerTool || item instanceof ModItemElArmor){
 			if(itemStack.getItemDamage() > 0 && Power > 0){
 				Power--;
 				itemStack.setItemDamage(itemStack.getItemDamage() - 1);
@@ -132,10 +135,9 @@ public class TileEntityCharger extends TileEntityInvBase{
     	ItemStack emptyStack = this.getStackInSlot(1);
     	
     	if(emptyStack != null){
-    		int ItemID = emptyStack.itemID;
-    		Item item = Item.itemsList[ItemID];
+
     		
-    		if(item instanceof ModItemPowerTool){
+    		if(emptyStack.getItem() instanceof ModItemPowerTool || emptyStack.getItem() instanceof ModItemElArmor){
     			int i = emptyStack.getMaxDamage() - emptyStack.getItemDamage();
     			if(i > 0){
     				emptyStack.setItemDamage(emptyStack.getItemDamage() + 1);
@@ -159,11 +161,10 @@ public class TileEntityCharger extends TileEntityInvBase{
     	
     	
       	
-    	if(CurrentTick == Ticks){
+    	if(CurrentTick >= Ticks){
     		CurrentTick = 0;
     		
- 
-    		
+
     		
     		if(this.worldObj.getBlockTileEntity(xCoord, yCoord - 1, zCoord) instanceof TileEntityCharger){
     			TileEntityCharger tile = (TileEntityCharger)this.worldObj.getBlockTileEntity(xCoord, yCoord - 1, zCoord);
@@ -176,20 +177,25 @@ public class TileEntityCharger extends TileEntityInvBase{
     		}
     		
     		
-    		
-
     		if(this.worldObj.getBlockTileEntity(xCoord, yCoord - 1, zCoord) instanceof TileEntityPowerCable){
     			TileEntityPowerCable tile = (TileEntityPowerCable)this.worldObj.getBlockTileEntity(xCoord, yCoord - 1, zCoord);
     			if(this.worldObj.getBlockMetadata(xCoord, yCoord - 1, zCoord) != 1 && this.worldObj.getBlockMetadata(xCoord, yCoord - 1, zCoord) != 3){
-    			if(Power > 0){
+    				if(Power > 0){
     				if(tile.GetPower() < tile.MaxPower){
-    					this.SetPower(this.GetPower() - 1);
+    					SetPower(GetPower() - 1);
     					tile.SetPower(tile.GetPower() + 1);
     				}
     			
     			}
     			}
     		}
+    		
+    		
+    		
+    		
+    		
+
+    	
 
     		
     		
@@ -197,9 +203,7 @@ public class TileEntityCharger extends TileEntityInvBase{
     		CurrentTick++;
     	}
     	
-    	if(Power > MaxPower){
-    		Power = MaxPower;
-    	}
+
     	
     }
 	

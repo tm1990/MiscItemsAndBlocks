@@ -22,6 +22,7 @@ import Mod.Lib.Crafting;
 import Mod.Lib.Messages;
 import Mod.Lib.Refrence;
 import Mod.Misc.BoneMealEvent;
+import Mod.Misc.KeyBindings;
 import Mod.Network.PacketHandler;
 import Mod.Proxies.ServerProxy;
 import Mod.TileEntity.TileEntityBin;
@@ -41,10 +42,12 @@ import Mod.TileEntity.TileEntityPowerCable;
 import Mod.TileEntity.TileEntitySolarPanel;
 import Mod.TileEntity.TileEntitySquezer;
 import Mod.TileEntity.TileEntityTable;
+import Mod.TileEntity.TileEntityTimedBlock;
 import Mod.TileEntity.TileEntityWindMill;
 import Mod.TileEntity.TileEntityXpStorage;
 import Mod.VersionChecker.VersionChecker;
 import Mod.WorldGen.ModWorldGenerator;
+import cpw.mods.fml.client.registry.KeyBindingRegistry;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
@@ -133,6 +136,9 @@ public void preInit(FMLPreInitializationEvent event) {
         proxy.registerRenderThings();
         proxy.registerClientTickHandler();
         proxy.registerServerTickHandler();
+        proxy.RegisterListeners();
+        
+        KeyBindingRegistry.registerKeyBinding(new KeyBindings());
         
         EntityRegistry.registerGlobalEntityID(EntitySilverArrow.class, "SilverArrow", EntityRegistry.findGlobalUniqueEntityId());
         EntityRegistry.registerModEntity(EntitySilverArrow.class, "SilverArrow", 0, this, 128, 1, true);
@@ -168,6 +174,7 @@ public void preInit(FMLPreInitializationEvent event) {
         GameRegistry.registerTileEntity(TileEntityGamePartYellow.class, "TileEntityGamePartYellow");
         GameRegistry.registerTileEntity(TileEntityGamePartNull.class, "TileEntityGamePartNull");
         GameRegistry.registerTileEntity(TileEntityPillar.class, "TileEntityPillar");
+        GameRegistry.registerTileEntity(TileEntityTimedBlock.class, "TileEntityTimedBLock");
         
         GameRegistry.registerTileEntity(TileEntityElectricFurnace.class, "TileEntityElectricFurnace");
         

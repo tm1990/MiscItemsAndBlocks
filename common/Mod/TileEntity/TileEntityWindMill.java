@@ -24,7 +24,7 @@ public class TileEntityWindMill extends TileEntityPowerGeneration{
 	public int PowerProduced() {
 
 		if(this.yCoord > 80){
-			return 5 + ((this.yCoord - 80) / 2);
+			return 5 + ((this.yCoord - 80) / 5);
 		}
 			
 		

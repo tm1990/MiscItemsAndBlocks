@@ -9,6 +9,7 @@ public abstract class ModItemPowerTool extends ItemTool{
 
 	public ModItemPowerTool(int par1, float damage, EnumToolMaterial material, Block[] blocks) {
 		super(par1, damage, material, blocks);
+		this.canRepair = false;
 	}
 
 }
