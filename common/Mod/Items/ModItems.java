@@ -64,8 +64,8 @@ public class ModItems {
 	public static Item JumpingBoots;
 	
 	public static Item FloatBlockPlacer;
-	
 	public static Item AntiFallChestPlate;
+	public static Item InfoScreenHelmet;
 	
 	
 	
@@ -192,6 +192,8 @@ public class ModItems {
         AntiFallChestPlate = (new ModItemAntiFallChest(ModConfig.AntiFallChest, 1, 1)).setUnlocalizedName("AntiFallChestPlate").setTextureName(Refrence.Mod_Id + ":AntiFallChest");
         Register(AntiFallChestPlate, "Anti-fall and flight Chestplate");
         
+        InfoScreenHelmet = new ModItemInfoScreenHelmet(ModConfig.InfoScreenHelmet, 1, 0).setUnlocalizedName("InfoScreenHelmet").setTextureName(Refrence.Mod_Id + ":InfoScreenHelmet");
+        Register(InfoScreenHelmet, "Info Display screen");
 		
 		
 	RegisterOreDictionary(new ItemStack(SilverIngot), "ingotSilver");

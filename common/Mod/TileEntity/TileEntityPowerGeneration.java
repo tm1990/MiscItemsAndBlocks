@@ -20,6 +20,8 @@ public abstract class TileEntityPowerGeneration extends TileEntityPowerInv{
     
     public boolean isProvidingPower = false;
     
+    int Time = 0;
+    
     
 	@Override
 	public boolean CanAcceptPower() {
@@ -44,6 +46,7 @@ public abstract class TileEntityPowerGeneration extends TileEntityPowerInv{
 		super.writeToNBT(compound);
 		
 		compound.setBoolean("Providing", isProvidingPower);
+		compound.setInteger("Time", Time);
 
 	}
 	
@@ -51,6 +54,7 @@ public abstract class TileEntityPowerGeneration extends TileEntityPowerInv{
 	public void readFromNBT(NBTTagCompound compound){
 		super.readFromNBT(compound);
 		isProvidingPower = compound.getBoolean("Providing");
+		Time = compound.getInteger("Time");
 
 	}
 	
@@ -86,26 +90,27 @@ public abstract class TileEntityPowerGeneration extends TileEntityPowerInv{
     			ActiveSides++;
     	}
 
-    	
 
     	
-    	
+    	if(ActiveSides > 0)
+    	if(Time >= this.WorkTime()){
+    	Time = 0;
     	
     	for(int h = 0; h < 6; h++){
     		if(Sides[h] == true){
     			SendPower(this.worldObj ,GetXCord(h), GetYCord(h), GetZCord(h), this.PowerProduced() / ActiveSides);
-    			
-    	    	//if(ActiveSides > 0)
-    	        //	System.out.println("Power: " + ((double)this.PowerProduced() / (double)ActiveSides) + " Default: " + this.PowerProduced() + " Side: " + h + " Active sides: " + ActiveSides);
-    		}
+}
     	}
     	
-       }
+       
        
        if(ActiveSides > 0 && CanWork(worldObj, xCoord, yCoord, zCoord))
            this.OnWork(worldObj, xCoord, yCoord, zCoord);
        
-
+       }else{
+    	   Time++;
+       }
+       }
     	
     }
     

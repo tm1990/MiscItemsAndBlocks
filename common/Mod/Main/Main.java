@@ -117,8 +117,6 @@ public void preInit(FMLPreInitializationEvent event) {
 
 
     	
-    	
-    	
     }
     
     

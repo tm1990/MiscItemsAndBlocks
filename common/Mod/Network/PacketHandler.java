@@ -10,6 +10,7 @@ import net.minecraft.network.INetworkManager;
 import net.minecraft.network.packet.Packet250CustomPayload;
 import Mod.Container.ContainerMiningChamber;
 import Mod.Container.ContainerXpStorage;
+import Mod.Items.ModItemPaintBrush;
 import Mod.TileEntity.TileEntityMiningChamber;
 import Mod.TileEntity.TileEntityXpStorage;
 
@@ -37,6 +38,24 @@ public class PacketHandler implements IPacketHandler{
 			System.err.append("Failed to send button click packet");
 		}
 	}
+	
+	public static void sendPaintBrushColorChange(int Red, int Green, int Blue) {
+		ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
+		DataOutputStream dataStream = new DataOutputStream(byteStream);
+
+
+		try {
+			dataStream.writeByte((byte)2);
+			dataStream.writeInt(Red);		
+			dataStream.writeInt(Green);
+			dataStream.writeInt(Blue);
+			
+			PacketDispatcher.sendPacketToServer(PacketDispatcher.getPacket("MiscItems", byteStream.toByteArray()));
+		}catch(IOException ex) {
+			System.err.append("Failed to send paint brush color change packet");
+		}
+	}
+	
 
 	@Override
 	public void onPacketData(INetworkManager manager, Packet250CustomPayload packet, Player player) {
@@ -60,10 +79,24 @@ public class PacketHandler implements IPacketHandler{
 				if (container != null && container instanceof ContainerXpStorage) {
 					TileEntityXpStorage XpStorage = ((ContainerXpStorage)container).getTile();
 					XpStorage.receiveButtonEvent(buttonId);
+					
 				}else if (container != null && container instanceof ContainerMiningChamber) {
 					TileEntityMiningChamber MiningChamber = ((ContainerMiningChamber)container).getTile();
 					MiningChamber.receiveButtonEvent(buttonId);
 				}
+				
+			case 2:
+
+				int Red = reader.readInt();
+				int Green = reader.readInt();
+				int Blue = reader.readInt();
+				
+				if(entityPlayer.inventory.getCurrentItem() != null && entityPlayer.inventory.getCurrentItem().getItem() instanceof ModItemPaintBrush){
+					ModItemPaintBrush item = (ModItemPaintBrush)entityPlayer.inventory.getCurrentItem().getItem();
+					
+					item.ReciveColors(Red, Green, Blue, entityPlayer.inventory.getCurrentItem());
+				}
+				
 				
 				return;
 				

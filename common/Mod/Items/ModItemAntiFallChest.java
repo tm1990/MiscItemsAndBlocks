@@ -56,13 +56,17 @@ public class ModItemAntiFallChest extends ModItemElArmor{
 			if(player.capabilities.isCreativeMode == false){
 				int Left = player.inventory.armorInventory[2].getMaxDamage() - player.inventory.armorInventory[2].getItemDamage();
 				if(Left > 0){
-						if(player.fallDistance > 2){
+
+					
+					
+						if(player.fallDistance > 2 && player.motionY < 0){
 					player.fallDistance = 2;
 					if(!player.isSneaking())
 					player.motionY = -0.35;
-					if(player.worldObj.rand.nextInt(5) == 1)
-					player.inventory.armorInventory[2].attemptDamageItem(1, player.worldObj.rand);
+					if(player.worldObj.rand.nextInt(50) == 1)
+					player.inventory.armorInventory[2].attemptDamageItem(1, world.rand);
 						}
+						
 					
 
 				}

@@ -1,5 +1,6 @@
 package Mod.Container;
 
+import Mod.Slots.ModSlotArmor;
 import Mod.TileEntity.TileEntityBin;
 import Mod.TileEntity.TileEntityXpStorage;
 import net.minecraft.entity.player.EntityPlayer;
@@ -28,6 +29,12 @@ public class ContainerBin extends Container{
     			
     			addSlotToContainer(new Slot(InvPlayer, x + y * 9 + 9, 8 + 18 * x, 84 + y * 18));
     		}
+    		
+    		
+    		addSlotToContainer(new ModSlotArmor(InvPlayer, InvPlayer.getSizeInventory() - 1, 177, 14, 0, InvPlayer.player));
+    		addSlotToContainer(new ModSlotArmor(InvPlayer, InvPlayer.getSizeInventory() - 2, 177, 32, 1, InvPlayer.player));
+    		addSlotToContainer(new ModSlotArmor(InvPlayer, InvPlayer.getSizeInventory() - 3, 177, 50, 2, InvPlayer.player));
+    		addSlotToContainer(new ModSlotArmor(InvPlayer, InvPlayer.getSizeInventory() - 4, 177, 68, 3, InvPlayer.player));
     		
     		
     	}

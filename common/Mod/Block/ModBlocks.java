@@ -55,6 +55,8 @@ public class ModBlocks {
 	public static Block WindMill;
 	public static Block Generator;
 	
+	public static Block OneWayGlass;
+	
 	public static Block MachinePart;
 
 	
@@ -179,6 +181,9 @@ public class ModBlocks {
         
         TimedBlock = new ModBlockTimedBlock(ModConfig.TimedBlock).setUnlocalizedName("TimedBlock");
         Register(TimedBlock, "Float Block", false);
+        
+        OneWayGlass = new ModBlockOneWayGlass(ModConfig.OneWayGlass).setUnlocalizedName("OneWayGlass");
+        Register(OneWayGlass, "One Way Glass", true);
         
         
         

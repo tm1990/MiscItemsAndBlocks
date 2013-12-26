@@ -24,6 +24,7 @@ public class ModItemPaintBrush extends Item{
 	Icon[] icons = new Icon[6];
 
 			
+	
 	int Change = 1;
 	
 	public ModItemPaintBrush(int par1) {
@@ -83,14 +84,12 @@ public class ModItemPaintBrush extends Item{
 	    public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int par7, float par8, float par9, float par10)
 	    {
 	    	
-	    	NBTTagCompound nbt = new NBTTagCompound();
 	    	
 	    	if(player.isSneaking())
 	    	if(stack.getItemDamage() == 5){
 				player.openGui(Main.instance, 1, world, 0, 0, 0);
 	    	}
 	    	
-	    		
 	    		
 	    		TileEntity tile_e = world.getBlockTileEntity(x, y, z);
 	    		
@@ -123,20 +122,20 @@ public class ModItemPaintBrush extends Item{
 	    				tile.SetBlue(tile.GetBlue() - Change);
 	    				return true;
 	    			}else if (Meta == 4){
-	    		        NBTTagCompound stackCompound = stack.hasTagCompound() ? stack.getTagCompound() : new NBTTagCompound();
-	    		        NBTTagCompound compound = new NBTTagCompound();
-	    		        
-		    			  
-		    			  
-		    			  compound.setInteger("Red", tile.GetRed());
-		    			  compound.setInteger("Blue", tile.GetBlue());
-		    			  compound.setInteger("Green", tile.GetGreen());
-		    			  
-		    			  
-		    			  
-		    			  
-		  	            stackCompound.setCompoundTag("Data", compound);
-			            stack.setTagCompound(stackCompound);
+	    				
+	    				if(stack.stackTagCompound == null){
+	    					stack.setTagCompound(new NBTTagCompound());
+	    					
+	    					stack.stackTagCompound.setInteger("Red", tile.GetRed());
+	    					stack.stackTagCompound.setInteger("Green", tile.GetGreen());
+	    					stack.stackTagCompound.setInteger("Blue", tile.GetBlue());
+
+	    				}else{
+	    					stack.stackTagCompound.setInteger("Red", tile.GetRed());
+	    					stack.stackTagCompound.setInteger("Green", tile.GetGreen());
+	    					stack.stackTagCompound.setInteger("Blue", tile.GetBlue());
+	    				}
+    					return true;
 
 	    			}
 	    			
@@ -164,42 +163,40 @@ public class ModItemPaintBrush extends Item{
 		    			}else if (Meta == 3){
 		    				tile.SetBlue(tile.GetBlue() + Change);
 		    				return true;
-		    			}else if (Meta == 4){
+		    			}else if (Meta == 4 || Meta == 5){
 		    				
+		    				world.markBlockForUpdate(x, y, z);
 		    				
-		    				
-		    				if(HasInfo(stack)){
 
-		  	    			  NBTTagCompound Compound = stack.getTagCompound().getCompoundTag("Data");
-		  	    			  
-		  	    			  tile.SetRed(Compound.getInteger("Red"));
-		  	    			  tile.SetGreen(Compound.getInteger("Green"));
-		  	    			  tile.SetBlue(Compound.getInteger("Blue"));
-		  	    			  
-		    				}else if (Meta == 5){
+		    				if(stack.stackTagCompound == null){
+		    					stack.setTagCompound(new NBTTagCompound());
 		    					
-
-			    				if(HasInfo(stack)){
-
-			  	    			  NBTTagCompound Compound = stack.getTagCompound().getCompoundTag("Data");
-			  	    			  
-			  	    			  tile.SetRed(Compound.getInteger("Red"));
-			  	    			  tile.SetGreen(Compound.getInteger("Green"));
-			  	    			  tile.SetBlue(Compound.getInteger("Blue"));
-			  	    			  
-			    				}
+		    					
+		    					
+		    					
+		    					tile.SetRed(stack.stackTagCompound.getInteger("Red"));
+		    					tile.SetGreen(stack.stackTagCompound.getInteger("Green"));
+		    					tile.SetBlue(stack.stackTagCompound.getInteger("Blue"));
+		    					
+		    				}else{
+		    					
+		    					tile.SetRed(stack.stackTagCompound.getInteger("Red"));
+		    					tile.SetGreen(stack.stackTagCompound.getInteger("Green"));
+		    					tile.SetBlue(stack.stackTagCompound.getInteger("Blue"));
+		    					
 		    				}
-		    			}
-		    			
+		    				
+	    					return true;
 	    			}
 	    			
 	    			
 	    			
 	    			
 	    		
-	    		
+	    			}
 	    		
 	    	}
+	    	
 	    	
 	    	
 	    	
@@ -211,28 +208,60 @@ public class ModItemPaintBrush extends Item{
 	    {
 	    	if(itemstack.getItemDamage() == 4 || itemstack.getItemDamage() == 5){
 	    		
-	    		if(HasInfo(itemstack)){
+	    		
+	    		if(itemstack.stackTagCompound == null){
+	    			itemstack.setTagCompound(new NBTTagCompound());
+	    			  list.add("Red : " + itemstack.stackTagCompound.getInteger("Red"));
+	    			  list.add("Green : " + itemstack.stackTagCompound.getInteger("Green"));
+	    			  list.add("Blue : " + itemstack.stackTagCompound.getInteger("Blue"));
 	    			
 	    			
-	    			
-	    			  NBTTagCompound Compound = itemstack.getTagCompound().getCompoundTag("Data");
-	    			  
-	    			  list.add("Red : " + Compound.getInteger("Red"));
-	    			  list.add("Green : " + Compound.getInteger("Green"));
-	    			  list.add("Blue : " + Compound.getInteger("Blue"));
-	    			  
+	    		}else{
+	    			  list.add("Red : " + itemstack.stackTagCompound.getInteger("Red"));
+	    			  list.add("Green : " + itemstack.stackTagCompound.getInteger("Green"));
+	    			  list.add("Blue : " + itemstack.stackTagCompound.getInteger("Blue"));
 	    		}
+
+	    			  
+
+	    			  
+	    		
 	    		
 	    		
 	    	}
 	    	
 	    	
 	    }
-
 	    
-	    public boolean HasInfo(ItemStack stack) {
-	        return stack.hasTagCompound() && stack.getTagCompound().hasKey("Data");
-	    }
+	    
+	    public void ReciveColors(int Red, int Green, int Blue, ItemStack stack){
+	    	
+	    	
+	    	if(Red < 0)
+	    		Red = 0;
+	    	
+	    	if(Green < 0)
+	    		Green = 0;
+	    	
+	    	if(Blue < 0)
+	    		Blue = 0;
+	    	
+			if(stack.stackTagCompound == null){
+				stack.setTagCompound(new NBTTagCompound());
+				
+				stack.stackTagCompound.setInteger("Red", Red);
+				stack.stackTagCompound.setInteger("Green", Green);
+				stack.stackTagCompound.setInteger("Blue", Blue);
+
+			}else{
+				stack.stackTagCompound.setInteger("Red", Red);
+				stack.stackTagCompound.setInteger("Green", Green);
+				stack.stackTagCompound.setInteger("Blue", Blue);
+			}
+
+		}
+	    
+
 	    
 
 }

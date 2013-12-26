@@ -2,11 +2,9 @@ package Mod.Container;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.Container;
-import net.minecraft.inventory.ICrafting;
-import net.minecraft.inventory.Slot;
+import net.minecraft.inventory.*;
 import net.minecraft.item.ItemStack;
-import Mod.Slots.SlotOutput;
+import Mod.Slots.ModSlotArmor;
 import Mod.Slots.SlotPowerStorage;
 import Mod.Slots.SlotUpgrades;
 import Mod.TileEntity.TileEntityCharger;
@@ -48,7 +46,13 @@ public class ContainerCharger  extends Container {
     		addSlotToContainer(new SlotUpgrades(tile, 3, 152, 26));
     		addSlotToContainer(new SlotUpgrades(tile, 4, 152, 44));
     		addSlotToContainer(new SlotUpgrades(tile, 5, 152, 62));
-    	
+    		
+    		
+    		addSlotToContainer(new ModSlotArmor(InvPlayer, InvPlayer.getSizeInventory() - 1, 8, 21, 0, InvPlayer.player));
+    		addSlotToContainer(new ModSlotArmor(InvPlayer, InvPlayer.getSizeInventory() - 2, 8, 39, 1, InvPlayer.player));
+    		addSlotToContainer(new ModSlotArmor(InvPlayer, InvPlayer.getSizeInventory() - 3, 26, 21, 2, InvPlayer.player));
+    		addSlotToContainer(new ModSlotArmor(InvPlayer, InvPlayer.getSizeInventory() - 4, 26, 39, 3, InvPlayer.player));
+
     }
 
 }

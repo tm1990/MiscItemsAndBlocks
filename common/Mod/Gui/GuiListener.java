@@ -8,11 +8,11 @@ import net.minecraftforge.event.ForgeSubscribe;
 
 public class GuiListener {
 	
-	private GuiFlyChestOverlay overlay;
+	private GuiOverlayInfoScreen overlay;
 	
 	public GuiListener()
 	{
-		this.overlay = new GuiFlyChestOverlay();
+		this.overlay = new GuiOverlayInfoScreen();
 	}
 	
 	@ForgeSubscribe(priority = EventPriority.NORMAL)

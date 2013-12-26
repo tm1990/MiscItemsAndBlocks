@@ -12,6 +12,7 @@ import net.minecraft.inventory.SlotCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.world.World;
+import Mod.Slots.ModSlotArmor;
 import Mod.Slots.SlotCraftingInv;
 import Mod.TileEntity.TileEntityBox;
 import Mod.TileEntity.TileEntityCraftingInv;
@@ -70,6 +71,13 @@ addSlotToContainer(slot);
 counter++;
 }
 }
+
+
+addSlotToContainer(new ModSlotArmor(invPlayer, invPlayer.getSizeInventory() - 1, 177, 18, 0, invPlayer.player));
+addSlotToContainer(new ModSlotArmor(invPlayer, invPlayer.getSizeInventory() - 2, 177, 36, 1, invPlayer.player));
+addSlotToContainer(new ModSlotArmor(invPlayer, invPlayer.getSizeInventory() - 3, 177, 54, 2, invPlayer.player));
+addSlotToContainer(new ModSlotArmor(invPlayer, invPlayer.getSizeInventory() - 4, 177, 72, 3, invPlayer.player));
+
 }
 protected void bindPlayerInventory(InventoryPlayer invPlayer)
 {

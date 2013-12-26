@@ -49,15 +49,13 @@ public class GuiSolarPanel extends GuiContainer{
 	         int y = (this.height - this.ySize) / 2;
 	         drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
 	         
-	         
 
-	         
 	     	String Mode = "No Charger";
 	    	String State = "off";
 	    	
 
     		int MetaData = tile.GetMeta();
-
+    		
     		if(MetaData == 1 || MetaData == 0){
     			
     			Mode = "Currently Generating";

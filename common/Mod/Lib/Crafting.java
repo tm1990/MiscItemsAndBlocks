@@ -24,6 +24,7 @@ public class Crafting {
 		GameRegistry.addRecipe(new ShapedOreRecipe(ModBlocks.Table, new Object[]{"CCC", "HHH", "P P", 'C', new ItemStack(Block.carpet, 1, 14), Character.valueOf('P'), "plankWood", Character.valueOf('H'), "slabWood"}));	
 		GameRegistry.addRecipe(new ShapedOreRecipe(ModItems.Turbine, new Object[]{"S S", " P ", "S S", 'S', Item.stick, Character.valueOf('P'), "plankWood"}));
 
+		GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.OneWayGlass, 8), new Object[]{"SSS", "GES", "SSS", 'S', Block.stone, 'G', Block.glass, 'E', Item.enderPearl});
 		
 			GameRegistry.addShapedRecipe(new ItemStack(ModItems.XpExtractor), new Object[] {" D ", "IGI", "IGI", 'I', Item.ingotIron, 'G', Block.glass, 'D', Item.diamond});
 			GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.XpStorage), new Object[] {"BIB", "IEI", "BIB", 'I', Block.obsidian, 'B', Block.blockIron, 'E', ModItems.XpExtractor});
@@ -102,8 +103,10 @@ public class Crafting {
 			GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.PowerCable, 48), new Object[]{"IGI", "RDR", "IGI", 'I', new ItemStack(ModItems.IronPlate, 1, 2), 'G', new ItemStack(ModItems.Circuit, 1, 1), 'R', ModItems.ModuleConnecter, 'D', new ItemStack(ModItems.BigBattery, 1, 0)});
 			
 			GameRegistry.addShapedRecipe(new ItemStack(ModItems.FloatBlockPlacer), new Object[]{"GDP", "DRC", "PCB", 'G', Block.glass, 'D', Item.diamond, 'P', new ItemStack(ModItems.IronPlate, 1, 2), 'R', Block.blockRedstone, 'C', new ItemStack(ModItems.Circuit, 1, 1), 'B', new ItemStack(ModItems.AdvancedBattery, 1, 0)});
-			
 			GameRegistry.addShapedRecipe(new ItemStack(ModItems.AntiFallChestPlate), new Object[]{"PUP", "FCF", "PBP", 'P', new ItemStack(ModItems.IronPlate, 1, 2), 'U', new ItemStack(ModItems.Upgrades, 1, 0), 'F', ModItems.FloatBlockPlacer, 'C', Item.plateIron, 'B', new ItemStack(ModItems.AdvancedBattery, 1, 0)});
+			GameRegistry.addShapedRecipe(new ItemStack(ModItems.InfoScreenHelmet), new Object[]{"IIP", "GCB", "IIP", 'I', new ItemStack(ModItems.IronPlate, 1 ,0), 'P', new ItemStack(ModItems.IronPlate, 1, 2), 'G', Block.thinGlass, 'C', new ItemStack(ModItems.Circuit, 1, 1), 'B', new ItemStack(ModItems.Battery, 1, 0)});
+			
+			
 			
 			GameRegistry.addShapedRecipe(new ItemStack(Item.saddle), new Object[]{"LLL", "LSL", " I ", 'L', Item.leather, 'S', Item.silk, 'I', Item.ingotIron});
 			

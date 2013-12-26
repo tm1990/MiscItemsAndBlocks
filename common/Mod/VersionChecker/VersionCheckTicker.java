@@ -25,8 +25,8 @@ if(tickType == TickType.CLIENT){
 if(FMLClientHandler.instance().getClient().currentScreen == null){
 init = false;
 if(!Main.UP_TO_DATE){
-FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage("A new version of "+ Refrence.Mod_Name +" is available.\n Version: " +Main.LATEST_VERSION +": " +Main.LATEST_CHANGES);
-FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage("This update is " +Main.UPDATE_IMPORTANCE +" - " +Main.UPDATE_URL);
+FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage("A new version of "+ Refrence.Mod_Name +" is available.\n Version: " +Main.LATEST_VERSION +    " Download link: " + Main.UPDATE_URL + "\n Changes in this version : " + Main.LATEST_CHANGES);
+
 }
 
 }

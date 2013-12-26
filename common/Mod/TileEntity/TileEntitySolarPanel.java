@@ -19,11 +19,11 @@ public class TileEntitySolarPanel extends TileEntityPowerGeneration{
 	
     
     public int GetMeta(){
-    	return Meta;
+    	return this.worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
     }
     
     public void SetMeta(int i){
-    	Meta = i;
+    	this.worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, i, 2);
     }
     
 

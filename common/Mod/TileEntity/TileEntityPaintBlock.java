@@ -12,36 +12,40 @@ public class TileEntityPaintBlock extends TileEntity{
 	
 	
 
-	int Red = 0;
-	int Green = 0;
-	int Blue = 0;
 
+	public int Red = 0;
+	public int Green = 0;
+	public int Blue = 0;
 	
-	int i = 0;
-	
-	  
-
-      
-	    public void updateEntity() {
+	static int Max = 254;
 
 
-
-	    	
-	    }
 	  
       public void SetRed(int i){
-    	  if(i < 255 && i > - 1)
+    	  if(i < Max + 1 && i > 0)
     	  Red = i;
+    	  else if (i >= Max + 1)
+    		  Red = Max;
+    	  else
+    		  i = 0;
       }
       
       public void SetGreen(int i){
-    	  if(i < 255 && i > - 1)
-    	  Green = i;
+    	  if(i < Max + 1 && i > 0)
+    	 Green = i;
+    	  else if (i >= Max + 1)
+    		  Green = Max;
+    	  else
+    		  i = 0;
       }
       
       public void SetBlue(int i){
-    	  if(i < 255 && i > - 1)
+    	  if(i < Max + 1 && i > 0)
     	  Blue = i;
+    	  else if (i >= Max + 1)
+    		  Blue = Max;
+    	  else
+    		  i = 0;
       }
       
       

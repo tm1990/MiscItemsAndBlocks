@@ -23,6 +23,8 @@ public class GuiTrashBin extends GuiContainer{
 	
 	public GuiTrashBin(InventoryPlayer InvPlayer, TileEntityBin tile) {
 		super(new ContainerBin(InvPlayer, tile));
+		xSize = 197;
+		ySize = 166;
 	}
 	
     @Override

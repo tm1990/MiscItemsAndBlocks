@@ -25,7 +25,7 @@ private static boolean NEI_ACTIVE = false;
 public GuiCraftingInv(InventoryPlayer InvPlayer, TileEntityCraftingInv tile) {
 super(new ContainerCraftingInv(InvPlayer, tile));
 
-this.xSize = 178;
+this.xSize = 197;
 this.ySize = 197;
 }
 	
