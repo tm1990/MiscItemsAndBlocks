@@ -89,9 +89,9 @@ public class ServerTickHandler implements IScheduledTickHandler{
 	
 	public void Diving(EntityPlayer player){
 		
-		if(player.inventory.armorInventory[3] == null || player.inventory.armorInventory[3].itemID != ModItems.DivingHelmet.itemID){
+		if(player.inventory.armorInventory[3] == null || player.inventory.armorInventory[3].getItem() != ModItems.DivingHelmet){
 			Helmet = false;
-		}else if(player.inventory.armorInventory[3].itemID == ModItems.DivingHelmet.itemID){
+		}else if(player.inventory.armorInventory[3].getItem() == ModItems.DivingHelmet){
              Helmet = true;
 			if(player.isInWater()){
 				
@@ -112,11 +112,11 @@ public class ServerTickHandler implements IScheduledTickHandler{
 	
 	
 	public void Flight(EntityPlayer player){
-		if(player.inventory.armorInventory[2] == null || player.inventory.armorInventory[2].itemID != ModItems.FlightChestPlate.itemID){
+		if(player.inventory.armorInventory[2] == null || player.inventory.armorInventory[2].getItem() != ModItems.FlightChestPlate ){
 			
 			ChestPlate = false;
 			player.capabilities.allowFlying = false;
-		}else if(player.inventory.armorInventory[2].itemID == ModItems.FlightChestPlate.itemID){
+		}else if(player.inventory.armorInventory[2].getItem() == ModItems.FlightChestPlate){
 			
 			ChestPlate = true;
 			player.capabilities.allowFlying = true;
@@ -137,7 +137,7 @@ public class ServerTickHandler implements IScheduledTickHandler{
 
 			}
 		}
-		if(player.inventory.armorInventory[2] == null || player.inventory.armorInventory[2].itemID != ModItems.FlightChestPlate.itemID){
+		if(player.inventory.armorInventory[2] == null || player.inventory.armorInventory[2].getItem() != ModItems.FlightChestPlate){
 			
 			
 			if(player.onGround == false){
@@ -157,9 +157,9 @@ public class ServerTickHandler implements IScheduledTickHandler{
 	public void Speed(EntityPlayer player){
 		
 		
-		if(player.inventory.armorInventory[1] == null || player.inventory.armorInventory[1].itemID != ModItems.RunningLeggings.itemID){
+		if(player.inventory.armorInventory[1] == null || player.inventory.armorInventory[1].getItem() != ModItems.RunningLeggings){
 			Leggings = false;
-		}else if(player.inventory.armorInventory[1].itemID == ModItems.RunningLeggings.itemID){
+		}else if(player.inventory.armorInventory[1].getItem() == ModItems.RunningLeggings){
 			Leggings = true;
 			if(player.onGround && player.isInWater() == false){
 				player.addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 200, 10));
@@ -170,18 +170,19 @@ public class ServerTickHandler implements IScheduledTickHandler{
 	
 	
 	public void Jump(EntityPlayer player){
-		if(player.inventory.armorInventory[0] == null || player.inventory.armorInventory[0].itemID != ModItems.JumpingBoots.itemID){
+		if(player.inventory.armorInventory[0] == null || player.inventory.armorInventory[0].getItem() != ModItems.JumpingBoots){
 			Boots = false;
-		}else if(player.inventory.armorInventory[0].itemID == ModItems.JumpingBoots.itemID && player.isSneaking() == false){
+		}else if(player.inventory.armorInventory[0].getItem() == ModItems.JumpingBoots){
 			Boots = true;
-			
 			if(player.onGround && player.isInWater() == false && player.isSneaking() == false){
 				player.addPotionEffect(new PotionEffect(Potion.jump.id, 200, 3));
 			}
+		}
+
 		
 	}
 
-	}
+	
 	
 	
 	public void Full(EntityPlayer player){

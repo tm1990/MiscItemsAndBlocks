@@ -78,7 +78,7 @@ public class TileEntityGenerator extends TileEntityPowerGeneration{
     
     	if(Power < 1)
     	if(this.getStackInSlot(0) != null){
-    		if(this.getStackInSlot(0).itemID == Item.coal.itemID){
+    		if(this.getStackInSlot(0).getItem() == Item.coal){
     			if(TimeLeft == MaxTime){
     				TimeLeft = 0;
     				this.decrStackSize(0, 1);

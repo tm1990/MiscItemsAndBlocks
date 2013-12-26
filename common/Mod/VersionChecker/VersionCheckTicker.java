@@ -2,6 +2,7 @@ package Mod.VersionChecker;
 
 import java.util.EnumSet;
 
+import net.minecraft.util.EnumChatFormatting;
 import Mod.Lib.Refrence;
 import Mod.Main.Main;
 import cpw.mods.fml.client.FMLClientHandler;
@@ -25,7 +26,7 @@ if(tickType == TickType.CLIENT){
 if(FMLClientHandler.instance().getClient().currentScreen == null){
 init = false;
 if(!Main.UP_TO_DATE){
-FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage("A new version of "+ Refrence.Mod_Name +" is available.\n Version: " +Main.LATEST_VERSION +    " Download link: " + Main.UPDATE_URL + "\n Changes in this version : " + Main.LATEST_CHANGES);
+FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(EnumChatFormatting.RED + "A new version of "+ Refrence.Mod_Name +" is available.\n Version: " + EnumChatFormatting.YELLOW + Main.LATEST_VERSION + EnumChatFormatting.GOLD +   " Download link: " + Main.UPDATE_URL + EnumChatFormatting.BLUE + "\n Changes in this version : " + Main.LATEST_CHANGES);
 
 }
 

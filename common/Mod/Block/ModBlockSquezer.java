@@ -31,6 +31,8 @@ public class ModBlockSquezer extends BlockContainer{
 	Icon IconSide;
 	Icon IconBottom;
 	Icon IconFront;
+	
+
 
 	
     public void registerIcons(IconRegister par1IconRegister)
@@ -41,6 +43,7 @@ public class ModBlockSquezer extends BlockContainer{
         this.IconFront = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "SquezerFront");
         this.IconBottom = par1IconRegister.registerIcon("furnace_top");
 
+        
         
         this.blockIcon = IconFront;
         

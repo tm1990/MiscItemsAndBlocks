@@ -126,13 +126,16 @@ public class ModItemDrill extends ModItemPowerTool{
 	            if(itemstack.getItemDamage() == itemstack.getMaxDamage())
 	            	list.add(EnumChatFormatting.RED + "Out of power recharge!");
 	            
+	    			  
 	            if(HasInfo(itemstack)){
 	    			  NBTTagCompound Compound = itemstack.getTagCompound().getCompoundTag("Data");
-	    			  
-	    		list.add(EnumChatFormatting.GOLD + "Mode: " + Compound.getString("Mode"));	  
+		    		list.add(EnumChatFormatting.GOLD + "Mode: " + Compound.getString("Mode"));	
 	            }else{
+
 	            	list.add(EnumChatFormatting.GOLD + "Mode: Normal");
+	            	
 	            }
+	            
 	            
 	    }
 	    

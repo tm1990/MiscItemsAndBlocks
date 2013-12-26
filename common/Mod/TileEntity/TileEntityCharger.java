@@ -120,10 +120,8 @@ public class TileEntityCharger extends TileEntityInvBase{
     	ItemStack itemStack = this.getStackInSlot(0);
     	
     	if(itemStack != null){
-    	int ItemID = itemStack.itemID;
-    	Item item = Item.itemsList[ItemID];
 		
-		if(item instanceof ModItemPowerTool || item instanceof ModItemElArmor){
+		if(itemStack.getItem() instanceof ModItemPowerTool || itemStack.getItem() instanceof ModItemElArmor){
 			if(itemStack.getItemDamage() > 0 && Power > 0){
 				Power--;
 				itemStack.setItemDamage(itemStack.getItemDamage() - 1);

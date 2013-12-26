@@ -55,11 +55,11 @@ public class ModItemPowerArmor extends ItemArmor {
     public String getArmorTexture(ItemStack stack, Entity entity, int slot, int layer)
     {
     	
-    	if(stack.itemID == ModItems.FlightChestPlate.itemID || stack.itemID == ModItems.DivingHelmet.itemID || stack.itemID == ModItems.JumpingBoots.itemID){
+    	if(stack.getItem() == ModItems.FlightChestPlate || stack.getItem() == ModItems.DivingHelmet || stack.getItem() == ModItems.JumpingBoots){
     		return Refrence.Mod_Id + ":" + "textures/models/armor/PowerArmor_layer_1.png";
 
     	}
-    	if(stack.itemID == ModItems.RunningLeggings.itemID){
+    	if(stack.getItem() == ModItems.RunningLeggings){
     		
     		return Refrence.Mod_Id + ":" + "textures/models/armor/PowerArmor_layer_2.png";
     		
@@ -72,7 +72,7 @@ public class ModItemPowerArmor extends ItemArmor {
     
     public boolean getIsRepairable(ItemStack ItemToRepair, ItemStack RepairItem)
     {
-        return RepairItem.itemID == ModItems.SilverIngot.itemID;
+        return RepairItem.getItem() == ModItems.SilverIngot;
     }
     
     
@@ -81,23 +81,23 @@ public class ModItemPowerArmor extends ItemArmor {
     {
 		list.add("");
 		
-    	if(itemstack.itemID == ModItems.DivingHelmet.itemID){
+    	if(itemstack.getItem() == ModItems.DivingHelmet){
 
     		list.add("Active when in water");
     		list.add("Gives water breathing");
     		list.add("Gives night vision");
     		
-    	}else if(itemstack.itemID == ModItems.FlightChestPlate.itemID){
+    	}else if(itemstack.getItem() == ModItems.FlightChestPlate){
     		
     		list.add("Always active");
     		list.add("Allows flight");
     		
-    	}else if(itemstack.itemID == ModItems.RunningLeggings.itemID){
+    	}else if(itemstack.getItem() == ModItems.RunningLeggings){
     		
     		list.add("Always active while on ground");
     		list.add("Gives speed effect");
     		
-    	}else if(itemstack.itemID == ModItems.JumpingBoots.itemID){
+    	}else if(itemstack.getItem() == ModItems.JumpingBoots){
     		
     		list.add("Always active while on ground");
     		list.add("Gives jump effect");

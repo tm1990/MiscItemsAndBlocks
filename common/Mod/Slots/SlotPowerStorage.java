@@ -16,10 +16,9 @@ public class SlotPowerStorage extends Slot{
     public boolean isItemValid(ItemStack item)
     {
     	
-    	int ItemID = item.itemID;
-    	Item ITEM = Item.itemsList[ItemID];
+
     	
-    	return ITEM instanceof ModItemPowerTool || ITEM instanceof ModItemElArmor;
+    	return item.getItem() instanceof ModItemPowerTool || item.getItem() instanceof ModItemElArmor;
     	
     }
 	

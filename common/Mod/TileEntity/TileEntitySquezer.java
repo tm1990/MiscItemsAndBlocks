@@ -149,7 +149,7 @@ public class TileEntitySquezer extends TileEntityInvBase implements ISidedInvent
 
 	@Override
 	public boolean canExtractItem(int i, ItemStack itemstack, int j) {
-		return j != 0 || i != 1 || itemstack.itemID == Item.bucketEmpty.itemID;
+		return j != 0 || i != 1 || itemstack.getItem() == Item.bucketEmpty;
 	}
     
     

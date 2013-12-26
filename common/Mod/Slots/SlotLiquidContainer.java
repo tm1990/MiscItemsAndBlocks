@@ -1,6 +1,7 @@
 package Mod.Slots;
 
 import Mod.Block.ModBlockSquezer;
+import Mod.Items.ModItemUpgrades;
 import net.minecraft.block.Block;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
@@ -17,7 +18,12 @@ public class SlotLiquidContainer extends Slot{
 	
     public boolean isItemValid(ItemStack itemstack)
     {
-        return itemstack.itemID == Item.bucketEmpty.itemID || itemstack.itemID == Item.glassBottle.itemID;
+        return itemstack.getItem() == Item.bucketEmpty || itemstack.getItem() == Item.glassBottle;
+    }
+    
+    public Icon getBackgroundIconIndex()
+    {
+        return ModItemUpgrades.LiquidSlot;
     }
 
 }

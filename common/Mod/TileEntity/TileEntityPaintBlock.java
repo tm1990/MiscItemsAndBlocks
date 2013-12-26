@@ -17,9 +17,16 @@ public class TileEntityPaintBlock extends TileEntity{
 	public int Green = 0;
 	public int Blue = 0;
 	
-	static int Max = 254;
+	//16.581.375 Color combinations
+	
+	public static int Max = 255;
 
 
+	public void updateEntity(){
+			
+		if(this.worldObj.isRemote)
+		this.worldObj.markBlockForRenderUpdate(xCoord, yCoord, zCoord);
+	}
 	  
       public void SetRed(int i){
     	  if(i < Max + 1 && i > 0)
@@ -27,7 +34,7 @@ public class TileEntityPaintBlock extends TileEntity{
     	  else if (i >= Max + 1)
     		  Red = Max;
     	  else
-    		  i = 0;
+    		  Red = 0;
       }
       
       public void SetGreen(int i){
@@ -36,7 +43,7 @@ public class TileEntityPaintBlock extends TileEntity{
     	  else if (i >= Max + 1)
     		  Green = Max;
     	  else
-    		  i = 0;
+    		  Green = 0;
       }
       
       public void SetBlue(int i){
@@ -45,7 +52,7 @@ public class TileEntityPaintBlock extends TileEntity{
     	  else if (i >= Max + 1)
     		  Blue = Max;
     	  else
-    		  i = 0;
+    		  Blue = 0;
       }
       
       
@@ -103,9 +110,10 @@ public class TileEntityPaintBlock extends TileEntity{
   	@Override
   	public void onDataPacket(INetworkManager netManager, Packet132TileEntityData packet)
   	{
+  		
   	 readFromNBT(packet.data);
   	}
-  
+
 
 
 

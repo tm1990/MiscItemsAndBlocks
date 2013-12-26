@@ -56,6 +56,9 @@ public class PacketHandler implements IPacketHandler{
 		}
 	}
 	
+	
+
+	
 
 	@Override
 	public void onPacketData(INetworkManager manager, Packet250CustomPayload packet, Player player) {
@@ -67,7 +70,6 @@ public class PacketHandler implements IPacketHandler{
 		EntityPlayer entityPlayer = (EntityPlayer)player;
 		
 		byte packetId = reader.readByte();
-		
 		
 		
 		
@@ -83,7 +85,9 @@ public class PacketHandler implements IPacketHandler{
 				}else if (container != null && container instanceof ContainerMiningChamber) {
 					TileEntityMiningChamber MiningChamber = ((ContainerMiningChamber)container).getTile();
 					MiningChamber.receiveButtonEvent(buttonId);
+
 				}
+				return;
 				
 			case 2:
 
@@ -99,8 +103,7 @@ public class PacketHandler implements IPacketHandler{
 				
 				
 				return;
-				
-				
+		
 
 		}
 		

@@ -2,6 +2,7 @@ package Mod.Block;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import Mod.Items.ModItemWrench;
 import Mod.Items.ModItems;
 import Mod.Lib.Refrence;
 import Mod.TileEntity.TileEntityPowerCable;
@@ -74,7 +75,7 @@ public class ModBlockPowerCable extends BlockContainer{
 		    	int Meta = world.getBlockMetadata(x, y, z);
 		    	if(player.inventory.getCurrentItem() != null){
 		    	
-		    	if(player.inventory.getCurrentItem().itemID == ModItems.Wrench.itemID){
+		    	if(player.inventory.getCurrentItem().getItem() instanceof ModItemWrench){
 
 		    	
 		    	if(Meta < 5){
@@ -94,7 +95,7 @@ public class ModBlockPowerCable extends BlockContainer{
 		    	
 	    	
 	    	
-	    	return player.inventory.getCurrentItem() != null && player.inventory.getCurrentItem().itemID == ModItems.Wrench.itemID;
+	    	return player.inventory.getCurrentItem() != null && player.inventory.getCurrentItem().getItem() instanceof ModItemWrench;
 	    }
     }
     	

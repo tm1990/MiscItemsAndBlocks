@@ -157,6 +157,8 @@ private Icon _icon4;
 		public Icon getIcon(ItemStack stack, int renderPass, EntityPlayer player, ItemStack usingItem, int useRemaining)
 
 		{
+			
+			//TODO Look at this before 1.7
 
 			if(usingItem != null && usingItem.itemID == itemID)
 

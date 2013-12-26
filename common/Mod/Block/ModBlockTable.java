@@ -53,6 +53,7 @@ public class ModBlockTable extends BlockContainer{
     {
     	
     	if(player.inventory.getCurrentItem() != null){
+    		//TODO Must change before 1.7
     	if(player.inventory.getCurrentItem().itemID == Block.carpet.blockID){
     		
     		if(world.getBlockMetadata(x, y, z) > 0){

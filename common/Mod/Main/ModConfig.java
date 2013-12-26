@@ -34,8 +34,6 @@ public class ModConfig {
 	
 	public static int ElFurnace;
 	
-	//TODO public static int CamouflageBlock;
-	
 	public static int ItemPedestal;
 	public static int MiningChamber;
 	

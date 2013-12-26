@@ -18,7 +18,7 @@ public class ModBlockOneWayGlass extends BlockRotatedPillar {
 
 	protected ModBlockOneWayGlass(int par1) {
 		super(par1, Material.glass);
-		this.setHardness(5);
+		this.setHardness(2);
 	}
 
 	

@@ -15,6 +15,7 @@ import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 import Mod.Lib.Refrence;
 import Mod.Main.Main;
+import Mod.Network.PacketHandler;
 import Mod.TileEntity.TileEntityPaintBlock;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -81,8 +82,11 @@ public class ModItemPaintBrush extends Item{
 
 	    }
 	    
+	    int Max = TileEntityPaintBlock.Max;
+	    
 	    public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int par7, float par8, float par9, float par10)
 	    {
+	    	
 	    	
 	    	
 	    	if(player.isSneaking())
@@ -90,13 +94,15 @@ public class ModItemPaintBrush extends Item{
 				player.openGui(Main.instance, 1, world, 0, 0, 0);
 	    	}
 	    	
+	    	
+	    	
 	    		
 	    		TileEntity tile_e = world.getBlockTileEntity(x, y, z);
 	    		
 	    		if(tile_e instanceof TileEntityPaintBlock){
 	    			TileEntityPaintBlock tile = (TileEntityPaintBlock)tile_e;
 
-	    	    	world.markBlockForRenderUpdate(x, y, z);
+	    	    	UpdateBlock(world, x, y, z);
 	    			
 	    			int Meta = stack.getItemDamage();
 	    			
@@ -109,17 +115,21 @@ public class ModItemPaintBrush extends Item{
 	    				
 	    			if(Meta == 1){
 	    				tile.SetRed(tile.GetRed() - Change);
+		    	    	UpdateBlock(world, x, y, z);
 	    				return true;
 	    			}else if (Meta == 2){
 	    				tile.SetGreen(tile.GetGreen() - Change);
+		    	    	UpdateBlock(world, x, y, z);
 	    				return true;
 	    			}else if (Meta == 3){
 	    				tile.SetBlue(tile.GetBlue() - Change);
+		    	    	UpdateBlock(world, x, y, z);
 	    				return true;
 	    			}else if (Meta == 0){
 	    				tile.SetRed(tile.GetRed() - Change);
 	    				tile.SetGreen(tile.GetGreen() - Change);
 	    				tile.SetBlue(tile.GetBlue() - Change);
+		    	    	UpdateBlock(world, x, y, z);
 	    				return true;
 	    			}else if (Meta == 4){
 	    				
@@ -143,29 +153,32 @@ public class ModItemPaintBrush extends Item{
 	    			
 	    			}else{
 	    				
-	    				if(Meta == 1 && tile.GetRed() >= 254)
+	    				if(Meta == 1 && tile.GetRed() >= Max)
 	    					return false;
 	    				
-	    				if(Meta == 2 && tile.GetGreen() >= 254)
+	    				if(Meta == 2 && tile.GetGreen() >= Max)
 	    					return false;
 	    				
-	    				if(Meta == 3 && tile.GetBlue() >= 254)
+	    				if(Meta == 3 && tile.GetBlue() >= Max)
 	    					return false;
 	    				
 		    			if(Meta == 1){
 			    			tile.SetRed(tile.GetRed() + Change);
+			    	    	UpdateBlock(world, x, y, z);
 		    				return true;
 		    				
 		    			}else if (Meta == 2){
 			    			tile.SetGreen(tile.GetGreen() + Change);
+			    	    	UpdateBlock(world, x, y, z);
 		    				return true;
 		    				
 		    			}else if (Meta == 3){
 		    				tile.SetBlue(tile.GetBlue() + Change);
+			    	    	UpdateBlock(world, x, y, z);
 		    				return true;
 		    			}else if (Meta == 4 || Meta == 5){
 		    				
-		    				world.markBlockForUpdate(x, y, z);
+			    	    	UpdateBlock(world, x, y, z);
 		    				
 
 		    				if(stack.stackTagCompound == null){
@@ -185,7 +198,7 @@ public class ModItemPaintBrush extends Item{
 		    					tile.SetBlue(stack.stackTagCompound.getInteger("Blue"));
 		    					
 		    				}
-		    				
+			    	    	UpdateBlock(world, x, y, z);
 	    					return true;
 	    			}
 	    			
@@ -201,6 +214,16 @@ public class ModItemPaintBrush extends Item{
 	    	
 	    	
 	        return false;
+	    }
+	    
+	    public void UpdateBlock(World world, int x, int y, int z){
+	    	world.markBlockForUpdate(x, y, z);
+	    	world.markBlockForRenderUpdate(x, y, z);
+	    	world.setBlockMetadataWithNotify(x, y, z, 0, 2);
+
+	    	
+
+	    	
 	    }
 	    
 	    @Override

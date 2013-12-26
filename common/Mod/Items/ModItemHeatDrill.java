@@ -158,6 +158,8 @@ public class ModItemHeatDrill extends ModItemPowerTool{
 	                    			if(result != null){
 
 		                        	
+	                    				
+	                    				//TODO Remove .itemID before 1.7
 		                        	if(result.itemID < 256 || result.itemID > 421 && result.itemID < 4096){
 
 

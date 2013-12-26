@@ -47,7 +47,6 @@ if(versionSplit[1] != null)
 remoteVersionImportance = versionSplit[1];
 if(remoteVersion != null){
 Main.LATEST_VERSION = remoteVersion;
-Main.UPDATE_IMPORTANCE = remoteVersionImportance;
 
 if(remoteVersion.equalsIgnoreCase(Main.RELEASE_VERSION))
 result = UP_TO_DATE;
@@ -108,7 +107,6 @@ checkVersion();
 tries++;
 if(result == OUT_OF_DATE){
 Main.UP_TO_DATE = false;
-Main.UPDATE_IMPORTANCE = remoteVersionImportance;
 checkLatestChanges();
 TickRegistry.registerTickHandler(new VersionCheckTicker(), Side.CLIENT);
 }

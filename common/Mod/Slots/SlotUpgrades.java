@@ -3,8 +3,11 @@ package Mod.Slots;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.Icon;
 import Mod.Items.ModItemUpgradeItem;
+import Mod.Items.ModItemUpgrades;
 
 public class SlotUpgrades extends Slot{
 
@@ -19,5 +22,11 @@ public class SlotUpgrades extends Slot{
     	return item.getItem() instanceof ModItemUpgradeItem;
     	
     }
+    
+    public Icon getBackgroundIconIndex()
+    {
+        return ModItemUpgrades.EmptySlot;
+    }
+
 	
 }

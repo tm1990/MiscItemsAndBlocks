@@ -25,6 +25,7 @@ import Mod.Misc.BoneMealEvent;
 import Mod.Misc.KeyBindings;
 import Mod.Network.PacketHandler;
 import Mod.Proxies.ServerProxy;
+import Mod.Render.CapeRender;
 import Mod.TileEntity.TileEntityBin;
 import Mod.TileEntity.TileEntityBox;
 import Mod.TileEntity.TileEntityCharger;
@@ -63,6 +64,7 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
+import cpw.mods.fml.relauncher.Side;
 
 
 @Mod(modid = Refrence.Mod_Id, name = Refrence.Mod_Name, version = Refrence.Version)
@@ -83,7 +85,6 @@ public class Main {
     public static final String RELEASE_VERSION = Refrence.Version;
     public static String LATEST_CHANGES = "[nothing]";
     public static String LATEST_VERSION = "[nothing]";
-    public static String UPDATE_IMPORTANCE = "[nothing]";
     public static String UPDATE_URL = "http://adf.ly/U25ua";
     public static boolean UP_TO_DATE = true;
     
@@ -123,6 +124,8 @@ public void preInit(FMLPreInitializationEvent event) {
     @Init
     public void Init(FMLInitializationEvent event){
     	
+    	if(event.getSide() == Side.CLIENT)
+        MinecraftForge.EVENT_BUS.register(new CapeRender());
     	
     	ModItems.Init();
     	ModBlocks.Init();
@@ -135,7 +138,7 @@ public void preInit(FMLPreInitializationEvent event) {
         proxy.registerClientTickHandler();
         proxy.registerServerTickHandler();
         proxy.RegisterListeners();
-        
+    	if(event.getSide() == Side.CLIENT)
         KeyBindingRegistry.registerKeyBinding(new KeyBindings());
         
         EntityRegistry.registerGlobalEntityID(EntitySilverArrow.class, "SilverArrow", EntityRegistry.findGlobalUniqueEntityId());
@@ -173,9 +176,7 @@ public void preInit(FMLPreInitializationEvent event) {
         GameRegistry.registerTileEntity(TileEntityGamePartNull.class, "TileEntityGamePartNull");
         GameRegistry.registerTileEntity(TileEntityPillar.class, "TileEntityPillar");
         GameRegistry.registerTileEntity(TileEntityTimedBlock.class, "TileEntityTimedBLock");
-        
         GameRegistry.registerTileEntity(TileEntityElectricFurnace.class, "TileEntityElectricFurnace");
-        
         GameRegistry.registerTileEntity(TileEntityTable.class, "TileEntityTable");
         GameRegistry.registerTileEntity(TileEntityPaintBlock.class, "TileEntityPaintBlock");
         

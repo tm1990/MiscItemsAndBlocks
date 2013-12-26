@@ -98,7 +98,7 @@ public class TileEntityOvenCore extends TileEntityInvBase implements ISidedInven
     	
     	
     	
-    	if(this.getStackInSlot(1) == null || this.getStackInSlot(1).itemID == 0){
+    	if(this.getStackInSlot(1) == null || this.getStackInSlot(1).getItem() == null){
     		WorkTime = 0;
     	}
     
@@ -110,7 +110,7 @@ public class TileEntityOvenCore extends TileEntityInvBase implements ISidedInven
     		if(IsFuel(this.getStackInSlot(0)) && Heat < 100){
     			
     			Fuel = Fuel + rand.nextInt(FuelValue(this.getStackInSlot(0)));
-    			if(this.getStackInSlot(0).itemID == Item.bucketLava.itemID){
+    			if(this.getStackInSlot(0).getItem() == Item.bucketLava){
     				this.setInventorySlotContents(0, new ItemStack(Item.bucketEmpty));
     			}else{
     					this.decrStackSize(0, 1);
@@ -262,12 +262,13 @@ public class TileEntityOvenCore extends TileEntityInvBase implements ISidedInven
     public int FuelValue(ItemStack item){
     	
     	if(item != null){
-    	int id = item.itemID;
     
-    	if(id == Item.coal.itemID)return 7;
-    	if(id == Block.wood.blockID)return 4;
-    	if(id == Block.planks.blockID)return 2;
-    	if(id == Item.bucketLava.itemID)return 40;
+    		
+    		//TODO Remove ID refrences before 1.7
+    	if(item.getItem() == Item.coal)return 7;
+    	if(item.itemID == Block.wood.blockID)return 4;
+    	if(item.itemID == Block.planks.blockID)return 2;
+    	if(item.getItem() == Item.bucketLava)return 40;
     	
     	}
 

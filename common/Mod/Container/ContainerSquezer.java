@@ -9,6 +9,7 @@ import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
+import Mod.Slots.SlotFruit;
 import Mod.Slots.SlotLiquidContainer;
 import Mod.Slots.SlotOutput;
 import Mod.TileEntity.TileEntitySquezer;
@@ -40,7 +41,7 @@ public class ContainerSquezer  extends Container {
     		}
     		
     		addSlotToContainer(new SlotLiquidContainer(tile, 0, 62, 11));
-    		addSlotToContainer(new Slot(tile, 1, 98, 11));
+    		addSlotToContainer(new SlotFruit(tile, 1, 98, 11));
     		addSlotToContainer(new SlotOutput(tile, 2, 80, 57));
     	
     }

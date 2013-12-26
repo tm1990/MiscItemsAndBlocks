@@ -42,6 +42,9 @@ boolean metaSens = false;
          ItemStack craftComponentStack = craftSupplyMatrix.getStackInSlot(invIndex);
          if(craftComponentStack != null)
          {
+        	 
+        	 
+        	 //TODO Fix before 1.7
          if(!craftComponentStack.isItemStackDamageable() && craftComponentStack.getMaxDamage() == 0
          && craftComponentStack.itemID != Block.planks.blockID
          && craftComponentStack.itemID != Block.cloth.blockID

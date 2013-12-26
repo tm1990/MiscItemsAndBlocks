@@ -20,6 +20,10 @@ public class ModItemUpgrades extends ModItemUpgradeItem{
 		this.maxStackSize = 16;
 
 	}
+	
+	public static Icon EmptySlot;
+	public static Icon LiquidSlot;
+	public static Icon FruitSlot;
 
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IconRegister par1IconRegister)
@@ -27,6 +31,12 @@ public class ModItemUpgrades extends ModItemUpgradeItem{
 		
 	    
 	    this.icons[0] = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "PowerUpgrade");
+	    
+	    
+	    this.EmptySlot = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "EmptyUpgradeSlot");
+	    
+   	 LiquidSlot = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "LiquidSlot");
+   	 FruitSlot = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "FruitSlot");
 
 
 	}

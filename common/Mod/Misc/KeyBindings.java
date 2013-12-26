@@ -35,7 +35,7 @@ public void keyDown(EnumSet<TickType> types, KeyBinding kb, boolean tickEnd, boo
 	  if(kb.keyCode == Flight.keyCode){
 		if (FMLClientHandler.instance().getClient().currentScreen == null) {
 			EntityClientPlayerMP player = ModLoader.getMinecraftInstance().thePlayer;
-			if(player.inventory.armorInventory[2] != null && player.inventory.armorInventory[2].getItem() instanceof ModItemAntiFallChest){
+			if(player.inventory.armorInventory[2] != null && player.inventory.armorInventory[2].getItem() instanceof ModItemAntiFallChest && player.inventory.armorInventory[2].getMaxDamage() - player.inventory.armorInventory[2].getItemDamage() > 0){
 			
 			player.fallDistance = 0;
 			player.motionY = 0.6;

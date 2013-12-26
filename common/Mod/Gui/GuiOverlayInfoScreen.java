@@ -97,9 +97,9 @@ public class GuiOverlayInfoScreen extends GuiIngame{
 		if(Percent > 80){
 			return EnumChatFormatting.GREEN;
 		}else if (Percent < 81 && Percent > 50){
-			return EnumChatFormatting.BLUE;
+			return EnumChatFormatting.YELLOW;
 		}else if (Percent < 51 && Percent > 25){
-			return EnumChatFormatting.DARK_BLUE;
+			return EnumChatFormatting.GOLD;
 		}else if (Percent < 26){
 			return EnumChatFormatting.RED;
 		}else{

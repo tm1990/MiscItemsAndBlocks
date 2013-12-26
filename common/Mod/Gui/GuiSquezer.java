@@ -35,8 +35,6 @@ public class GuiSquezer extends GuiContainer{
          fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, 4210752);
          
          fontRenderer.drawString("Squeezer", 7, 3, 4210752);
-         fontRenderer.drawString("Bottle", 32, 13, 4210752);
-         fontRenderer.drawString("Item", 117, 13, 4210752);
       
          
          
