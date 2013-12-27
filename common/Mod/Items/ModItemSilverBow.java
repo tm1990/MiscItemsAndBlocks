@@ -17,6 +17,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
 import net.minecraft.util.Icon;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
@@ -206,6 +207,6 @@ public ItemStack onEaten(ItemStack stack, World world, EntityPlayer player)
     public void addInformation(ItemStack itemstack, EntityPlayer player, List list, boolean par4)
     {
             list.add("");
-            list.add("Requires silver arrows");
+            list.add(StatCollector.translateToLocal("items.desc.silverbow"));
     }
 }

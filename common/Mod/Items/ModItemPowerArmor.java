@@ -13,6 +13,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 
 import cpw.mods.fml.relauncher.Side;
@@ -83,24 +84,24 @@ public class ModItemPowerArmor extends ItemArmor {
 		
     	if(itemstack.getItem() == ModItems.DivingHelmet){
 
-    		list.add("Active when in water");
-    		list.add("Gives water breathing");
-    		list.add("Gives night vision");
+    		list.add(StatCollector.translateToLocal("items.desc.powerarmor.helmet.1"));
+    		list.add(StatCollector.translateToLocal("items.desc.powerarmor.helmet.2"));
+    		list.add(StatCollector.translateToLocal("items.desc.powerarmor.helmet.3"));
     		
     	}else if(itemstack.getItem() == ModItems.FlightChestPlate){
     		
-    		list.add("Always active");
-    		list.add("Allows flight");
+    		list.add(StatCollector.translateToLocal("items.desc.powerarmor.chestplate.1"));
+    		list.add(StatCollector.translateToLocal("items.desc.powerarmor.chestplate.2"));
     		
     	}else if(itemstack.getItem() == ModItems.RunningLeggings){
     		
-    		list.add("Always active while on ground");
-    		list.add("Gives speed effect");
+    		list.add(StatCollector.translateToLocal("items.desc.powerarmor.leggings.1"));
+    		list.add(StatCollector.translateToLocal("items.desc.powerarmor.leggings.2"));
     		
     	}else if(itemstack.getItem() == ModItems.JumpingBoots){
     		
-    		list.add("Always active while on ground");
-    		list.add("Gives jump effect");
+    		list.add(StatCollector.translateToLocal("items.desc.powerarmor.boots.1"));
+    		list.add(StatCollector.translateToLocal("items.desc.powerarmor.boots.2"));
     		
     	}
     	

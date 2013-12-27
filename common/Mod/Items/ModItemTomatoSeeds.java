@@ -10,6 +10,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemSeeds;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.IPlantable;
 
 public class ModItemTomatoSeeds extends ItemSeeds implements IPlantable{
@@ -28,7 +29,7 @@ public class ModItemTomatoSeeds extends ItemSeeds implements IPlantable{
 	    @Override
 	    public void addInformation(ItemStack itemstack, EntityPlayer player, List list, boolean par4)
 	    {
-	            list.add("Can be planted to grow tomatos.");
+	            list.add(StatCollector.translateToLocal("items.desc.tomatoseeds"));
 	    }
 
 }

@@ -12,6 +12,7 @@ import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.Icon;
+import net.minecraft.util.StatCollector;
 
 public class ModItemPizzaRaw extends ItemFood{
 	
@@ -49,10 +50,10 @@ public class ModItemPizzaRaw extends ItemFood{
     	int meta = stack.getItemDamage();
 
     	
-    	if(meta == 0)return "Raw Fish Pizza";
-    	if(meta == 1)return "Raw Pork Pizza";
-    	if(meta == 2)return "Raw Beef Pizza";
-    	if(meta == 3)return "Raw Chicken Pizza";
+    	if(meta == 0)return StatCollector.translateToLocal("items.name.pizza.raw.1");
+    	if(meta == 1)return StatCollector.translateToLocal("items.name.pizza.raw.2");
+    	if(meta == 2)return StatCollector.translateToLocal("items.name.pizza.raw.3");
+    	if(meta == 3)return StatCollector.translateToLocal("items.name.pizza.raw.4");
     	
     	
     	

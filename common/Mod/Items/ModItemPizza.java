@@ -12,6 +12,7 @@ import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.Icon;
+import net.minecraft.util.StatCollector;
 
 public class ModItemPizza extends ItemFood{
 	
@@ -45,12 +46,12 @@ public class ModItemPizza extends ItemFood{
     public String getItemDisplayName(ItemStack stack)
     {
     	int meta = stack.getItemDamage();
-
     	
-    	if(meta == 0)return "Fish Pizza";
-    	if(meta == 1)return "Pork Pizza";
-    	if(meta == 2)return "Beef Pizza";
-    	if(meta == 3)return "Chicken Pizza";
+    	
+    	if(meta == 0)return StatCollector.translateToLocal("items.name.pizza.1");
+    	if(meta == 1)return StatCollector.translateToLocal("items.name.pizza.2");
+    	if(meta == 2)return StatCollector.translateToLocal("items.name.pizza.3");
+    	if(meta == 3)return StatCollector.translateToLocal("items.name.pizza.4");
     	
     	
     	

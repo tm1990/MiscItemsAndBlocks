@@ -97,6 +97,8 @@ public class Main {
 public void preInit(FMLPreInitializationEvent event) {
     	
 	
+	//TODO Continue locolazation support. 
+	
     	
 	GameRegistry.registerCraftingHandler(new ModCraftingHandler());
 	

@@ -9,7 +9,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemTool;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 
 public class ModItemPowerStorage extends ModItemPowerTool{
@@ -25,12 +25,12 @@ public class ModItemPowerStorage extends ModItemPowerTool{
     @Override
     public void addInformation(ItemStack itemstack, EntityPlayer player, List list, boolean par4)
     {
-    	list.add("Can be charge in a charger.");
-    	list.add("Can transfer power to another charger.");
+    	list.add(StatCollector.translateToLocal("items.desc.powerstorage.1"));
+    	list.add(StatCollector.translateToLocal("items.desc.powerstorage.2"));
     	int Damage = itemstack.getMaxDamage() - itemstack.getItemDamage();
     	int MaxDamage = itemstack.getMaxDamage();
     	
-    	list.add("Power: " + Damage + "/" + MaxDamage);
+    	list.add(StatCollector.translateToLocal("words.power") + ": " + Damage + "/" + MaxDamage);
     	
     	
     }

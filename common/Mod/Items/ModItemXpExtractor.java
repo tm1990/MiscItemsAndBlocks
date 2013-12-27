@@ -16,6 +16,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
 import net.minecraft.util.Icon;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.ArrowNockEvent;
@@ -130,9 +131,9 @@ return 32;
     @Override
     public void addInformation(ItemStack itemstack, EntityPlayer player, List list, boolean par4)
     {
-            list.add("Requirements: ");
-            list.add("1. You Require Xp Levels");
-            list.add("2. You Require atleast 1 glass bottle");
+            list.add(StatCollector.translateToLocal("items.desc.xpextractor.1") + ": ");
+            list.add("1." +  StatCollector.translateToLocal("items.desc.xpextractor.2"));
+            list.add("2." + StatCollector.translateToLocal("items.desc.xpextractor.3"));
     }
     
     

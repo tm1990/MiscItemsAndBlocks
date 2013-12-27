@@ -7,6 +7,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.Icon;
+import net.minecraft.util.StatCollector;
 import Mod.Lib.Refrence;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -52,7 +53,7 @@ public class ModItemUpgrades extends ModItemUpgradeItem{
 		int meta = stack.getItemDamage();
 
 		
-		if(meta == 0)return "Power Upgrade";
+		if(meta == 0)return StatCollector.translateToLocal("items.name.upgrades.power");
 		
 		
 		

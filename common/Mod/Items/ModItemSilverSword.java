@@ -16,6 +16,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import Mod.Lib.Refrence;
 import Mod.Main.Main;
@@ -50,7 +51,7 @@ public class ModItemSilverSword extends ItemSword {
     	if(EntityHit instanceof EntityDragon || EntityHit instanceof EntityWither || EntityHit instanceof EntityPlayer){
     	}else{
     		
-    		EntityHit.attackEntityFrom(new MiscDamage("Silver Sword", "Was Slain With Silver Sword by " + EntityAttacker.getTranslatedEntityName()), 80F);
+    		EntityHit.attackEntityFrom(new MiscDamage("Silver Sword", StatCollector.translateToLocal("string.death.silversword").replace("%Killed", EntityHit.getTranslatedEntityName().replace("%Killer", EntityAttacker.getTranslatedEntityName()))), 80F);
     		EntityHit.attackEntityAsMob(EntityHit);
     		
 			
@@ -103,27 +104,27 @@ public class ModItemSilverSword extends ItemSword {
     {
     	
     	
-            list.add("One hit killes most mobs");
+            list.add(StatCollector.translateToLocal("items.desc.silversword.1"));
             
             if(itemstack.stackTagCompound != null){
             	
-            list.add("Hits: " + itemstack.stackTagCompound.getInteger("Kills"));
+            list.add(StatCollector.translateToLocal("items.desc.silversword.2") + ": " + itemstack.stackTagCompound.getInteger("Kills"));
             
             if(itemstack.stackTagCompound.getString("LastMob") == null)
-            	list.add("Last hit: Nothing");
+            	list.add(StatCollector.translateToLocal("items.desc.silversword.4"));
             else
-            list.add("Last hit: " + itemstack.stackTagCompound.getString("LastMob"));
+            list.add(StatCollector.translateToLocal("items.desc.silversword.3") + ": " + itemstack.stackTagCompound.getString("LastMob"));
             
             
             if(itemstack.stackTagCompound.getString("MadeBy") == null)
-            	list.add("Sword made by: <Empty>");
+            	list.add(StatCollector.translateToLocal("items.desc.silversword.6"));
             else
-            list.add("Sword made by: " + itemstack.stackTagCompound.getString("MadeBy"));
+            list.add(StatCollector.translateToLocal("items.desc.silversword.5") + ": " + itemstack.stackTagCompound.getString("MadeBy"));
             }else{
             	
-            	list.add("Hits: 0");
-            	list.add("Last hit: Nothing");
-            	list.add("Sword made by: <Empty>");
+            	list.add(StatCollector.translateToLocal("items.desc.silversword.2") + ": 0");
+            	list.add(StatCollector.translateToLocal("items.desc.silversword.4"));
+            	list.add(StatCollector.translateToLocal("items.desc.silversword.6"));
             
 
     }
