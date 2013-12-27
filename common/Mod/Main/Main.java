@@ -6,6 +6,8 @@ import java.util.logging.Logger;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.MinecraftForge;
 import Mod.Block.ModBlocks;
@@ -88,12 +90,13 @@ public class Main {
     public static String UPDATE_URL = "http://adf.ly/U25ua";
     public static boolean UP_TO_DATE = true;
     
-    
+    public static String UpdateMessage = StatCollector.translateToLocal("string.versioncheck.newversion").replace("%EnumRed", EnumChatFormatting.RED + "").replace("%EnumYellow", EnumChatFormatting.YELLOW + "").replace("%EnumBlue", EnumChatFormatting.BLUE + "").replace("%EnumGold", EnumChatFormatting.GOLD + "").replace("%ModName", Refrence.Mod_Name).replace("%NewVersion", Main.LATEST_VERSION).replace("%DowLink", Main.UPDATE_URL).replace("%Changes", Main.LATEST_CHANGES);
     
 	
 @PreInit
 public void preInit(FMLPreInitializationEvent event) {
     	
+	
     	
 	GameRegistry.registerCraftingHandler(new ModCraftingHandler());
 	

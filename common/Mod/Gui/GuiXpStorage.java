@@ -42,7 +42,7 @@ public class GuiXpStorage extends GuiContainer{
 
             fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 2, ySize - 96 + 2, 4210752);
             
-            fontRenderer.drawString("Xp Storage Block", 7, 3, 4210752);
+            fontRenderer.drawString(StatCollector.translateToLocal("gui.xpstorage"), 7, 3, 4210752);
             
             
             textfield.drawTextBox();
@@ -64,7 +64,7 @@ public class GuiXpStorage extends GuiContainer{
 	         int Xp = this.tile.GetLevels();
 
 	         
-	 		textfield.setText("Levels stored : " + Xp);
+	 		textfield.setText(StatCollector.translateToLocal("gui.string.levelsstored") + ": " + Xp);
 
 
 	         
@@ -77,8 +77,8 @@ public class GuiXpStorage extends GuiContainer{
 		buttonList.clear();
 		
 		
-		buttonList.add(new GuiButton(1, guiLeft + 20,  guiTop + 39, 60, 20, "Withdraw"));
-		buttonList.add(new GuiButton(2, guiLeft + 96, guiTop + 39, 60, 20, "Deposit"));
+		buttonList.add(new GuiButton(1, guiLeft + 20,  guiTop + 39, 60, 20, StatCollector.translateToLocal("words.withdraw")));
+		buttonList.add(new GuiButton(2, guiLeft + 96, guiTop + 39, 60, 20, StatCollector.translateToLocal("words.deposit")));
 		buttonList.add(new GuiTipButton(3, guiLeft, guiTop, "?", Messages.XpStorageTips));
 		
 		textfield = new GuiTextField(fontRenderer, 24, 15, 120, 20);

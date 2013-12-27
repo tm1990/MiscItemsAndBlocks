@@ -6,8 +6,8 @@ import java.util.Random;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import Mod.Items.ModItemAntiFallChest;
 import Mod.Items.ModItems;
+import Mod.Main.Main;
 import Mod.Main.ModConfig;
 import cpw.mods.fml.common.IScheduledTickHandler;
 import cpw.mods.fml.common.TickType;
@@ -59,7 +59,7 @@ public class ServerTickHandler implements IScheduledTickHandler{
 	
 	
 	public void onPlayerTick(EntityPlayer player) {
-		
+
 
 		
 		if(Counter >= 50){

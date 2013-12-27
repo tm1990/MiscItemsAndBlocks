@@ -7,6 +7,7 @@ import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.StatCollector;
 
 import org.lwjgl.opengl.GL11;
 
@@ -55,7 +56,7 @@ public class GuiOverlayInfoScreen extends GuiIngame{
 		ItemStack armorScreen = player.inventory.armorInventory[3];
 		float PowerLeftScreen = armorScreen.getMaxDamage() - armorScreen.getItemDamage();
 		int PercentScreen = (int)(PowerLeftScreen / armorScreen.getMaxDamage() * 100);
-		String TextScreen = EnumChatFormatting.GOLD + "Screen Power: " + GetColor(PercentScreen) + PercentScreen + "%";
+		String TextScreen = EnumChatFormatting.GOLD + StatCollector.translateToLocal("gui.string.screenpower") + ": " + GetColor(PercentScreen) + PercentScreen + "%";
 		RenderText(TextScreen, 60, PercentScreen);
 		yPlus += 10;
 		
@@ -64,7 +65,7 @@ public class GuiOverlayInfoScreen extends GuiIngame{
 		ItemStack armor = player.inventory.armorInventory[2];
 		float PowerLeft = armor.getMaxDamage() - armor.getItemDamage();
 		int Percent = (int)(PowerLeft / armor.getMaxDamage() * 100);
-		String Text = EnumChatFormatting.GOLD + "Anti-fall Power: " + GetColor(Percent) + Percent + "%";
+		String Text = EnumChatFormatting.GOLD + StatCollector.translateToLocal("gui.string.antifallpower") + ": " + GetColor(Percent) + Percent + "%";
 		RenderText(Text, 62, Percent);
 		yPlus += 10;
 		
@@ -74,7 +75,7 @@ public class GuiOverlayInfoScreen extends GuiIngame{
 		ItemStack Item = player.inventory.getCurrentItem();
 		float PowerLeft = Item.getMaxDamage() - Item.getItemDamage();
 		int Percent = (int)(PowerLeft / Item.getMaxDamage() * 100);
-		String Text = EnumChatFormatting.GOLD + "Current Item Power: " + GetColor(Percent) + Percent + "%";
+		String Text = EnumChatFormatting.GOLD + StatCollector.translateToLocal("gui.string.currentitempower") + ": " + GetColor(Percent) + Percent + "%";
 		RenderText(Text, 74, Percent);
 		yPlus += 10;
 

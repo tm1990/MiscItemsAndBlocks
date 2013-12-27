@@ -16,6 +16,7 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.Icon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.StatCollector;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import Mod.Block.ModBlocks;
@@ -116,23 +117,23 @@ public class ModItemDrill extends ModItemPowerTool{
 	    {
 	    	int i = itemstack.getMaxDamage() - itemstack.getItemDamage();
 	    	
-	            list.add("Normal mode mines 1x1");
-	            list.add("Bigger mode mines 3x3");
-	            list.add("Biggest mode mines 5x5");
-	            list.add("Shift right click to change mode.");
+	            list.add(StatCollector.translateToLocal("items.desc.drill.mode.1"));
+	            list.add(StatCollector.translateToLocal("items.desc.drill.mode.2"));
+	            list.add(StatCollector.translateToLocal("items.desc.drill.mode.3"));
+	            list.add(StatCollector.translateToLocal("items.desc.drill.1"));
 	            
 	            
-	            list.add("Power left: " + i);
+	            list.add(StatCollector.translateToLocal("items.desc.string.powerleft") + ": " + i);
 	            if(itemstack.getItemDamage() == itemstack.getMaxDamage())
-	            	list.add(EnumChatFormatting.RED + "Out of power recharge!");
+	            	list.add(EnumChatFormatting.RED + StatCollector.translateToLocal("items.desc.string.outofpowerrecharge"));
 	            
 	    			  
 	            if(HasInfo(itemstack)){
 	    			  NBTTagCompound Compound = itemstack.getTagCompound().getCompoundTag("Data");
-		    		list.add(EnumChatFormatting.GOLD + "Mode: " + Compound.getString("Mode"));	
+		    		list.add(EnumChatFormatting.GOLD + StatCollector.translateToLocal("items.desc.drill.2") + ": " + Compound.getString("Mode"));	
 	            }else{
 
-	            	list.add(EnumChatFormatting.GOLD + "Mode: Normal");
+	            	list.add(EnumChatFormatting.GOLD + StatCollector.translateToLocal("items.desc.drill.2_normal"));
 	            	
 	            }
 	            
@@ -153,32 +154,32 @@ public class ModItemDrill extends ModItemPowerTool{
 	    	if(player.isSneaking()){
 
 	    		if(!HasInfo(item)){
-	    			compound.setString("Mode", "Bigger");
+	    			compound.setString("Mode", StatCollector.translateToLocal("items.drill.mode.2"));
 	    		if(world.isRemote)
-  				  player.addChatMessage("Drill Mode set to : Bigger (3x3)");
+  				  player.addChatMessage(StatCollector.translateToLocal("items.drill.change.2"));
 	    		}
 	    		
 	    		if(HasInfo(item)){
 	    			  NBTTagCompound Compound = item.getTagCompound().getCompoundTag("Data");
 	    			  
-	    			  if(Compound.getString("Mode") == "Normal"){
+	    			  if(Compound.getString("Mode") == StatCollector.translateToLocal("items.drill.mode.1")){
 	    				  
-	    				  compound.setString("Mode", "Bigger");
+	    				  compound.setString("Mode", StatCollector.translateToLocal("items.drill.mode.2"));
 	    		    		if(world.isRemote)
-	    				  player.addChatMessage("Drill Mode set to : Bigger (3x3)");
+	    				  player.addChatMessage(StatCollector.translateToLocal("items.drill.change.2"));
 	    				  
-	    			  }else if (Compound.getString("Mode") == "Bigger"){
-	    				  compound.setString("Mode", "Biggest");
+	    			  }else if (Compound.getString("Mode") == StatCollector.translateToLocal("items.drill.mode.2")){
+	    				  compound.setString("Mode", StatCollector.translateToLocal("items.drill.mode.3"));
 	    		    		if(world.isRemote)
-	    				  player.addChatMessage("Drill Mode set to : Biggest (5x5)");
+	    				  player.addChatMessage(StatCollector.translateToLocal("items.drill.change.3"));
 	    				  
-	    			  }else if (Compound.getString("Mode") == "Biggest"){
-	    				  compound.setString("Mode", "Normal");
+	    			  }else if (Compound.getString("Mode") == StatCollector.translateToLocal("items.drill.mode.3")){
+	    				  compound.setString("Mode", StatCollector.translateToLocal("items.drill.mode.1"));
 	    		    		if(world.isRemote)
-	    				  player.addChatMessage("Drill Mode set to : Normal (1x1)");
+	    				  player.addChatMessage(StatCollector.translateToLocal("items.drill.change.1"));
 	    				  
 	    			  }else{
-	    				  compound.setString("Mode", "Bigger");
+	    				  compound.setString("Mode", StatCollector.translateToLocal("items.drill.mode.2"));
 	    			  }
 	    		
 	    		}
@@ -232,13 +233,13 @@ public class ModItemDrill extends ModItemPowerTool{
 	    		        int yRange = 0;
 	    		        int zRange = 0;
 	    	    		
-	    	    		if(Compound.getString("Mode") == "Bigger"){
+	    	    		if(Compound.getString("Mode") == StatCollector.translateToLocal("items.drill.mode.2")){
 	    	    			
 		    		        xRange = 1;
 		    		        yRange = 1;
 		    		        zRange = 1;
 	    	            
-	    	    		}else if (Compound.getString("Mode") == "Biggest"){
+	    	    		}else if (Compound.getString("Mode") == StatCollector.translateToLocal("items.drill.mode.3")){
 	    	    			
 		    		        xRange = 2;
 		    		        yRange = 2;

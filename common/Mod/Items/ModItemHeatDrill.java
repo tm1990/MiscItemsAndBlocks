@@ -2,11 +2,6 @@ package Mod.Items;
 
 import java.util.List;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import Mod.Block.ModBlocks;
-import Mod.Lib.Refrence;
-import Mod.LibMisc.BlockUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -15,12 +10,15 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumToolMaterial;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
+import Mod.Block.ModBlocks;
+import Mod.Lib.Refrence;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ModItemHeatDrill extends ModItemPowerTool{
 
@@ -105,9 +103,9 @@ public class ModItemHeatDrill extends ModItemPowerTool{
 	    	int i = itemstack.getMaxDamage() - itemstack.getItemDamage();
 	    	
 
-	            list.add("Power left: " + i);
+	            list.add(StatCollector.translateToLocal("items.desc.string.powerleft") + ": " + i);
 	            if(itemstack.getItemDamage() == itemstack.getMaxDamage())
-	            	list.add(EnumChatFormatting.RED + "Out of power recharge!");
+	            	list.add(EnumChatFormatting.RED + StatCollector.translateToLocal("items.desc.string.outofpowerrecharge"));
 
 	            
 	    }

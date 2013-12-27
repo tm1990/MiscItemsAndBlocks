@@ -57,7 +57,7 @@ public class GuiPaintBrush extends GuiScreen
 
             
 	        
-	        StringBuilder text = new StringBuilder("Paint Editor");
+	        StringBuilder text = new StringBuilder(StatCollector.translateToLocal("gui.painteditor"));
 	        fontRenderer.drawSplitString(text.toString(), posX + 10, posY + 6, 150, 4210752);
 	        
 	        
@@ -96,11 +96,11 @@ public class GuiPaintBrush extends GuiScreen
 	        int posY = (this.height - ySizeOfTexture) / 2;
 	        
 	        
-	        SliderRed = new ModGuiSlider(0, posX + 5, posY + 20, "Red Value", 0, Max);
-	        SliderGreen = new ModGuiSlider(1, posX + 5, posY + 50, "Green Value", 0, Max);
-	        SliderBlue = new ModGuiSlider(2, posX + 5, posY + 80, "Blue Value", 0, Max);
+	        SliderRed = new ModGuiSlider(0, posX + 5, posY + 20, StatCollector.translateToLocal("gui.string.redvalue"), 0, Max);
+	        SliderGreen = new ModGuiSlider(1, posX + 5, posY + 50, StatCollector.translateToLocal("gui.string.greenvalue"), 0, Max);
+	        SliderBlue = new ModGuiSlider(2, posX + 5, posY + 80, StatCollector.translateToLocal("gui.string.bluevalue"), 0, Max);
 	        
-	        buttonList.add(new GuiButton(3, posX + 157, posY + 34, 48, 18, "Set Color"));
+	        buttonList.add(new GuiButton(3, posX + 157, posY + 34, 48, 18, StatCollector.translateToLocal("gui.string.setcolor")));
 
 
 			

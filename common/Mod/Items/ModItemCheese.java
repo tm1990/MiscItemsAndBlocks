@@ -10,6 +10,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.StatCollector;
 
 public class ModItemCheese extends ItemFood{
 
@@ -28,6 +29,6 @@ public class ModItemCheese extends ItemFood{
 	    @Override
 	    public void addInformation(ItemStack itemstack, EntityPlayer player, List list, boolean par4)
 	    {
-	            list.add("Used to make pizza");
+	            list.add(StatCollector.translateToLocal("items.desc.pizzamaking"));
 	    }
 }

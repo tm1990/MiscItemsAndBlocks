@@ -31,7 +31,7 @@ public class GuiGenerator extends GuiContainer{
 
           fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 5, ySize - 99 + 2, 4210752);
           
-          fontRenderer.drawString("Coal Generator", 7, 3, 4210752);
+          fontRenderer.drawString(StatCollector.translateToLocal("gui.generator"), 7, 3, 4210752);
        
           
           

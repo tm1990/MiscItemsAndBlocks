@@ -10,6 +10,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
+import net.minecraft.util.StatCollector;
 
 public class ModItemIronPlate extends Item{
 
@@ -43,9 +44,9 @@ public class ModItemIronPlate extends Item{
     	int meta = stack.getItemDamage();
 
     	
-    	if(meta == 0)return "Iron Plate";
-    	if(meta == 1)return "Small Hardened Iron Plate";
-    	if(meta == 2)return "Hardened Iron Plate";
+    	if(meta == 0)return StatCollector.translateToLocal("items.name.ironplate.1");
+    	if(meta == 1)return StatCollector.translateToLocal("items.name.ironplate.2");
+    	if(meta == 2)return StatCollector.translateToLocal("items.name.ironplate.3");
     	
     	
     	

@@ -33,7 +33,7 @@ this.ySize = 197;
  protected void drawGuiContainerForegroundLayer(int param1, int param2) {
 
          fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 4, 4210752);
-         fontRenderer.drawString("Worktable", 8, 2, 4210752);
+         fontRenderer.drawString(StatCollector.translateToLocal("gui.worktable"), 8, 2, 4210752);
          
       
          

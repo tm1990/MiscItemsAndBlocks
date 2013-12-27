@@ -12,6 +12,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.Icon;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import Mod.Lib.Refrence;
 import Mod.Main.Main;
@@ -51,12 +52,12 @@ public class ModItemPaintBrush extends Item{
 	    {
 	    	int meta = stack.getItemDamage();
 
-	    	if(meta == 0)return EnumChatFormatting.WHITE + "Blank Paint Brush";
-	    	if(meta == 1)return EnumChatFormatting.RED + "Red Paint Brush";
-	    	if(meta == 2)return EnumChatFormatting.GREEN + "Green Paint Brush";
-	    	if(meta == 3)return EnumChatFormatting.BLUE + "Blue Paint Brush";
-	    	if(meta == 4)return EnumChatFormatting.GOLD + "Paint Copy Brush";
-	    	if(meta == 5)return EnumChatFormatting.GOLD + "Paint Editor Brush";
+	    	if(meta == 0)return EnumChatFormatting.WHITE + StatCollector.translateToLocal("items.name.paintbrush.1");
+	    	if(meta == 1)return EnumChatFormatting.RED + StatCollector.translateToLocal("items.name.paintbrush.2");
+	    	if(meta == 2)return EnumChatFormatting.GREEN + StatCollector.translateToLocal("items.name.paintbrush.3");
+	    	if(meta == 3)return EnumChatFormatting.BLUE + StatCollector.translateToLocal("items.name.paintbrush.4");
+	    	if(meta == 4)return EnumChatFormatting.GOLD + StatCollector.translateToLocal("items.name.paintbrush.5");
+	    	if(meta == 5)return EnumChatFormatting.GOLD + StatCollector.translateToLocal("items.name.paintbrush.6");
 	    	
 	    	
 	    	
@@ -234,15 +235,15 @@ public class ModItemPaintBrush extends Item{
 	    		
 	    		if(itemstack.stackTagCompound == null){
 	    			itemstack.setTagCompound(new NBTTagCompound());
-	    			  list.add("Red : " + itemstack.stackTagCompound.getInteger("Red"));
-	    			  list.add("Green : " + itemstack.stackTagCompound.getInteger("Green"));
-	    			  list.add("Blue : " + itemstack.stackTagCompound.getInteger("Blue"));
+	    			  list.add(StatCollector.translateToLocal("words.red") + ": " + itemstack.stackTagCompound.getInteger("Red"));
+	    			  list.add(StatCollector.translateToLocal("words.green") + ": " + itemstack.stackTagCompound.getInteger("Green"));
+	    			  list.add(StatCollector.translateToLocal("words.blue") + ": " + itemstack.stackTagCompound.getInteger("Blue"));
 	    			
 	    			
 	    		}else{
-	    			  list.add("Red : " + itemstack.stackTagCompound.getInteger("Red"));
-	    			  list.add("Green : " + itemstack.stackTagCompound.getInteger("Green"));
-	    			  list.add("Blue : " + itemstack.stackTagCompound.getInteger("Blue"));
+	    			  list.add(StatCollector.translateToLocal("words.red") + ": " + itemstack.stackTagCompound.getInteger("Red"));
+	    			  list.add(StatCollector.translateToLocal("words.green") + ": " + itemstack.stackTagCompound.getInteger("Green"));
+	    			  list.add(StatCollector.translateToLocal("words.blue") + ": " + itemstack.stackTagCompound.getInteger("Blue"));
 	    		}
 
 	    			  

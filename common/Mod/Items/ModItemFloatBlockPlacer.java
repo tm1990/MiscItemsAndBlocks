@@ -7,8 +7,8 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemTool;
 import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import Mod.Block.ModBlocks;
 
@@ -87,8 +87,8 @@ public class ModItemFloatBlockPlacer extends ModItemPowerTool{
     @Override
     public void addInformation(ItemStack itemstack, EntityPlayer player, List list, boolean par4)
     {
-            list.add("Places a floating platform under the player.");
-            list.add(EnumChatFormatting.RED + "The floating platform will disappear after a few seconds!");
+            list.add(StatCollector.translateToLocal("items.desc.floatblockplacer.1"));
+            list.add(EnumChatFormatting.RED + StatCollector.translateToLocal("items.desc.floatblockplacer.2"));
     }
     
 }

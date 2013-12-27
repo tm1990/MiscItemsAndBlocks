@@ -32,7 +32,7 @@ public class GuiSolarPanel extends GuiContainer{
 
           fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, 4210752);
           
-          fontRenderer.drawString("Solar Panel", 7, 3, 4210752);
+          fontRenderer.drawString(StatCollector.translateToLocal("gui.solarpanel"), 7, 3, 4210752);
           textfield.drawTextBox();
           
           
@@ -58,27 +58,24 @@ public class GuiSolarPanel extends GuiContainer{
     		
     		if(MetaData == 1 || MetaData == 0){
     			
-    			Mode = "Currently Generating";
+    			Mode = StatCollector.translateToLocal("gui.string.solar.state1");
     			State = "on";
     			
     		}else if (MetaData == 2){
     			
-    			Mode = "Solar panel cant see the sky";
+    			Mode = StatCollector.translateToLocal("gui.string.solar.state2");
     			State = "blocked";
     			
     		}else if (MetaData == 3){
     			
-    			Mode = "Solar panel cant see the sun";
+    			Mode = StatCollector.translateToLocal("gui.string.solar.state3");
     			State = "rain";
     			
     		}else if (MetaData == 4){
     			
-    			Mode = "Solar panel cant see the sun";
+    			Mode = StatCollector.translateToLocal("gui.string.solar.state3");
     			State = "night";
     			
-    		}else{
-    			Mode = "No Power Storage!";
-    			State = "";
     		}
 	    	
 	    	

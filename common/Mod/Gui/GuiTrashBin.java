@@ -32,7 +32,7 @@ public class GuiTrashBin extends GuiContainer{
 
             fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, 4210752);
             
-            fontRenderer.drawString("Trash Bin", 7, 3, 4210752);
+            fontRenderer.drawString(StatCollector.translateToLocal("gui.trashbin"), 7, 3, 4210752);
          
             
             

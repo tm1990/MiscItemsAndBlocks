@@ -26,7 +26,7 @@ public class GuiBox extends GuiContainer{
 
           fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, 4210752);
           
-          fontRenderer.drawString("Cardboard Box", 7, 3, 4210752);
+          fontRenderer.drawString(StatCollector.translateToLocal("gui.cardboardbox"), 7, 3, 4210752);
        
           
           

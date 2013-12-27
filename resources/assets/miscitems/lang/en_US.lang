@@ -1,0 +1,131 @@
+gui.charger=Charger Block
+gui.cardboardbox=Cardboard Box
+gui.worktable=WorkTable
+gui.electricfurnace=Electric Furnace
+gui.generator=Coal Generator
+gui.mill=Mill
+gui.miningchamber=Mining Chamber
+gui.painteditor=Paint Editor
+gui.oven=Oven
+gui.solarpanel=Solar Panel
+gui.squeezer=Squeezer
+gui.trashbin=Trash Bin
+gui.xpstorage=Xp Storage Block
+
+gui.string.antifallpower=Anti-fall Power
+gui.string.currentitempower=Current Item Power
+gui.string.screenpower=Screen Power
+gui.string.redvalue=Red Value
+gui.string.greenvalue=Green Value
+gui.string.bluevalue=Blue Value
+gui.string.levelsstored=Levels stored
+gui.string.miningdownto=Mining down to
+gui.string.currentlyat=Currently at
+gui.string.settostart=Set to start
+gui.string.setcolor=Set color
+
+
+gui.string.solar.state1=Currently Generating
+gui.string.solar.state2=Solar panel cant see the sky
+gui.string.solar.state3=Solar panel cant see the sun
+
+words.holesize=Holesize
+words.power=Power
+words.hole=Hole
+words.mining=Mining
+words.deeper=Deeper
+words.stop=Stop
+words.start=Start
+words.size=Size
+words.heat=Heat
+words.info=Info
+words.withdraw=Withdraw
+words.deposit=Deposit
+words.red=Red
+words.green=Green
+words.blue=Blue
+
+
+
+items.desc.string.powerleft=Power left
+items.desc.string.outofpowerrecharge=Out of power recharge
+
+items.desc.antifallchestplate.1=Prevents fall damage as long as it has power.
+items.desc.antifallchestplate.2=Hold shift to fall faster.
+items.desc.antifallchestplate.3=Hold the flight key to fly upwards (default to f)
+
+items.desc.pizzamaking=Used to make pizza.
+
+items.desc.circuit.basic=Used to make electric machines and tools.
+items.desc.circuit.advanced=Used to make advanced electric machines and tools.
+
+items.desc.disarmstick.1=Disarms the player hit.
+items.desc.disarmstick.2=Creative only!
+
+items.desc.drill.1=Shift right click to change mode.
+items.desc.drill.2=Mode
+items.desc.drill.2_normal=Mode: Normal
+
+items.desc.electricbow=Uses power instead of arrows.
+
+items.desc.floatblockplacer.1=Places a floating platform under the player.
+items.desc.floatblockplacer.2=The floating platform will disappear after a few seconds!
+
+items.desc.flour=Can be smelted into bread or crafted into a pizza base.
+
+items.desc.infoscreen.1=This is a wearable screen which
+items.desc.infoscreen.2=gives the player info about
+items.desc.infoscreen.3=the currently used
+items.desc.infoscreen.4=electric devices
+
+
+(defaultdesc = orange, carrot and apple juice description)
+items.desc.liquid.defaultdesc=Somthing good to drink.
+items.desc.liquid.1_effect=Gives regen for 15sec
+items.desc.liquid.2=Used to make pizza
+items.desc.liquid.3_effect=Gives regen for 30sec
+items.desc.liquid.4_effect=Gives night vision for 15sec
+
+items.desc.orange.1=Droped from orange trees.
+items.desc.orange.2=Can be used to make juice
+
+items.drill.change.1=Drill Mode set to : Normal (1x1)
+items.drill.change.2=Drill Mode set to : Bigger (3x3)
+items.drill.change.3=Drill Mode set to : Biggest (5x5) 
+items.drill.mode.1=Normal
+items.drill.mode.2=Bigger
+items.drill.mode.3=Biggest
+
+items.desc.drill.mode.1=Normal mode mines 1x1
+items.desc.drill.mode.2=Bigger mode mines 3x3
+items.desc.drill.mode.3=Biggest mode mines 5x5
+
+items.name.circuit.basic=Circuit Board
+items.name.circuit.advanced=Advanced Circuit Board
+
+items.name.ironplate.1=Iron Plate
+items.name.ironplate.2=Small Hardened Iron Plate
+items.name.ironplate.3=Hardened Iron Plate
+
+items.name.liquid.1=Apple Juice
+items.name.liquid.2=Tomato Sauce
+items.name.liquid.3=Orange Juice
+items.name.liquid.4=Carrot Juice
+
+items.name.paintbrush.1=Blank Paint Brush
+items.name.paintbrush.2=Red Paint Brush
+items.name.paintbrush.3=Green Paint Brush
+items.name.paintbrush.4=Blue Paint Brush
+items.name.paintbrush.5=Paint Copy Brush
+items.name.paintbrush.6=Paint Editor Brush
+
+
+entity.powerarrow=Power Arrow
+entity.silverarrow=Silver Arrow
+
+
+
+string.versioncheck.newversion=%EnumRed A new version of %ModName is available. Version: %EnumYellow %NewVersion %EnumGold  Download link: %DowLink %EnumBlue Changes in this version : %Changes
+
+
+StatCollector.translateToLocal("")

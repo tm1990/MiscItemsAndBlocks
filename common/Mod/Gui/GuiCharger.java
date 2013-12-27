@@ -33,7 +33,7 @@ public class GuiCharger extends GuiContainer{
   protected void drawGuiContainerForegroundLayer(int param1, int param2) {
 
           fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, 4210752);
-          fontRenderer.drawString("Charger Block", 2, 3, 4210752);
+          fontRenderer.drawString(StatCollector.translateToLocal("gui.charger") , 2, 3, 4210752);
           
           
   }
@@ -50,7 +50,7 @@ public class GuiCharger extends GuiContainer{
 	         drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
 
 	         int Power = this.tile.GetPower();
-	         fontRenderer.drawString("Power: " + Power + "/" + tile.MaxPower, x + 45, y + 42, 4210752);
+	         fontRenderer.drawString(StatCollector.translateToLocal("words.power") + ": " + Power + "/" + tile.MaxPower, x + 45, y + 42, 4210752);
 
 	         
 

@@ -30,7 +30,7 @@ public class GuiMill extends GuiContainer{
 
           fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, 4210752);
           
-          fontRenderer.drawString("Mill", 7, 3, 4210752);
+          fontRenderer.drawString(StatCollector.translateToLocal("gui.mill"), 7, 3, 4210752);
        
           
           

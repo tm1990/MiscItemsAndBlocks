@@ -13,6 +13,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.Icon;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import Mod.Lib.Refrence;
 import Mod.Main.Main;
@@ -84,10 +85,10 @@ public class ModItemLiquid extends Item{
     	int meta = stack.getItemDamage();
 
     	
-    	if(meta == 0)return "Apple Juice";
-    	if(meta == 1)return "Tomato Sauce";
-    	if(meta == 2)return "Orange Juice";
-    	if(meta == 3)return "Carrot Juice";
+    	if(meta == 0)return StatCollector.translateToLocal("items.name.liquid.1");
+    	if(meta == 1)return StatCollector.translateToLocal("items.name.liquid.2");
+    	if(meta == 2)return StatCollector.translateToLocal("items.name.liquid.3");
+    	if(meta == 3)return StatCollector.translateToLocal("items.name.liquid.4");
     	
     	
     	
@@ -144,10 +145,10 @@ public class ModItemLiquid extends Item{
     {
             int meta = itemstack.getItemDamage();
             
-            if(meta == 0){list.add("Somthing good to drink."); list.add("Gives regen for 15sec");}
-            if(meta == 1)list.add("Used to make pizza");
-            if(meta == 2){list.add("Somthing good to drink."); list.add("Gives regen for 30sec");}
-            if(meta == 3){list.add("Somthing good to drink."); list.add("Gives night vision for 15sec");}
+            if(meta == 0){list.add(StatCollector.translateToLocal("items.desc.liquid.defaultdesc")); list.add(StatCollector.translateToLocal("items.desc.liquid.1_effect"));}
+            if(meta == 1)list.add(StatCollector.translateToLocal("items.desc.liquid.2"));
+            if(meta == 2){list.add(StatCollector.translateToLocal("items.desc.liquid.defaultdesc")); list.add(StatCollector.translateToLocal("items.desc.liquid.3_effect"));}
+            if(meta == 3){list.add(StatCollector.translateToLocal("items.desc.liquid.defaultdesc")); list.add(StatCollector.translateToLocal("items.desc.liquid.4_effect"));}
     }
 
 }

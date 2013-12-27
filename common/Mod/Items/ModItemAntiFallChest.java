@@ -6,6 +6,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import Mod.Lib.Refrence;
 import Mod.Main.Main;
@@ -36,15 +37,15 @@ public class ModItemAntiFallChest extends ModItemElArmor{
 	    @Override
 	    public void addInformation(ItemStack itemstack, EntityPlayer player, List list, boolean par4)
 	    {
-			list.add("Prevents fall damage as long as it has power.");
-			list.add("Hold shift to fall faster.");
-			list.add("Hold the flight key to fly upwards (default to f)");
+			list.add(StatCollector.translateToLocal("items.desc.antifallchestplate.1"));
+			list.add(StatCollector.translateToLocal("items.desc.antifallchestplate.2"));
+			list.add(StatCollector.translateToLocal("items.desc.antifallchestplate.3"));
 	    	int i = itemstack.getMaxDamage() - itemstack.getItemDamage();
 	    	
 
-            list.add("Power left: " + i);
+            list.add(StatCollector.translateToLocal("items.desc.string.powerleft") + ": " + i);
             if(itemstack.getItemDamage() == itemstack.getMaxDamage())
-            	list.add(EnumChatFormatting.RED + "Out of power recharge!");
+            	list.add(EnumChatFormatting.RED + StatCollector.translateToLocal("items.desc.string.outofpowerrecharge"));
 	    }
 	    
 	    

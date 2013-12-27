@@ -34,7 +34,7 @@ public class GuiPizzaOven extends GuiContainer{
 
           fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, 4210752);
           
-          fontRenderer.drawString("Oven", 7, 3, 4210752);
+          fontRenderer.drawString(StatCollector.translateToLocal("gui.oven"), 7, 3, 4210752);
        
           
           
@@ -69,7 +69,7 @@ public class GuiPizzaOven extends GuiContainer{
 	        	 this.drawTexturedModalRect(x + 100, y + 33, 176, 28, Time / 12, 17);
 	         
 	         
-	          fontRenderer.drawString("Heat: " + Heat + "%", x + 14, y + 37, 0x00000);
+	          fontRenderer.drawString(StatCollector.translateToLocal("words.heat") + ": " + Heat + "%", x + 14, y + 37, 0x00000);
 
 	         
 

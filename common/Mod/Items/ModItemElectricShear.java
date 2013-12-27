@@ -4,11 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import Mod.Lib.Refrence;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.enchantment.Enchantment;
@@ -19,8 +14,12 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IShearable;
+import Mod.Lib.Refrence;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ModItemElectricShear extends ModItemPowerTool{
 
@@ -151,7 +150,7 @@ public class ModItemElectricShear extends ModItemPowerTool{
 	    {
 	    	int i = itemstack.getMaxDamage() - itemstack.getItemDamage();
 	    	
-	    	list.add("Power: " + i);
+	    	list.add(StatCollector.translateToLocal("words.power") + ": " + i);
 	    	
 	    }
 	    

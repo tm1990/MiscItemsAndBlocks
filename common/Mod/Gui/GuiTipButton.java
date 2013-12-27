@@ -3,6 +3,7 @@ package Mod.Gui;
 import Mod.Lib.Messages;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
+import net.minecraft.util.StatCollector;
 
 public class GuiTipButton extends GuiButton{
 
@@ -24,7 +25,7 @@ public class GuiTipButton extends GuiButton{
     	if(par2 > x + 149 && par2 < x + 149 + 20){
     		if(par3 > y + 4 && par3 < y + 4 + 20){
     			
-    			mc.getMinecraft().thePlayer.addChatMessage("[Info]" + MessageList[Current]);
+    			mc.getMinecraft().thePlayer.addChatMessage("["+ StatCollector.translateToLocal("words.info") +"]" + MessageList[Current]);
     			
 				if(MessageList[Current + 1] == null){
 					Current = 0;

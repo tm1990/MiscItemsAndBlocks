@@ -7,6 +7,7 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import Mod.Lib.Refrence;
 import Mod.Main.Main;
@@ -39,16 +40,16 @@ public class ModItemInfoScreenHelmet extends ModItemElArmor{
 	    @Override
 	    public void addInformation(ItemStack itemstack, EntityPlayer player, List list, boolean par4)
 	    {
-			list.add("This is a wearable screen which");
-			list.add("gives the player info about");
-			list.add("the currently used");
-			list.add("electric devices.");
+			list.add(StatCollector.translateToLocal("items.desc.infoscreen.1"));
+			list.add(StatCollector.translateToLocal("items.desc.infoscreen.2"));
+			list.add(StatCollector.translateToLocal("items.desc.infoscreen.3"));
+			list.add(StatCollector.translateToLocal("items.desc.infoscreen.4"));
 	    	int i = itemstack.getMaxDamage() - itemstack.getItemDamage();
 	    	
 
-            list.add("Power left: " + i);
+            list.add(StatCollector.translateToLocal("items.desc.string.powerleft") + ": " + i);
             if(itemstack.getItemDamage() == itemstack.getMaxDamage())
-            	list.add(EnumChatFormatting.RED + "Out of power recharge!");
+            	list.add(EnumChatFormatting.RED + StatCollector.translateToLocal("items.desc.string.outofpowerrecharge"));
 	    }
 	    
 	    public void onArmorTickUpdate(World world, EntityPlayer player, ItemStack itemStack){

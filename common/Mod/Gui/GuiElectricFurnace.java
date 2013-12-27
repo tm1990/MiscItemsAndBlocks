@@ -29,7 +29,7 @@ public class GuiElectricFurnace extends GuiContainer{
   protected void drawGuiContainerForegroundLayer(int param1, int param2) {
 
           fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, 4210752);
-          fontRenderer.drawString("Electric Furnace", 2, 3, 4210752);
+          fontRenderer.drawString(StatCollector.translateToLocal("gui.electricfurnace"), 2, 3, 4210752);
           
           
   }
@@ -52,7 +52,7 @@ public class GuiElectricFurnace extends GuiContainer{
 	         
 	         
 	         int Power = this.tile.GetPower();
-	         fontRenderer.drawString("Power: " + Power + "/" + tile.PowerMax, x + 5, y + 39, 4210752);
+	         fontRenderer.drawString(StatCollector.translateToLocal("words.power") + ": " + Power + "/" + tile.PowerMax, x + 5, y + 39, 4210752);
 	         
 	         
 

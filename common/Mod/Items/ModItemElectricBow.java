@@ -11,6 +11,7 @@ import net.minecraft.item.EnumAction;
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
@@ -194,10 +195,10 @@ private Icon _icon4;
 	    @Override
 	    public void addInformation(ItemStack itemstack, EntityPlayer player, List list, boolean par4)
 	    {
-	    	list.add("Uses power instead of arrows.");
+	    	list.add(StatCollector.translateToLocal("items.desc.electricbow"));
 	    	int Damage = itemstack.getMaxDamage() - itemstack.getItemDamage();
 	    	
-	    	list.add("Power: " + Damage);
+	    	list.add(StatCollector.translateToLocal("words.power") + ": " + Damage);
 	    	
 	    	
 	    }
