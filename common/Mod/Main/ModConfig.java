@@ -30,6 +30,8 @@ public class ModConfig {
 	public static int MachinePart;
 	public static int TimedBlock;
 	
+	public static int Computer;
+	
 	public static int PaintBlock;
 	
 	public static int ElFurnace;
@@ -176,6 +178,7 @@ public class ModConfig {
 		TimedBlock = config.getBlock("Blocks", "Timed Block Id", 636).getInt();
 		
 		OneWayGlass = config.getBlock("Blocks", "One Way Glass Block Id", 637).getInt();
+		Computer = config.getBlock("Blocks", "Computer Block Id", 638).getInt();
 		
 		
 		

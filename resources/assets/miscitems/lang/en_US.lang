@@ -12,6 +12,8 @@ gui.solarpanel=Solar Panel
 gui.squeezer=Squeezer
 gui.trashbin=Trash Bin
 gui.xpstorage=Xp Storage Block
+gui.computer=Computer
+
 
 #Gui strings
 gui.string.antifallpower=Anti-fall Power
@@ -25,6 +27,15 @@ gui.string.miningdownto=Mining down to
 gui.string.currentlyat=Currently at
 gui.string.settostart=Set to start
 gui.string.setcolor=Set colour
+gui.string.chat=Chat
+gui.string.loggedinas=Logged in as
+gui.string.computerversion=Running OS version 
+gui.string.playerfinder=Player Finder
+gui.string.enterplayername=Enter Playername
+gui.string.enter=Enter
+gui.string.casesensetive=Case-Sensitive
+gui.string.clear=Clear
+gui.string.teleport=Teleport
 
 gui.string.solar.state1=Currently Generating
 gui.string.solar.state2=Solar panel cant see the sky

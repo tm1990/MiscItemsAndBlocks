@@ -57,8 +57,7 @@ public class GuiPaintBrush extends GuiScreen
 
             
 	        
-	        StringBuilder text = new StringBuilder(StatCollector.translateToLocal("gui.painteditor"));
-	        fontRenderer.drawSplitString(text.toString(), posX + 10, posY + 6, 150, 4210752);
+	        fontRenderer.drawString(StatCollector.translateToLocal("gui.painteditor"), posX + 10, posY + 6, 10);
 	        
 	        
 	        int xd = 159;

@@ -20,6 +20,7 @@ import Mod.GamePart.TileEntityGamePartNull;
 import Mod.GamePart.TileEntityGamePartRed;
 import Mod.GamePart.TileEntityGamePartYellow;
 import Mod.Gui.GuiListener;
+import Mod.ItemRender.ComputerItemRender;
 import Mod.ItemRender.DisarmTrapItemRender;
 import Mod.ItemRender.ItemPedestalItemRender;
 import Mod.ItemRender.MiningChamberItemRender;
@@ -36,6 +37,7 @@ import Mod.Network.PacketTypeHandler;
 import Mod.Tick.ClientTickHandler;
 import Mod.TileEntity.ModTileEntity;
 import Mod.TileEntity.TileEntityBin;
+import Mod.TileEntity.TileEntityComputer;
 import Mod.TileEntity.TileEntityDisarmTrap;
 import Mod.TileEntity.TileEntityItemPedestal;
 import Mod.TileEntity.TileEntityMiningChamber;
@@ -43,6 +45,7 @@ import Mod.TileEntity.TileEntityPillar;
 import Mod.TileEntity.TileEntityPowerCable;
 import Mod.TileEntity.TileEntityTable;
 import Mod.TileEntityRenderer.TileEntityBinRender;
+import Mod.TileEntityRenderer.TileEntityComputerRender;
 import Mod.TileEntityRenderer.TileEntityDisarmTrapRenderer;
 import Mod.TileEntityRenderer.TileEntityGamePartRender;
 import Mod.TileEntityRenderer.TileEntityItemPedestalRender;
@@ -79,6 +82,8 @@ public class ClientProxy extends ServerProxy{
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPillar.class, new TileEntityPillarRender());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTable.class, new TileEntityTableRender());
         
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityComputer.class, new TileEntityComputerRender());
+        
         
         RenderingRegistry.registerEntityRenderingHandler(EntitySilverArrow.class, new SilverArrowRender());
         RenderingRegistry.registerEntityRenderingHandler(EntityPowerArrow.class, new PowerArrowRender());
@@ -90,6 +95,8 @@ public class ClientProxy extends ServerProxy{
         MinecraftForgeClient.registerItemRenderer(ModBlocks.Pillar.blockID, new PillarItemRender());
         MinecraftForgeClient.registerItemRenderer(ModBlocks.PowerCable.blockID, new PowerCableItemRender());
         MinecraftForgeClient.registerItemRenderer(ModBlocks.DisarmTrap.blockID, new DisarmTrapItemRender());
+        
+        MinecraftForgeClient.registerItemRenderer(ModBlocks.Computer.blockID, new ComputerItemRender());
         
         
         MinecraftForgeClient.registerItemRenderer(ModBlocks.GamePartBlue.blockID, new GamePartBlueItemRender());

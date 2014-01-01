@@ -14,8 +14,8 @@ public class VersionChecker implements Runnable{
 
 private static VersionChecker instance = new VersionChecker();
 
-private static final String remoteFileLocation = "https://dl.dropbox.com/sh/nh9ub1ks4ks6u1q/rL5rYJIl4c/Version.xml";
-private static final String remoteChangesLocation = "https://dl.dropbox.com/sh/nh9ub1ks4ks6u1q/EgOjFER3gl/changes.xml";
+private static final String remoteFileLocation = "https:/dl.dropbox.com/s/vctok5s6njcyekp/version.xml";
+private static final String remoteChangesLocation = "https://dl.dropbox.com/s/8m52pfa8ea293vq/changes.xml";
 public static Properties remoteVersionProperties = new Properties();
 public static Properties remoteChangesProperties = new Properties();
 

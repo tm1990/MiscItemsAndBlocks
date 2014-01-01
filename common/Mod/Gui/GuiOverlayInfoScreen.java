@@ -1,5 +1,6 @@
 package Mod.Gui;
 
+import ic2.api.item.IElectricItem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.gui.GuiIngame;
@@ -14,6 +15,8 @@ import org.lwjgl.opengl.GL11;
 import Mod.Items.ModItemAntiFallChest;
 import Mod.Items.ModItemPowerTool;
 import Mod.Items.ModItems;
+import Mod.Main.Main;
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -75,6 +78,19 @@ public class GuiOverlayInfoScreen extends GuiIngame{
 		ItemStack Item = player.inventory.getCurrentItem();
 		float PowerLeft = Item.getMaxDamage() - Item.getItemDamage();
 		int Percent = (int)(PowerLeft / Item.getMaxDamage() * 100);
+		String Text = EnumChatFormatting.GOLD + StatCollector.translateToLocal("gui.string.currentitempower") + ": " + GetColor(Percent) + Percent + "%";
+		RenderText(Text, 74, Percent);
+		yPlus += 10;
+
+		
+		}
+		
+		if(Loader.isModLoaded("IC2"))
+		if(player.inventory.getCurrentItem() != null && player.inventory.getCurrentItem().getItem() instanceof IElectricItem ){
+		ItemStack Item = player.inventory.getCurrentItem();
+		int MaxPower = Item.getMaxDamage() - 1;
+		float PowerLeft = MaxPower - Item.getItemDamage() + 1;
+		int Percent = (int)(PowerLeft / (Item.getMaxDamage() - 1) * 100);
 		String Text = EnumChatFormatting.GOLD + StatCollector.translateToLocal("gui.string.currentitempower") + ": " + GetColor(Percent) + Percent + "%";
 		RenderText(Text, 74, Percent);
 		yPlus += 10;

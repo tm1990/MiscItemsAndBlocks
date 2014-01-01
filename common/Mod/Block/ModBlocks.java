@@ -6,6 +6,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
 import Mod.GamePart.ModBlockGamePart;
+import Mod.ItemBlock.ModItemBlockComputer;
 import Mod.ItemBlock.ModItemBlockDisarmTrap;
 import Mod.ItemBlock.ModItemBlockGamePiece;
 import Mod.ItemBlock.ModItemBlockItemPedestal;
@@ -41,6 +42,8 @@ public class ModBlocks {
 	public static Block OrangePlanks;
 	public static Block Table;
 	public static Block TimedBlock;
+	
+	public static Block Computer;
 	
 	public static Block PaintBlock;
 	
@@ -185,13 +188,15 @@ public class ModBlocks {
         OneWayGlass = new ModBlockOneWayGlass(ModConfig.OneWayGlass).setUnlocalizedName("OneWayGlass");
         Register(OneWayGlass, "One Way Glass", true);
         
+        Computer = new ModBlockComputer(ModConfig.Computer).setUnlocalizedName("Computer");
+        Register(Computer, ModItemBlockComputer.class, "Computer", true);
+        
         
         
         
 		RegisterOreDictionary(new ItemStack(SilverOre), "oreSilver");
 		RegisterOreDictionary(new ItemStack(OrangeLog), "logWood");
 		RegisterOreDictionary(new ItemStack(OrangePlanks), "plankWood");
-		//OreDictionary.registerOre("plankWood", ModBlocks.OrangePlanks);
 		
 		RegisterHarvestLevel(Box, "axe", 1);
 		

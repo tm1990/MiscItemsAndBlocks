@@ -14,10 +14,13 @@ public class ModGuiSlider extends GuiButton {
 
     public ModGuiSlider(int id, int x, int y, String label, float startingValue, float maxValue) {
             super(id, x, y, 150, 20, label);
+            
             this.label = label;
             this.sliderValue = startingValue;
             this.sliderMaxValue = maxValue;
     }
+    
+
     protected int getHoverState(boolean par1) {
             return 0;
     }

@@ -6,6 +6,7 @@ import net.minecraft.world.World;
 import Mod.Container.ContainerBin;
 import Mod.Container.ContainerBox;
 import Mod.Container.ContainerCharger;
+import Mod.Container.ContainerComputer;
 import Mod.Container.ContainerCraftingInv;
 import Mod.Container.ContainerElectricFurnace;
 import Mod.Container.ContainerGenerator;
@@ -18,6 +19,7 @@ import Mod.Container.ContainerXpStorage;
 import Mod.TileEntity.TileEntityBin;
 import Mod.TileEntity.TileEntityBox;
 import Mod.TileEntity.TileEntityCharger;
+import Mod.TileEntity.TileEntityComputer;
 import Mod.TileEntity.TileEntityCraftingInv;
 import Mod.TileEntity.TileEntityElectricFurnace;
 import Mod.TileEntity.TileEntityGenerator;
@@ -32,6 +34,10 @@ import cpw.mods.fml.common.network.IGuiHandler;
 public class GuiHandler implements IGuiHandler{
 
     TileEntityXpStorage tile = null;
+    
+    public static final int ComputerID = 3;
+    public static final int ChatID = 2;
+    public static final int PlayerFindID = 4;
 	
     @Override
 
@@ -41,6 +47,9 @@ public class GuiHandler implements IGuiHandler{
         
 
         
+        if(tile_entity instanceof TileEntityComputer){
+        	return new ContainerComputer((TileEntityComputer)tile_entity);
+        }
         
         
         if(tile_entity instanceof TileEntityOvenCore){
@@ -122,6 +131,23 @@ public class GuiHandler implements IGuiHandler{
         TileEntity tile_entity = world.getBlockTileEntity(x, y, z);
 
 
+        switch(ID){
+        
+        case ChatID:
+        	return new GuiChat(player.inventory, null);
+        	
+        case PlayerFindID:
+        	return new GuiPlayerFinder();
+
+
+        
+        }
+
+        
+        if(tile_entity instanceof TileEntityComputer){
+        	return new GuiComputerScreen((TileEntityComputer)tile_entity);
+        }
+        
         if(tile_entity instanceof TileEntityXpStorage){
             return new GuiXpStorage(player.inventory, (TileEntityXpStorage) tile_entity);
 

@@ -1,6 +1,5 @@
 package Mod.Items;
 
-import java.awt.Color;
 import java.util.List;
 
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -16,7 +15,7 @@ import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import Mod.Lib.Refrence;
 import Mod.Main.Main;
-import Mod.Network.PacketHandler;
+import Mod.TileEntity.TileEntityComputer;
 import Mod.TileEntity.TileEntityPaintBlock;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -210,6 +209,7 @@ public class ModItemPaintBrush extends Item{
 	    			}
 	    		
 	    	}
+	    	
 	    	
 	    	
 	    	

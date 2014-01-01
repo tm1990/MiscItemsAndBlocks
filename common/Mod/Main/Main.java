@@ -31,6 +31,7 @@ import Mod.Render.CapeRender;
 import Mod.TileEntity.TileEntityBin;
 import Mod.TileEntity.TileEntityBox;
 import Mod.TileEntity.TileEntityCharger;
+import Mod.TileEntity.TileEntityComputer;
 import Mod.TileEntity.TileEntityCraftingInv;
 import Mod.TileEntity.TileEntityDisarmTrap;
 import Mod.TileEntity.TileEntityElectricFurnace;
@@ -61,7 +62,9 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.network.FMLNetworkHandler;
 import cpw.mods.fml.common.network.NetworkMod;
+import cpw.mods.fml.common.network.NetworkModHandler;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -92,12 +95,15 @@ public class Main {
     
     public static String UpdateMessage = StatCollector.translateToLocal("string.versioncheck.newversion").replace("%EnumRed", EnumChatFormatting.RED + "").replace("%EnumYellow", EnumChatFormatting.YELLOW + "").replace("%EnumBlue", EnumChatFormatting.BLUE + "").replace("%EnumGold", EnumChatFormatting.GOLD + "").replace("%ModName", Refrence.Mod_Name).replace("%NewVersion", Main.LATEST_VERSION).replace("%DowLink", Main.UPDATE_URL).replace("%Changes", Main.LATEST_CHANGES);
     
+    
 	
 @PreInit
 public void preInit(FMLPreInitializationEvent event) {
     	
 	
+	
 	//TODO Continue locolazation support. 
+    //TODO Chat block which allows players to join diffrent chats in a gui
 	
     	
 	GameRegistry.registerCraftingHandler(new ModCraftingHandler());
@@ -184,6 +190,7 @@ public void preInit(FMLPreInitializationEvent event) {
         GameRegistry.registerTileEntity(TileEntityElectricFurnace.class, "TileEntityElectricFurnace");
         GameRegistry.registerTileEntity(TileEntityTable.class, "TileEntityTable");
         GameRegistry.registerTileEntity(TileEntityPaintBlock.class, "TileEntityPaintBlock");
+        GameRegistry.registerTileEntity(TileEntityComputer.class, "TileEntityChatBlock");
         
         
         GameRegistry.registerWorldGenerator(new ModWorldGenerator());
@@ -210,7 +217,10 @@ public void preInit(FMLPreInitializationEvent event) {
 	    }
 	};
 	
-	
+    public static int getNetId()
+    {
+            return ((NetworkModHandler)FMLNetworkHandler.instance().findNetworkModHandler(Main.instance)).getNetworkId();
+    }
        
 	
 }
