@@ -110,7 +110,14 @@ public class ModItemPowerArmor extends ItemArmor {
     	
     }
     
+    public void onArmorTickUpdate(World world, EntityPlayer player, ItemStack itemStack){
+    	
+    	if(itemStack.getItem() == ModItems.FlightChestPlate){
 
+    		player.getEntityData().setBoolean("HadFlightChest", true);
+    		
+    	}
+    }
 
     
     }

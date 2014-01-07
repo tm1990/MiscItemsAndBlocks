@@ -69,7 +69,9 @@ public class ServerTickHandler implements IScheduledTickHandler{
 		
 		if(player.capabilities.isCreativeMode == false){
 			
+			if(ModConfig.AllowFlightChest)
 			Flight(player);
+			
 			Diving(player);
 			Speed(player);
 			Jump(player);
@@ -113,9 +115,23 @@ public class ServerTickHandler implements IScheduledTickHandler{
 	
 	public void Flight(EntityPlayer player){
 		if(player.inventory.armorInventory[2] == null || player.inventory.armorInventory[2].getItem() != ModItems.FlightChestPlate ){
+			if(player.getEntityData().getBoolean("HadFlightChest") == true){
 			
 			ChestPlate = false;
 			player.capabilities.allowFlying = false;
+    		player.getEntityData().setBoolean("HadFlightChest", false);
+    		
+
+    		if(player.onGround == false){
+			
+				
+				if(player.capabilities.isFlying){
+					player.capabilities.isFlying = false;
+				}
+					
+				}
+
+			}
 		}else if(player.inventory.armorInventory[2].getItem() == ModItems.FlightChestPlate){
 			
 			ChestPlate = true;
@@ -137,21 +153,10 @@ public class ServerTickHandler implements IScheduledTickHandler{
 
 			}
 		}
-		if(player.inventory.armorInventory[2] == null || player.inventory.armorInventory[2].getItem() != ModItems.FlightChestPlate){
-			
-			
-			if(player.onGround == false){
-			
-				
-				if(player.capabilities.isFlying){
-					player.capabilities.isFlying = false;
-					
-				}
-
-			}
+		
 		}
 		
-	}
+	
 	
 	
 	public void Speed(EntityPlayer player){

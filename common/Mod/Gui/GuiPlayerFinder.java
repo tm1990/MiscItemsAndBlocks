@@ -6,6 +6,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiTextField;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
@@ -25,10 +26,7 @@ public class GuiPlayerFinder extends GuiScreen{
     GuiTextField textField;
     GuiButton teleport;
     
-    String player;
-    String x;
-    String y;
-    String z;
+    EntityPlayer player;
     String Mode;
 	
 	 @Override
@@ -49,18 +47,21 @@ public class GuiPlayerFinder extends GuiScreen{
 	        
 	        fontRenderer.drawString(StatCollector.translateToLocal("gui.string.enterplayername") + " " + StatCollector.translateToLocal("gui.string.casesensetive"), posX + 3, posY + 6, 10);
 
-	        if((this.x != null && this.y != null && z != null && player != null) && Mode == "Valid"){
-		    fontRenderer.drawString(player + "`s Coords: ", posX + 7, posY + 82, 10);
-	        fontRenderer.drawString("X Coord: " + this.x, posX + 7, posY + 90, 10);
-	        fontRenderer.drawString("Y Coord: " + this.y, posX + 7, posY + 98, 10);
-	        fontRenderer.drawString("Z Coord: " + this.z, posX + 7, posY + 106, 10);
+	        if(player != null && Mode == "Valid"){
+		    fontRenderer.drawString(player.username + "`s Coords: ", posX + 7, posY + 82, 10);
+	        fontRenderer.drawString("X Coord: " + (int)player.posX, posX + 7, posY + 90, 10);
+	        fontRenderer.drawString("Y Coord: " + (int)player.posY, posX + 7, posY + 98, 10);
+	        fontRenderer.drawString("Z Coord: " + (int)player.posZ, posX + 7, posY + 106, 10);
 	        
 	        if(Minecraft.getMinecraft().thePlayer.capabilities.isCreativeMode){
 	        	teleport.enabled = true;
+	        }else{
+	        	teleport.enabled = false;
 	        }
 	        
 	        }else if (Mode == "Invalid"){
 			    fontRenderer.drawString("Invalid playername!", posX + 7, posY + 82, new Color(50,0,0).getRGB());
+	        	teleport.enabled = false;
 	        }
 	        
 	        textField.drawTextBox();
@@ -120,25 +121,21 @@ public class GuiPlayerFinder extends GuiScreen{
 	        switch (par1GuiButton.id) {
 	        
 	        case 1:
+	        	teleport.enabled = false;
 				EntityPlayerMP player = FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().getPlayerForUsername(textField.getText());
 				if(player != null){
+					this.player = player;
 					Mode = "Valid";
-					x = (int)player.posX + "";
-					y = (int)player.posY + "";
-					z = (int)player.posZ + "";
-					
-					this.player = player.username;
 					textField.setText("");
 				}else{
 					Mode = "Invalid";
+					
 				}
 	        	break;
 	        	
 	        case 2:
+	        	teleport.enabled = false;
 	        	textField.setText("");
-	        	x = null;
-	        	y = null;
-	        	z = null;
 	        	Mode = "Empty";
 	        	player = null;
 	        	
@@ -147,9 +144,9 @@ public class GuiPlayerFinder extends GuiScreen{
 	        
 	        	
 	        case 3:
-	        	if((this.x != null && this.y != null && z != null && this.player != null) && Mode == "Valid"){
+	        	if(this.player != null && Mode == "Valid"){
 	        		
-	        		Minecraft.getMinecraft().thePlayer.setLocationAndAngles(Integer.valueOf(x), Integer.valueOf(y), Integer.valueOf(z), Minecraft.getMinecraft().thePlayer.rotationYaw, Minecraft.getMinecraft().thePlayer.rotationPitch);
+	        		Minecraft.getMinecraft().thePlayer.setLocationAndAngles((int)this.player.posX, (int)this.player.posY, (int)this.player.posZ, Minecraft.getMinecraft().thePlayer.rotationYaw, Minecraft.getMinecraft().thePlayer.rotationPitch);
 	        		Minecraft.getMinecraft().thePlayer.closeScreen();
 	        	}
 	        	

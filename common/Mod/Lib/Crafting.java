@@ -4,11 +4,10 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
-import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import Mod.Block.ModBlocks;
 import Mod.Items.ModItems;
-import Mod.Main.Main;
+import Mod.Main.ModConfig;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class Crafting {
@@ -35,8 +34,11 @@ public class Crafting {
 	        GameRegistry.addShapedRecipe(new ItemStack(ModItems.SilverArrow, 8), new Object[] {" N ", " S ", " F ", 'N', ModItems.SilverNugget, 'S', Item.stick, 'F', Item.feather});
 			GameRegistry.addRecipe(new ItemStack(ModBlocks.StoneStair, 4), new Object[]{"S  ", "SS ", "SSS", 'S', Block.stone});
 			GameRegistry.addRecipe(new ItemStack(ModBlocks.StoneStair, 4), new Object[]{"  S", " SS", "SSS", 'S', Block.stone});
-	        GameRegistry.addRecipe(new ItemStack(ModItems.FlightChestPlate), new Object[] {"IFI", "ISI", "III", 'I', ModItems.SilverIngot, 'S', Item.netherStar, 'F', Item.feather});
-			GameRegistry.addRecipe(new ItemStack(ModBlocks.DisarmTrap), new Object[] {"IHI", "HPH", "IDI", 'I', Item.ingotIron, 'H', Block.hopperBlock, 'P', Block.pressurePlateIron, 'D', Block.dispenser});
+	      
+			if(ModConfig.AllowFlightChest)
+			GameRegistry.addRecipe(new ItemStack(ModItems.FlightChestPlate), new Object[] {"IFI", "ISI", "III", 'I', ModItems.SilverIngot, 'S', Item.netherStar, 'F', Item.feather});
+			
+	        GameRegistry.addRecipe(new ItemStack(ModBlocks.DisarmTrap), new Object[] {"IHI", "HPH", "IDI", 'I', Item.ingotIron, 'H', Block.hopperBlock, 'P', Block.pressurePlateIron, 'D', Block.dispenser});
 	        GameRegistry.addRecipe(new ItemStack(ModBlocks.Bin), new Object[] {"I I", "IBI", " I ", 'I', Item.ingotIron, 'B', Item.bucketEmpty});
             GameRegistry.addShapelessRecipe(new ItemStack(ModItems.Cardboard, 2), new Object[]{Item.paper, Item.paper, Item.paper});
 			GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.Box), new Object[]{"CCC", "C C", "CCC", 'C', ModItems.Cardboard});

@@ -117,6 +117,7 @@ public class ModConfig {
 	public static boolean BlastProofOverRe;
 	
 	public static boolean SpawnParticles;
+	public static boolean AllowFlightChest;
 
 	
 
@@ -230,6 +231,7 @@ public class ModConfig {
 
         
         SpawnParticles = config.get("Settings", "Spawn particles?", true).getBoolean(true);
+        AllowFlightChest = config.get("Settings", "Enable flight chestplate?", true).getBoolean(true);
         
         
         config.save();
