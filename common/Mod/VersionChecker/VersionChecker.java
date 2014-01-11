@@ -14,8 +14,8 @@ public class VersionChecker implements Runnable{
 
 private static VersionChecker instance = new VersionChecker();
 
-private static final String remoteFileLocation = "https:/dl.dropbox.com/s/vctok5s6njcyekp/version.xml";
-private static final String remoteChangesLocation = "https://dl.dropbox.com/s/8m52pfa8ea293vq/changes.xml";
+private static final String remoteFileLocation = "https://dl.dropboxusercontent.com/s/vctok5s6njcyekp/version.xml";
+private static final String remoteChangesLocation = "https://dl.dropboxusercontent.com/s/8m52pfa8ea293vq/changes.xml";
 public static Properties remoteVersionProperties = new Properties();
 public static Properties remoteChangesProperties = new Properties();
 
@@ -26,7 +26,6 @@ public static final byte FAILED = 3;
 
 private static byte result = NOT_DONE;
 public static String remoteVersion = null;
-public static String remoteVersionImportance = null;
 public static String remoteUpdateLocation = null;
 
 public static void checkVersion(){
@@ -39,12 +38,8 @@ remoteVersionStream = remoteVersionURL.openStream();
 remoteVersionProperties.loadFromXML(remoteVersionStream);
 String versionFromRemote = remoteVersionProperties.getProperty(Loader.instance().getMCVersionString());
 
-if(versionFromRemote != null){
-String[] versionSplit = versionFromRemote.split("\\|");
-if(versionSplit[0] != null)
-remoteVersion = versionSplit[0];
-if(versionSplit[1] != null)
-remoteVersionImportance = versionSplit[1];
+if(versionFromRemote != null)
+remoteVersion =versionFromRemote;
 if(remoteVersion != null){
 Main.LATEST_VERSION = remoteVersion;
 
@@ -57,7 +52,7 @@ result = OUT_OF_DATE;
 else{
 result = FAILED;
 }
-}
+
 }catch (Exception e){
 e.printStackTrace();
 }

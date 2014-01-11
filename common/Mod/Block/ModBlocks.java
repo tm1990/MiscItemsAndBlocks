@@ -14,8 +14,8 @@ import Mod.ItemBlock.ModItemBlockMiningChamber;
 import Mod.ItemBlock.ModItemBlockPowerCable;
 import Mod.ItemBlock.ModItemBlockTable;
 import Mod.ItemBlock.ModItemBlockTrashBin;
+import Mod.Lib.ModConfig;
 import Mod.Main.Main;
-import Mod.Main.ModConfig;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
@@ -42,6 +42,7 @@ public class ModBlocks {
 	public static Block OrangePlanks;
 	public static Block Table;
 	public static Block TimedBlock;
+	public static Block StorageBlock;
 	
 	public static Block Computer;
 	
@@ -190,6 +191,9 @@ public class ModBlocks {
         
         Computer = new ModBlockComputer(ModConfig.Computer).setUnlocalizedName("Computer");
         Register(Computer, ModItemBlockComputer.class, "Computer", true);
+        
+        StorageBlock = new ModBlockStorageBlock(ModConfig.StorageBlock).setUnlocalizedName("StorageBlock");
+        Register(StorageBlock, "Storage Block [WIP]", true);
         
         
         

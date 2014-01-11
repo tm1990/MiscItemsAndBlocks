@@ -6,8 +6,8 @@ import java.util.Random;
 
 import cpw.mods.fml.common.network.FMLNetworkHandler;
 import Mod.Items.ModItems;
+import Mod.Lib.ModConfig;
 import Mod.Lib.Refrence;
-import Mod.Main.ModConfig;
 import Mod.Main.Main;
 import Mod.Misc.MiscDamage;
 import Mod.TileEntity.TileEntityDisarmTrap;

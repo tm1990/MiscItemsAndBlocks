@@ -1,8 +1,8 @@
 package Mod.Block;
 
 import cpw.mods.fml.common.network.FMLNetworkHandler;
+import Mod.Lib.ModConfig;
 import Mod.Lib.Refrence;
-import Mod.Main.ModConfig;
 import Mod.Main.Main;
 import Mod.TileEntity.TileEntityBin;
 import net.minecraft.block.Block;

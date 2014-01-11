@@ -214,7 +214,7 @@ public class GuiComputerScreen extends GuiContainer{
 		        
 		        
 		        if(Menu){
-			        drawTexturedModalRect(posX + 207, posY + 159, 223, 195, 15, 15);
+			        drawTexturedModalRect(posX + 208, posY + 160, 223, 195, 15, 15);
 			        
 			        drawTexturedModalRect(posX + 149, posY + 81, 0, 178, 103, 78);
 			        
@@ -234,7 +234,7 @@ public class GuiComputerScreen extends GuiContainer{
 			        
 			        Button_Hide.drawButton = true;
 		        }else{
-			        drawTexturedModalRect(posX + 207, posY + 159, 223, 179, 15, 15);
+			        drawTexturedModalRect(posX + 208, posY + 160, 223, 179, 15, 15);
 			        
 			        if(!Hide){
 			        Button_8.drawButton = true;

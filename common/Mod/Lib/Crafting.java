@@ -7,7 +7,6 @@ import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import Mod.Block.ModBlocks;
 import Mod.Items.ModItems;
-import Mod.Main.ModConfig;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class Crafting {

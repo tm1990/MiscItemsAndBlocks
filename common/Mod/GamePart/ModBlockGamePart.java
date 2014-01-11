@@ -9,8 +9,8 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import Mod.Lib.ModConfig;
 import Mod.Lib.Refrence;
-import Mod.Main.ModConfig;
 
 public class ModBlockGamePart extends BlockContainer{
 

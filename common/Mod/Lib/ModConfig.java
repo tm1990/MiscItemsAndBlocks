@@ -1,4 +1,4 @@
-package Mod.Main;
+package Mod.Lib;
 
 import net.minecraft.block.Block;
 import net.minecraftforge.common.Configuration;
@@ -29,6 +29,7 @@ public class ModConfig {
 	public static int Table;
 	public static int MachinePart;
 	public static int TimedBlock;
+	public static int StorageBlock;
 	
 	public static int Computer;
 	
@@ -180,6 +181,8 @@ public class ModConfig {
 		
 		OneWayGlass = config.getBlock("Blocks", "One Way Glass Block Id", 637).getInt();
 		Computer = config.getBlock("Blocks", "Computer Block Id", 638).getInt();
+		StorageBlock = config.getBlock("Blocks", "Storage Block Id", 639).getInt();
+		
 		
 		
 		

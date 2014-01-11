@@ -1,8 +1,8 @@
 package Mod.Block;
 
+import Mod.Lib.ModConfig;
 import Mod.Lib.Refrence;
 import Mod.Main.Main;
-import Mod.Main.ModConfig;
 import Mod.TileEntity.TileEntityBox;
 import cpw.mods.fml.common.network.FMLNetworkHandler;
 import cpw.mods.fml.relauncher.Side;

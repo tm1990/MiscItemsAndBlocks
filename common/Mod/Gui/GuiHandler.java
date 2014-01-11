@@ -15,6 +15,7 @@ import Mod.Container.ContainerMiningChamber;
 import Mod.Container.ContainerPizzaOven;
 import Mod.Container.ContainerSolarPanel;
 import Mod.Container.ContainerSquezer;
+import Mod.Container.ContainerStorageBlock;
 import Mod.Container.ContainerXpStorage;
 import Mod.TileEntity.TileEntityBin;
 import Mod.TileEntity.TileEntityBox;
@@ -28,6 +29,7 @@ import Mod.TileEntity.TileEntityMiningChamber;
 import Mod.TileEntity.TileEntityOvenCore;
 import Mod.TileEntity.TileEntitySolarPanel;
 import Mod.TileEntity.TileEntitySquezer;
+import Mod.TileEntity.TileEntityStorageBlock;
 import Mod.TileEntity.TileEntityXpStorage;
 import cpw.mods.fml.common.network.IGuiHandler;
 
@@ -49,6 +51,10 @@ public class GuiHandler implements IGuiHandler{
         
         if(tile_entity instanceof TileEntityComputer){
         	return new ContainerComputer((TileEntityComputer)tile_entity);
+        }
+        
+        if(tile_entity instanceof TileEntityStorageBlock){
+        	return new ContainerStorageBlock(player.inventory, (TileEntityStorageBlock)tile_entity);
         }
         
         
@@ -141,6 +147,11 @@ public class GuiHandler implements IGuiHandler{
 
 
         
+        }
+        
+        
+        if(tile_entity instanceof TileEntityStorageBlock){
+        	return new GuiStorageBlock(player.inventory, (TileEntityStorageBlock)tile_entity);
         }
 
         

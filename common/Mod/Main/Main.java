@@ -22,6 +22,7 @@ import Mod.Gui.GuiHandler;
 import Mod.Items.ModItems;
 import Mod.Lib.Crafting;
 import Mod.Lib.Messages;
+import Mod.Lib.ModConfig;
 import Mod.Lib.Refrence;
 import Mod.Misc.BoneMealEvent;
 import Mod.Misc.KeyBindings;
@@ -45,6 +46,7 @@ import Mod.TileEntity.TileEntityPillar;
 import Mod.TileEntity.TileEntityPowerCable;
 import Mod.TileEntity.TileEntitySolarPanel;
 import Mod.TileEntity.TileEntitySquezer;
+import Mod.TileEntity.TileEntityStorageBlock;
 import Mod.TileEntity.TileEntityTable;
 import Mod.TileEntity.TileEntityTimedBlock;
 import Mod.TileEntity.TileEntityWindMill;
@@ -190,7 +192,8 @@ public void preInit(FMLPreInitializationEvent event) {
         GameRegistry.registerTileEntity(TileEntityElectricFurnace.class, "TileEntityElectricFurnace");
         GameRegistry.registerTileEntity(TileEntityTable.class, "TileEntityTable");
         GameRegistry.registerTileEntity(TileEntityPaintBlock.class, "TileEntityPaintBlock");
-        GameRegistry.registerTileEntity(TileEntityComputer.class, "TileEntityChatBlock");
+        GameRegistry.registerTileEntity(TileEntityComputer.class, "TileEntityComputer");
+        GameRegistry.registerTileEntity(TileEntityStorageBlock.class, "TileEntityStorageBlock");
         
         
         GameRegistry.registerWorldGenerator(new ModWorldGenerator());

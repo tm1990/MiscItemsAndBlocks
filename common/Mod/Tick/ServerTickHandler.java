@@ -7,8 +7,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import Mod.Items.ModItems;
+import Mod.Lib.ModConfig;
 import Mod.Main.Main;
-import Mod.Main.ModConfig;
 import cpw.mods.fml.common.IScheduledTickHandler;
 import cpw.mods.fml.common.TickType;
 
