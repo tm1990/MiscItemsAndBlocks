@@ -11,26 +11,9 @@ public class TileEntityStorageBlock extends TileEntityInvBase{
 	int Lines;
 	
 	public TileEntityStorageBlock() {
-		super(6000, "Storage Block", 128);
+		super(800, "Storage Block", 128);
 	}
 	
-    @Override
-   	public void writeToNBT(NBTTagCompound compound){
-   		super.writeToNBT(compound);
-
-   		compound.setInteger("Lines", Lines);
-   		
-   		
-   		
-   	}
    	
-   	@Override
-   	public void readFromNBT(NBTTagCompound compound){
-   		super.readFromNBT(compound);
-   	
-   		Lines = compound.getInteger("Lines");
-   		
-   		
-   	}
 
 }

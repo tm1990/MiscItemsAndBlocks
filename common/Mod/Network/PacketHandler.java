@@ -5,17 +5,21 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.multiplayer.NetClientHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.inventory.Container;
 import net.minecraft.network.INetworkManager;
-import net.minecraft.network.NetServerHandler;
+import net.minecraft.network.packet.Packet131MapData;
 import net.minecraft.network.packet.Packet250CustomPayload;
+import net.minecraft.util.ChatMessageComponent;
 import Mod.Container.ContainerMiningChamber;
 import Mod.Container.ContainerXpStorage;
 import Mod.Gui.GuiChat;
+import Mod.Gui.GuiGame_1;
 import Mod.Items.ModItemPaintBrush;
+import Mod.Main.Main;
+import Mod.Misc.GameInvite;
+import Mod.Tick.ServerTickHandler;
 import Mod.TileEntity.TileEntityMiningChamber;
 import Mod.TileEntity.TileEntityXpStorage;
 
@@ -23,11 +27,10 @@ import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteStreams;
 
 import cpw.mods.fml.client.FMLClientHandler;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.network.IPacketHandler;
 import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.common.network.Player;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class PacketHandler implements IPacketHandler{
 
@@ -67,8 +70,40 @@ public class PacketHandler implements IPacketHandler{
 		}
 	}
 	
+	public static void Game_1Invite(String From, String To) {
+		ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
+		DataOutputStream dataStream = new DataOutputStream(byteStream);
+
+
+		try {
+			dataStream.writeByte((byte)7);
+			dataStream.writeBytes(From + "-" + To);
+
+			
+			PacketDispatcher.sendPacketToServer(PacketDispatcher.getPacket("MiscItems", byteStream.toByteArray()));
+		}catch(IOException ex) {
+			System.err.append("Failed to send packet");
+		}
+	}
 
 	
+	
+	public static void SendGameChange(String Player, int Number) {
+		ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
+		DataOutputStream dataStream = new DataOutputStream(byteStream);
+
+
+		try {
+			dataStream.writeByte((byte)8);
+			dataStream.writeInt(Number);
+			dataStream.writeBytes(Player);
+
+			
+			PacketDispatcher.sendPacketToPlayer(PacketDispatcher.getPacket("MiscItems", byteStream.toByteArray()), (Player)FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().getPlayerForUsername(Player));
+		}catch(IOException ex) {
+			System.err.append("Failed to send packet");
+		}
+	}
 	
 
 	
@@ -213,8 +248,115 @@ public class PacketHandler implements IPacketHandler{
 				}
 				
 				return;
-				
-				
+//				
+//				//Game_1 request
+//			case 7:
+//				
+//				
+//				//TODO
+//				//FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().getPlayerForUsername(textField.getText());
+//				
+//				String[] InputInfoRequest = reader.readLine().split("-", 2);
+//		
+//				
+//				if(InputInfoRequest.length > 1){
+//				String From = InputInfoRequest[0];
+//				String To = InputInfoRequest[1];
+//				
+//				
+//				EntityPlayer ToPlayer = (EntityPlayer)FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().getPlayerForUsername(To);
+//				EntityPlayer FromPlayer = (EntityPlayer)FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().getPlayerForUsername(From);
+//				
+//				if(ToPlayer != null){
+//					if(!ToPlayer.username.equalsIgnoreCase(From)){
+//					ToPlayer.addChatMessage(From + " has invited you to play tic tac toe.");
+//					ToPlayer.addChatMessage("Open tic tac toe from a computer to join");
+//					}
+//					if(FromPlayer != null){
+//						if(!ToPlayer.username.equalsIgnoreCase(From))
+//						FromPlayer.addChatMessage("Invitation was succsessfully sent.");
+//					}
+//				
+//					ToPlayer.getEntityData().setString("Game_1_PlayerName", From);
+//				}
+//				}
+//				
+//				return;
+//				
+//				//Game_1 Button Click
+////			case 8:
+////				
+////				int Number = reader.readInt();
+////				String ChangePlayer = reader.readLine();
+////				
+////				EntityPlayer ToPlayer = FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().getPlayerForUsername(ChangePlayer);
+////				
+////				if(FMLClientHandler.instance().getClient().currentScreen instanceof GuiGame_1){
+////
+////					
+////					GuiGame_1 gui = (GuiGame_1)FMLClientHandler.instance().getClient().currentScreen;
+////
+////					
+////					
+////				//	gui.actionPerformed(gui.Buttons[Number - 1]);
+////					
+////					
+////					if(Number == 10){
+////			    		
+////			    		for(int i = 0; i < gui.Buttons.length; i++){
+////			    			gui.Buttons[i].displayString = "";
+////			    			gui.Buttons[i].enabled = true;
+////			    		}
+////			    		
+////			    		gui.CurrentTurn = gui.player_1;
+////
+////			    		
+////			    		gui.Button_Restart.enabled = false;
+////			    		return;
+////			    	}
+////					
+////					if(!gui.CheckWinBlue() && !gui.CheckWinRed()){
+////				    	if(gui.CurrentTurn == Minecraft.getMinecraft().thePlayer || gui.player_1.equals(gui.player_2)){
+////				    	
+////				    	if(gui.Buttons[Number - 1].enabled){
+////				    		if(gui.CurrentTurn == gui.player_1){
+////				    			gui.Buttons[Number - 1].displayString = gui.Mark_X;
+////				    			gui.Buttons[Number - 1].enabled = false;
+////				    			gui.CurrentTurn = gui.player_2;
+////				    		}else{
+////				    			gui.Buttons[Number - 1].displayString = gui.Mark_O;
+////				    			gui.Buttons[Number - 1].enabled = false;
+////				    			gui.CurrentTurn = gui.player_1;
+////				    		}
+////				    	
+////				    	}
+////
+////				    }
+////					
+////				}else if(gui.CheckWinBlue() || gui.CheckWinRed()){
+////					gui.Button_Restart.enabled = true;
+////			    	
+////			    	if(gui.CheckWinBlue())
+////			    		gui.BlueWins++;
+////			    	else if (gui.CheckWinRed())
+////			    		gui.RedWins++;
+////			    	
+////			    	
+////			    	for(int h = 0; h < gui.Buttons.length; h++){
+////			    		gui.Buttons[h].enabled = false;
+////			    	}
+////		        }
+////				}
+////				
+////				return;
+////				
+////				//Game_1 Win
+////			case 9:
+////				
+////				return;
+////				
+			
+
 
 		}
 		

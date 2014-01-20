@@ -1,23 +1,24 @@
 package Mod.Block;
 
-import Mod.Lib.ModConfig;
+import java.util.Random;
+
+import net.minecraft.block.BlockContainer;
+import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.Icon;
+import net.minecraft.world.World;
 import Mod.Lib.Refrence;
 import Mod.Main.Main;
 import Mod.TileEntity.TileEntityBox;
 import cpw.mods.fml.common.network.FMLNetworkHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockContainer;
-import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Icon;
-import net.minecraft.world.World;
 
 public class ModBlockBox extends BlockContainer{
 
@@ -30,6 +31,11 @@ public class ModBlockBox extends BlockContainer{
 		this.setUnlocalizedName("Box");
 		this.setHardness(0.5F);
 	}
+	
+    public int quantityDropped(Random par1Random)
+    {
+        return 0;
+    }
 	
 	
 	   @SideOnly(Side.CLIENT)
@@ -71,35 +77,57 @@ public class ModBlockBox extends BlockContainer{
 	    @Override
 	    public void breakBlock(World World, int x, int y, int z, int id, int meta)
 	    {
-	    	TileEntity tile = World.getBlockTileEntity(x, y, z);
+
+	    	TileEntity tile_e = World.getBlockTileEntity(x, y, z);
 	    	
-	    	if(tile != null && tile instanceof IInventory){
-	    		IInventory inv = (IInventory)tile;
+	    	if(tile_e != null && tile_e instanceof TileEntityBox){
+	    		TileEntityBox tile = (TileEntityBox)tile_e;
+	    	
+	    		ItemStack stack = new ItemStack(ModBlocks.Box);
 	    		
-	    		for(int i = 0; i < inv.getSizeInventory(); i++){
-	    			ItemStack stack = inv.getStackInSlotOnClosing(i);
-	    			
+	    		stack.setTagCompound(new NBTTagCompound());
+
+	
+	    			NBTTagList Items = new NBTTagList();
+    		
+
+	        		for (int i = 0; i < tile.getSizeInventory(); i++){
+	        			
+	        			ItemStack stack1 = tile.getStackInSlot(i);
+	        			if(stack1 != null){
+	        				
+	        				NBTTagCompound item = new NBTTagCompound();
+	        				item.setByte("Slot", (byte)i);
+	        				stack1.writeToNBT(item);
+	        				Items.appendTag(item);
+	        			}
+	        		}
+
+    		
+    				stack.stackTagCompound.setTag("Items", Items);
+    		
+	    	
 	    			if(stack != null){
-	    				float spawnX = x + World.rand.nextFloat();
-	    				float spawnY = y + World.rand.nextFloat();
-	    				float spawnZ = z + World.rand.nextFloat();
-	    				
-	    				
-	    				EntityItem droppedItem = new EntityItem(World, spawnX, spawnY, spawnZ, stack);
-	    				
-	    				float mult = 0.05F;
-	    				
-	    				droppedItem.motionX = (-0.5 + World.rand.nextFloat()) * mult;
-	    				droppedItem.motionY = (4 + World.rand.nextFloat()) * mult;
-	    				droppedItem.motionZ = (-0.5 + World.rand.nextFloat()) * mult;
-	    				
-	    				
-	    				World.spawnEntityInWorld(droppedItem);
-	    				super.breakBlock(World, x, y, z, id, meta);
-	    			}
-	    			
-	    		}
-	    	}
+    				float spawnX = x + World.rand.nextFloat();
+    				float spawnY = y + World.rand.nextFloat();
+    				float spawnZ = z + World.rand.nextFloat();
+    				
+    				
+    				EntityItem droppedItem = new EntityItem(World, spawnX, spawnY, spawnZ, stack);
+    				
+    				float mult = 0.05F;
+    				
+    				droppedItem.motionX = (-0.5 + World.rand.nextFloat()) * mult;
+    				droppedItem.motionY = (4 + World.rand.nextFloat()) * mult;
+    				droppedItem.motionZ = (-0.5 + World.rand.nextFloat()) * mult;
+    				
+    				
+    				World.spawnEntityInWorld(droppedItem);
+    				super.breakBlock(World, x, y, z, id, meta);
+    			}
+    				
+    				
 	    }
 
+}
 }

@@ -32,7 +32,7 @@ public class GuiComputerScreen extends GuiContainer{
 	GuiButton Button_PlayerFinder;
 	GuiButton Button_Hide;
 	
-	GuiButton Button_1;
+	GuiButton Button_Game_1;
 	GuiButton Button_2;
 	
 	GuiButton Button_3;
@@ -84,10 +84,10 @@ public class GuiComputerScreen extends GuiContainer{
 	        
 	        Button_Chat = new GuiButton(1, posX + 8, posY + 4, ButtonSizeX, ButtonSizeY, StatCollector.translateToLocal("gui.string.chat"));
 	        Button_PlayerFinder = new GuiButton(2, posX + 90, posY + 4, ButtonSizeX, ButtonSizeY, StatCollector.translateToLocal("gui.string.playerfinder"));
-	        Button_1 = new GuiButton(3, posX + 170, posY + 4, ButtonSizeX, ButtonSizeY, "[Game]");
+	        Button_Game_1 = new GuiButton(3, posX + 170, posY + 4, ButtonSizeX, ButtonSizeY, "Tic Tac Toe");
 	        
-	        Button_2 = new GuiButton(4, posX + 8, posY + 4 + (ButtonSizeY * 2) - 16, ButtonSizeX, ButtonSizeY, "[Game]");
-	        Button_3 = new GuiButton(5, posX + 90, posY + 4 + (ButtonSizeY * 2) - 16, ButtonSizeX, ButtonSizeY, "[Paint]");
+	        Button_2 = new GuiButton(4, posX + 8, posY + 4 + (ButtonSizeY * 2) - 16, ButtonSizeX, ButtonSizeY, "[Something]");
+	        Button_3 = new GuiButton(5, posX + 90, posY + 4 + (ButtonSizeY * 2) - 16, ButtonSizeX, ButtonSizeY, "[Something]");
 	        Button_4 = new GuiButton(6, posX + 170, posY + 4 + (ButtonSizeY * 2) - 16, ButtonSizeX, ButtonSizeY, "[Something]");
 	        
 	        Button_5 = new GuiButton(7, posX + 8, posY + 4 + (ButtonSizeY * 3) - 12, ButtonSizeX, ButtonSizeY, "[Something]");
@@ -101,7 +101,6 @@ public class GuiComputerScreen extends GuiContainer{
 	        Button_Hide = new GuiButton(13, posX + 218, posY + 82, 33, 16, "Hide");
 	        
 	        
-	        Button_1.enabled = false;
 	        Button_2.enabled = false;
 	        Button_3.enabled = false;
 	        Button_4.enabled = false;
@@ -116,7 +115,7 @@ public class GuiComputerScreen extends GuiContainer{
 	        buttonList.add(Button_PlayerFinder);
 	        buttonList.add(Button_Hide);
 	        
-	        buttonList.add(Button_1);
+	        buttonList.add(Button_Game_1);
 	        buttonList.add(Button_2);
 	        buttonList.add(Button_3);
 	        buttonList.add(Button_4);
@@ -143,6 +142,10 @@ public class GuiComputerScreen extends GuiContainer{
 	        	
 	        case 2:
 	        	Minecraft.getMinecraft().thePlayer.openGui(Main.instance, GuiHandler.PlayerFindID, Minecraft.getMinecraft().thePlayer.worldObj, 0, 0, 0);
+	        	break;
+	        	
+	        case 3:
+	        	Minecraft.getMinecraft().thePlayer.openGui(Main.instance, GuiHandler.TicTacToeID, Minecraft.getMinecraft().thePlayer.worldObj, 0, 0, 0);
 	        	break;
 	        
 	        case 13:
@@ -177,7 +180,7 @@ public class GuiComputerScreen extends GuiContainer{
 		        
 		        
 		        if(Hide){
-			        Button_1.drawButton = false;
+		        	Button_Game_1.drawButton = false;
 			        Button_2.drawButton = false;
 			        Button_3.drawButton = false;
 			        Button_4.drawButton = false;
@@ -194,7 +197,7 @@ public class GuiComputerScreen extends GuiContainer{
 			        Button_Hide.displayString = "Show";
 			        
 		        }else{
-			        Button_1.drawButton = true;
+		        	Button_Game_1.drawButton = true;
 			        Button_2.drawButton = true;
 			        Button_3.drawButton = true;
 			        Button_4.drawButton = true;

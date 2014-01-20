@@ -27,6 +27,7 @@ import Mod.Lib.Refrence;
 import Mod.Misc.BoneMealEvent;
 import Mod.Misc.KeyBindings;
 import Mod.Network.PacketHandler;
+import Mod.Network.TinyPacketHandler;
 import Mod.Proxies.ServerProxy;
 import Mod.Render.CapeRender;
 import Mod.TileEntity.TileEntityBin;
@@ -75,7 +76,12 @@ import cpw.mods.fml.relauncher.Side;
 
 
 @Mod(modid = Refrence.Mod_Id, name = Refrence.Mod_Name, version = Refrence.Version)
-@NetworkMod(clientSideRequired=true, serverSideRequired=false, channels = Refrence.Channel, packetHandler = PacketHandler.class)
+@NetworkMod(
+		clientSideRequired=true, serverSideRequired=false,
+		channels = Refrence.Channel,
+		packetHandler = PacketHandler.class,
+        tinyPacketHandler = TinyPacketHandler.class
+		)
 public class Main {
 	
 	public static final Logger Log = Logger.getLogger("MiscItems");
@@ -204,6 +210,9 @@ public void preInit(FMLPreInitializationEvent event) {
         
 
         NetworkRegistry.instance().registerGuiHandler(this, new GuiHandler());
+        
+        
+        
         
 
     }

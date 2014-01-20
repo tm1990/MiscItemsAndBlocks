@@ -4,14 +4,21 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import net.minecraft.client.Minecraft;
+import net.minecraft.block.Block;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.Icon;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.StatCollector;
+import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidTankInfo;
 
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
@@ -20,217 +27,134 @@ import org.lwjgl.opengl.GL12;
 import Mod.Container.ContainerStorageBlock;
 import Mod.TileEntity.TileEntityStorageBlock;
 
-public class GuiStorageBlock extends GuiContainer{
+public class GuiStorageBlock extends ModGuiContainer{
+
 
 	private final ResourceLocation Texture = new ResourceLocation("miscitems" , "textures/gui/StorageBlockGui.png");
 	
-	
-	public GuiStorageBlock(InventoryPlayer InvPlayer, TileEntityStorageBlock tile) {
-		super(new ContainerStorageBlock(InvPlayer, tile));
-		this.xSize = 176;
-		this.ySize = 235;
-		
-		 Items = new ArrayList<ItemStack>();
-		 
-     
-	}
-	
-	
-    public ArrayList<ItemStack> Items;
-	
-	int Lines = 10;
-	boolean Scrolling;
-    public int invSlots = 12;
-	float ScrollProg;
-	
-  @Override
-  protected void drawGuiContainerForegroundLayer(int param1, int param2) {
-
-         // fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, 4210752);
-          
-       
-          
-          
-  }
-
-  
-  public void drawScreen(int par1, int par2, float par3)
-  {
-
-	  
-      drawDefaultBackground();
-      
-      
-      if(mc == null)
-      {
-              mc = Minecraft.getMinecraft();
-              fontRenderer = mc.fontRenderer;
-      }
-      
-      
-      boolean flag = Mouse.isButtonDown(0);
-      if(!flag)
-      {
-
-              Scrolling = false;
-      }
-      else if(Scrolling)
-      {
-              ScrollProg = MathHelper.clamp_float((float)((guiTop + 95 + 7) - par2) / 82F, 0.0F, -1.55F);
-      }
-      
-      
-      super.drawScreen(par1, par2, par3);
-	    mc.renderEngine.bindTexture(Texture);
-      
-	  
-	     if(Lines < 9){
-     	 drawTexturedModalRect(guiLeft + 157, guiTop + 6, 192, 27, 12, 15);
-     	 
-     	 
-     	 
-      }else{
-     	 
-          GL11.glPopMatrix();
-          GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-                  GL11.glPushMatrix();
-          	    mc.renderEngine.bindTexture(Texture);
-                  GL11.glTranslatef(0.0F, -82F * ScrollProg, 0.0F);
-                  
-     	 drawTexturedModalRect(guiLeft + 157, guiTop + 6, 180, 27, 12, 15);
-     	 
-     	 
-     	 
-
-          
-      }
-
-	     
-	     drawInv();
-	     
-
+	    String username;
+	    boolean isScrolling = false;
+	    boolean wasClicking;
+	    float currentScroll = 0.0F;
+	    int slotPos = 0;
+	    int prevSlotPos = 0;
 	    
-  }
-	@Override
-	protected void drawGuiContainerBackgroundLayer(float f, int X, int Y)
-	{
-	    GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
-
-	    Minecraft.getMinecraft().renderEngine.bindTexture(Texture);
-	         drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
-
 	    
+	    TileEntityStorageBlock tile;
+	    
+		public GuiStorageBlock(InventoryPlayer InvPlayer, TileEntityStorageBlock tile) {
+			super(new ContainerStorageBlock(InvPlayer, tile));
+			this.xSize = 176;
+			this.ySize = 235;
+			
+			this.tile = tile;
+	        username = InvPlayer.player.username;
+			
+	     
+		}
 
-	}
-	
-	
-	 protected void mouseClicked(int x, int y, int par3)
-	  {
-	      super.mouseClicked(x, y, par3);
-	  
 
-	      boolean isOnScroll = x >= guiLeft + 157 && x < guiLeft + 157 + 12 && y >= guiTop + 6 && y < guiTop + 147 + 15;
-	      if(isOnScroll)
-	      {
-	              Scrolling = true;
-	      }
-	      
-
-	  }
-
-	 public void drawInv()
-	  {
-		  
-	          
-	      GL11.glEnable(GL11.GL_STENCIL_TEST);
-	      GL11.glColorMask(false, false, false, false);
-
-	      GL11.glStencilFunc(GL11.GL_ALWAYS, 1, 0xFF);
-	      GL11.glStencilOp(GL11.GL_KEEP, GL11.GL_KEEP, GL11.GL_REPLACE); // draw 1s on test fail (always)
-	      GL11.glStencilMask(0xFF);
-	      GL11.glClear(GL11.GL_STENCIL_BUFFER_BIT);
-
-	          drawSolidRect(guiLeft + 7, guiTop + 5, 144, 144, 0xffffff, 1.0F);
-	          
-	              GL11.glStencilMask(0x00);
-	              GL11.glStencilFunc(GL11.GL_EQUAL, 1, 0xFF);
-
-	      GL11.glColorMask(true, true, true, true);
-	          
-	              GL11.glPushMatrix();
-	      
-	          
-	          
-
-	          GL11.glPopMatrix();
-	          GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-	                  GL11.glPushMatrix();
-	          	    mc.renderEngine.bindTexture(Texture);
-
-	          	    
-	                        GL11.glTranslatef(0.0F, -(Lines - 8) * 0.0F * (-1.55F - ScrollProg), 0.0F);
-	                
-	                
-	          for(int i = 0; i < Lines; i++){
-	        	  
-	          	 drawTexturedModalRect(guiLeft + 7, guiTop + 5 + (i * 18), 7, 152, 144, 18);
-	        	  
-	          }
-	          
-	          
-	      GL11.glDisable(GL11.GL_STENCIL_TEST);
-	          
-	          GL11.glPopMatrix();
-	          GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-	  }
-	 
-	  public void drawSolidRect(int par0, int par1, int par2, int par3, int par4, float alpha)
-	  {
-		  float f1 = (float)(par4 >> 16 & 255) / 255.0F;
-		  float f2 = (float)(par4 >> 8 & 255) / 255.0F;
-		  float f3 = (float)(par4 & 255) / 255.0F;
-		  Tessellator tessellator = Tessellator.instance;
-		  GL11.glDisable(GL11.GL_TEXTURE_2D);
-		  GL11.glColor4f(f1, f2, f3, alpha);
-		  tessellator.startDrawingQuads();
-		  tessellator.addVertex((double)(par0 + 0), (double)(par1 + par3), (double)this.zLevel);
-		  tessellator.addVertex((double)(par0 + par2), (double)(par1 + par3), (double)this.zLevel);
-		  tessellator.addVertex((double)(par0 + par2), (double)(par1 + 0), (double)this.zLevel);
-		  tessellator.addVertex((double)(par0 + 0), (double)(par1 + 0), (double)this.zLevel);
-		  tessellator.draw();
-		  GL11.glEnable(GL11.GL_TEXTURE_2D);
-	  }
-	  
-	   public void drawItemStack(ItemStack itemstack, int par2, int par3)
+	    @Override
+	    public void drawScreen (int mouseX, int mouseY, float par3)
 	    {
-	        if (itemstack != null)
+	        super.drawScreen(mouseX, mouseY, par3);
+	        updateScrollbar(mouseX, mouseY, par3);
+	    }
+
+	    protected void updateScrollbar (int mouseX, int mouseY, float par3)
+	    {
+	        if (tile.getSizeInventory() > 64)
 	        {
-	                GL11.glTranslatef(0.0F, 0.0F, 50.0F);
+	            boolean mouseDown = Mouse.isButtonDown(0);
+	            int lefto = this.guiLeft;
+	            int topo = this.guiTop;
+	            int xScroll = lefto + 157;
+	            int yScroll = topo + 6;
+	            int scrollWidth = xScroll + 14;
+	            int scrollHeight = yScroll + 144;
 
-	         GL11.glEnable(GL12.GL_RESCALE_NORMAL);
-	         RenderHelper.enableGUIStandardItemLighting();
-	            itemRenderer.renderItemAndEffectIntoGUI(this.mc.fontRenderer, this.mc.getTextureManager(), itemstack, par2, par3);
-	            itemRenderer.renderItemOverlayIntoGUI(this.mc.fontRenderer, this.mc.getTextureManager(), itemstack, par2, par3);
-	         RenderHelper.disableStandardItemLighting();
-	         GL11.glDisable(GL12.GL_RESCALE_NORMAL);
+	            if (!this.wasClicking && mouseDown && mouseX >= xScroll && mouseY >= yScroll && mouseX < scrollWidth && mouseY < scrollHeight)
+	            {
+	                this.isScrolling = true;
+	            }
 
-	                GL11.glTranslatef(0.0F, 0.0F, -50.0F);
+	            if (!mouseDown)
+	            {
+	                this.isScrolling = false;
+	            }
+
+	            if (wasClicking && !isScrolling && slotPos != prevSlotPos)
+	            {
+	                prevSlotPos = slotPos;
+	            }
+
+	            this.wasClicking = mouseDown;
+
+	            if (this.isScrolling)
+	            {
+	                this.currentScroll = (mouseY - yScroll - 7.5F) / (scrollHeight - yScroll - 15.0F);
+
+	                if (this.currentScroll < 0.0F)
+	                {
+	                    this.currentScroll = 0.0F;
+	                }
+
+	                if (this.currentScroll > 1.0F)
+	                {
+	                    this.currentScroll = 1.0F;
+	                }
+
+	                int s = ((ContainerStorageBlock) this.container).scrollTo(this.currentScroll);
+	                if (s != -1)
+	                    slotPos = s;
+	            }
 	        }
 	    }
-	  
+	    
 
-	  protected void drawTooltip(List par1List, int par2, int par3)
+	    @Override
+	    protected void drawGuiContainerForegroundLayer (int mouseX, int mouseY)
+	    {
+
+	        int base = 0;
+	        int cornerX = (width - xSize) / 2;
+	        int cornerY = (height - ySize) / 2;
+
+
+	    }
+
+
+	    @Override
+	    protected void drawGuiContainerBackgroundLayer (float f, int mouseX, int mouseY)
+	    {
+	        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+	        this.mc.getTextureManager().bindTexture(Texture);
+	        int cornerX = (width - xSize) / 2;
+	        int cornerY = (height - ySize) / 2;
+	        drawTexturedModalRect(cornerX, cornerY, 0, 0, 176, ySize);
+
+	            
+	            drawTexturedModalRect(cornerX + 157, (int) (cornerY + 6 + 127 * currentScroll), 176, 0, 12, 15);
+	        
+
+	
+	    }
+
+	  
+	    protected void drawToolTip (List par1List, int par2, int par3)
 	    {
 	        if (!par1List.isEmpty())
 	        {
 	            GL11.glDisable(GL12.GL_RESCALE_NORMAL);
+	            RenderHelper.disableStandardItemLighting();
+	            GL11.glDisable(GL11.GL_LIGHTING);
 	            GL11.glDisable(GL11.GL_DEPTH_TEST);
 	            int k = 0;
 	            Iterator iterator = par1List.iterator();
 
 	            while (iterator.hasNext())
 	            {
-	                String s = (String)iterator.next();
+	                String s = (String) iterator.next();
 	                int l = this.fontRenderer.getStringWidth(s);
 
 	                if (l > k)
@@ -259,6 +183,7 @@ public class GuiStorageBlock extends GuiContainer{
 	            }
 
 	            this.zLevel = 300.0F;
+	            itemRenderer.zLevel = 300.0F;
 	            int l1 = -267386864;
 	            this.drawGradientRect(i1 - 3, j1 - 4, i1 + k + 3, j1 - 3, l1, l1);
 	            this.drawGradientRect(i1 - 3, j1 + k1 + 3, i1 + k + 3, j1 + k1 + 4, l1, l1);
@@ -274,7 +199,7 @@ public class GuiStorageBlock extends GuiContainer{
 
 	            for (int k2 = 0; k2 < par1List.size(); ++k2)
 	            {
-	                String s1 = (String)par1List.get(k2);
+	                String s1 = (String) par1List.get(k2);
 	                this.fontRenderer.drawStringWithShadow(s1, i1, j1, -1);
 
 	                if (k2 == 0)
@@ -286,9 +211,12 @@ public class GuiStorageBlock extends GuiContainer{
 	            }
 
 	            this.zLevel = 0.0F;
-	            GL11.glEnable(GL11.GL_DEPTH_TEST);
-	            GL11.glEnable(GL12.GL_RESCALE_NORMAL);
+	            itemRenderer.zLevel = 0.0F;
 	        }
 	    }
-	
-}
+
+
+
+
+
+	}

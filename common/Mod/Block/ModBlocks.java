@@ -6,14 +6,17 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
 import Mod.GamePart.ModBlockGamePart;
+import Mod.ItemBlock.ModItemBlockBox;
 import Mod.ItemBlock.ModItemBlockComputer;
 import Mod.ItemBlock.ModItemBlockDisarmTrap;
 import Mod.ItemBlock.ModItemBlockGamePiece;
 import Mod.ItemBlock.ModItemBlockItemPedestal;
 import Mod.ItemBlock.ModItemBlockMiningChamber;
 import Mod.ItemBlock.ModItemBlockPowerCable;
+import Mod.ItemBlock.ModItemBlockStorageBlock;
 import Mod.ItemBlock.ModItemBlockTable;
 import Mod.ItemBlock.ModItemBlockTrashBin;
+import Mod.ItemBlock.ModItemXpStorageBlock;
 import Mod.Lib.ModConfig;
 import Mod.Main.Main;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -78,7 +81,7 @@ public class ModBlocks {
 	public static void Init(){
 		
 		XpStorage = new ModBlockXpStorage(ModConfig.XpStorageBlock).setUnlocalizedName("XpStorage");
-		Register(XpStorage, "Xp Storage Block", true);
+		Register(XpStorage, ModItemXpStorageBlock.class, "Xp Storage Block", true);
 		
 		Bin = new ModBlockBin(ModConfig.Bins).setUnlocalizedName("TrashBin");
 		Register(Bin, ModItemBlockTrashBin.class,"Trash Bin", true);
@@ -94,7 +97,7 @@ public class ModBlocks {
         Register(StoneStair, "Stone Stair", true);
         
         Box = new ModBlockBox(ModConfig.Box).setUnlocalizedName("Box");
-        Register(Box, "Cardboard Box", true);
+        Register(Box, ModItemBlockBox.class, "Cardboard Box", true);
         
         CraftingInv = new ModBlockCraftingInv(ModConfig.CraftingInv).setUnlocalizedName("CraftingInv");
         Register(CraftingInv, "Worktable", true);
@@ -193,7 +196,7 @@ public class ModBlocks {
         Register(Computer, ModItemBlockComputer.class, "Computer", true);
         
         StorageBlock = new ModBlockStorageBlock(ModConfig.StorageBlock).setUnlocalizedName("StorageBlock");
-        Register(StorageBlock, "Storage Block [WIP]", true);
+        Register(StorageBlock, ModItemBlockStorageBlock.class, "Storage Block", true);
         
         
         

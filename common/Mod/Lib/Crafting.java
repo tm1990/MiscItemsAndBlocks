@@ -17,6 +17,9 @@ public class Crafting {
 		
 		
 		
+		GameRegistry.addRecipe(new ItemStack(ModBlocks.Computer), new Object[]{"IBI", "PCB", "IBT", 'I', Item.ingotIron, 'B', Block.blockIron, 'P', Block.thinGlass, 'C', new ItemStack(ModItems.Circuit, 1, 1), 'R', Item.redstone, 'T', Block.blockRedstone});
+		GameRegistry.addRecipe(new ItemStack(ModBlocks.StorageBlock), new Object[]{"ICI", "CBC", "ICI", 'I', Block.blockIron, 'C', Block.chest, 'B', ModBlocks.Box});
+		
         GameRegistry.addRecipe(new ShapedOreRecipe(ModBlocks.CraftingInv, new Object[] {"WWW", "PIP", "PCP", 'W', Block.cloth, Character.valueOf('P'), "plankWood", 'C', Block.chest, 'I', Block.workbench}));
 		GameRegistry.addRecipe(new ShapedOreRecipe(ModBlocks.Dice, new Object[]{"PPP", "PDP", "PPP", Character.valueOf('P'), "plankWood", 'D', Item.dyePowder}));
 		GameRegistry.addRecipe(new ShapedOreRecipe(ModBlocks.Table, new Object[]{"CCC", "HHH", "P P", 'C', new ItemStack(Block.carpet, 1, 14), Character.valueOf('P'), "plankWood", Character.valueOf('H'), "slabWood"}));	

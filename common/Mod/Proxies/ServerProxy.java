@@ -12,6 +12,9 @@ import cpw.mods.fml.relauncher.Side;
 public class ServerProxy {
 
 	
+    public static ClientTickHandler tickHandlerClient;
+    public static ServerTickHandler tickHandlerServer;
+	
     public void registerRenderThings(){
         
     }
@@ -23,7 +26,9 @@ public class ServerProxy {
     
 	public void registerServerTickHandler()
 	 {
-	  TickRegistry.registerTickHandler(new ServerTickHandler(), Side.SERVER);
+		
+        tickHandlerServer = new ServerTickHandler();
+        TickRegistry.registerTickHandler(tickHandlerServer, Side.SERVER);
 	 }
 
 	

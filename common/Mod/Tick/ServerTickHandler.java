@@ -1,18 +1,23 @@
 package Mod.Tick;
 
+import java.util.ArrayList;
 import java.util.EnumSet;
+import java.util.HashMap;
 import java.util.Random;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import Mod.Items.ModItems;
 import Mod.Lib.ModConfig;
-import Mod.Main.Main;
+import Mod.Misc.GameInfo;
+import Mod.Misc.GameInvite;
 import cpw.mods.fml.common.IScheduledTickHandler;
+import cpw.mods.fml.common.ITickHandler;
 import cpw.mods.fml.common.TickType;
 
-public class ServerTickHandler implements IScheduledTickHandler{
+public class ServerTickHandler implements ITickHandler{
 	
 	
 	/*
@@ -22,6 +27,10 @@ public class ServerTickHandler implements IScheduledTickHandler{
 	 * Boots = 0
 	 * 
 	 */
+	
+    public HashMap<String, GameInvite> playerGameRequests = new HashMap<String, GameInvite>();
+    
+    public ArrayList<GameInfo> activeGames = new ArrayList<GameInfo>();
 	
 	
 	boolean Helmet = false;
@@ -210,11 +219,16 @@ public class ServerTickHandler implements IScheduledTickHandler{
 					
 				}
 
-	@Override
-	public int nextTickSpacing() {
-		return 50000000;
-	}
-				
+	   public void initializeGame(EntityPlayerMP player, EntityPlayerMP plyr)
+       {
+               if(player == null || plyr == null)
+               {
+                       return;
+               }
+               activeGames.add((new GameInfo(player, plyr)).initialize());
+       }
+
+
 		
 	}
 	

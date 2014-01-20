@@ -35,6 +35,7 @@ import Mod.Network.PacketTypeHandler;
 import Mod.Render.PowerArrowRender;
 import Mod.Render.SilverArrowRender;
 import Mod.Tick.ClientTickHandler;
+import Mod.Tick.ServerTickHandler;
 import Mod.TileEntity.ModTileEntity;
 import Mod.TileEntity.TileEntityBin;
 import Mod.TileEntity.TileEntityComputer;
@@ -121,7 +122,8 @@ public class ClientProxy extends ServerProxy{
     public void registerClientTickHandler()
     {
     	
-    TickRegistry.registerTickHandler(new ClientTickHandler(), Side.CLIENT);
+        tickHandlerClient = new ClientTickHandler();
+        TickRegistry.registerTickHandler(tickHandlerClient, Side.CLIENT);
 
     }
     
