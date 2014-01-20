@@ -28,6 +28,8 @@ public class GuiGame_1_Invite extends GuiScreen{
     protected int ySize = 170;
     
     EntityPlayer player;
+    int Page = 1;
+    int Pages = 1;
 
     
     protected int guiLeft;
@@ -39,6 +41,9 @@ public class GuiGame_1_Invite extends GuiScreen{
     @Override
     public void updateScreen()
     {
+    	
+    	players.clear();
+    	
     	 for(int i = 0; i < mc.theWorld.playerEntities.size(); i++)
          {
                  EntityPlayer player = (EntityPlayer)mc.theWorld.playerEntities.get(i);
@@ -47,22 +52,38 @@ public class GuiGame_1_Invite extends GuiScreen{
                          players.add(player.username);
                  }
          }
+    	 
+    	 
          Collections.sort(players);
          
          
          buttonList.clear();
+    	 Pages = players.size() / 12;
+    	 
+    	 
+    	 if(Pages <= 0)
+    		 Pages = 1;
+    	 
+    	 if(players.size() > Pages * 12){
+    		 Pages++;
+    	 }
+
+    	 
+    	 buttonList.add(new GuiButton(players.size() + 1, guiLeft + 4, guiTop + 140, 70, 20, "Prev Page"));
+    	 buttonList.add(new GuiButton(players.size() + 2, guiLeft + 102, guiTop + 140, 70, 20, "Next Page"));
          
          for(int i = 0; i < players.size(); i++)
          {
-                 if(i == 12)
-                 {
-                         break;
-                 }
-                 if(players.get(i) == Minecraft.getMinecraft().thePlayer.username)
-                     buttonList.add(new GuiButton(i, guiLeft + 6 + (i % 2 == 1 ? 84 : 0), guiTop + 4 + 22 * (int)Math.floor((double)i / 2D), 80, 20, "Your self"));
-                 else
-                 buttonList.add(new GuiButton(i, guiLeft + 6 + (i % 2 == 1 ? 84 : 0), guiTop + 4 + 22 * (int)Math.floor((double)i / 2D), 80, 20, players.get(i)));
-         }
+        	 
+
+
+        	 if(i < Page * 12 && i >= (Page - 1) * 12 ){
+
+        		 
+                 buttonList.add(new GuiButton(i, guiLeft + 6 + (i % 2 == 1 ? 84 : 0), (guiTop - ((Page - 1) * 12) * 11) + 4 + 22 * (int)Math.floor((double)i / 2D), 80, 20, players.get(i)));
+         
+        	 }
+    }
          
  }
     	
@@ -83,7 +104,7 @@ public class GuiGame_1_Invite extends GuiScreen{
 	        
 	        
 
-	        
+	    	 this.drawString(fontRenderer, Page + "/" + Pages, guiLeft + 79, guiTop + 146, 0x444444);
 	        
 	        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 	        GL11.glDisable(GL11.GL_LIGHTING);
@@ -115,6 +136,7 @@ public class GuiGame_1_Invite extends GuiScreen{
 	    protected void actionPerformed(GuiButton button) {
 
 	        	
+	    	if(button.id <= players.size()){
 	        	 ByteArrayOutputStream bytes = new ByteArrayOutputStream();
 	             DataOutputStream stream = new DataOutputStream(bytes);
 
@@ -126,16 +148,26 @@ public class GuiGame_1_Invite extends GuiScreen{
 	             }
 	             catch(IOException e)
 	             {}
+	    	}
+	    	
+	    	if(button.id == players.size() + 1){
+	    		
+	    		if(Page - 1 > 0)
+	    			Page--;
+	    		
+	    		
+	    	}else if (button.id == players.size() + 2){
+	    		
+	    		if(Page + 1 <= Pages)
+	    		Page++;
+	    		
+	    	}
 	        	
 	        
 	        
 
 	        }
 	    
-//	    public void onGuiClosed() {
-//            FMLClientHandler.instance().displayGuiScreen(Minecraft.getMinecraft().thePlayer, new GuiGame1Select());
-//	    	
-//	    }
 	    
 	    protected void keyTyped(char par1, int par2)
 	    {

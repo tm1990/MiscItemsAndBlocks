@@ -53,7 +53,10 @@ public class ServerTickHandler implements ITickHandler{
 
 	@Override
 	public void tickEnd(EnumSet<TickType> type, Object... tickData) {
-		
+		if (type.equals(EnumSet.of(TickType.SERVER)))
+        {
+                ServerTick();
+        }
 	}
 
 	@Override
@@ -227,6 +230,26 @@ public class ServerTickHandler implements ITickHandler{
                }
                activeGames.add((new GameInfo(player, plyr)).initialize());
        }
+	   
+	   
+	   public void ServerTick(){
+		   for(int i = activeGames.size() - 1; i >= 0; i--)
+           {
+			   
+			   
+               GameInfo ti = activeGames.get(i);
+			   if(ti.terminate){
+				   ti.Player_1.closeScreen();
+				   ti.Player_2.closeScreen();
+				   activeGames.remove(i);
+			   }
+			   
+			   
+			   
+           }
+		   
+		   
+	   }
 
 
 		

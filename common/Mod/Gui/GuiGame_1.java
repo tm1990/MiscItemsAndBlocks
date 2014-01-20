@@ -92,14 +92,15 @@ public class GuiGame_1 extends GuiScreen
 	        int posY = (this.height - ySizeOfTexture) / 2;
 	        
 	        
+	        
 
 	        drawTexturedModalRect(posX, posY, 0, 0, xSizeOfTexture, ySizeOfTexture);
 
 	        if(player_1 != null)
-	        this.drawString(this.fontRenderer, "Player 1: " + player_1.username, posX + 127, posY + 26, 0x888888);
+	        this.drawString(this.fontRenderer, (player_1 == Minecraft.getMinecraft().thePlayer ?  "Player 1: " + EnumChatFormatting.BLUE + "You" : "Player 1: "+ EnumChatFormatting.BLUE + player_1.username), posX + 127, posY + 26, 0x888888);
 	        
 	        if(player_2 != null)
-	        this.drawString(this.fontRenderer, "Player 2: " + player_2.username, posX + 127, posY + 26 + 10, 0x888888);
+	        this.drawString(this.fontRenderer, (player_2 == Minecraft.getMinecraft().thePlayer ?  "Player 2: "+ EnumChatFormatting.RED +"You" : "Player 2: " + EnumChatFormatting.RED + player_2.username), posX + 127, posY + 26 + 10, 0x888888);
 	        
 	        this.drawString(this.fontRenderer, EnumChatFormatting.GRAY + "Score: ", posX + 127, posY + 56, 0x888888);
 	        this.drawCenteredString(this.fontRenderer, "" + EnumChatFormatting.RED + "" + RedWins + EnumChatFormatting.RESET + " : " + EnumChatFormatting.BLUE + BlueWins, posX + 177, posY + 66, 0x888888);
@@ -198,11 +199,19 @@ public class GuiGame_1 extends GuiScreen
 		    	Button_Restart.enabled = false;
                 ByteArrayOutputStream bytes = new ByteArrayOutputStream();
                 DataOutputStream stream1 = new DataOutputStream(bytes);
+                
+                try {
 
-                        if(player_1 != player_2 && player_1 != Minecraft.getMinecraft().thePlayer)
-                        PacketDispatcher.sendPacketToPlayer(new Packet131MapData((short)Main.getNetId(), (short)4, bytes.toByteArray()), (Player)player_2);
+					stream1.writeUTF(player_1.username);
+					stream1.writeUTF(player_2.username);
+                	
+                        if(player_1 != player_2)
+                        PacketDispatcher.sendPacketToServer(new Packet131MapData((short)Main.getNetId(), (short)4, bytes.toByteArray()));
 
-		    	
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+                        
 	    		return;
 	    		
 	    	}else{
@@ -214,6 +223,8 @@ public class GuiGame_1 extends GuiScreen
 	    	
 	    	
 	    	if(!RedWin && !BlueWin){
+	    		
+	    		
 	    	if(CurrentPlayer == Minecraft.getMinecraft().thePlayer || player_1.equals(player_2)){
 	    		
 	    		
@@ -227,17 +238,18 @@ public class GuiGame_1 extends GuiScreen
 								stream1.writeUTF(player_1.username);
 								stream1.writeUTF(player_2.username);
 								
-								if(player_1 == Minecraft.getMinecraft().thePlayer){
-									Player ply = (Player)FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().getPlayerForUsername(player_2.username);
+								
+
+			                        if(player_1 != player_2)
+									PacketDispatcher.sendPacketToServer(new Packet131MapData((short)Main.getNetId(), (short)3, bytes.toByteArray()));
 									
-			                        if(player_1 != player_2 && player_1 != Minecraft.getMinecraft().thePlayer)
-									PacketDispatcher.sendPacketToPlayer(new Packet131MapData((short)Main.getNetId(), (short)3, bytes.toByteArray()), ply);
-									
-								}
+								
 		    
 							} catch (IOException e) {
 								e.printStackTrace();
 							}
+	                     
+	                     
 	    	
 	    	if(Buttons[button.id - 1].enabled){
 	    		if(CurrentTurn == 1){
@@ -347,5 +359,30 @@ public class GuiGame_1 extends GuiScreen
 	    }
 	    
 	  
+	    public void onGuiClosed() {
+	    	
+	    	
+	    	 ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+             DataOutputStream stream1 = new DataOutputStream(bytes);
+
+
+                     try {
+
+							stream1.writeUTF(player_1.username);
+							stream1.writeUTF(player_2.username);
+							
+							
+
+		                        if(player_1 != player_2)
+								PacketDispatcher.sendPacketToServer(new Packet131MapData((short)Main.getNetId(), (short)5, bytes.toByteArray()));
+								
+							
+	    
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+	    	
+	    	
+	    }
 
 }

@@ -86,17 +86,17 @@ public class GuiComputerScreen extends GuiContainer{
 	        Button_PlayerFinder = new GuiButton(2, posX + 90, posY + 4, ButtonSizeX, ButtonSizeY, StatCollector.translateToLocal("gui.string.playerfinder"));
 	        Button_Game_1 = new GuiButton(3, posX + 170, posY + 4, ButtonSizeX, ButtonSizeY, "Tic Tac Toe");
 	        
-	        Button_2 = new GuiButton(4, posX + 8, posY + 4 + (ButtonSizeY * 2) - 16, ButtonSizeX, ButtonSizeY, "[Something]");
-	        Button_3 = new GuiButton(5, posX + 90, posY + 4 + (ButtonSizeY * 2) - 16, ButtonSizeX, ButtonSizeY, "[Something]");
-	        Button_4 = new GuiButton(6, posX + 170, posY + 4 + (ButtonSizeY * 2) - 16, ButtonSizeX, ButtonSizeY, "[Something]");
+	        Button_2 = new GuiButton(4, posX + 8, posY + 4 + (ButtonSizeY * 2) - 16, ButtonSizeX, ButtonSizeY, "");
+	        Button_3 = new GuiButton(5, posX + 90, posY + 4 + (ButtonSizeY * 2) - 16, ButtonSizeX, ButtonSizeY, "");
+	        Button_4 = new GuiButton(6, posX + 170, posY + 4 + (ButtonSizeY * 2) - 16, ButtonSizeX, ButtonSizeY, "");
 	        
-	        Button_5 = new GuiButton(7, posX + 8, posY + 4 + (ButtonSizeY * 3) - 12, ButtonSizeX, ButtonSizeY, "[Something]");
-	        Button_6 = new GuiButton(8, posX + 90, posY + 4 + (ButtonSizeY * 3) - 12, ButtonSizeX, ButtonSizeY, "[Something]");
-	        Button_7 = new GuiButton(9, posX + 170, posY + 4 + (ButtonSizeY * 3) - 12, ButtonSizeX, ButtonSizeY, "[Something]");
+	        Button_5 = new GuiButton(7, posX + 8, posY + 4 + (ButtonSizeY * 3) - 12, ButtonSizeX, ButtonSizeY, "");
+	        Button_6 = new GuiButton(8, posX + 90, posY + 4 + (ButtonSizeY * 3) - 12, ButtonSizeX, ButtonSizeY, "");
+	        Button_7 = new GuiButton(9, posX + 170, posY + 4 + (ButtonSizeY * 3) - 12, ButtonSizeX, ButtonSizeY, "");
 	        
-	        Button_8 = new GuiButton(10, posX + 8, posY + 4 + (ButtonSizeY * 4) - 8, ButtonSizeX, ButtonSizeY, "[Something]");
-	        Button_9 = new GuiButton(11, posX + 90, posY + 4 + (ButtonSizeY * 4)  - 8, ButtonSizeX, ButtonSizeY, "[Something]");
-	        Button_10 = new GuiButton(12, posX + 170, posY + 4 + (ButtonSizeY * 4) - 8, ButtonSizeX, ButtonSizeY, "[Something]");
+	        Button_8 = new GuiButton(10, posX + 8, posY + 4 + (ButtonSizeY * 4) - 8, ButtonSizeX, ButtonSizeY, "");
+	        Button_9 = new GuiButton(11, posX + 90, posY + 4 + (ButtonSizeY * 4)  - 8, ButtonSizeX, ButtonSizeY, "");
+	        Button_10 = new GuiButton(12, posX + 170, posY + 4 + (ButtonSizeY * 4) - 8, ButtonSizeX, ButtonSizeY, "");
 	        
 	        Button_Hide = new GuiButton(13, posX + 218, posY + 82, 33, 16, "Hide");
 	        

@@ -12,6 +12,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.packet.Packet131MapData;
+import net.minecraft.util.ChatMessageComponent;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
 import cpw.mods.fml.common.network.PacketDispatcher;
@@ -51,7 +52,14 @@ public class GameInfo
         return this;
         }
         
-        
+        public void terminate(EntityPlayer terminator)
+        {
+        	terminate = true;
+        	
+        	Player_1.sendChatToPlayer(ChatMessageComponent.createFromText("Game was closed."));
+        	Player_2.sendChatToPlayer(ChatMessageComponent.createFromText("Game was closed."));
+        	
+        }
     
      
         public EntityPlayer getOtherPlayer(EntityPlayer player)

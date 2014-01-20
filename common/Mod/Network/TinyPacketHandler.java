@@ -125,6 +125,116 @@ implements ITinyPacketHandler
                             break;
                         }
                         
+                        
+                        case 3:	
+                        {
+                        	
+                        	int Number = stream.readInt() - 1;
+                        	int Player = stream.readInt();
+                        	String Player_1 = stream.readUTF();
+                        	String Player_2 = stream.readUTF();
+                        	
+                        	
+                       	 ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        	             DataOutputStream stream1 = new DataOutputStream(bytes);
+
+
+        	                     try {
+        	                         stream1.writeInt(Number);
+        								stream1.writeInt(Player);
+        								stream1.writeUTF(Player_1);
+        								stream1.writeUTF(Player_2);
+        								
+        								
+
+        									PacketDispatcher.sendPacketToAllPlayers(new Packet131MapData((short)Main.getNetId(), (short)3, bytes.toByteArray()));
+        									
+        								
+        		    
+        							} catch (IOException e) {
+        								e.printStackTrace();
+        							}
+        	                     
+                        	
+                        	
+                        }
+                        
+                        
+                        case 4:	
+                        {
+                        	
+                        	String Player_1 = stream.readUTF();
+                        	String Player_2 = stream.readUTF();
+                        	
+                        	
+                       	 ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        	             DataOutputStream stream1 = new DataOutputStream(bytes);
+
+
+        	                     try {
+        								stream1.writeUTF(Player_1);
+        								stream1.writeUTF(Player_2);
+        								
+        								
+
+        									PacketDispatcher.sendPacketToAllPlayers(new Packet131MapData((short)Main.getNetId(), (short)4, bytes.toByteArray()));
+        									
+        								
+        		    
+        							} catch (IOException e) {
+        								e.printStackTrace();
+        							}
+        	                     
+                        	
+                        	
+                        }
+                        
+                        
+                        
+                        
+                        case 5:	
+                        {
+                        	
+                        	String Player_1 = stream.readUTF();
+                        	String Player_2 = stream.readUTF();
+                        	
+                        	
+                        	
+                        	  for(GameInfo ti : Main.proxy.tickHandlerServer.activeGames)
+                              {
+                                      if(ti.isPlayerInGame(player))
+                                      {
+                                    	  ti.terminate(player);
+                                              break;
+                                      }
+                              }
+                        	
+                        	
+                       	 ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        	             DataOutputStream stream1 = new DataOutputStream(bytes);
+
+
+        	                     try {
+        								stream1.writeUTF(Player_1);
+        								stream1.writeUTF(Player_2);
+        								
+        								
+
+        									PacketDispatcher.sendPacketToAllPlayers(new Packet131MapData((short)Main.getNetId(), (short)5, bytes.toByteArray()));
+        									
+        								
+        		    
+        							} catch (IOException e) {
+        								e.printStackTrace();
+        							}
+        	                     
+                        	
+                        	
+                        }
+                        
+                        
+                        
+                        
                         }
                 }
   
@@ -153,7 +263,7 @@ implements ITinyPacketHandler
                             
                                 Minecraft.getMinecraft().sndManager.playSound("random.successful_hit", (float)Minecraft.getMinecraft().thePlayer.posX, (float)Minecraft.getMinecraft().thePlayer.posY, (float)Minecraft.getMinecraft().thePlayer.posZ, 1.0F, 1.0F);
 
-                                Minecraft.getMinecraft().thePlayer.addChatMessage(EnumChatFormatting.GOLD + "You have recived a game invite to player tic tac toe!");
+                                Minecraft.getMinecraft().thePlayer.addChatMessage(EnumChatFormatting.GOLD + "You have recived a game invite to play tic tac toe!");
                                 
                                 break;
                         }
@@ -175,20 +285,25 @@ implements ITinyPacketHandler
                         	String Player_1 = stream.readUTF();
                         	String Player_2 = stream.readUTF();
                         	
-                        	System.out.println("th");
                         		
+
+                        	
+                          		if((Player == 1 && Minecraft.getMinecraft().thePlayer.username.equalsIgnoreCase(Player_2)) || (Player == 2 && Minecraft.getMinecraft().thePlayer.username.equalsIgnoreCase(Player_1)) ){
+                          		
                         		
                     		if(Minecraft.getMinecraft().currentScreen instanceof GuiGame_1){
                     			GuiGame_1 gui = (GuiGame_1)Minecraft.getMinecraft().currentScreen;
                     			
+
+                    			
                     			if(!gui.CheckWinBlue() && !gui.CheckWinRed()){
-                    				if(Number == 1){
+                    				if(Player == 1){
                     					gui.Buttons[Number].displayString = gui.Mark_X;
                     					gui.Buttons[Number].enabled = false;
                     					gui.CurrentTurn = 2;
                     					gui.CurrentPlayer = gui.player_2;
                     					
-                    				}else if (Number == 2){
+                    				}else if (Player == 2){
                     					gui.Buttons[Number].displayString = gui.Mark_O;
                     					gui.Buttons[Number].enabled = false;
                     					gui.CurrentTurn = 1;
@@ -238,11 +353,20 @@ implements ITinyPacketHandler
                         	
                         	
                         	
+                          		}
                         	
                         }
                         //Restart
                         case 4:
                         {
+                        	
+                        	
+                        	
+                        	String Player_1 = stream.readUTF();
+                        	String Player_2 = stream.readUTF();
+                        	
+                        	
+                        	if((Minecraft.getMinecraft().thePlayer.username.equalsIgnoreCase(Player_2)) || (Minecraft.getMinecraft().thePlayer.username.equalsIgnoreCase(Player_1)) ){
                         	
                         if(Minecraft.getMinecraft().currentScreen instanceof GuiGame_1){
                 			GuiGame_1 gui = (GuiGame_1)Minecraft.getMinecraft().currentScreen;
@@ -256,12 +380,19 @@ implements ITinyPacketHandler
         					gui.CurrentPlayer = gui.player_1;
         					gui.RedWin = false;
         					gui.BlueWin = false;
+        					
+        					gui.Button_Restart.enabled = false;
                 			
                         }
                         	
                         	
                         }
                         	
+                        }
+                        
+                      
+                        
+                        
                         
                         }
                         
