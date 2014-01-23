@@ -54,11 +54,7 @@ public class ModConfig {
 	public static int OrangeLeaf;
 	
 	
-	public static int GamePartRed;
-	public static int GamePartBlue;
-	public static int GamePartYellow;
-	public static int GamePartGreen;
-	public static int GamePartNull;
+	public static int GamePart;
 	
 	/** Items **/
 	public static int XpExtractor;
@@ -145,11 +141,8 @@ public class ModConfig {
 		CraftingInv = config.getBlock("Blocks", "Crafting table with inv Id", 607).getInt();
 		Dice = config.getBlock("Blocks", "Dice Id", 608).getInt();
 		
-		GamePartRed = config.getBlock("Blocks", "Game piece Red Id", 609).getInt();
-		GamePartBlue = config.getBlock("Blocks", "Game piece Blue Id", 610).getInt();
-		GamePartGreen = config.getBlock("Blocks", "Game piece Green Id", 611).getInt();
-		GamePartYellow = config.getBlock("Blocks", "Game piece Yellow Id", 612).getInt();
-		GamePartNull = config.getBlock("Blocks", "Game piece Default Id", 613).getInt();
+		GamePart = config.getBlock("Blocks", "Game piece Id", 609).getInt();
+
 		
 		SpeedBlock = config.getBlock("Blocks", "Speed Block Id", 614).getInt();
 		Pillar = config.getBlock("Blocks", "Pillar Block Id", 615).getInt();

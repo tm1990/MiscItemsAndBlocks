@@ -21,11 +21,11 @@ public class TileEntityGamePartRender extends TileEntitySpecialRenderer {
     ResourceLocation Texutre;
     
    
-    public TileEntityGamePartRender(String Color) {
+    public TileEntityGamePartRender() {
         this.model = new GamePartModel();
 
             
-            this.Texutre = new ResourceLocation("textures/blocks/hardened_clay_stained_" + Color + ".png");
+            this.Texutre = new ResourceLocation("textures/blocks/hardened_clay.png");
                 }
    
     private void adjustRotatePivotViaMeta(World world, int x, int y, int z) {
@@ -36,25 +36,37 @@ public class TileEntityGamePartRender extends TileEntitySpecialRenderer {
     }
    
     @Override
-    public void renderTileEntityAt(TileEntity te, double x, double y, double z, float scale) {
+    public void renderTileEntityAt(TileEntity te, double X, double Y, double Z, float scale) {
             GL11.glPushMatrix();
-            GL11.glTranslatef((float) x + 0.5F, (float) y + 1.5F, (float) z + 0.5F);
+            GL11.glTranslatef((float) X + 0.5F, (float) Y + 1.5F, (float) Z + 0.5F);
 
             
             bindTexture(Texutre);
             
-            int Id = 0;
-            if(te.hasWorldObj())
-            	Id = te.worldObj.getBlockId(te.xCoord, te.yCoord, te.zCoord);
+            	int Meta = te.worldObj.getBlockMetadata(te.xCoord, te.yCoord, te.zCoord);
+            	int Id = te.worldObj.getBlockId(te.xCoord, te.yCoord, te.zCoord);
+            	
+            	World world = te.worldObj;
+            	int x = te.xCoord;
+            	int y = te.yCoord;
+            	int z = te.zCoord;
+            	
+            	boolean Top = world.getBlockId(x, y + 1, z) != Id && world.getBlockMetadata(x, y + 1, z) != Meta;
+            	if(Meta == 0)
+            		Top = world.getBlockId(x, y + 1, z) != Id && world.getBlockMetadata(x, y + 1, z) == Meta;
+            	
+            	
+            	boolean Bottom = world.getBlockId(x, y - 1, z) != Id && world.getBlockMetadata(x, y - 1, z) != Meta;
+            	
+            	if(Meta == 0)
+            		Bottom = world.getBlockId(x, y - 1, z) != Id && world.getBlockMetadata(x, y - 1, z) == Meta;
             
             
          GL11.glPushMatrix();
          GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
 
-         if(te.hasWorldObj())
-         this.model.render((Entity)null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F, te.worldObj.getBlockId(te.xCoord, te.yCoord + 1, te.zCoord) != Id, te.worldObj.getBlockId(te.xCoord, te.yCoord - 1, te.zCoord) != Id);
-         else
-             this.model.render((Entity)null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F, true, true);
+         this.model.render((Entity)null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F, Top, Bottom, Meta);
+
          
          
          

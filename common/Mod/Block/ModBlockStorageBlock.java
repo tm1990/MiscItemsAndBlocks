@@ -1,5 +1,7 @@
 package Mod.Block;
 
+import java.util.Random;
+
 import cpw.mods.fml.common.network.FMLNetworkHandler;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -19,8 +21,14 @@ public class ModBlockStorageBlock extends BlockContainer{
 
 	protected ModBlockStorageBlock(int par1) {
 		super(par1, Material.iron);
+		this.setHardness(1.7F);
 
 	}
+	
+    public int quantityDropped(Random par1Random)
+    {
+        return 0;
+    }
 
 	@Override
 	public TileEntity createNewTileEntity(World world) {

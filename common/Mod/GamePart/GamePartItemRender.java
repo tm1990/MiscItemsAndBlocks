@@ -1,7 +1,13 @@
 package Mod.GamePart;
 
+import org.lwjgl.opengl.GL11;
+
+import Mod.Models.GamePartModel;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
+import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
 import net.minecraftforge.client.IItemRenderer.ItemRenderType;
 import net.minecraftforge.client.IItemRenderer.ItemRendererHelper;
@@ -10,12 +16,13 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 
 @SideOnly(Side.CLIENT)
-public class GamePartBlueItemRender implements IItemRenderer
+public class GamePartItemRender implements IItemRenderer
 {
 
-    private TileEntityGamePartBlue tile = new TileEntityGamePartBlue ();
+    private TileEntityGamePart tile = new TileEntityGamePart ();
 
 
+    ResourceLocation Texutre = new ResourceLocation("textures/blocks/hardened_clay.png");
 
 	@Override
 	public boolean handleRenderType(ItemStack item, ItemRenderType type) {
@@ -40,7 +47,25 @@ public class GamePartBlueItemRender implements IItemRenderer
 
 	@Override
 	public void renderItem(ItemRenderType type, ItemStack item, Object... data) {
-            TileEntityRenderer.instance.renderTileEntityAt(this.tile, 0.0D, -0.1D, 0.0D, 0.0F);
+		
+		
+		 GL11.glPushMatrix();
+         GL11.glTranslatef(0.5F, 1.4F, 0.5F);
+
+         
+         Minecraft.getMinecraft().renderEngine.bindTexture(Texutre);
+		
+        GamePartModel model = new GamePartModel();
+        
+        
+        GL11.glPushMatrix();
+        GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
+        
+        model.render((Entity)null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F, true, true, item.getItemDamage());
+        
+        
+        GL11.glPopMatrix();
+        GL11.glPopMatrix();
         
 	}
 }

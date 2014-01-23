@@ -9,16 +9,8 @@ import net.minecraftforge.common.MinecraftForge;
 import Mod.Block.ModBlocks;
 import Mod.Entity.EntityPowerArrow;
 import Mod.Entity.EntitySilverArrow;
-import Mod.GamePart.GamePartBlueItemRender;
-import Mod.GamePart.GamePartGreenItemRender;
-import Mod.GamePart.GamePartNullItemRender;
-import Mod.GamePart.GamePartRedItemRender;
-import Mod.GamePart.GamePartYellowItemRender;
-import Mod.GamePart.TileEntityGamePartBlue;
-import Mod.GamePart.TileEntityGamePartGreen;
-import Mod.GamePart.TileEntityGamePartNull;
-import Mod.GamePart.TileEntityGamePartRed;
-import Mod.GamePart.TileEntityGamePartYellow;
+import Mod.GamePart.GamePartItemRender;
+import Mod.GamePart.TileEntityGamePart;
 import Mod.Gui.GuiListener;
 import Mod.ItemRender.ComputerItemRender;
 import Mod.ItemRender.DisarmTrapItemRender;
@@ -35,7 +27,6 @@ import Mod.Network.PacketTypeHandler;
 import Mod.Render.PowerArrowRender;
 import Mod.Render.SilverArrowRender;
 import Mod.Tick.ClientTickHandler;
-import Mod.Tick.ServerTickHandler;
 import Mod.TileEntity.ModTileEntity;
 import Mod.TileEntity.TileEntityBin;
 import Mod.TileEntity.TileEntityComputer;
@@ -74,11 +65,8 @@ public class ClientProxy extends ServerProxy{
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityItemPedestal.class, new TileEntityItemPedestalRender());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMiningChamber.class, new TileEntityMiningChamberRender());
         
-        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityGamePartRed.class, new TileEntityGamePartRender("red"));
-        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityGamePartBlue.class, new TileEntityGamePartRender("blue"));
-        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityGamePartGreen.class, new TileEntityGamePartRender("green"));
-        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityGamePartYellow.class, new TileEntityGamePartRender("yellow"));
-        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityGamePartNull.class, new TileEntityGamePartRender("white"));
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityGamePart.class, new TileEntityGamePartRender());
+
         
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPillar.class, new TileEntityPillarRender());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTable.class, new TileEntityTableRender());
@@ -100,12 +88,7 @@ public class ClientProxy extends ServerProxy{
         MinecraftForgeClient.registerItemRenderer(ModBlocks.Computer.blockID, new ComputerItemRender());
         
         
-        MinecraftForgeClient.registerItemRenderer(ModBlocks.GamePartBlue.blockID, new GamePartBlueItemRender());
-        MinecraftForgeClient.registerItemRenderer(ModBlocks.GamePartRed.blockID, new GamePartRedItemRender());
-        MinecraftForgeClient.registerItemRenderer(ModBlocks.GamePartGreen.blockID, new GamePartGreenItemRender());
-        MinecraftForgeClient.registerItemRenderer(ModBlocks.GamePartYellow.blockID, new GamePartYellowItemRender());
-        
-        MinecraftForgeClient.registerItemRenderer(ModBlocks.GamePartNull.blockID, new GamePartNullItemRender());
+        MinecraftForgeClient.registerItemRenderer(ModBlocks.GamePart.blockID, new GamePartItemRender());
         
         MinecraftForgeClient.registerItemRenderer(ModBlocks.Table.blockID, new TableItemRender());
 

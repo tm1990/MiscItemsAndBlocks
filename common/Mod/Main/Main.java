@@ -13,11 +13,7 @@ import net.minecraftforge.common.MinecraftForge;
 import Mod.Block.ModBlocks;
 import Mod.Entity.EntityPowerArrow;
 import Mod.Entity.EntitySilverArrow;
-import Mod.GamePart.TileEntityGamePartBlue;
-import Mod.GamePart.TileEntityGamePartGreen;
-import Mod.GamePart.TileEntityGamePartNull;
-import Mod.GamePart.TileEntityGamePartRed;
-import Mod.GamePart.TileEntityGamePartYellow;
+import Mod.GamePart.TileEntityGamePart;
 import Mod.Gui.GuiHandler;
 import Mod.Items.ModItems;
 import Mod.Lib.Crafting;
@@ -111,7 +107,6 @@ public void preInit(FMLPreInitializationEvent event) {
 	
 	
 	//TODO Continue locolazation support. 
-    //TODO Chat block which allows players to join diffrent chats in a gui
 	
     	
 	GameRegistry.registerCraftingHandler(new ModCraftingHandler());
@@ -166,9 +161,15 @@ public void preInit(FMLPreInitializationEvent event) {
         EntityRegistry.registerGlobalEntityID(EntityPowerArrow.class, "PowerArrow", EntityRegistry.findGlobalUniqueEntityId());
         EntityRegistry.registerModEntity(EntityPowerArrow.class, "PowerArrow", 1, this, 128, 1, true);
     	
-        LanguageRegistry.instance().addStringLocalization("itemGroup."+Refrence.Mod_Name, "en_US", Refrence.Mod_Name);
+        LanguageRegistry.instance().addStringLocalization("itemGroup."+Refrence.Mod_Name, "en_US", Refrence.Mod_Id);
         LanguageRegistry.instance().addStringLocalization("entity.SilverArrow.name", "Silver Arrow");
         LanguageRegistry.instance().addStringLocalization("entity.PowerArrow.name", "Power Arrow");
+        
+        LanguageRegistry.instance().addStringLocalization("item.GamePart.Number.0.name", "Blank Game Piece");
+        LanguageRegistry.instance().addStringLocalization("item.GamePart.Number.1.name", "Red Game Piece");
+        LanguageRegistry.instance().addStringLocalization("item.GamePart.Number.2.name", "Blue Game Piece");
+        LanguageRegistry.instance().addStringLocalization("item.GamePart.Number.3.name", "Green Game Piece");
+        LanguageRegistry.instance().addStringLocalization("item.GamePart.Number.4.name", "Yellow Game Piece");
         
         GameRegistry.registerTileEntity(TileEntityXpStorage.class, "XpStorage");
         GameRegistry.registerTileEntity(TileEntityBin.class, "TileEntityBin");
@@ -188,11 +189,7 @@ public void preInit(FMLPreInitializationEvent event) {
         GameRegistry.registerTileEntity(TileEntityGenerator.class, "TileEntityGenerator");
         GameRegistry.registerTileEntity(TileEntityPowerCable.class, "TileEntityPowerCable");
         
-        GameRegistry.registerTileEntity(TileEntityGamePartRed.class, "TileEntityGamePartRed");
-        GameRegistry.registerTileEntity(TileEntityGamePartBlue.class, "TileEntityGamePartBlue");
-        GameRegistry.registerTileEntity(TileEntityGamePartGreen.class, "TileEntityGamePartGreen");
-        GameRegistry.registerTileEntity(TileEntityGamePartYellow.class, "TileEntityGamePartYellow");
-        GameRegistry.registerTileEntity(TileEntityGamePartNull.class, "TileEntityGamePartNull");
+        GameRegistry.registerTileEntity(TileEntityGamePart.class, "TileEntityGamePart");
         GameRegistry.registerTileEntity(TileEntityPillar.class, "TileEntityPillar");
         GameRegistry.registerTileEntity(TileEntityTimedBlock.class, "TileEntityTimedBLock");
         GameRegistry.registerTileEntity(TileEntityElectricFurnace.class, "TileEntityElectricFurnace");
@@ -227,7 +224,13 @@ public void preInit(FMLPreInitializationEvent event) {
 	    public ItemStack getIconItemStack() {
 	            return new ItemStack(ModItems.XpExtractor, 1, 0);
 	    }
-	};
+	    
+	    public boolean hasSearchBar()
+	    {
+	        return true;
+	    }
+	    
+	}.setBackgroundImageName("item_search.png");
 	
     public static int getNetId()
     {

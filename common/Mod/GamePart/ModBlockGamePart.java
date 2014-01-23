@@ -1,54 +1,39 @@
 package Mod.GamePart;
 
+import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import Mod.Lib.ModConfig;
-import Mod.Lib.Refrence;
+import Mod.Block.ModBlocks;
 
 public class ModBlockGamePart extends BlockContainer{
 
 
-	private String Name;
 	
-	public ModBlockGamePart(int par1, String Name){
+	public ModBlockGamePart(int par1){
 		super(par1, Material.rock);
-		this.Name = Name;
 		this.setHardness(1F);
 	}
 
 	@Override
 	public TileEntity createNewTileEntity(World world) {
-
-		
-		if(Name == "Blue"){
-
-			return new TileEntityGamePartBlue();
-		}
-		
-		if(Name == "Red"){
-
-			return new TileEntityGamePartRed();
-		}
-		
-		if(Name == "Yellow"){
-			
-			return new TileEntityGamePartYellow();
-		}
-		
-		if(Name == "Green"){
-
-			return new TileEntityGamePartGreen();
-		}
 				
-		return new TileEntityGamePartNull();
+		return new TileEntityGamePart();
 		}
+	
+    public int damageDropped(int par1)
+    {
+        return par1;
+    }
 	
 	@Override
 	public boolean shouldSideBeRendered(IBlockAccess iblockaccess, int i, int j, int k, int l)
@@ -74,31 +59,14 @@ public class ModBlockGamePart extends BlockContainer{
 
     public void registerIcons(IconRegister par1IconRegister)
     {
-    	
-    	if(Name != "null"){
-    		
-    		if(Name == "Yellow")
-    	    	this.blockIcon = par1IconRegister.registerIcon("hardened_clay_stained_yellow");
-    		
-    		if(Name == "Green")
-    	    	this.blockIcon = par1IconRegister.registerIcon("hardened_clay_stained_green");
-    		
-    		if(Name == "Red")
-    	    	this.blockIcon = par1IconRegister.registerIcon("hardened_clay_stained_red");
-    		
-    		if(Name == "Blue")
-    	    	this.blockIcon = par1IconRegister.registerIcon("hardened_clay_stained_blue");
-    		
-    		
-    		
-    	}else{
+
         	this.blockIcon = par1IconRegister.registerIcon("quartz_block_side");
-    	}
     }
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
     {
-        int Id;
+        int Meta;
+    	int Id = world.getBlockId(x, y, z);
         
     	if(player.inventory.getCurrentItem() == null){
     	
@@ -107,14 +75,14 @@ public class ModBlockGamePart extends BlockContainer{
     	String Direction = DirectionMath == 0 ? "south" : DirectionMath == 1 ? "west" : DirectionMath == 2 ? "north" : "east";
     	
 		  
-		  Id = world.getBlockId(x, y, z);
+		  Meta = world.getBlockMetadata(x, y, z);
       
     	if(Direction == "south"){
     		
-  		  if(world.getBlockId(x, y, z + 1) == Id && world.getBlockId(x, y + 1, z + 1) == 0){
+  		  if(world.getBlockMetadata(x, y, z + 1) == Meta && Id == ModBlocks.GamePart.blockID && world.getBlockId(x, y + 1, z + 1) == 0){
 			  
     		  world.setBlock(x, y, z, 0);
-    		  world.setBlock(x, y + 1, z + 1, Id);
+    		  world.setBlock(x, y + 1, z + 1, ModBlocks.GamePart.blockID, Meta, 2);
     		  
 		  }else{
     	  
@@ -122,7 +90,7 @@ public class ModBlockGamePart extends BlockContainer{
     		  
 
     		  world.setBlock(x, y, z, 0);
-    		  world.setBlock(x, y, z + 1, Id);
+    		  world.setBlock(x, y, z + 1, ModBlocks.GamePart.blockID, Meta, 2);
     	  }
     		  
     	  
@@ -134,18 +102,18 @@ public class ModBlockGamePart extends BlockContainer{
 
     	if(Direction == "west"){
     		
-  		  if(world.getBlockId(x - 1, y, z) == Id && world.getBlockId(x - 1, y + 1, z) == 0){
+  		  if(world.getBlockMetadata(x - 1, y, z) == Meta && Id == ModBlocks.GamePart.blockID && world.getBlockId(x - 1, y + 1, z) == 0){
 			  
     		  world.setBlock(x, y, z, 0);
-    		  world.setBlock(x - 1, y + 1, z, Id);
+    		  world.setBlock(x - 1, y + 1, z, ModBlocks.GamePart.blockID, Meta, 2);
     		  
 		  }else{
     	  
-    	  if(world.getBlockId(x - 1, y,z) == Block.tallGrass.blockID || world.getBlockId(x - 1, y,z) == 0){
+    	  if(world.getBlockId(x - 1, y, z) == Block.tallGrass.blockID || world.getBlockId(x - 1, y,z) == 0){
 
     		  
     		  world.setBlock(x, y, z, 0);
-    		  world.setBlock(x - 1, y, z, Id);
+    		  world.setBlock(x - 1, y, z, ModBlocks.GamePart.blockID, Meta , 2);
 
     	  }
     		  
@@ -156,10 +124,10 @@ public class ModBlockGamePart extends BlockContainer{
       if(Direction == "north"){
     	  
 		  
-		  if(world.getBlockId(x, y, z - 1) == Id && world.getBlockId(x, y + 1, z - 1) == 0){
+		  if(world.getBlockMetadata(x, y, z - 1) == Meta && Id == ModBlocks.GamePart.blockID && world.getBlockId(x, y + 1, z - 1) == 0){
 			  
     		  world.setBlock(x, y, z, 0);
-    		  world.setBlock(x, y + 1, z - 1, Id);
+    		  world.setBlock(x, y + 1, z - 1, ModBlocks.GamePart.blockID, Meta , 2);
     		  
 		  }else{
 			  
@@ -167,7 +135,7 @@ public class ModBlockGamePart extends BlockContainer{
 
     		  
     		  world.setBlock(x, y, z, 0);
-    		  world.setBlock(x, y, z - 1, Id);
+    		  world.setBlock(x, y, z - 1, ModBlocks.GamePart.blockID, Meta , 2);
     		  
     		  
     		  
@@ -179,17 +147,17 @@ public class ModBlockGamePart extends BlockContainer{
       if(Direction == "east"){
     	  
 		  
-		  if(world.getBlockId(x + 1, y, z) == Id && world.getBlockId(x + 1, y + 1, z) == 0){
+		  if(world.getBlockMetadata(x + 1, y, z) == Meta && Id == ModBlocks.GamePart.blockID && world.getBlockId(x + 1, y + 1, z) == 0){
 			  
     		  world.setBlock(x, y, z, 0);
-    		  world.setBlock(x + 1, y + 1, z, Id);
+    		  world.setBlock(x + 1, y + 1, z, ModBlocks.GamePart.blockID, Meta , 2);
     		  
 		  }else{
     	  
     	  if(world.getBlockId(x + 1, y,z) == Block.tallGrass.blockID || world.getBlockId(x + 1, y,z) == 0){
     		  
     		  world.setBlock(x, y, z, 0);
-    		  world.setBlock(x + 1, y, z, Id);
+    		  world.setBlock(x + 1, y, z, ModBlocks.GamePart.blockID, Meta , 2);
 
     		  }
     		  
@@ -220,10 +188,11 @@ public class ModBlockGamePart extends BlockContainer{
     
     public void setBlockBoundsBasedOnState(IBlockAccess block, int x, int y, int z) {
     	
-		 int Id = block.getBlockId(x, y, z);
+		 int Meta = block.getBlockMetadata(x, y, z);
+    	int Id = block.getBlockId(x, y, z);
     	
     	
-		 if(block.getBlockId(x, y + 1, z) == Id && block.getBlockId(x, y - 1, z) == Id){
+		 if(block.getBlockMetadata(x, y + 1, z) == Meta && block.getBlockMetadata(x, y - 1, z) == Meta && Id == ModBlocks.GamePart.blockID){
 				this.setBlockBounds(0.2F, 0, 0.2F, 0.8F, 1, 0.8F);
 		 }else{
 				this.setBlockBounds(0.1F, 0, 0.1F, 0.9F, 1, 0.9F);
@@ -237,9 +206,10 @@ public class ModBlockGamePart extends BlockContainer{
     	if(world.getBlockId(x, y - 1, z) == 0 || world.getBlockId(x, y - 1, z) == Block.tallGrass.blockID){
     		
     		int BlockID = world.getBlockId(x, y, z);
+    		int Meta = world.getBlockMetadata(x, y, z);
     		
     		world.setBlock(x, y, z, 0);
-    		world.setBlock(x, y - 1, z, BlockID);
+    		world.setBlock(x, y - 1, z, BlockID, Meta, 2);
     		
     	}
 
@@ -247,7 +217,15 @@ public class ModBlockGamePart extends BlockContainer{
     }
     
     
-    
+    public void getSubBlocks(int id, CreativeTabs tabs, List list)
+    {
+        list.add(new ItemStack(id, 1, 0));
+        list.add(new ItemStack(id, 1, 1));
+        list.add(new ItemStack(id, 1, 2));
+        list.add(new ItemStack(id, 1, 3));
+        list.add(new ItemStack(id, 1, 4));
+        
+    }
     
 
 }

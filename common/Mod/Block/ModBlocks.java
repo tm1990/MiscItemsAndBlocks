@@ -67,11 +67,7 @@ public class ModBlocks {
 	public static Block MachinePart;
 
 	
-	public static Block GamePartRed;
-	public static Block GamePartBlue;
-	public static Block GamePartGreen;
-	public static Block GamePartYellow;
-	public static Block GamePartNull;
+	public static Block GamePart;
 	
 	
 	public static ModBlockStair StoneStair;
@@ -108,20 +104,9 @@ public class ModBlocks {
         SpeedBlock = new ModBlockSpeedBlock(ModConfig.SpeedBlock).setUnlocalizedName("SpeedBlock");
         Register(SpeedBlock, "Speed Block", true);
         
-        GamePartRed = new ModBlockGamePart(ModConfig.GamePartRed, "Red").setUnlocalizedName("GamePieceRed");
-        Register(GamePartRed, ModItemBlockGamePiece.class, "Game Piece [Red]", true);
-        
-        GamePartBlue = new ModBlockGamePart(ModConfig.GamePartBlue, "Blue").setUnlocalizedName("GamePieceBlue");
-        Register(GamePartBlue, ModItemBlockGamePiece.class,"Game Piece [Blue]", true);
-        
-        GamePartGreen = new ModBlockGamePart(ModConfig.GamePartGreen, "Green").setUnlocalizedName("GamePieceGreen");
-        Register(GamePartGreen, ModItemBlockGamePiece.class, "Game Piece [Green]", true);
-        
-        GamePartYellow = new ModBlockGamePart(ModConfig.GamePartYellow, "Yellow").setUnlocalizedName("GamePieceYellow");
-        Register(GamePartYellow, ModItemBlockGamePiece.class, "Game Piece [Yellow]", true);
-        
-        GamePartNull = new ModBlockGamePart(ModConfig.GamePartNull, "").setUnlocalizedName("GamePieceNull");
-        Register(GamePartNull, ModItemBlockGamePiece.class, "Game Piece [Default]", true);
+        GamePart = new ModBlockGamePart(ModConfig.GamePart).setUnlocalizedName("GamePiece");
+        Register(GamePart, ModItemBlockGamePiece.class, "Game Piece", true);
+
         
         Pillar = new ModBlockPillar(ModConfig.Pillar).setUnlocalizedName("Pillar");
         Register(Pillar, ModItemBlockPillar.class,"Pillar", true);

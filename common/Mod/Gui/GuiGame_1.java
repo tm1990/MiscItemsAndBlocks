@@ -70,11 +70,11 @@ public class GuiGame_1 extends GuiScreen
     
 	
 	
-	public GuiGame_1(String player1, String player2){
+	public GuiGame_1(String player2, String player1){
 		
 		
-		player_1 = Minecraft.getMinecraft().theWorld.getPlayerEntityByName(player1);
 		player_2 = Minecraft.getMinecraft().theWorld.getPlayerEntityByName(player2);
+		player_1 = Minecraft.getMinecraft().theWorld.getPlayerEntityByName(player1);
 		
 
 		CurrentPlayer = player_1;

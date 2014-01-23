@@ -118,12 +118,8 @@ public class Crafting {
 
 	        GameRegistry.addRecipe(new ItemStack(ModBlocks.ElectricFurnace), new Object[]{"PMP", "PFP", "PCP", 'P', new ItemStack(ModItems.IronPlate, 1, 2), 'M', ModBlocks.MachinePart, 'F', Block.furnaceIdle, 'C', new ItemStack(ModItems.Circuit, 1, 1)});
 	        
-	        GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.GamePartNull, 4), new Object[]{"III", " I ", "III", 'I', Item.ingotIron});
-	        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.GamePartGreen), new Object[]{ModBlocks.GamePartNull, new ItemStack(Item.dyePowder, 1, 2)});
-	        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.GamePartRed), new Object[]{ModBlocks.GamePartNull, new ItemStack(Item.dyePowder, 1, 1)});
-	        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.GamePartYellow), new Object[]{ModBlocks.GamePartNull, new ItemStack(Item.dyePowder, 1, 11)});
-	        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.GamePartBlue), new Object[]{ModBlocks.GamePartNull, new ItemStack(Item.dyePowder, 1, 4)});
-			
+	        GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.GamePart, 4), new Object[]{"III", " I ", "III", 'I', Item.ingotIron});
+
 	        GameRegistry.addShapelessRecipe(new ItemStack(ModItems.PizzaRaw), ModItems.Cheese, ModItems.PizzaBottom, new ItemStack(ModItems.Liquid, 1, 1), Item.fishCooked);
 	        GameRegistry.addShapelessRecipe(new ItemStack(ModItems.PizzaRaw, 1, 1), ModItems.Cheese, ModItems.PizzaBottom, new ItemStack(ModItems.Liquid, 1, 1), Item.porkCooked);
 	        GameRegistry.addShapelessRecipe(new ItemStack(ModItems.PizzaRaw, 1, 2), ModItems.Cheese, ModItems.PizzaBottom, new ItemStack(ModItems.Liquid, 1, 1), Item.beefCooked);

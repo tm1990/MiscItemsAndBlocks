@@ -178,9 +178,9 @@ private Icon _icon4;
 
 			if(useRemaining > 71999)  return _icon1;
 
-			if(useRemaining > 71920) return _icon2;
+			if(useRemaining > 71980) return _icon2;
 			
-			if(useRemaining > 71870) return _icon3;
+			if(useRemaining > 71972) return _icon3;
 			
 			return _icon4;
             
