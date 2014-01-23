@@ -8,6 +8,8 @@ import net.minecraftforge.oredict.OreDictionary;
 import Mod.GamePart.ModBlockGamePart;
 import Mod.ItemBlock.ModItemBlockBox;
 import Mod.ItemBlock.ModItemBlockComputer;
+import Mod.ItemBlock.ModItemBlockDice;
+import Mod.ItemBlock.ModItemBlockDiceHolder;
 import Mod.ItemBlock.ModItemBlockDisarmTrap;
 import Mod.ItemBlock.ModItemBlockGamePiece;
 import Mod.ItemBlock.ModItemBlockItemPedestal;
@@ -69,6 +71,8 @@ public class ModBlocks {
 	
 	public static Block GamePart;
 	
+	public static Block DiceHolder;
+	
 	
 	public static ModBlockStair StoneStair;
 	
@@ -99,7 +103,7 @@ public class ModBlocks {
         Register(CraftingInv, "Worktable", true);
         
         Dice = new ModBlockDice(ModConfig.Dice).setUnlocalizedName("Dice");
-        Register(Dice, "Dice", true);
+        Register(Dice, ModItemBlockDice.class, "Dice", true);
         
         SpeedBlock = new ModBlockSpeedBlock(ModConfig.SpeedBlock).setUnlocalizedName("SpeedBlock");
         Register(SpeedBlock, "Speed Block", true);
@@ -183,6 +187,9 @@ public class ModBlocks {
         StorageBlock = new ModBlockStorageBlock(ModConfig.StorageBlock).setUnlocalizedName("StorageBlock");
         Register(StorageBlock, ModItemBlockStorageBlock.class, "Storage Block", true);
         
+        
+        DiceHolder = new ModBlockDiceHolder(ModConfig.DiceHolder).setUnlocalizedName("DiceHolder");
+        Register(DiceHolder, ModItemBlockDiceHolder.class, "Dice Stand", true);
         
         
         

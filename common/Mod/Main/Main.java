@@ -31,6 +31,7 @@ import Mod.TileEntity.TileEntityBox;
 import Mod.TileEntity.TileEntityCharger;
 import Mod.TileEntity.TileEntityComputer;
 import Mod.TileEntity.TileEntityCraftingInv;
+import Mod.TileEntity.TileEntityDiceHolder;
 import Mod.TileEntity.TileEntityDisarmTrap;
 import Mod.TileEntity.TileEntityElectricFurnace;
 import Mod.TileEntity.TileEntityGenerator;
@@ -197,6 +198,8 @@ public void preInit(FMLPreInitializationEvent event) {
         GameRegistry.registerTileEntity(TileEntityPaintBlock.class, "TileEntityPaintBlock");
         GameRegistry.registerTileEntity(TileEntityComputer.class, "TileEntityComputer");
         GameRegistry.registerTileEntity(TileEntityStorageBlock.class, "TileEntityStorageBlock");
+        
+        GameRegistry.registerTileEntity(TileEntityDiceHolder.class, "TileEntityDiceHolder");
         
         
         GameRegistry.registerWorldGenerator(new ModWorldGenerator());

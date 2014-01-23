@@ -13,6 +13,7 @@ import Mod.GamePart.GamePartItemRender;
 import Mod.GamePart.TileEntityGamePart;
 import Mod.Gui.GuiListener;
 import Mod.ItemRender.ComputerItemRender;
+import Mod.ItemRender.DiceHolderItemRender;
 import Mod.ItemRender.DisarmTrapItemRender;
 import Mod.ItemRender.ItemPedestalItemRender;
 import Mod.ItemRender.MiningChamberItemRender;
@@ -30,6 +31,7 @@ import Mod.Tick.ClientTickHandler;
 import Mod.TileEntity.ModTileEntity;
 import Mod.TileEntity.TileEntityBin;
 import Mod.TileEntity.TileEntityComputer;
+import Mod.TileEntity.TileEntityDiceHolder;
 import Mod.TileEntity.TileEntityDisarmTrap;
 import Mod.TileEntity.TileEntityItemPedestal;
 import Mod.TileEntity.TileEntityMiningChamber;
@@ -38,6 +40,7 @@ import Mod.TileEntity.TileEntityPowerCable;
 import Mod.TileEntity.TileEntityTable;
 import Mod.TileEntityRenderer.TileEntityBinRender;
 import Mod.TileEntityRenderer.TileEntityComputerRender;
+import Mod.TileEntityRenderer.TileEntityDiceHolderRender;
 import Mod.TileEntityRenderer.TileEntityDisarmTrapRenderer;
 import Mod.TileEntityRenderer.TileEntityGamePartRender;
 import Mod.TileEntityRenderer.TileEntityItemPedestalRender;
@@ -72,6 +75,7 @@ public class ClientProxy extends ServerProxy{
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTable.class, new TileEntityTableRender());
         
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityComputer.class, new TileEntityComputerRender());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityDiceHolder.class, new TileEntityDiceHolderRender());
         
         
         RenderingRegistry.registerEntityRenderingHandler(EntitySilverArrow.class, new SilverArrowRender());
@@ -91,6 +95,8 @@ public class ClientProxy extends ServerProxy{
         MinecraftForgeClient.registerItemRenderer(ModBlocks.GamePart.blockID, new GamePartItemRender());
         
         MinecraftForgeClient.registerItemRenderer(ModBlocks.Table.blockID, new TableItemRender());
+        
+        MinecraftForgeClient.registerItemRenderer(ModBlocks.DiceHolder.blockID, new DiceHolderItemRender());
 
 }
     

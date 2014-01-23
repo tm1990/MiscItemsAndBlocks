@@ -16,6 +16,7 @@ public class Crafting {
 	public static void RegisterRecipes(){
 		
 		
+		GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.DiceHolder), new Object[]{ModBlocks.ItemPedestal, ModBlocks.Dice});
 		
 		GameRegistry.addRecipe(new ItemStack(ModBlocks.Computer), new Object[]{"IBI", "PCB", "IBT", 'I', Item.ingotIron, 'B', Block.blockIron, 'P', Block.thinGlass, 'C', new ItemStack(ModItems.Circuit, 1, 1), 'R', Item.redstone, 'T', Block.blockRedstone});
 		GameRegistry.addRecipe(new ItemStack(ModBlocks.StorageBlock), new Object[]{"ICI", "CBC", "ICI", 'I', Block.blockIron, 'C', Block.chest, 'B', ModBlocks.Box});

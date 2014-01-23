@@ -56,6 +56,8 @@ public class ModConfig {
 	
 	public static int GamePart;
 	
+	public static int DiceHolder;
+	
 	/** Items **/
 	public static int XpExtractor;
 	public static int SilverIngot;
@@ -142,6 +144,7 @@ public class ModConfig {
 		Dice = config.getBlock("Blocks", "Dice Id", 608).getInt();
 		
 		GamePart = config.getBlock("Blocks", "Game piece Id", 609).getInt();
+		DiceHolder = config.getBlock("Blocks", "Dice Holder Id", 610).getInt();
 
 		
 		SpeedBlock = config.getBlock("Blocks", "Speed Block Id", 614).getInt();
