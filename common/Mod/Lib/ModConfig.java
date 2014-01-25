@@ -33,6 +33,8 @@ public class ModConfig {
 	
 	public static int Computer;
 	
+	public static int Teleporter;
+	
 	public static int PaintBlock;
 	
 	public static int ElFurnace;
@@ -95,6 +97,7 @@ public class ModConfig {
 	
 	public static int HeatDrill;
 	
+	public static int DataChip;
 	
 	public static int Orange;
 	
@@ -145,6 +148,7 @@ public class ModConfig {
 		
 		GamePart = config.getBlock("Blocks", "Game piece Id", 609).getInt();
 		DiceHolder = config.getBlock("Blocks", "Dice Holder Id", 610).getInt();
+		Teleporter = config.getBlock("Blocks", "Teleporter Id", 611).getInt();
 
 		
 		SpeedBlock = config.getBlock("Blocks", "Speed Block Id", 614).getInt();
@@ -227,6 +231,8 @@ public class ModConfig {
         FloatBlockPlacer = config.getItem("Item", "Float Block Placer Id", 22037).getInt();
         AntiFallChest = config.getItem("Item", "Anti Fall Chestplate Id", 22038).getInt();
         InfoScreenHelmet = config.getItem("Item", "Info Screen Helmet Id", 22039).getInt();
+        
+        DataChip = config.getItem("Item", "Data Chip Id", 22040).getInt();
 
         
         SpawnParticles = config.get("Settings", "Spawn particles?", true).getBoolean(true);

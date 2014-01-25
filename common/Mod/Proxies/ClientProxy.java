@@ -20,6 +20,7 @@ import Mod.ItemRender.MiningChamberItemRender;
 import Mod.ItemRender.PillarItemRender;
 import Mod.ItemRender.PowerCableItemRender;
 import Mod.ItemRender.TableItemRender;
+import Mod.ItemRender.TeleporterItemRender;
 import Mod.ItemRender.TrashBinItemRender;
 import Mod.Lib.Colours;
 import Mod.Misc.ItemHelper;
@@ -38,6 +39,7 @@ import Mod.TileEntity.TileEntityMiningChamber;
 import Mod.TileEntity.TileEntityPillar;
 import Mod.TileEntity.TileEntityPowerCable;
 import Mod.TileEntity.TileEntityTable;
+import Mod.TileEntity.TileEntityTeleporter;
 import Mod.TileEntityRenderer.TileEntityBinRender;
 import Mod.TileEntityRenderer.TileEntityComputerRender;
 import Mod.TileEntityRenderer.TileEntityDiceHolderRender;
@@ -48,6 +50,7 @@ import Mod.TileEntityRenderer.TileEntityMiningChamberRender;
 import Mod.TileEntityRenderer.TileEntityPillarRender;
 import Mod.TileEntityRenderer.TileEntityPowerCableRender;
 import Mod.TileEntityRenderer.TileEntityTableRender;
+import Mod.TileEntityRenderer.TileEntityTeleporterRender;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
@@ -76,6 +79,7 @@ public class ClientProxy extends ServerProxy{
         
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityComputer.class, new TileEntityComputerRender());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityDiceHolder.class, new TileEntityDiceHolderRender());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTeleporter.class, new TileEntityTeleporterRender());
         
         
         RenderingRegistry.registerEntityRenderingHandler(EntitySilverArrow.class, new SilverArrowRender());
@@ -97,6 +101,7 @@ public class ClientProxy extends ServerProxy{
         MinecraftForgeClient.registerItemRenderer(ModBlocks.Table.blockID, new TableItemRender());
         
         MinecraftForgeClient.registerItemRenderer(ModBlocks.DiceHolder.blockID, new DiceHolderItemRender());
+        MinecraftForgeClient.registerItemRenderer(ModBlocks.Teleporter.blockID, new TeleporterItemRender());
 
 }
     

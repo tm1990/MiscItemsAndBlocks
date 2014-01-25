@@ -2,6 +2,8 @@ package Mod.Items;
 
 import java.util.List;
 
+import org.lwjgl.input.Keyboard;
+
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -28,7 +30,11 @@ public class ModItemFlour extends Item{
 	    @Override
 	    public void addInformation(ItemStack itemstack, EntityPlayer player, List list, boolean par4)
 	    {
+	    	if(Keyboard.isKeyDown(42)){
 	            list.add(StatCollector.translateToLocal("items.desc.flour"));
+	    	}else{
+	    		list.add("< Hold shift for info >");
+	    	}
 	    }
 	
 }

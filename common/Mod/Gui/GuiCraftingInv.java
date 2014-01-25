@@ -61,10 +61,5 @@ this.ySize = 197;
 		buttonList.add(new GuiTipButton(1, guiLeft, guiTop, "?", Messages.WorktableTips));
 	}
 	
-	public static void setIsNEIActive(boolean bool){
-NEI_ACTIVE = bool;
-}
-public static boolean isNEIActive(){
-return NEI_ACTIVE;
-}
+
 }

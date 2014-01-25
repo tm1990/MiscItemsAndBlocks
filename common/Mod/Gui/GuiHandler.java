@@ -1,9 +1,6 @@
 package Mod.Gui;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import Mod.Container.ContainerBin;
@@ -19,9 +16,8 @@ import Mod.Container.ContainerPizzaOven;
 import Mod.Container.ContainerSolarPanel;
 import Mod.Container.ContainerSquezer;
 import Mod.Container.ContainerStorageBlock;
+import Mod.Container.ContainerTeleporter;
 import Mod.Container.ContainerXpStorage;
-import Mod.Main.Main;
-import Mod.Network.PacketHandler;
 import Mod.TileEntity.TileEntityBin;
 import Mod.TileEntity.TileEntityBox;
 import Mod.TileEntity.TileEntityCharger;
@@ -35,8 +31,8 @@ import Mod.TileEntity.TileEntityOvenCore;
 import Mod.TileEntity.TileEntitySolarPanel;
 import Mod.TileEntity.TileEntitySquezer;
 import Mod.TileEntity.TileEntityStorageBlock;
+import Mod.TileEntity.TileEntityTeleporter;
 import Mod.TileEntity.TileEntityXpStorage;
-import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.network.IGuiHandler;
 
 public class GuiHandler implements IGuiHandler{
@@ -57,6 +53,10 @@ public class GuiHandler implements IGuiHandler{
         
         if(tile_entity instanceof TileEntityComputer){
         	return new ContainerComputer((TileEntityComputer)tile_entity);
+        }
+        
+        if(tile_entity instanceof TileEntityTeleporter){
+        	return new ContainerTeleporter(player.inventory, (TileEntityTeleporter)tile_entity);
         }
         
         if(tile_entity instanceof TileEntityStorageBlock){
@@ -158,7 +158,9 @@ public class GuiHandler implements IGuiHandler{
         }
 
 
-        
+        if(tile_entity instanceof TileEntityTeleporter){
+        	return new GuiTeleporter(player.inventory, (TileEntityTeleporter)tile_entity);
+        }
         
         if(tile_entity instanceof TileEntityStorageBlock){
         	return new GuiStorageBlock(player.inventory, (TileEntityStorageBlock)tile_entity);

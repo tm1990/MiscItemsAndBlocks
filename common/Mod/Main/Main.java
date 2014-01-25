@@ -46,6 +46,7 @@ import Mod.TileEntity.TileEntitySolarPanel;
 import Mod.TileEntity.TileEntitySquezer;
 import Mod.TileEntity.TileEntityStorageBlock;
 import Mod.TileEntity.TileEntityTable;
+import Mod.TileEntity.TileEntityTeleporter;
 import Mod.TileEntity.TileEntityTimedBlock;
 import Mod.TileEntity.TileEntityWindMill;
 import Mod.TileEntity.TileEntityXpStorage;
@@ -200,6 +201,7 @@ public void preInit(FMLPreInitializationEvent event) {
         GameRegistry.registerTileEntity(TileEntityStorageBlock.class, "TileEntityStorageBlock");
         
         GameRegistry.registerTileEntity(TileEntityDiceHolder.class, "TileEntityDiceHolder");
+        GameRegistry.registerTileEntity(TileEntityTeleporter.class, "TileEntityTeleporter");
         
         
         GameRegistry.registerWorldGenerator(new ModWorldGenerator());

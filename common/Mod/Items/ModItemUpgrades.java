@@ -25,6 +25,7 @@ public class ModItemUpgrades extends ModItemUpgradeItem{
 	public static Icon EmptySlot;
 	public static Icon LiquidSlot;
 	public static Icon FruitSlot;
+	public static Icon ChipSlot;
 
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IconRegister par1IconRegister)
@@ -38,6 +39,7 @@ public class ModItemUpgrades extends ModItemUpgradeItem{
 	    
    	 LiquidSlot = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "LiquidSlot");
    	 FruitSlot = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "FruitSlot");
+   	 ChipSlot = par1IconRegister.registerIcon(Refrence.Mod_Id + ":" + "ChipSlot");
 
 
 	}

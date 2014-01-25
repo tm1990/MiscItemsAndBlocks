@@ -57,7 +57,7 @@ public class ModItems {
 	public static Item HeatDrill;
 	
 	public static Item PaintBrush;
-	
+	public static Item DataChip;
 	
 	public static Item DivingHelmet;
 	public static Item FlightChestPlate;
@@ -195,6 +195,9 @@ public class ModItems {
         
         InfoScreenHelmet = new ModItemInfoScreenHelmet(ModConfig.InfoScreenHelmet, 1, 0).setUnlocalizedName("InfoScreenHelmet").setTextureName(Refrence.Mod_Id + ":InfoScreenHelmet");
         Register(InfoScreenHelmet, StatCollector.translateToLocal("items.name.infoscreen"));
+        
+        DataChip = new ModItemDataChip(ModConfig.DataChip).setUnlocalizedName("DataChip");
+        Register(DataChip, "Data Chip");
 		
 		
 	RegisterOreDictionary(new ItemStack(SilverIngot), "ingotSilver");

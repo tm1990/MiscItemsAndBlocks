@@ -2,6 +2,8 @@ package Mod.Items;
 
 import java.util.List;
 
+import org.lwjgl.input.Keyboard;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -46,6 +48,7 @@ public class ModItemAntiFallChest extends ModItemElArmor{
             list.add(StatCollector.translateToLocal("items.desc.string.powerleft") + ": " + i);
             if(itemstack.getItemDamage() == itemstack.getMaxDamage())
             	list.add(EnumChatFormatting.RED + StatCollector.translateToLocal("items.desc.string.outofpowerrecharge"));
+
 	    }
 	    
 	    

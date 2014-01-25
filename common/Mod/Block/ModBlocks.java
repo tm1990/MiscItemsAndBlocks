@@ -17,6 +17,7 @@ import Mod.ItemBlock.ModItemBlockMiningChamber;
 import Mod.ItemBlock.ModItemBlockPowerCable;
 import Mod.ItemBlock.ModItemBlockStorageBlock;
 import Mod.ItemBlock.ModItemBlockTable;
+import Mod.ItemBlock.ModItemBlockTeleporter;
 import Mod.ItemBlock.ModItemBlockTrashBin;
 import Mod.ItemBlock.ModItemXpStorageBlock;
 import Mod.Lib.ModConfig;
@@ -50,6 +51,8 @@ public class ModBlocks {
 	public static Block StorageBlock;
 	
 	public static Block Computer;
+	
+	public static Block Teleporter;
 	
 	public static Block PaintBlock;
 	
@@ -190,6 +193,10 @@ public class ModBlocks {
         
         DiceHolder = new ModBlockDiceHolder(ModConfig.DiceHolder).setUnlocalizedName("DiceHolder");
         Register(DiceHolder, ModItemBlockDiceHolder.class, "Dice Stand", true);
+
+        
+        Teleporter = new ModBlockTeleporter(ModConfig.Teleporter).setUnlocalizedName("Teleporter");
+        Register(Teleporter, ModItemBlockTeleporter.class, "Teleporter", true);
         
         
         

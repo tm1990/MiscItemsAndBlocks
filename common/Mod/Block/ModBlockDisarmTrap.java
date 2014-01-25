@@ -49,19 +49,7 @@ public class ModBlockDisarmTrap extends BlockContainer{
     {
 
     	if(player.isSneaking()){
-    		TileEntity tile_entity = world.getBlockTileEntity(x, y, z);
-    		if(tile_entity instanceof TileEntityDisarmTrap){
-    			TileEntityDisarmTrap tile = (TileEntityDisarmTrap)tile_entity;
-    			
-    			if(tile.GetBlock() == null){
-    				Block block = Block.blocksList[world.getBlockId(x, y - 1, z)];
-    				tile.SetBlock(block);
-    				
-    				
-    			}else{
-    				tile.SetBlock(null);
-    			}
-    		}
+
     	}else{
     		
         player.inventory.dropAllItems();	

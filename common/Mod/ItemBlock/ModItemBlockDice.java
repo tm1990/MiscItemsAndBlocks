@@ -14,6 +14,7 @@ public class ModItemBlockDice extends ItemBlock{
 		super(par1);
 		this.setMaxStackSize(1);
 		this.setMaxDamage(0);
+		this.setHasSubtypes(true);
 	}
 
     public boolean placeBlockAt(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ, int metadata)

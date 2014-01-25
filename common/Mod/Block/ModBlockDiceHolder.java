@@ -2,6 +2,7 @@ package Mod.Block;
 
 import java.util.Random;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -60,4 +61,32 @@ public class ModBlockDiceHolder extends BlockContainer{
 	    public void registerIcons(IconRegister icon) {
 	        this.blockIcon = icon.registerIcon("furnace_top");
 	}
+	    
+	    public boolean canConnectRedstone(IBlockAccess world, int x, int y, int z, int side)
+	    {
+	        return side != -1;
+	    }
+	    
+	    public void onNeighborBlockChange(World world, int x, int y, int z, int id) {
+	    	
+	    	
+	    	if(!world.isRemote){
+	    		
+	    		if(world.isBlockIndirectlyGettingPowered(x, y, z)){
+	    			if(id == Block.blockRedstone.blockID || id == Block.redstoneWire.blockID || id == Block.torchRedstoneActive.blockID || id == Block.redstoneRepeaterActive.blockID){
+	    				
+	    				
+
+	    		    	Random rand = new Random();
+	    		    	
+	    		    	world.setBlockMetadataWithNotify(x, y, z, rand.nextInt(7), 2);
+	    			}
+	    			
+	    		}
+	    		
+	    		
+	    		
+	    	}
+	    	
+	    }
 }

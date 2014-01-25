@@ -161,6 +161,10 @@ public class DiceHolderModel extends ModelBase
       setRotation(Shape14, 0F, 0F, 0F);
   }
   
+  float CurrentHight = 0F;
+  
+  boolean Down = false;
+  
   public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5, int Number, boolean Item)
   {
     super.render(entity, f, f1, f2, f3, f4, f5);
@@ -184,6 +188,27 @@ public class DiceHolderModel extends ModelBase
     Shape13.render(f5);
     Shape14.render(f5);
 
+
+    if(CurrentHight >= -0.20F && !Down){
+    	CurrentHight = CurrentHight - 0.0005F;
+    }else{
+    	Down = true;
+    	CurrentHight = CurrentHight + 0.0005F;
+    }
+    
+    if(CurrentHight >= 0)
+    	Down = false;
+    
+    
+    Dice1.offsetY = CurrentHight;
+    Dice2.offsetY = CurrentHight;
+    Dice3.offsetY = CurrentHight;
+    Dice4.offsetY = CurrentHight;
+    Dice5.offsetY = CurrentHight;
+    Dice6.offsetY = CurrentHight;
+    
+    
+    
     
     if(Number == 0 || Number == 1){
     Dice1.render(f5);
