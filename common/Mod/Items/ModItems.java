@@ -72,7 +72,7 @@ public class ModItems {
 	
 	
 	
-    public static EnumToolMaterial SilverMaterial = EnumHelper.addToolMaterial("Silver", 5, 527, 13.0F, 0.0F, 45);
+    public static EnumToolMaterial SilverMaterial = EnumHelper.addToolMaterial("Silver", 5, 257, 13.0F, 0.0F, 45);
     public static EnumArmorMaterial PowerArmor = EnumHelper.addArmorMaterial("PowerArmor", 37, new int[] {2, 4, 3, 2} , 30);
 	
 	public static void Init(){

@@ -53,6 +53,7 @@ public class ModBlocks {
 	public static Block Computer;
 	
 	public static Block Teleporter;
+	public static Block WireLessRedstone;
 	
 	public static Block PaintBlock;
 	
@@ -197,6 +198,9 @@ public class ModBlocks {
         
         Teleporter = new ModBlockTeleporter(ModConfig.Teleporter).setUnlocalizedName("Teleporter");
         Register(Teleporter, ModItemBlockTeleporter.class, "Teleporter", true);
+        
+        WireLessRedstone = new ModBlockWirelessRedstone(ModConfig.WireLessRedstone).setUnlocalizedName("WireLessRedstone");
+        Register(WireLessRedstone, "Wireless Redstone", true);
         
         
         

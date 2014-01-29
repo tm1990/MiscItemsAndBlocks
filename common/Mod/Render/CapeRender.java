@@ -94,7 +94,7 @@ public class CapeRender
                     }
                     else
                     {
-                        System.err.println("[Skyrave] [skins.txt] Syntax error on line " + linetracker + ": " + str);
+                        System.err.println("[MiscItemsAndBlocks] [skins.txt] [Url: " + serverLocation + "] Syntax error on line " + linetracker + ": " + str);
                     }
                 }
                 linetracker++;

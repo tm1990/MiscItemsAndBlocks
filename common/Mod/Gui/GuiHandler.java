@@ -17,6 +17,7 @@ import Mod.Container.ContainerSolarPanel;
 import Mod.Container.ContainerSquezer;
 import Mod.Container.ContainerStorageBlock;
 import Mod.Container.ContainerTeleporter;
+import Mod.Container.ContainerWirelessRedstone;
 import Mod.Container.ContainerXpStorage;
 import Mod.TileEntity.TileEntityBin;
 import Mod.TileEntity.TileEntityBox;
@@ -32,6 +33,7 @@ import Mod.TileEntity.TileEntitySolarPanel;
 import Mod.TileEntity.TileEntitySquezer;
 import Mod.TileEntity.TileEntityStorageBlock;
 import Mod.TileEntity.TileEntityTeleporter;
+import Mod.TileEntity.TileEntityWirelessRedstone;
 import Mod.TileEntity.TileEntityXpStorage;
 import cpw.mods.fml.common.network.IGuiHandler;
 
@@ -57,6 +59,10 @@ public class GuiHandler implements IGuiHandler{
         
         if(tile_entity instanceof TileEntityTeleporter){
         	return new ContainerTeleporter(player.inventory, (TileEntityTeleporter)tile_entity);
+        }
+        
+        if(tile_entity instanceof TileEntityWirelessRedstone){
+        	return new ContainerWirelessRedstone(player.inventory, (TileEntityWirelessRedstone)tile_entity);
         }
         
         if(tile_entity instanceof TileEntityStorageBlock){
@@ -155,6 +161,11 @@ public class GuiHandler implements IGuiHandler{
         	
             	return new GuiGame1Select();
             	
+        }
+        
+        
+        if(tile_entity instanceof TileEntityWirelessRedstone){
+        	return new GuiWirelessRedstone(player.inventory, (TileEntityWirelessRedstone)tile_entity);
         }
 
 

@@ -67,7 +67,7 @@ public class TileEntityXpStorage extends TileEntity implements IInventory{
 
 	@Override
 	public String getInvName() {
-		return "InvCrafting";
+		return "";
 	}
 
 	@Override
@@ -77,7 +77,7 @@ public class TileEntityXpStorage extends TileEntity implements IInventory{
 
 	@Override
 	public int getInventoryStackLimit() {
-		return 64;
+		return 0;
 	}
 
 	@Override
@@ -98,7 +98,6 @@ public class TileEntityXpStorage extends TileEntity implements IInventory{
 	}
 	
 	
-	int x = 0;
 	
 	public void receiveButtonEvent(byte buttonId) {
 		

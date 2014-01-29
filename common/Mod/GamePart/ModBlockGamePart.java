@@ -86,7 +86,7 @@ public class ModBlockGamePart extends BlockContainer{
     		  
 		  }else{
     	  
-    	  if(world.getBlockId(x, y, z + 1) == Block.tallGrass.blockID || world.getBlockId(x, y, z + 1) == 0 ){
+    	  if(world.getBlockId(x, y, z + 1) == Block.tallGrass.blockID || world.getBlockId(x, y, z + 1) == Block.waterStill.blockID || world.getBlockId(x, y, z + 1) == Block.waterMoving.blockID || world.getBlockId(x, y, z + 1) == 0 ){
     		  
 
     		  world.setBlock(x, y, z, 0);
@@ -109,7 +109,7 @@ public class ModBlockGamePart extends BlockContainer{
     		  
 		  }else{
     	  
-    	  if(world.getBlockId(x - 1, y, z) == Block.tallGrass.blockID || world.getBlockId(x - 1, y,z) == 0){
+    	  if(world.getBlockId(x - 1, y, z) == Block.tallGrass.blockID || world.getBlockId(x - 1, y, z) == Block.waterStill.blockID || world.getBlockId(x - 1, y, z) == Block.waterMoving.blockID || world.getBlockId(x - 1, y,z) == 0){
 
     		  
     		  world.setBlock(x, y, z, 0);
@@ -131,7 +131,7 @@ public class ModBlockGamePart extends BlockContainer{
     		  
 		  }else{
 			  
-    	  if(world.getBlockId(x, y, z - 1) == Block.tallGrass.blockID || world.getBlockId(x, y, z - 1) == 0){
+    	  if(world.getBlockId(x, y, z - 1) == Block.tallGrass.blockID || world.getBlockId(x, y, z - 1) == Block.waterStill.blockID || world.getBlockId(x, y, z - 1) == Block.waterMoving.blockID || world.getBlockId(x, y, z - 1) == 0){
 
     		  
     		  world.setBlock(x, y, z, 0);
@@ -154,7 +154,7 @@ public class ModBlockGamePart extends BlockContainer{
     		  
 		  }else{
     	  
-    	  if(world.getBlockId(x + 1, y,z) == Block.tallGrass.blockID || world.getBlockId(x + 1, y,z) == 0){
+    	  if(world.getBlockId(x + 1, y,z) == Block.tallGrass.blockID || world.getBlockId(x + 1, y, z) == Block.waterStill.blockID || world.getBlockId(x + 1, y, z) == Block.waterMoving.blockID || world.getBlockId(x + 1, y,z) == 0){
     		  
     		  world.setBlock(x, y, z, 0);
     		  world.setBlock(x + 1, y, z, ModBlocks.GamePart.blockID, Meta , 2);
@@ -203,7 +203,7 @@ public class ModBlockGamePart extends BlockContainer{
     public void blockFall(World world, int x, int y, int z){
 
     	
-    	if(world.getBlockId(x, y - 1, z) == 0 || world.getBlockId(x, y - 1, z) == Block.tallGrass.blockID){
+    	if(world.getBlockId(x, y - 1, z) == 0 || world.getBlockId(x, y - 1, z) == Block.tallGrass.blockID || world.getBlockId(x, y - 1, z) == Block.waterStill.blockID || world.getBlockId(x, y - 1, z) == Block.waterMoving.blockID){
     		
     		int BlockID = world.getBlockId(x, y, z);
     		int Meta = world.getBlockMetadata(x, y, z);

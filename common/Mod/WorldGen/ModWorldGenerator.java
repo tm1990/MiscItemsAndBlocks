@@ -36,7 +36,7 @@ public class ModWorldGenerator extends WorldGenerator implements IWorldGenerator
     private void generateSurface(World world, Random random, int ChunkX, int ChunkZ) {
 
     	
-    	for(int i = 0; i < 3; i++){
+    	for(int i = 0; i < 1; i++){
     		if(world.getBiomeGenForCoords(ChunkX, ChunkZ) == BiomeGenBase.plains){
     		
     		int Xcoord1 = ChunkX + random.nextInt(16);
@@ -47,7 +47,7 @@ public class ModWorldGenerator extends WorldGenerator implements IWorldGenerator
     	}
     	}
     	
-    	for(int x = 0; x < 5; x++){
+    	for(int x = 0; x < 2; x++){
 
             (new ModSilverWorldGen()).generate(world, random, ChunkX, 0, ChunkZ);
         

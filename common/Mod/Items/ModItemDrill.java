@@ -204,6 +204,7 @@ public class ModItemDrill extends ModItemPowerTool{
 	    @SuppressWarnings("unused")
 		public boolean onBlockStartBreak(ItemStack itemstack, int x, int y, int z, EntityPlayer player)
 	    {
+	    	
             if(HasInfo(itemstack)){
   			  NBTTagCompound Compound = itemstack.getTagCompound().getCompoundTag("Data");
   			  
@@ -213,6 +214,9 @@ public class ModItemDrill extends ModItemPowerTool{
   	        final int meta = world.getBlockMetadata(x, y, z);
   	        final Block block = Block.blocksList[blockID];
   	      float blockHardness = block.getBlockHardness(world, x, y, z);
+  	      
+
+  	      if(itemstack.canHarvestBlock(block)){
   	        
   	        if (block == null)
   	            return super.onBlockStartBreak(itemstack, x, y, z, player);
@@ -278,8 +282,9 @@ public class ModItemDrill extends ModItemPowerTool{
 	    	                        float localHardness = localBlock == null ? Float.MAX_VALUE : localBlock.getBlockHardness(world, xPos, yPos, zPos);
 
 
-
-	    	                                if (localBlock != null && !(localHardness < 0))
+	    	                        
+	    	                        
+	    	                                if (localBlock != null && !(localHardness < 0) && localHardness <= blockHardness)
 	    	                                {
 	
 	    	                                            if (!player.capabilities.isCreativeMode)
@@ -312,6 +317,7 @@ public class ModItemDrill extends ModItemPowerTool{
 	    		
             
 	    		}
+            }
             }
             
 	        return false;

@@ -66,7 +66,10 @@ public class TileEntityTeleporter extends TileEntityPowerInv{
 			if(this.getStackInSlot(2).getItem() instanceof ModItemDataChip){
 				if(this.getStackInSlot(2).stackTagCompound != null){
 			
-					if(this.getStackInSlot(2).stackTagCompound.getString("DataType") == "Teleporter"){
+
+					if(this.getStackInSlot(2).stackTagCompound.getString("DataType").equalsIgnoreCase("Teleporter")){
+						
+
 						
 						if(this.worldObj.getBlockTileEntity(this.getStackInSlot(2).stackTagCompound.getInteger("Teleport_x"),
 								this.getStackInSlot(2).stackTagCompound.getInteger("Teleport_y"), this.getStackInSlot(2).stackTagCompound.getInteger("Teleport_z")
@@ -122,7 +125,7 @@ public class TileEntityTeleporter extends TileEntityPowerInv{
 		}
 		
 		
-        AxisAlignedBB aabb = AxisAlignedBB.getAABBPool().getAABB(xCoord + 0.2, yCoord, zCoord + 0.2, xCoord + 0.9, yCoord + 2, zCoord + 0.9);
+        AxisAlignedBB aabb = AxisAlignedBB.getAABBPool().getAABB(xCoord + 0.2, yCoord, zCoord + 0.2, xCoord + 0.9, yCoord + 0.8, zCoord + 0.9);
         List list = worldObj.getEntitiesWithinAABB(Entity.class, aabb);
 		
         
@@ -148,7 +151,7 @@ public class TileEntityTeleporter extends TileEntityPowerInv{
         				
         			}
         			
-        			player.setLocationAndAngles(x + 0.5, y + 0.5, z + 0.5, player.rotationYaw, player.rotationPitch);
+        			player.setLocationAndAngles(x + 0.5, y + 1, z + 0.5, player.rotationYaw, player.rotationPitch);
         			
         			this.SetPower(this.GetPower() - 100);
         			}

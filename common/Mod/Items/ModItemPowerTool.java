@@ -11,5 +11,8 @@ public abstract class ModItemPowerTool extends ItemTool{
 		super(par1, damage, material, blocks);
 		this.canRepair = false;
 	}
-
+    public int getItemEnchantability()
+    {
+        return 0;
+    }
 }

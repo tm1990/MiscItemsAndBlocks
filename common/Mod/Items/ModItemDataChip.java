@@ -47,8 +47,10 @@ public class ModItemDataChip extends Item{
 	    	}else{
 	    		
 	    		list.add(itemstack.stackTagCompound.getString("DataType") + " Data Stored on Chip.");
-	    		
+
 	    	}
+	    	
+	    	
 	    	
 	    }
 	    

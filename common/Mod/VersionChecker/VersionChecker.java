@@ -110,6 +110,7 @@ System.out.println(Refrence.Mod_Id + ":  is up to date.");
 }
 }catch(Exception ex){
 ex.printStackTrace();
+System.out.println(Refrence.Mod_Id + ": Error while checking version. Check your internet connection and try again.");
 }
 }
 

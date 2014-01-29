@@ -49,6 +49,7 @@ import Mod.TileEntity.TileEntityTable;
 import Mod.TileEntity.TileEntityTeleporter;
 import Mod.TileEntity.TileEntityTimedBlock;
 import Mod.TileEntity.TileEntityWindMill;
+import Mod.TileEntity.TileEntityWirelessRedstone;
 import Mod.TileEntity.TileEntityXpStorage;
 import Mod.VersionChecker.VersionChecker;
 import Mod.WorldGen.ModWorldGenerator;
@@ -94,10 +95,10 @@ public class Main {
 	public static boolean VERSION_CHECK = true;
 	
     public static final String RELEASE_VERSION = Refrence.Version;
-    public static String LATEST_CHANGES = "[nothing]";
-    public static String LATEST_VERSION = "[nothing]";
+    public static String LATEST_CHANGES = "[Error]";
+    public static String LATEST_VERSION = "[Error]";
     public static String UPDATE_URL = "http://adf.ly/U25ua";
-    public static boolean UP_TO_DATE = true;
+    public static boolean UP_TO_DATE = false;
     
     public static String UpdateMessage = StatCollector.translateToLocal("string.versioncheck.newversion").replace("%EnumRed", EnumChatFormatting.RED + "").replace("%EnumYellow", EnumChatFormatting.YELLOW + "").replace("%EnumBlue", EnumChatFormatting.BLUE + "").replace("%EnumGold", EnumChatFormatting.GOLD + "").replace("%ModName", Refrence.Mod_Name).replace("%NewVersion", Main.LATEST_VERSION).replace("%DowLink", Main.UPDATE_URL).replace("%Changes", Main.LATEST_CHANGES);
     
@@ -108,8 +109,13 @@ public void preInit(FMLPreInitializationEvent event) {
     	
 	
 	
-	//TODO Continue locolazation support. 
+	//TODO Continue locolazation support.
 	
+	//TODO Add Wireless power transfer
+	//TODO Add wireless item transfer
+	//TODO (maybe)Add wireless liquid transfer
+	//TODO Add unbreakable sword
+	//TODO Add sometype of ore doubleing
     	
 	GameRegistry.registerCraftingHandler(new ModCraftingHandler());
 	
@@ -202,6 +208,7 @@ public void preInit(FMLPreInitializationEvent event) {
         
         GameRegistry.registerTileEntity(TileEntityDiceHolder.class, "TileEntityDiceHolder");
         GameRegistry.registerTileEntity(TileEntityTeleporter.class, "TileEntityTeleporter");
+        GameRegistry.registerTileEntity(TileEntityWirelessRedstone.class, "TileEntityWirelessRedstone");
         
         
         GameRegistry.registerWorldGenerator(new ModWorldGenerator());

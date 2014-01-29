@@ -34,6 +34,7 @@ public class ModConfig {
 	public static int Computer;
 	
 	public static int Teleporter;
+	public static int WireLessRedstone;
 	
 	public static int PaintBlock;
 	
@@ -149,6 +150,7 @@ public class ModConfig {
 		GamePart = config.getBlock("Blocks", "Game piece Id", 609).getInt();
 		DiceHolder = config.getBlock("Blocks", "Dice Holder Id", 610).getInt();
 		Teleporter = config.getBlock("Blocks", "Teleporter Id", 611).getInt();
+		WireLessRedstone = config.getBlock("Blocks", "WireLess Redstone Id", 612).getInt();
 
 		
 		SpeedBlock = config.getBlock("Blocks", "Speed Block Id", 614).getInt();

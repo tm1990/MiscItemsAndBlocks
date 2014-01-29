@@ -76,9 +76,8 @@ public class ModBlockMill extends BlockContainer{
 					droppedItem.motionZ = (-0.5 + World.rand.nextFloat()) * mult;
 					
 					
-					if(i != 27){
 					World.spawnEntityInWorld(droppedItem);
-					}
+					
 
 					
 				}

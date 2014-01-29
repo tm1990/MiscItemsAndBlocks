@@ -130,7 +130,7 @@ public class TileEntityGenerator extends TileEntityPowerGeneration{
 
 	@Override
 	public int WorkTime() {
-		return 10;
+		return MaxTime + 10;
 	}
 
 	@Override
@@ -139,7 +139,7 @@ public class TileEntityGenerator extends TileEntityPowerGeneration{
 	}
 	
     public void OnWork(World world, int x, int y, int z){
-    	Power = 0;
+    	Power--;
     	
     	
     }
