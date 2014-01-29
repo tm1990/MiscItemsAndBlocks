@@ -17,6 +17,14 @@ public class Crafting {
 		
 		
 		GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.DiceHolder), new Object[]{ModBlocks.ItemPedestal, ModBlocks.Dice});
+		GameRegistry.addShapedRecipe(new ItemStack(ModItems.DataChip, 2), new Object[]{"CCC", "CGC", "III", 'C', ModItems.Cardboard, 'G', new ItemStack(ModItems.Circuit, 1, 0), 'I', Item.ingotIron});
+		GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.Teleporter), new Object[]{"HCH", "BEB", "HCH", 'H', new ItemStack(ModItems.IronPlate, 1, 2), 'C', new ItemStack(ModItems.Circuit, 1, 1), 'B', new ItemStack(ModItems.AdvancedBattery, 1, 0), 'E', Item.enderPearl});
+		GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.WireLessRedstone, 2), new Object[]{"IEI", "ERE", "ICI", 'I', new ItemStack(ModItems.IronPlate, 1, 0), 'E', Item.enderPearl, 'R', Block.blockRedstone, 'C', new ItemStack(ModItems.Circuit, 1, 1)});
+		
+		
+		GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.SilverBlock), new Object[]{"SSS", "SSS", "SSS", 'S', ModItems.SilverIngot});
+		GameRegistry.addShapelessRecipe(new ItemStack(ModItems.SilverIngot, 9), new Object[]{ModBlocks.SilverBlock});
+		
 		
 		GameRegistry.addRecipe(new ItemStack(ModBlocks.Computer), new Object[]{"IBI", "PCB", "IBT", 'I', Item.ingotIron, 'B', Block.blockIron, 'P', Block.thinGlass, 'C', new ItemStack(ModItems.Circuit, 1, 1), 'R', Item.redstone, 'T', Block.blockRedstone});
 		GameRegistry.addRecipe(new ItemStack(ModBlocks.StorageBlock), new Object[]{"ICI", "CBC", "ICI", 'I', Block.blockIron, 'C', Block.chest, 'B', ModBlocks.Box});
@@ -120,6 +128,11 @@ public class Crafting {
 	        GameRegistry.addRecipe(new ItemStack(ModBlocks.ElectricFurnace), new Object[]{"PMP", "PFP", "PCP", 'P', new ItemStack(ModItems.IronPlate, 1, 2), 'M', ModBlocks.MachinePart, 'F', Block.furnaceIdle, 'C', new ItemStack(ModItems.Circuit, 1, 1)});
 	        
 	        GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.GamePart, 4), new Object[]{"III", " I ", "III", 'I', Item.ingotIron});
+	        
+	        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.GamePart, 1, 1), new Object[]{new ItemStack(Item.dyePowder, 1, 1), ModBlocks.GamePart});
+	        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.GamePart, 1, 2), new Object[]{new ItemStack(Item.dyePowder, 1, 4), ModBlocks.GamePart});
+	        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.GamePart, 1, 3), new Object[]{new ItemStack(Item.dyePowder, 1, 2), ModBlocks.GamePart});
+	        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.GamePart, 1, 4), new Object[]{new ItemStack(Item.dyePowder, 1, 11), ModBlocks.GamePart});
 
 	        GameRegistry.addShapelessRecipe(new ItemStack(ModItems.PizzaRaw), ModItems.Cheese, ModItems.PizzaBottom, new ItemStack(ModItems.Liquid, 1, 1), Item.fishCooked);
 	        GameRegistry.addShapelessRecipe(new ItemStack(ModItems.PizzaRaw, 1, 1), ModItems.Cheese, ModItems.PizzaBottom, new ItemStack(ModItems.Liquid, 1, 1), Item.porkCooked);

@@ -1,6 +1,7 @@
 package Mod.Block;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
@@ -21,6 +22,7 @@ import Mod.ItemBlock.ModItemBlockTeleporter;
 import Mod.ItemBlock.ModItemBlockTrashBin;
 import Mod.ItemBlock.ModItemXpStorageBlock;
 import Mod.Lib.ModConfig;
+import Mod.Lib.Refrence;
 import Mod.Main.Main;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
@@ -56,6 +58,7 @@ public class ModBlocks {
 	public static Block WireLessRedstone;
 	
 	public static Block PaintBlock;
+	public static Block SilverBlock;
 	
 	public static Block ElectricFurnace;
 	
@@ -202,7 +205,8 @@ public class ModBlocks {
         WireLessRedstone = new ModBlockWirelessRedstone(ModConfig.WireLessRedstone).setUnlocalizedName("WireLessRedstone");
         Register(WireLessRedstone, "Wireless Redstone", true);
         
-        
+        SilverBlock = new Block(ModConfig.SilverBlock, Material.iron).setUnlocalizedName("SilverBlock").setTextureName(Refrence.Mod_Id + ":" + "SilverBlock").setHardness(1.7F);
+        Register(SilverBlock, "Silver Block", true);
         
 		RegisterOreDictionary(new ItemStack(SilverOre), "oreSilver");
 		RegisterOreDictionary(new ItemStack(OrangeLog), "logWood");

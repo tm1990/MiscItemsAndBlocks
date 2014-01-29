@@ -37,6 +37,7 @@ public class ModConfig {
 	public static int WireLessRedstone;
 	
 	public static int PaintBlock;
+	public static int SilverBlock;
 	
 	public static int ElFurnace;
 	
@@ -184,6 +185,7 @@ public class ModConfig {
 		OneWayGlass = config.getBlock("Blocks", "One Way Glass Block Id", 637).getInt();
 		Computer = config.getBlock("Blocks", "Computer Block Id", 638).getInt();
 		StorageBlock = config.getBlock("Blocks", "Storage Block Id", 639).getInt();
+		SilverBlock = config.getBlock("Blocks", "Silver Block Id", 640).getInt();
 		
 		
 		
