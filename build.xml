@@ -1,64 +1,74 @@
 <?xml version="1.0" ?> 
 <project name="MiscItemsAndBlocks" default="build">
 	
-	<property file="build.properties" prefix="build"/>
-	<property file="build_number.properties" prefix="build_number"/>
+
+	<property file="build_prop.properties" prefix="build_prop"/>
+	<property file="${build_prop.privateProptertiesLocation}" prefix="private"/>
+	<property file="${build_prop.build_numberLocation}" prefix="buildNumber"/>
 	
 	<target name="clean">
-		<delete file="C:\Dev\forge\mcp\src\minecraft\mcmod.info" />
-		<delete file="C:\Dev\forge\mcp\src\minecraft\pack.mcmeta" />
-		<delete dir="C:\Dev\forge\mcp\src\minecraft\Mod" />
-		<delete file="C:\Dev\forge\mcp\reobf\minecraft\*" />
+		<delete file="${build_prop.mcpLocation}\src\minecraft\mcmod.info" />
+		<delete file="${build_prop.mcpLocation}\src\minecraft\pack.mcmeta" />
+		
+	    <delete file="${build_prop.mcpLocation}\src\minecraft\build.properties" />
+	    <delete file="${build_prop.mcpLocation}\src\minecraft\build_prop.properties" />
+	    <delete file="${build_prop.mcpLocation}\src\minecraft\Example_build.properties" />
+	    <delete file="${build_prop.mcpLocation}\src\minecraft\build.xml" />
+		
+		<delete dir="${build_prop.mcpLocation}\src\minecraft\ic2" />
+		<delete dir="${build_prop.mcpLocation}\src\minecraft\common" />
+		
+		<delete dir="${build_prop.mcpLocation}\src\minecraft\Mod\*" />
+		<delete dir="${build_prop.mcpLocation}\src\minecraft\Mod" />
+		<delete file="${build_prop.mcpLocation}\reobf\minecraft\*" />
 	</target>
 	
 	<target name="increment_build_number">
-		<propertyfile file="build_number.properties">
+		<propertyfile file="${build_prop.build_numberLocation}">
 			<entry key="build_number" type="int" operation="+" default="1"/>
 		</propertyfile>
 	</target>
 	
 	<target name="prep">
-		<copy todir="C:\Dev\forge\mcp\src\minecraft">
-			<fileset dir="C:\Dev\source\MiscItemsAndBlocks\common" />
+		<copy todir="${build_prop.mcpLocation}\src\minecraft">
+			<fileset dir="${build_prop.modLocation}" />
 		</copy>
 	</target>
 	
 			<target name="backup">
-		<copy todir="C:\Dev\Backups\MiscItemsAndBlocks\Version ${build_number.minecraftversion}\Backup - Build ${build_number.build_number}">
-			<fileset dir="C:\Dev\source\MiscItemsAndBlocks\common" />
+		<copy todir="${build_prop.backupLocation}\Version ${build_prop.minecraftversion}\Backup - Build ${buildNumber.build_number}">
+			<fileset dir="${build_prop.modLocation}\common" />
 		</copy>
 	</target>
 	
 	
 	<target name="replace_tokens">
-		<replace dir="C:\Dev\forge\mcp\src\minecraft" token="@VERSION@" value="${build_number.modversion}" />
-		<replace dir="C:\Dev\forge\mcp\src\minecraft" token="@FINGERPRINT@" value="${build.release.mod.fingerprint}" />
-		<replace dir="C:\Dev\forge\mcp\src\minecraft" token="@BUILD_NUMBER@" value="${build_number.build_number}" />
-	    <replace dir="C:\Dev\forge\mcp\src\minecraft" token="@MCVERSION@" value="${build_number.minecraftversion}" />
-	   <replace dir="C:\Dev\forge\mcp\src\minecraft" token="@DEV@" value="NotDev" />
+		<replace dir="${build_prop.mcpLocation}\src\minecraft" token="@VERSION@" value="${build_prop.modversion}" />
+		<replace dir="${build_prop.mcpLocation}\src\minecraft" token="@BUILD_NUMBER@" value="${buildNumber.build_number}" />
+	    <replace dir="${build_prop.mcpLocation}\src\minecraft" token="@MCVERSION@" value="${build_prop.minecraftversion}" />
 	</target>
 	
 	<target name="recompile">
-		<exec dir="C:\Dev\forge\mcp" executable="cmd" osfamily="windows">
+		<exec dir="${build_prop.mcpLocation}" executable="cmd" osfamily="windows">
 			<arg line="/c recompile.bat" />
 		</exec>
-		<exec dir="C:\Dev\forge\mcp" executable="bash" osfamily="unix">
+		<exec dir="${build_prop.mcpLocation}" executable="bash" osfamily="unix">
 			<arg line="recompile.sh" />
 		</exec>
 	</target>
 	
 	<target name="reobfuscate">
-		<exec dir="C:\Dev\forge\mcp" executable="cmd" osfamily="windows">
+		<exec dir="${build_prop.mcpLocation}" executable="cmd" osfamily="windows">
 			<arg line="/c reobfuscate_srg.bat" />
 		</exec>
-		<exec dir="C:\Dev\forge\mcp" executable="bash" osfamily="unix">
+		<exec dir="${build_prop.mcpLocation}" executable="bash" osfamily="unix">
 			<arg line="reobfuscate_srg.sh" />
 		</exec>
 		
 	</target>
 	
 	<target name="sign_jar">
-		<signjar jar="C:\Dev\Releases\MiscItemsAndBlocks\Version ${build_number.minecraftversion}\MiscItemsAndBlocks-${build_number.minecraftversion}-${build_number.modversion}-${build_number.build_number}.jar" keystore="${build.keystore.location}" alias="${build.keystore.alias}" storepass="${build.keystore.password}" />
+		<signjar jar="${build_prop.outputLocation}\Version ${build_prop.minecraftversion}\MiscItemsAndBlocks-${build_prop.minecraftversion}-${build_prop.modversion}-${buildNumber.build_number}.jar" keystore="${private.keystore_location}" alias="${private.alias}" storepass="${private.keystore_password}" />
 	</target>
 	
 	<target name="build">
@@ -70,19 +80,22 @@
 		<antcall target="reobfuscate" />
 		
 		<!-- Build the jar -->
-		<mkdir dir="C:\Dev\Releases\MiscItemsAndBlocks\Version ${build_number.minecraftversion}" />
-		<jar destfile="C:\Dev\Releases\MiscItemsAndBlocks\Version ${build_number.minecraftversion}\MiscItemsAndBlocks-${build_number.minecraftversion}-${build_number.modversion}-${build_number.build_number}.jar">
-			<fileset dir="C:\Dev\forge\mcp\src\minecraft\" includes="mcmod.info"/>
-			<fileset dir="C:\Dev\forge\mcp\src\minecraft\" includes="pack.mcmeta"/>
-			<fileset dir="C:\Dev\forge\mcp\reobf\minecraft" />
-			<fileset dir="C:\Dev\source\MiscItemsAndBlocks\resources" />
+	 <delete dir="${build_prop.mcpLocation}\reobf\minecraft\net" />
+					
+		<mkdir dir="${build_prop.outputLocation}\Version ${build_prop.minecraftversion}" />
+		<jar destfile="${build_prop.outputLocation}\Version ${build_prop.minecraftversion}\MiscItemsAndBlocks-${build_prop.minecraftversion}-${build_prop.modversion}-${buildNumber.build_number}.jar">
+			<fileset dir="${build_prop.mcpLocation}\src\minecraft\" includes="mcmod.info"/>
+			<fileset dir="${build_prop.mcpLocation}\src\minecraft\" includes="pack.mcmeta"/>
+			<delete dir="${build_prop.mcpLocation}\reobf\minecraft\net" />
+			<fileset dir="${build_prop.mcpLocation}\reobf\minecraft"/>
+			<fileset dir="${build_prop.modLocation}\resources" />
 		</jar>
 		
 		<!-- Clean up the MCP source now that we are done -->
 		<antcall target="clean" />
 	</target>
 	
-	<target name="release">
+	<target name="Recomp">
 		<!-- Prep for the build -->
 		<antcall target="clean" />
 		<antcall target="increment_build_number" />
@@ -91,15 +104,17 @@
 		<antcall target="replace_tokens" />
 		<antcall target="recompile" />		
 		<antcall target="reobfuscate" />
-	    <delete dir="C:\Dev\forge\mcp\src\minecraft\Mod" />
+	    <delete dir="${build_prop.mcpLocation}\src\minecraft\Mod" />
 		
 		<!-- Build the jar -->
-		<mkdir dir="C:\Dev\Releases\MiscItemsAndBlocks\Version ${build_number.minecraftversion}" />
-		<jar destfile="C:\Dev\Releases\MiscItemsAndBlocks\Version ${build_number.minecraftversion}\MiscItemsAndBlocks-${build_number.minecraftversion}-${build_number.modversion}-${build_number.build_number}.jar">
-			<fileset dir="C:\Dev\forge\mcp\src\minecraft\" includes="mcmod.info"/>
-			<fileset dir="C:\Dev\forge\mcp\src\minecraft\" includes="pack.mcmeta"/>
-			<fileset dir="C:\Dev\forge\mcp\reobf\minecraft"/>
-			 <fileset dir="C:\Dev\source\MiscItemsAndBlocks\resources"/>
+		 <delete dir="${build_prop.mcpLocation}\reobf\minecraft\net" />
+		 
+		<mkdir dir="${build_prop.outputLocation}\Version ${build_prop.minecraftversion}" />
+		<jar destfile="${build_prop.outputLocation}\Version ${build_prop.minecraftversion}\MiscItemsAndBlocks-${build_prop.minecraftversion}-${build_prop.modversion}-${buildNumber.build_number}.jar">
+			<fileset dir="${build_prop.mcpLocation}\src\minecraft\" includes="mcmod.info"/>
+			<fileset dir="${build_prop.mcpLocation}\src\minecraft\" includes="pack.mcmeta"/>
+			<fileset dir="${build_prop.mcpLocation}\reobf\minecraft"/>
+			 <fileset dir="${build_prop.modLocation}\resources"/>
 		</jar>
 		
 		<!-- Sign the finished jar -->
@@ -108,4 +123,6 @@
 		<!-- Clean up the MCP source now that we are done -->
 		<antcall target="clean" />
 	</target>
+	
+	
 </project>
