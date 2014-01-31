@@ -56,6 +56,7 @@ public class ModBlocks {
 	
 	public static Block Teleporter;
 	public static Block WireLessRedstone;
+	public static Block WirelessItemTrans;
 	
 	public static Block PaintBlock;
 	public static Block SilverBlock;
@@ -207,6 +208,9 @@ public class ModBlocks {
         
         SilverBlock = new Block(ModConfig.SilverBlock, Material.iron).setUnlocalizedName("SilverBlock").setTextureName(Refrence.Mod_Id + ":" + "SilverBlock").setHardness(1.7F);
         Register(SilverBlock, "Silver Block", true);
+        
+        WirelessItemTrans = new ModBlockWirelessItemTransfer(ModConfig.WirelessItemTrans).setUnlocalizedName("WirelessItemTrans");
+        Register(WirelessItemTrans, "Wireless Item Transfer", true);
         
 		RegisterOreDictionary(new ItemStack(SilverOre), "oreSilver");
 		RegisterOreDictionary(new ItemStack(OrangeLog), "logWood");

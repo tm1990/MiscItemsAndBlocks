@@ -6,14 +6,26 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.inventory.ICrafting;
+import net.minecraft.inventory.InventoryBasic;
+import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.EnumToolMaterial;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.FurnaceRecipes;
+import net.minecraft.item.crafting.RecipesMapExtending;
+import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.MathHelper;
+import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.StatCollector;
+import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import Mod.Block.ModBlocks;
 import Mod.Lib.Refrence;
@@ -138,11 +150,13 @@ public class ModItemHeatDrill extends ModItemPowerTool{
 	    {
 	    	int Luck = EnchantmentHelper.getEnchantmentLevel(35, player.inventory.getCurrentItem());
 	    	
-	    	int BlockId = world.getBlockId(x, y, z);
-	    	Block block = Block.blocksList[BlockId];
+	    	
+  	        final int blockID = world.getBlockId(x, y, z);
+  	        final int meta = world.getBlockMetadata(x, y, z);
+  	        final Block block = Block.blocksList[blockID];
+  	      float blockHardness = block.getBlockHardness(world, x, y, z);
 	    	
 	    	if(block != null){
-	    		
 		        List<ItemStack> stacks = block.getBlockDropped(player.worldObj, x, y, z, player.worldObj.getBlockMetadata(x, y, z), Luck);
 		        
 		        ItemStack stack1 = new ItemStack(block);
@@ -158,7 +172,7 @@ public class ModItemHeatDrill extends ModItemPowerTool{
 		                        	
 	                    				
 	                    				//TODO Remove .itemID before 1.7
-		                        	if(result.itemID < 256 || result.itemID > 421 && result.itemID < 4096){
+		                        	if(result.getItem() instanceof ItemBlock){
 
 
 		                    				
@@ -170,7 +184,7 @@ public class ModItemHeatDrill extends ModItemPowerTool{
 		                        
 	                    			}else{
 	                    				if(result1 != null){
-	    		                        	if(result1.itemID < 256 || result1.itemID > 421 && result1.itemID < 4096){
+	    		                        	if(result1.getItem() instanceof ItemBlock){
 
 
 			                    				
@@ -179,17 +193,24 @@ public class ModItemHeatDrill extends ModItemPowerTool{
 			                    				
 			                    			}
 	                    				}
-	                    				
-	                    			}
-		                        }
+	
+		
+		    	}
+		    		}
+
+		                        
+            
 		                }
-		       }
-			}
-	    		
-	    	
+            
+	    	}
+	            return true;
+	    	}
 	    	
 	    	
 	        return true;
 	    }
+	    
+	    
+	    
 
 }

@@ -24,6 +24,7 @@ public class ModBlockWirelessRedstone extends BlockContainer{
 	
 	protected ModBlockWirelessRedstone(int par1) {
 		super(par1, Material.iron);
+		this.setHardness(1.5F);
 	}
 
 	@Override

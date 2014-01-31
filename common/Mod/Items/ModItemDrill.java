@@ -358,7 +358,10 @@ public class ModItemDrill extends ModItemPowerTool{
 	        return false;
 	    }
 	    
-	    
+	    public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack)
+	    {
+	        return false;
+	    }
 	  
 	    
 

@@ -23,6 +23,7 @@ public class ModBlockTeleporter extends BlockContainer{
 	protected ModBlockTeleporter(int par1) {
 		super(par1, Material.iron);
 		this.setBlockBounds(0.2F, 0.0F, 0.2F, 0.8F, 0.4F, 0.8F);
+		this.setHardness(2F);
 	}
 
 	@Override

@@ -92,7 +92,7 @@ public class ModBlockDisarmTrap extends BlockContainer{
     
     
     public void registerIcons(IconRegister icon) {
-        this.blockIcon = icon.registerIcon(Refrence.Mod_Id + ":DisarmTrap");
+        this.blockIcon = icon.registerIcon("quartz_block_top");
 }
     
     
