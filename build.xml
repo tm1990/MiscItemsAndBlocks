@@ -68,7 +68,7 @@
 	</target>
 	
 	<target name="sign_jar">
-		<signjar jar="${build_prop.outputLocation}\Version ${build_prop.minecraftversion}\MiscItemsAndBlocks-${build_prop.minecraftversion}-${build_prop.modversion}-${buildNumber.build_number}.jar" keystore="${private.keystore_location}" alias="${private.alias}" storepass="${private.keystore_password}" />
+		<signjar jar="${build_prop.outputLocation}\Version ${build_prop.minecraftversion}\MiscItemsAndBlocks${build_prop.versionFormat}.jar" keystore="${private.keystore_location}" alias="${private.alias}" storepass="${private.keystore_password}" />
 	</target>
 	
 	<target name="build">
@@ -83,7 +83,7 @@
 	 <delete dir="${build_prop.mcpLocation}\reobf\minecraft\net" />
 					
 		<mkdir dir="${build_prop.outputLocation}\Version ${build_prop.minecraftversion}" />
-		<jar destfile="${build_prop.outputLocation}\Version ${build_prop.minecraftversion}\MiscItemsAndBlocks-${build_prop.minecraftversion}-${build_prop.modversion}-${buildNumber.build_number}.jar">
+		<jar destfile="${build_prop.outputLocation}\Version ${build_prop.minecraftversion}\MiscItemsAndBlocks${build_prop.versionFormat}.jar">
 			<fileset dir="${build_prop.mcpLocation}\src\minecraft\" includes="mcmod.info"/>
 			<fileset dir="${build_prop.mcpLocation}\src\minecraft\" includes="pack.mcmeta"/>
 			<delete dir="${build_prop.mcpLocation}\reobf\minecraft\net" />
@@ -110,11 +110,11 @@
 		 <delete dir="${build_prop.mcpLocation}\reobf\minecraft\net" />
 		 
 		<mkdir dir="${build_prop.outputLocation}\Version ${build_prop.minecraftversion}" />
-		<jar destfile="${build_prop.outputLocation}\Version ${build_prop.minecraftversion}\MiscItemsAndBlocks-${build_prop.minecraftversion}-${build_prop.modversion}-${buildNumber.build_number}.jar">
+		<jar destfile="${build_prop.outputLocation}\Version ${build_prop.minecraftversion}\MiscItemsAndBlocks${build_prop.versionFormat}.jar">
 			<fileset dir="${build_prop.mcpLocation}\src\minecraft\" includes="mcmod.info"/>
 			<fileset dir="${build_prop.mcpLocation}\src\minecraft\" includes="pack.mcmeta"/>
 			<fileset dir="${build_prop.mcpLocation}\reobf\minecraft"/>
-			 <fileset dir="${build_prop.modLocation}\resources"/>
+			<fileset dir="${build_prop.modLocation}\resources"/>
 		</jar>
 		
 		<!-- Sign the finished jar -->
