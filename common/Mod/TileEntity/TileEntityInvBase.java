@@ -33,6 +33,7 @@ public class TileEntityInvBase  extends ModTileEntity implements IInventory{
 
 	@Override
 	public ItemStack getStackInSlot(int i) {
+		onInventoryChanged();
 		return Items[i];
 	}
 
@@ -53,7 +54,7 @@ public class TileEntityInvBase  extends ModTileEntity implements IInventory{
 			}
 			
 		}
-		
+		onInventoryChanged();
 		return itemstack;
 	}
 
@@ -62,7 +63,6 @@ public class TileEntityInvBase  extends ModTileEntity implements IInventory{
 		ItemStack item = getStackInSlot(i);
 		
 		setInventorySlotContents(i, null);
-		
 		return item;
 	}
 

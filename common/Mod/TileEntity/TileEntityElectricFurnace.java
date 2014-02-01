@@ -23,6 +23,7 @@ public class TileEntityElectricFurnace extends TileEntityPowerInv implements ISi
 	
     public void updateEntity()
     {
+    	
     	if(this.GetPower() < this.PowerMax){
     	if(this.getStackInSlot(1) != null){
     		if(this.getStackInSlot(1).getItemDamage() < this.getStackInSlot(1).getMaxDamage()){
@@ -36,7 +37,7 @@ public class TileEntityElectricFurnace extends TileEntityPowerInv implements ISi
     		this.SetPower(this.PowerMax);
     	}
     	
-    	if(this.GetPower() > 0){
+    	if(this.GetPower() > 2){
     		
     		
     		if(this.getStackInSlot(0) != null && FurnaceRecipes.smelting().getSmeltingResult(this.getStackInSlot(0)) != null){
@@ -57,13 +58,12 @@ public class TileEntityElectricFurnace extends TileEntityPowerInv implements ISi
     					
     					if(this.getStackInSlot(2) == null){
     						this.decrStackSize(0, 1);
-    						this.SetPower(this.GetPower() - 1);
+    						this.SetPower(this.GetPower() - 2);
     						this.setInventorySlotContents(2, resultItem);
     					}else if (this.getStackInSlot(2).getItem() == resultItem.getItem() && this.getStackInSlot(2).stackSize < 64){
 
-    						
     						this.decrStackSize(0, 1);
-    						this.SetPower(this.GetPower() - 1);
+    						this.SetPower(this.GetPower() - 2);
     						this.getStackInSlot(2).stackSize = this.getStackInSlot(2).stackSize + 1;
     					}
     					

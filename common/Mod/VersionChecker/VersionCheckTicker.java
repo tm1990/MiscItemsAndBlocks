@@ -27,6 +27,7 @@ if(tickType == TickType.CLIENT){
 if(FMLClientHandler.instance().getClient().currentScreen == null){
 init = false;
 if(!Main.UP_TO_DATE){
+	Main.UpdateMessage = StatCollector.translateToLocal("string.versioncheck.newversion").replace("%EnumRed", EnumChatFormatting.RED + "").replace("%EnumYellow", EnumChatFormatting.YELLOW + "").replace("%EnumBlue", EnumChatFormatting.BLUE + "").replace("%EnumGold", EnumChatFormatting.GOLD + "").replace("%ModName", Refrence.Mod_Name).replace("%NewVersion", Main.LATEST_VERSION).replace("%DowLink", Main.UPDATE_URL).replace("%Changes", Main.LATEST_CHANGES);
 FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(Main.UpdateMessage);
 
 }

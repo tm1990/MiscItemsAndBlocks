@@ -15,6 +15,7 @@ public class ContainerMetalPress extends Container{
 
     private TileEntityMetalPress tile;
     
+    int LastPower;
     int LastMode;
     int LastWorkTime;
     
@@ -72,8 +73,10 @@ public class ContainerMetalPress extends Container{
 	    public void addCraftingToCrafters(ICrafting par1ICrafting)
 	    {
 	        super.addCraftingToCrafters(par1ICrafting);
+	        par1ICrafting.sendProgressBarUpdate(this, 0, this.tile.GetPower());
 	        par1ICrafting.sendProgressBarUpdate(this, 1, this.tile.GetMode());
 	        par1ICrafting.sendProgressBarUpdate(this, 2, this.tile.GetWorkTime());
+	        
 	    }
 
 	    public void detectAndSendChanges()
@@ -85,6 +88,10 @@ public class ContainerMetalPress extends Container{
 	            ICrafting icrafting = (ICrafting)this.crafters.get(i);
 
 	            
+	            if (this.LastPower != this.tile.GetPower())
+	            {
+	                icrafting.sendProgressBarUpdate(this, 0, this.tile.GetPower());
+	            }
 
 	            if (this.LastMode != this.tile.GetMode())
 	            {
@@ -100,6 +107,7 @@ public class ContainerMetalPress extends Container{
 	            
 	        }
 
+	        this.LastPower = this.tile.GetPower();
 	        this.LastMode = this.tile.GetMode();
 	        this.LastWorkTime = this.tile.GetWorkTime();
 	        
@@ -109,6 +117,11 @@ public class ContainerMetalPress extends Container{
 	    public void updateProgressBar(int par1, int par2)
 	    {
 	        
+	        if (par1 == 0)
+	        {
+	            this.tile.SetPower(par2);
+	        }
+	    	
 	        if(par1 == 1){
 	        	this.tile.SetMode(par2);
 	        }

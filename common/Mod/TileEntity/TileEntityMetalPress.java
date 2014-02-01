@@ -1,22 +1,29 @@
 package Mod.TileEntity;
 
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+
+import cpw.mods.fml.common.network.PacketDispatcher;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.packet.Packet131MapData;
 import Mod.Items.ModItems;
+import Mod.Main.Main;
 
-public class TileEntityMetalPress extends TileEntityInvBase implements ISidedInventory{
+public class TileEntityMetalPress extends TileEntityPowerInv implements ISidedInventory{
 
 	
 	
 	
 	public TileEntityMetalPress() {
-		super(6, "Metal Press", 64);
+		super(6, "Metal Press", 64, 1000);
 	}
 
 	public int WorkTime = 1;
-	public static int MaxWorkTime = 50;
+	public int MaxWorkTime = 50;
 	
 	//1 = Normal plate
 	//2 = Hardened plate
@@ -59,19 +66,26 @@ public class TileEntityMetalPress extends TileEntityInvBase implements ISidedInv
 	public void updateEntity(){
 
 		
-		if(WorkTime <= MaxWorkTime){
-		
+		if(!this.worldObj.isRemote){
+			
+			if(Mode == 1 ? Power > 10 : Power > 20){
+		if(WorkTime <= MaxWorkTime ){
 		if(Mode == 1){
 			if(this.getStackInSlot(1) != null && this.getStackInSlot(1).getItem() == Item.ingotIron
-					&& this.getStackInSlot(0) == null || 
-					this.getStackInSlot(1) != null && this.getStackInSlot(1).getItem() == Item.ingotIron &&
-					this.getStackInSlot(0) != null && this.getStackInSlot(0).getItem() == ModItems.IronPlate && this.getStackInSlot(0).getItemDamage() == 0 && this.getStackInSlot(0).stackSize < 16){
-				WorkTime++;
+					&& this.getStackInSlot(0) == null){ 
+					
+				WorkTimeAdd();
 				
-			}else{
-				WorkTime = 0;
+			}else if (this.getStackInSlot(1) != null && this.getStackInSlot(1).getItem() == Item.ingotIron &&
+					this.getStackInSlot(0) != null && this.getStackInSlot(0).getItem() == ModItems.IronPlate && this.getStackInSlot(0).getItemDamage() == 0 && this.getStackInSlot(0).stackSize < this.getInventoryStackLimit()){
+				
+				WorkTimeAdd();
+				
+			}else if (this.getStackInSlot(1) == null && Mode == 1){
+				SetWorkTimeUpdate(0);
+				
 			}
-			
+
 			
 		}else if (Mode == 2){
 			if(this.getStackInSlot(2) != null && this.getStackInSlot(2).getItem() == Item.ingotIron
@@ -86,10 +100,12 @@ public class TileEntityMetalPress extends TileEntityInvBase implements ISidedInv
 							&& this.getStackInSlot(4) != null && this.getStackInSlot(4).getItem() == Item.ingotIron
 							&& this.getStackInSlot(5) != null && this.getStackInSlot(5).getItem() == Item.ingotIron
 							&&
-					this.getStackInSlot(0) != null && this.getStackInSlot(0).getItem() == ModItems.IronPlate && this.getStackInSlot(0).getItemDamage() == 2 && this.getStackInSlot(0).stackSize < 16){
-				WorkTime++;
+					this.getStackInSlot(0) != null && this.getStackInSlot(0).getItem() == ModItems.IronPlate && this.getStackInSlot(0).getItemDamage() == 2 && this.getStackInSlot(0).stackSize < this.getInventoryStackLimit()){
+				WorkTimeAdd();
+			
 			}else{
-				WorkTime = 0;
+
+				SetWorkTimeUpdate(0);
 			}
 			
 		}
@@ -97,26 +113,27 @@ public class TileEntityMetalPress extends TileEntityInvBase implements ISidedInv
 		
 		}else{
 			
-			WorkTime = 0;
+			WorkTimeReset();
 			
-			this.worldObj.playSound(this.xCoord, this.yCoord, this.zCoord, "random.anvil_land", 0.3F, 1.5F, false);
+			
 			
 			if(Mode == 1){
 				this.decrStackSize(1, 1);
+				this.SetPower(this.GetPower() - 10);
 				
 				if(this.getStackInSlot(0) == null){
 					this.setInventorySlotContents(0, new ItemStack(ModItems.IronPlate, 1, 0));
 					
 				}else if(this.getStackInSlot(0) != null && this.getStackInSlot(0).getItem() == ModItems.IronPlate && this.getStackInSlot(0).getItemDamage() == 0){
 				
-					if(this.getStackInSlot(0).stackSize < 16){
+					if(this.getStackInSlot(0).stackSize < this.getInventoryStackLimit()){
 						this.setInventorySlotContents(0, new ItemStack(ModItems.IronPlate, this.getStackInSlot(0).stackSize + 1, 0));
 					}
 					
 				}
 				
 			}else if (Mode == 2){
-				
+				this.SetPower(this.GetPower() - 20);
 				
 
 				this.decrStackSize(2, 1);
@@ -129,7 +146,7 @@ public class TileEntityMetalPress extends TileEntityInvBase implements ISidedInv
 					
 				}else if(this.getStackInSlot(0) != null && this.getStackInSlot(0).getItem() == ModItems.IronPlate && this.getStackInSlot(0).getItemDamage() == 2){
 				
-					if(this.getStackInSlot(0).stackSize < 16){
+					if(this.getStackInSlot(0).stackSize < this.getInventoryStackLimit()){
 						this.setInventorySlotContents(0, new ItemStack(ModItems.IronPlate, this.getStackInSlot(0).stackSize + 1, 2));
 					}
 					
@@ -142,7 +159,8 @@ public class TileEntityMetalPress extends TileEntityInvBase implements ISidedInv
 		
 		}
 		
-		
+	}
+	}
 	
 		
 		
@@ -155,6 +173,7 @@ public class TileEntityMetalPress extends TileEntityInvBase implements ISidedInv
 
 
 		  WorkTime = NBT.getInteger("WorkTime");
+		  Mode = NBT.getInteger("Mode");
 	    }
 
 
@@ -164,6 +183,7 @@ public class TileEntityMetalPress extends TileEntityInvBase implements ISidedInv
 	      
 	    	
 	      NBT.setInteger("WorkTime", WorkTime);
+	      NBT.setInteger("Mode", Mode);
 	    }
 	    
 	    
@@ -182,16 +202,101 @@ public class TileEntityMetalPress extends TileEntityInvBase implements ISidedInv
 	    
 			@Override
 			public int[] getAccessibleSlotsFromSide(int var1) {
+				this.onInventoryChanged();
 				return var1 == 0 ? sidedSlotBottom : (var1 == 1 ? sidedSlotTop : sidedSlotSides);
 			}
 
 			@Override
 			public boolean canInsertItem(int i, ItemStack itemstack, int j) {
+				this.onInventoryChanged();
 				return this.isItemValidForSlot(i, itemstack);
 			}
 
 			@Override
 			public boolean canExtractItem(int i, ItemStack itemstack, int j) {
+				this.onInventoryChanged();
 				return j != 0 || i != 1 ;
 			}
-}
+			
+			public void WorkTimeAdd(){
+				WorkTime++;
+				
+	        	 ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+	             DataOutputStream stream = new DataOutputStream(bytes);
+
+	             try
+	             {
+	            	 
+	            	 stream.writeInt(xCoord);
+	            	 stream.writeInt(yCoord);
+	            	 stream.writeInt(zCoord);
+	            	 
+	            	 stream.writeInt(WorkTime);
+	            	 
+	            	 stream.writeBoolean(false);
+	                     
+	                     PacketDispatcher.sendPacketToAllPlayers(new Packet131MapData((short)Main.getNetId(), (short)6, bytes.toByteArray()));
+	             }
+	             catch(IOException e)
+	             {}
+	    	}
+			
+			
+			
+			public void WorkTimeReset(){
+				WorkTime = 0;
+				
+				
+
+	        	 ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+	             DataOutputStream stream = new DataOutputStream(bytes);
+
+	             try
+	             {
+	            	 
+	            	 stream.writeInt(xCoord);
+	            	 stream.writeInt(yCoord);
+	            	 stream.writeInt(zCoord);
+	            	 
+	            	 stream.writeInt(WorkTime);
+	            	 
+	            	 stream.writeBoolean(true);
+	                     
+	                     PacketDispatcher.sendPacketToAllPlayers(new Packet131MapData((short)Main.getNetId(), (short)6, bytes.toByteArray()));
+	             }
+	             catch(IOException e)
+	             {}
+	    	}
+
+			@Override
+			public boolean CanAcceptPower() {
+				return true;
+			}
+			
+			
+			public void SetWorkTimeUpdate(int i){
+			
+				WorkTime = i;
+				
+	        	 ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+	             DataOutputStream stream = new DataOutputStream(bytes);
+
+	             try
+	             {
+	            	 
+	            	 stream.writeInt(xCoord);
+	            	 stream.writeInt(yCoord);
+	            	 stream.writeInt(zCoord);
+	            	 
+	            	 stream.writeInt(WorkTime);
+	            	 
+	            	 stream.writeBoolean(false);
+	                     
+	                     PacketDispatcher.sendPacketToAllPlayers(new Packet131MapData((short)Main.getNetId(), (short)6, bytes.toByteArray()));
+	             }
+	             catch(IOException e)
+	             {}
+			}
+			
+			}
+

@@ -187,9 +187,8 @@ public class MetalPressModel extends ModelBase
     if(tile != null){
 
     	
-    	float Down = (float)tile.WorkTime / 410;
-    	
-    	
+    	float Down = (float)tile.GetWorkTime() / 410;
+
     	TopPlate.offsetY = Down;
     	
     	PlateHolder1.offsetY = Down;

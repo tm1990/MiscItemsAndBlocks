@@ -234,7 +234,7 @@ entity.silverarrow=Silver Arrow
 
 
 string.death.silversword=%Killed Was slaing with a Silver Sword by %Killer
-string.versioncheck.newversion=%EnumRed A new version of %ModName is available. Version: %EnumYellow %NewVersion %EnumGold  Download link: %DowLink %EnumBlue Changes in this version : %Changes
+string.versioncheck.newversion=%EnumRed A new version of %ModName is available. Version: %EnumYellow%NewVersion%EnumGold  Download link: %DowLink %EnumBlue Changes in this version: %Changes
 
 
 StatCollector.translateToLocal("")

@@ -8,17 +8,19 @@ import java.io.IOException;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.NetClientHandler;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.network.NetServerHandler;
 import net.minecraft.network.packet.NetHandler;
 import net.minecraft.network.packet.Packet131MapData;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChatMessageComponent;
 import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.world.World;
 import Mod.Gui.GuiGame_1;
 import Mod.Main.Main;
 import Mod.Misc.GameInfo;
 import Mod.Misc.GameInvite;
+import Mod.TileEntity.TileEntityMetalPress;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.network.ITinyPacketHandler;
@@ -233,6 +235,8 @@ implements ITinyPacketHandler
                         }
                         
                         
+
+                        
                         
                         
                         }
@@ -387,6 +391,37 @@ implements ITinyPacketHandler
                         	
                         	
                         }
+                        	
+                        }
+                        
+                        case 6:
+                        {
+
+                        	int x = stream.readInt();
+                        	int y = stream.readInt();
+                        	int z = stream.readInt();
+                        	
+                        	int WorkTime = stream.readInt();
+                        	
+                        	boolean PlaySound = stream.readBoolean();
+                        	
+                        	World world = Minecraft.getMinecraft().thePlayer.worldObj;
+                        	
+                        TileEntity tile_e = world.getBlockTileEntity(x, y, z);
+                        
+                        if(tile_e != null){
+                        	
+                        	if(tile_e instanceof TileEntityMetalPress){
+                        		TileEntityMetalPress tile = (TileEntityMetalPress)tile_e;
+                        		
+                        		tile.SetWorkTime(WorkTime);
+
+                        		if(PlaySound)
+                        			world.playSound(x, y, z, "random.anvil_land", 0.3F, 1.5F, false);
+                        		
+                        	}
+                        }
+                        	
                         	
                         }
                         
