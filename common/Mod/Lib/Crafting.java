@@ -20,6 +20,7 @@ public class Crafting {
 		GameRegistry.addShapedRecipe(new ItemStack(ModItems.DataChip, 2), new Object[]{"CCC", "CGC", "III", 'C', ModItems.Cardboard, 'G', new ItemStack(ModItems.Circuit, 1, 0), 'I', Item.ingotIron});
 		GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.Teleporter), new Object[]{"HCH", "BEB", "HCH", 'H', new ItemStack(ModItems.IronPlate, 1, 2), 'C', new ItemStack(ModItems.Circuit, 1, 1), 'B', new ItemStack(ModItems.AdvancedBattery, 1, 0), 'E', Item.enderPearl});
 		GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.WireLessRedstone, 2), new Object[]{"IEI", "ERE", "ICI", 'I', new ItemStack(ModItems.IronPlate, 1, 0), 'E', Item.enderPearl, 'R', Block.blockRedstone, 'C', new ItemStack(ModItems.Circuit, 1, 1)});
+		GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.WirelessItemTrans, 2), new Object[]{"POP", "CEC", "POP", 'P', new ItemStack(ModItems.IronPlate, 1, 2), 'O', Block.obsidian, 'C', new ItemStack(ModItems.Circuit, 1, 1), 'E', Item.enderPearl});
 		
 		
 		GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.SilverBlock), new Object[]{"SSS", "SSS", "SSS", 'S', ModItems.SilverIngot});
@@ -77,7 +78,7 @@ public class Crafting {
 			
 			
 			GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.MachinePart), new Object[]{"PPP", "P P", "PPP", 'P', new ItemStack(ModItems.IronPlate, 1, 0)});
-			GameRegistry.addShapedRecipe(new ItemStack(ModItems.IronPlate, 1, 0), new Object[]{"II", "II", 'I', Item.ingotIron});
+			GameRegistry.addShapedRecipe(new ItemStack(ModItems.IronPlate, 2, 0), new Object[]{"II", "II", 'I', Item.ingotIron});
 			GameRegistry.addShapedRecipe(new ItemStack(ModItems.IronPlate, 1, 2), new Object[]{"II", "II", 'I', new ItemStack(ModItems.IronPlate, 1, 1)});
 			
 		

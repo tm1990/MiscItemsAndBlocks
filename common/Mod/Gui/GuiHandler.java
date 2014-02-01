@@ -10,6 +10,7 @@ import Mod.Container.ContainerComputer;
 import Mod.Container.ContainerCraftingInv;
 import Mod.Container.ContainerElectricFurnace;
 import Mod.Container.ContainerGenerator;
+import Mod.Container.ContainerMetalPress;
 import Mod.Container.ContainerMill;
 import Mod.Container.ContainerMiningChamber;
 import Mod.Container.ContainerPizzaOven;
@@ -17,6 +18,7 @@ import Mod.Container.ContainerSolarPanel;
 import Mod.Container.ContainerSquezer;
 import Mod.Container.ContainerStorageBlock;
 import Mod.Container.ContainerTeleporter;
+import Mod.Container.ContainerWirelessItemTransfer;
 import Mod.Container.ContainerWirelessRedstone;
 import Mod.Container.ContainerXpStorage;
 import Mod.TileEntity.TileEntityBin;
@@ -26,6 +28,7 @@ import Mod.TileEntity.TileEntityComputer;
 import Mod.TileEntity.TileEntityCraftingInv;
 import Mod.TileEntity.TileEntityElectricFurnace;
 import Mod.TileEntity.TileEntityGenerator;
+import Mod.TileEntity.TileEntityMetalPress;
 import Mod.TileEntity.TileEntityMill;
 import Mod.TileEntity.TileEntityMiningChamber;
 import Mod.TileEntity.TileEntityOvenCore;
@@ -33,6 +36,7 @@ import Mod.TileEntity.TileEntitySolarPanel;
 import Mod.TileEntity.TileEntitySquezer;
 import Mod.TileEntity.TileEntityStorageBlock;
 import Mod.TileEntity.TileEntityTeleporter;
+import Mod.TileEntity.TileEntityWirelessItemTrans;
 import Mod.TileEntity.TileEntityWirelessRedstone;
 import Mod.TileEntity.TileEntityXpStorage;
 import cpw.mods.fml.common.network.IGuiHandler;
@@ -55,6 +59,14 @@ public class GuiHandler implements IGuiHandler{
         
         if(tile_entity instanceof TileEntityComputer){
         	return new ContainerComputer((TileEntityComputer)tile_entity);
+        }
+        
+        if(tile_entity instanceof TileEntityWirelessItemTrans){
+        	return new ContainerWirelessItemTransfer(player.inventory, (TileEntityWirelessItemTrans)tile_entity);
+        }
+        
+        if(tile_entity instanceof TileEntityMetalPress){
+        	return new ContainerMetalPress(player.inventory, (TileEntityMetalPress)tile_entity);
         }
         
         if(tile_entity instanceof TileEntityTeleporter){
@@ -163,11 +175,17 @@ public class GuiHandler implements IGuiHandler{
             	
         }
         
-        
         if(tile_entity instanceof TileEntityWirelessRedstone){
         	return new GuiWirelessRedstone(player.inventory, (TileEntityWirelessRedstone)tile_entity);
         }
+        
+        if(tile_entity instanceof TileEntityWirelessItemTrans){
+        	return new GuiWirelessItemTransfer(player.inventory, (TileEntityWirelessItemTrans)tile_entity);
+        }
 
+        if(tile_entity instanceof TileEntityMetalPress){
+        	return new GuiMetalPress(player.inventory, (TileEntityMetalPress)tile_entity);
+        }
 
         if(tile_entity instanceof TileEntityTeleporter){
         	return new GuiTeleporter(player.inventory, (TileEntityTeleporter)tile_entity);

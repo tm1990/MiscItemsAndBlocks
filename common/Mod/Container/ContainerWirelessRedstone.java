@@ -37,6 +37,7 @@ public class ContainerWirelessRedstone extends Container{
     			
     			addSlotToContainer(new Slot(InvPlayer, x + y * 9 + 9, 8 + 18 * x, 84 + y * 18));
     		}
+    	}
     		
     		
     		addSlotToContainer(new ModSlotChipSlot(tile, 0, 26, 7));
@@ -45,7 +46,7 @@ public class ContainerWirelessRedstone extends Container{
     		addSlotToContainer(new ModSlotChipSlot(tile, 2, 61, 7));
     		
     		
-    	}
+    	
 
 }
 	

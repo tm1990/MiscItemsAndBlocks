@@ -49,7 +49,7 @@ public class ModBlockBin extends BlockContainer{
 }
     
     public void registerIcons(IconRegister icon) {
-        this.blockIcon = icon.registerIcon(Refrence.Mod_Id + ":Bin");
+        this.blockIcon = icon.registerIcon("stone");
 }
 
     

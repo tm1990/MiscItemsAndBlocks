@@ -36,6 +36,7 @@ import Mod.TileEntity.TileEntityDisarmTrap;
 import Mod.TileEntity.TileEntityElectricFurnace;
 import Mod.TileEntity.TileEntityGenerator;
 import Mod.TileEntity.TileEntityItemPedestal;
+import Mod.TileEntity.TileEntityMetalPress;
 import Mod.TileEntity.TileEntityMill;
 import Mod.TileEntity.TileEntityMiningChamber;
 import Mod.TileEntity.TileEntityOvenCore;
@@ -49,6 +50,7 @@ import Mod.TileEntity.TileEntityTable;
 import Mod.TileEntity.TileEntityTeleporter;
 import Mod.TileEntity.TileEntityTimedBlock;
 import Mod.TileEntity.TileEntityWindMill;
+import Mod.TileEntity.TileEntityWirelessItemTrans;
 import Mod.TileEntity.TileEntityWirelessRedstone;
 import Mod.TileEntity.TileEntityXpStorage;
 import Mod.VersionChecker.VersionChecker;
@@ -209,6 +211,9 @@ public void preInit(FMLPreInitializationEvent event) {
         GameRegistry.registerTileEntity(TileEntityDiceHolder.class, "TileEntityDiceHolder");
         GameRegistry.registerTileEntity(TileEntityTeleporter.class, "TileEntityTeleporter");
         GameRegistry.registerTileEntity(TileEntityWirelessRedstone.class, "TileEntityWirelessRedstone");
+        GameRegistry.registerTileEntity(TileEntityWirelessItemTrans.class, "TileEntityWirelessItemTransfer");
+        
+        GameRegistry.registerTileEntity(TileEntityMetalPress.class, "TileEntityMetalPress");
         
         
         GameRegistry.registerWorldGenerator(new ModWorldGenerator());

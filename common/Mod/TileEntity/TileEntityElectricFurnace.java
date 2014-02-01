@@ -39,7 +39,7 @@ public class TileEntityElectricFurnace extends TileEntityPowerInv implements ISi
     	if(this.GetPower() > 0){
     		
     		
-    		if(this.getStackInSlot(0) != null){
+    		if(this.getStackInSlot(0) != null && FurnaceRecipes.smelting().getSmeltingResult(this.getStackInSlot(0)) != null){
     			if(this.getStackInSlot(2) != null && this.getStackInSlot(2).stackSize < 64 || this.getStackInSlot(2) == null){
     				
     			
@@ -72,12 +72,15 @@ public class TileEntityElectricFurnace extends TileEntityPowerInv implements ISi
     				
     				
     			}else{
-    				WorkTime++;
+    				WorkTime += 3;
     			}
     		}else{
     			WorkTime = 0;
     		}
+    	}else{
+    		WorkTime = 0;
     	}
+    	
     	
     	}
     	

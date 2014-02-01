@@ -1,55 +1,66 @@
 package Mod.Container;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import Mod.Slots.ModSlotArmor;
 import Mod.Slots.ModSlotChipSlot;
 import Mod.Slots.ModSlotChipSlotOut;
-import Mod.TileEntity.TileEntityBin;
-import Mod.TileEntity.TileEntityTeleporter;
+import Mod.Slots.ModSlotOutput;
+import Mod.TileEntity.TileEntityWirelessItemTrans;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
-public class ContainerTeleporter extends Container{
+public class ContainerWirelessItemTransfer extends Container{
 
-    private TileEntityTeleporter tile;
+    private TileEntityWirelessItemTrans tile;
     
-    int LastPower;
     int LastCardMode;
     
     int LastX;
     int LastY;
     int LastZ;
     
-    public ContainerTeleporter(InventoryPlayer InvPlayer, TileEntityTeleporter tile)
+    public ContainerWirelessItemTransfer(InventoryPlayer InvPlayer, TileEntityWirelessItemTrans tile)
     {
     	this.tile = tile;
     	
     	
     	for(int x = 0; x < 9; x++){
     		
-    		addSlotToContainer(new Slot(InvPlayer, x, 8 + 18 * x, 142));
+    		addSlotToContainer(new Slot(InvPlayer, x, 8 + 18 * x, 222));
     	}
     	
     	for(int y = 0; y < 3; y++){
     		for(int x = 0; x < 9; x++){
     			
-    			addSlotToContainer(new Slot(InvPlayer, x + y * 9 + 9, 8 + 18 * x, 84 + y * 18));
+    			addSlotToContainer(new Slot(InvPlayer, x + y * 9 + 9, 8 + 18 * x, 164 + y * 18));
     		}
-    	}
     		
+    	}
     		
     		addSlotToContainer(new ModSlotChipSlot(tile, 0, 26, 7));
     		addSlotToContainer(new ModSlotChipSlotOut(tile, 1, 26, 50));
     		
     		addSlotToContainer(new ModSlotChipSlot(tile, 2, 61, 7));
     		
+    		addSlotToContainer(new Slot(tile, 3, 26, 81));
     		
-    	
+    		
+    		
+    		   for(int y = 0; y < 2; y++){
+    		for(int x = 0; x < 9; x++){
+    			
+    			addSlotToContainer(new ModSlotOutput(tile, 4 + ((y * 9) + x), 8 + (x * 18), 108 + (y * 18)));
+    			
+    			
+    		}
+    		}
+    		
+    		   
+    
 
 }
 	
@@ -68,7 +79,6 @@ public class ContainerTeleporter extends Container{
 	    public void addCraftingToCrafters(ICrafting par1ICrafting)
 	    {
 	        super.addCraftingToCrafters(par1ICrafting);
-	        par1ICrafting.sendProgressBarUpdate(this, 0, this.tile.GetPower());
 	        par1ICrafting.sendProgressBarUpdate(this, 1, this.tile.GetCardMode());
 	        
 	        par1ICrafting.sendProgressBarUpdate(this, 2, this.tile.GetX());
@@ -84,10 +94,6 @@ public class ContainerTeleporter extends Container{
 	        {
 	            ICrafting icrafting = (ICrafting)this.crafters.get(i);
 
-	            if (this.LastPower != this.tile.GetPower())
-	            {
-	                icrafting.sendProgressBarUpdate(this, 0, this.tile.GetPower());
-	            }
 	            
 
 	            if (this.LastCardMode != this.tile.GetCardMode())
@@ -113,7 +119,6 @@ public class ContainerTeleporter extends Container{
 	            
 	        }
 
-	        this.LastPower = this.tile.GetPower();
 	        this.LastCardMode = this.tile.GetCardMode();
 	        
 	        this.LastX = this.tile.GetX();
@@ -125,10 +130,7 @@ public class ContainerTeleporter extends Container{
 	    @SideOnly(Side.CLIENT)
 	    public void updateProgressBar(int par1, int par2)
 	    {
-	        if (par1 == 0)
-	        {
-	            this.tile.SetPower(par2);
-	        }
+
 	        
 	        if(par1 == 1){
 	        	this.tile.SetCardMode(par2);

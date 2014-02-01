@@ -62,7 +62,7 @@ public class ModItemBlockStorageBlock extends ItemBlock {
 	    		}
 	    		
 				
-					list.add("Stored items " + itemstack.stackTagCompound.getInteger("ItemsNumber") + " of " + itemstack.stackTagCompound.getInteger("MaxItems"));
+					list.add("Stored stacks " + itemstack.stackTagCompound.getInteger("ItemsNumber") + " of " + itemstack.stackTagCompound.getInteger("MaxItems"));
 
 	    		
 	    		

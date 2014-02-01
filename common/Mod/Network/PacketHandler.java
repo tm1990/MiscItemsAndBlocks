@@ -4,22 +4,16 @@ import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.inventory.Container;
 import net.minecraft.network.INetworkManager;
-import net.minecraft.network.packet.Packet131MapData;
 import net.minecraft.network.packet.Packet250CustomPayload;
-import net.minecraft.util.ChatMessageComponent;
+import Mod.Container.ContainerMetalPress;
 import Mod.Container.ContainerMiningChamber;
 import Mod.Container.ContainerXpStorage;
 import Mod.Gui.GuiChat;
-import Mod.Gui.GuiGame_1;
 import Mod.Items.ModItemPaintBrush;
-import Mod.Main.Main;
-import Mod.Misc.GameInvite;
-import Mod.Tick.ServerTickHandler;
+import Mod.TileEntity.TileEntityMetalPress;
 import Mod.TileEntity.TileEntityMiningChamber;
 import Mod.TileEntity.TileEntityXpStorage;
 
@@ -131,7 +125,13 @@ public class PacketHandler implements IPacketHandler{
 					TileEntityMiningChamber MiningChamber = ((ContainerMiningChamber)container).getTile();
 					MiningChamber.receiveButtonEvent(buttonId);
 
+				}else if (container != null && container instanceof ContainerMetalPress){
+					TileEntityMetalPress tile = ((ContainerMetalPress)container).getTile();
+					tile.receiveButtonEvent(buttonId);
+					
 				}
+				
+				
 				return;
 				
 			case 2:

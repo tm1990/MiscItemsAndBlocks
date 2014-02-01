@@ -36,6 +36,9 @@ public class ModConfig {
 	public static int Teleporter;
 	public static int WireLessRedstone;
 	public static int WirelessItemTrans;
+	public static int WirelessPowerTransfer;
+	
+	public static int MetalPress;
 	
 	public static int PaintBlock;
 	public static int SilverBlock;
@@ -143,16 +146,16 @@ public class ModConfig {
 		XpStorageBlock = config.getBlock("Blocks","Xp Storage Block Id", 601).getInt();
 		Bins = config.getBlock("Blocks","Trash Bin Block Id", 602).getInt();
 		Trap = config.getBlock("Blocks","Disarm Trap Block Id", 603).getInt();
-		SilverOre = config.getBlock("Blocks", "Silver Ore Id", 604).getInt();
-		StoneStair = config.getBlock("Blocks", "Stone Stair Id", 605).getInt();
-		Box = config.getBlock("Blocks", "Box Id", 606).getInt();
-		CraftingInv = config.getBlock("Blocks", "Crafting table with inv Id", 607).getInt();
-		Dice = config.getBlock("Blocks", "Dice Id", 608).getInt();
+		SilverOre = config.getBlock("Blocks", "Silver Ore Block Id", 604).getInt();
+		StoneStair = config.getBlock("Blocks", "Stone Stair Block Id", 605).getInt();
+		Box = config.getBlock("Blocks", "CardBox Block Id", 606).getInt();
+		CraftingInv = config.getBlock("Blocks", "Worktable Block Id", 607).getInt();
+		Dice = config.getBlock("Blocks", "Dice Block Id", 608).getInt();
 		
-		GamePart = config.getBlock("Blocks", "Game piece Id", 609).getInt();
-		DiceHolder = config.getBlock("Blocks", "Dice Holder Id", 610).getInt();
-		Teleporter = config.getBlock("Blocks", "Teleporter Id", 611).getInt();
-		WireLessRedstone = config.getBlock("Blocks", "WireLess Redstone Id", 612).getInt();
+		GamePart = config.getBlock("Blocks", "Game piece Block Id", 609).getInt();
+		DiceHolder = config.getBlock("Blocks", "Dice Holder Block Id", 610).getInt();
+		Teleporter = config.getBlock("Blocks", "Teleporter Block Id", 611).getInt();
+		WireLessRedstone = config.getBlock("Blocks", "WireLess Redstone Block Id", 612).getInt();
 		WirelessItemTrans = config.getBlock("Blocks", "Wireless Item Transfer block Id", 613).getInt();
 
 		
@@ -188,6 +191,9 @@ public class ModConfig {
 		Computer = config.getBlock("Blocks", "Computer Block Id", 638).getInt();
 		StorageBlock = config.getBlock("Blocks", "Storage Block Id", 639).getInt();
 		SilverBlock = config.getBlock("Blocks", "Silver Block Id", 640).getInt();
+		
+		WirelessPowerTransfer = config.getBlock("Blocks", "Wireless Power Transfer Block Id", 641).getInt();
+		MetalPress = config.getBlock("Blocks", "MetalPress Block Id", 642).getInt();
 		
 		
 		

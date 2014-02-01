@@ -14,6 +14,7 @@ import Mod.ItemBlock.ModItemBlockDiceHolder;
 import Mod.ItemBlock.ModItemBlockDisarmTrap;
 import Mod.ItemBlock.ModItemBlockGamePiece;
 import Mod.ItemBlock.ModItemBlockItemPedestal;
+import Mod.ItemBlock.ModItemBlockMetalPress;
 import Mod.ItemBlock.ModItemBlockMiningChamber;
 import Mod.ItemBlock.ModItemBlockPowerCable;
 import Mod.ItemBlock.ModItemBlockStorageBlock;
@@ -57,6 +58,9 @@ public class ModBlocks {
 	public static Block Teleporter;
 	public static Block WireLessRedstone;
 	public static Block WirelessItemTrans;
+	public static Block WirelessPowerTransfer;
+	
+	public static Block MetalPress;
 	
 	public static Block PaintBlock;
 	public static Block SilverBlock;
@@ -211,6 +215,14 @@ public class ModBlocks {
         
         WirelessItemTrans = new ModBlockWirelessItemTransfer(ModConfig.WirelessItemTrans).setUnlocalizedName("WirelessItemTrans");
         Register(WirelessItemTrans, "Wireless Item Transfer", true);
+        
+        WirelessPowerTransfer = new Block(ModConfig.WirelessPowerTransfer, Material.iron).setUnlocalizedName("WirelessPowerTransfer").setHardness(1.5F);
+        Register(WirelessPowerTransfer, "[TODO]Wireless Power Transfer", true);
+        
+        MetalPress = new ModBlockMetalPress(ModConfig.MetalPress).setUnlocalizedName("MetalPress");
+        Register(MetalPress, ModItemBlockMetalPress.class, "Metal Press", true);
+        
+        
         
 		RegisterOreDictionary(new ItemStack(SilverOre), "oreSilver");
 		RegisterOreDictionary(new ItemStack(OrangeLog), "logWood");

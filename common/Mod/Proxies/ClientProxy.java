@@ -16,6 +16,7 @@ import Mod.ItemRender.ComputerItemRender;
 import Mod.ItemRender.DiceHolderItemRender;
 import Mod.ItemRender.DisarmTrapItemRender;
 import Mod.ItemRender.ItemPedestalItemRender;
+import Mod.ItemRender.ItemRenderMetalPress;
 import Mod.ItemRender.MiningChamberItemRender;
 import Mod.ItemRender.PillarItemRender;
 import Mod.ItemRender.PowerCableItemRender;
@@ -35,6 +36,7 @@ import Mod.TileEntity.TileEntityComputer;
 import Mod.TileEntity.TileEntityDiceHolder;
 import Mod.TileEntity.TileEntityDisarmTrap;
 import Mod.TileEntity.TileEntityItemPedestal;
+import Mod.TileEntity.TileEntityMetalPress;
 import Mod.TileEntity.TileEntityMiningChamber;
 import Mod.TileEntity.TileEntityPillar;
 import Mod.TileEntity.TileEntityPowerCable;
@@ -46,6 +48,7 @@ import Mod.TileEntityRenderer.TileEntityDiceHolderRender;
 import Mod.TileEntityRenderer.TileEntityDisarmTrapRenderer;
 import Mod.TileEntityRenderer.TileEntityGamePartRender;
 import Mod.TileEntityRenderer.TileEntityItemPedestalRender;
+import Mod.TileEntityRenderer.TileEntityMetalPressRender;
 import Mod.TileEntityRenderer.TileEntityMiningChamberRender;
 import Mod.TileEntityRenderer.TileEntityPillarRender;
 import Mod.TileEntityRenderer.TileEntityPowerCableRender;
@@ -81,6 +84,8 @@ public class ClientProxy extends ServerProxy{
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityDiceHolder.class, new TileEntityDiceHolderRender());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTeleporter.class, new TileEntityTeleporterRender());
         
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMetalPress.class, new TileEntityMetalPressRender());
+        
         
         RenderingRegistry.registerEntityRenderingHandler(EntitySilverArrow.class, new SilverArrowRender());
         RenderingRegistry.registerEntityRenderingHandler(EntityPowerArrow.class, new PowerArrowRender());
@@ -102,6 +107,8 @@ public class ClientProxy extends ServerProxy{
         
         MinecraftForgeClient.registerItemRenderer(ModBlocks.DiceHolder.blockID, new DiceHolderItemRender());
         MinecraftForgeClient.registerItemRenderer(ModBlocks.Teleporter.blockID, new TeleporterItemRender());
+        
+        MinecraftForgeClient.registerItemRenderer(ModBlocks.MetalPress.blockID, new ItemRenderMetalPress());
 
 }
     
