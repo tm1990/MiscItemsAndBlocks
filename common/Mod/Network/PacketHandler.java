@@ -124,10 +124,29 @@ public class PacketHandler implements IPacketHandler{
 				}else if (container != null && container instanceof ContainerMiningChamber) {
 					TileEntityMiningChamber MiningChamber = ((ContainerMiningChamber)container).getTile();
 					MiningChamber.receiveButtonEvent(buttonId);
+					
 
 				}else if (container != null && container instanceof ContainerMetalPress){
 					TileEntityMetalPress tile = ((ContainerMetalPress)container).getTile();
 					tile.receiveButtonEvent(buttonId);
+					
+					if(tile.Mode == 1){
+						
+						entityPlayer.inventory.addItemStackToInventory(tile.getStackInSlot(2));
+						entityPlayer.inventory.addItemStackToInventory(tile.getStackInSlot(3));
+						entityPlayer.inventory.addItemStackToInventory(tile.getStackInSlot(4));
+						entityPlayer.inventory.addItemStackToInventory(tile.getStackInSlot(5));
+						
+						tile.setInventorySlotContents(2, null);
+						tile.setInventorySlotContents(3, null);
+						tile.setInventorySlotContents(4, null);
+						tile.setInventorySlotContents(5, null);
+	
+					}else if (tile.Mode == 2){
+
+						entityPlayer.inventory.addItemStackToInventory(tile.getStackInSlot(1));
+						tile.setInventorySlotContents(1, null);
+					}
 					
 				}
 				

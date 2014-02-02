@@ -24,6 +24,18 @@ public class ContainerMetalPress extends Container{
     	this.tile = tile;
     	
     	
+    	this.addSlotToContainer(new ModSlotOutput(tile, 0, 133, 30));	
+    	
+		this.addSlotToContainer(new Slot(tile, 1, 31, 31));
+		
+		
+		
+		this.addSlotToContainer(new Slot(tile, 2, 10, 10));
+		this.addSlotToContainer(new Slot(tile, 3, 52, 10));
+		
+		this.addSlotToContainer(new Slot(tile, 4, 10, 52));
+		this.addSlotToContainer(new Slot(tile, 5, 52, 52));
+    	
     	for(int x = 0; x < 9; x++){
     		
     		addSlotToContainer(new Slot(InvPlayer, x, 8 + 18 * x, 142));
@@ -40,17 +52,6 @@ public class ContainerMetalPress extends Container{
     		
     		
 		
-    	this.addSlotToContainer(new ModSlotOutput(tile, 0, 133, 30));	
-    	
-    		this.addSlotToContainer(new Slot(tile, 1, 31, 31));
-    		
-    		
-    		
-    		this.addSlotToContainer(new Slot(tile, 2, 10, 10));
-    		this.addSlotToContainer(new Slot(tile, 3, 52, 10));
-    		
-    		this.addSlotToContainer(new Slot(tile, 4, 10, 52));
-    		this.addSlotToContainer(new Slot(tile, 5, 52, 52));
     		
     	
     	
@@ -116,7 +117,7 @@ public class ContainerMetalPress extends Container{
 	    @SideOnly(Side.CLIENT)
 	    public void updateProgressBar(int par1, int par2)
 	    {
-	        
+	       	    	
 	        if (par1 == 0)
 	        {
 	            this.tile.SetPower(par2);

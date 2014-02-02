@@ -111,13 +111,12 @@ public void preInit(FMLPreInitializationEvent event) {
     	
 	
 	
-	//TODO Continue locolazation support.
+	//TODO Continue localization support.
 	
 	//TODO Add Wireless power transfer
-	//TODO Add wireless item transfer
 	//TODO (maybe)Add wireless liquid transfer
 	//TODO Add unbreakable sword
-	//TODO Add sometype of ore doubleing
+	//TODO Add sometype of ore doubling
     	
 	GameRegistry.registerCraftingHandler(new ModCraftingHandler());
 	

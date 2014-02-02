@@ -3,7 +3,13 @@ package Mod.Gui;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.Container;
+import net.minecraft.inventory.Slot;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.Icon;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 
@@ -50,16 +56,16 @@ public class GuiMetalPress extends GuiContainer{
 	         int Mode = tile.GetMode();
 	         
 	         if(Mode == 1){
-	        	 this.drawTexturedModalRect(x + 10, y + 10, 179, 3, 16, 16);
+	        	 this.drawTexturedModalRect(x + 9, y + 9, 179, 1, 18, 18);
 	        	 
-	        	 this.drawTexturedModalRect(x + 52, y + 10, 179, 3, 16, 16);
+	        	 this.drawTexturedModalRect(x + 51, y + 9, 179, 1, 18, 18);
 	        	 
-	        	 this.drawTexturedModalRect(x + 10, y + 52, 179, 3, 16, 16);
+	        	 this.drawTexturedModalRect(x + 9, y + 51, 179, 1, 18, 18);
 	        	 
-	        	 this.drawTexturedModalRect(x + 52, y + 52, 179, 3, 16, 16);
+	        	 this.drawTexturedModalRect(x + 51, y + 51, 179, 1, 18, 18);
 	         }else if (Mode == 2){
 	        	 
-	        	 this.drawTexturedModalRect(x + 31, y + 31, 179, 3, 16, 16);
+	        	 this.drawTexturedModalRect(x + 30, y + 30, 179, 1, 18, 18);
 	         }
 	         
 	         this.drawTexturedModalRect(x + 87, y + 29, 179, 20, tile.GetWorkTime() / 2, 16);
@@ -88,5 +94,62 @@ public class GuiMetalPress extends GuiContainer{
 		PacketHandler.sendButtonPacket((byte)button.id);
 		
 	}
+	
+    protected void drawSlotInventory(Slot slot)
+    {
 
+    	
+    	
+       
+    	if(slot.inventory == tile && tile.GetMode() == 1 && slot.getSlotIndex() == 1){
+    		super.drawSlotInventory(slot);
+    		
+    	}else if (slot.inventory == tile && tile.GetMode() == 2 && slot.getSlotIndex() == 1){
+    	}
+    	
+    	
+    	
+    	if (slot.inventory == tile && tile.GetMode() == 2 && slot.getSlotIndex() == 2
+    			|| slot.inventory == tile && tile.GetMode() == 2 && slot.getSlotIndex() == 3
+    			|| slot.inventory == tile && tile.GetMode() == 2 && slot.getSlotIndex() == 4
+    			|| slot.inventory == tile && tile.GetMode() == 2 && slot.getSlotIndex() == 5){
+    		super.drawSlotInventory(slot);
+    		
+    		
+
+    		
+    	}
+    	
+    	if(slot.inventory == tile && slot.getSlotIndex() == 0)
+    		super.drawSlotInventory(slot);
+    	
+    	
+    		if (slot.inventory == Minecraft.getMinecraft().thePlayer.inventory){
+    		super.drawSlotInventory(slot);
+    		}
+    		
+    		
+    		
+    	}
+    
+    @Override
+    public boolean isMouseOverSlot(Slot par1Slot, int par2, int par3)
+    {
+    	if(par1Slot.inventory == tile && tile.GetMode() == 2 && par1Slot.getSlotIndex() == 1){
+    		return false;
+    		
+    	}else if (par1Slot.inventory == tile && tile.GetMode() == 1 && par1Slot.getSlotIndex() == 2
+    			|| par1Slot.inventory == tile && tile.GetMode() == 1 && par1Slot.getSlotIndex() == 3
+    			||par1Slot.inventory == tile && tile.GetMode() == 1 && par1Slot.getSlotIndex() == 4
+    			|| par1Slot.inventory == tile && tile.GetMode() == 1 && par1Slot.getSlotIndex() == 5
+    			){
+    		return false;
+    		
+    		
+    	}else{
+    	
+        return this.isPointInRegion(par1Slot.xDisplayPosition, par1Slot.yDisplayPosition, 16, 16, par2, par3);
+    	}
+    }
+   
 }

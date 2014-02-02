@@ -30,9 +30,9 @@ public class TileEntityMetalPress extends TileEntityPowerInv implements ISidedIn
 	public int Mode = 1;
 	
 	
-	private final int[] sidedSlotSides = new int[] { 1, 2, 3, 4, 5 };
+	private final int[] sidedSlotSides = new int[] { 1 };
 	private final int[] sidedSlotBottom = new int[] { 0 };
-	private final int[] sidedSlotTop = new int[] { 1, 2, 3, 4, 5 };
+	private final int[] sidedSlotTop = new int[] { 1 };
 	
 	public int GetMode(){
 		return Mode;
@@ -203,6 +203,13 @@ public class TileEntityMetalPress extends TileEntityPowerInv implements ISidedIn
 			@Override
 			public int[] getAccessibleSlotsFromSide(int var1) {
 				this.onInventoryChanged();
+				
+				if(Mode == 1)
+					return var1 == 0 ? sidedSlotBottom : new int[]{ 1 };
+				else if (Mode == 2)
+					return var1 == 0 ? sidedSlotBottom : new int[]{ 2, 3, 4, 5 };
+					
+					
 				return var1 == 0 ? sidedSlotBottom : (var1 == 1 ? sidedSlotTop : sidedSlotSides);
 			}
 
