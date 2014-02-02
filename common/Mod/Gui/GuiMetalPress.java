@@ -132,7 +132,6 @@ public class GuiMetalPress extends GuiContainer{
     		
     	}
     
-    @Override
     public boolean isMouseOverSlot(Slot par1Slot, int par2, int par3)
     {
     	if(par1Slot.inventory == tile && tile.GetMode() == 2 && par1Slot.getSlotIndex() == 1){

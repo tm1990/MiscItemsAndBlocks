@@ -88,11 +88,7 @@ public class ModItemPaintBrush extends Item{
 	    {
 	    	
 	    	
-	    	
-	    	if(player.isSneaking())
-	    	if(stack.getItemDamage() == 5){
-				player.openGui(Main.instance, 1, world, 0, 0, 0);
-	    	}
+	    
 	    	
 	    	
 	    	
@@ -286,6 +282,15 @@ public class ModItemPaintBrush extends Item{
 		}
 	    
 
+	    public ItemStack onItemRightClick(ItemStack item, World world, EntityPlayer player){
+	    	
+	    	if(player.isSneaking())
+	    	if(item.getItemDamage() == 5){
+				player.openGui(Main.instance, 1, world, 0, 0, 0);
+	    	}
+	    	
+	    	return item;
+	    }
 	    
 
 }
