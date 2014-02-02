@@ -18,7 +18,6 @@
 		
 		<delete dir="${build_prop.mcpLocation}\src\minecraft\common" />
 		
-		<delete dir="${build_prop.mcpLocation}\src\minecraft\Mod\*" />
 		<delete dir="${build_prop.mcpLocation}\src\minecraft\Mod" />
 		<delete file="${build_prop.mcpLocation}\reobf\minecraft\*" />
 	</target>
