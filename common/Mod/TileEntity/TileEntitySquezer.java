@@ -1,5 +1,6 @@
 package Mod.TileEntity;
 
+import MiscItemsApi.Recipes.SqueezerRecipes;
 import Mod.Items.ModItems;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.Item;
@@ -74,14 +75,18 @@ public class TileEntitySquezer extends TileEntityInvBase implements ISidedInvent
     	
     	
     	if(this.getStackInSlot(0) != null && this.getStackInSlot(1) != null){
-    		if(CanWork()){
     		
-    		if(WorkTime == FinishTime){
+			ItemStack finishItem = SqueezerRecipes.instance().GetResult(getStackInSlot(0), getStackInSlot(1));
+			
+			
+			
+			if(finishItem != null){
+    		if(WorkTime >= FinishTime){
     			WorkTime = 0;
+
     			
     			
-    			ItemStack finishItem = GetOutput();
-    			
+    			if(finishItem != null){
     			this.decrStackSize(0, 1);
     			this.decrStackSize(1, 1);
     			
@@ -93,39 +98,25 @@ public class TileEntitySquezer extends TileEntityInvBase implements ISidedInvent
 
     			}
     			
-    		}else{
-    			WorkTime++;
     		}
-    		}
+    		
+    	}else{
+			WorkTime++;
+		}
+    	
+    	}else{
+    		WorkTime = 0;
     	}
-    	
-    }
-    
-    public ItemStack GetOutput(){
-    	
-    	Item item_1 = this.getStackInSlot(0).getItem();
-    	Item item_2 = this.getStackInSlot(1).getItem();
-    	
-    	if(item_1 == Item.glassBottle && item_2 == Item.appleRed) return new ItemStack(ModItems.Liquid, 1, 0);
-    	if(item_1 == Item.bucketEmpty && item_2 == ModItems.Tomato) return new ItemStack(ModItems.Liquid, 1, 1);
-    	if(item_1 == Item.glassBottle && item_2 == ModItems.Orange)return new ItemStack(ModItems.Liquid, 1, 2);
-    	if(item_1 == Item.glassBottle && item_2 == Item.carrot)return new ItemStack(ModItems.Liquid, 1, 3);
-    	
-    	
-
-    	return null;
+			
+			
+    	}else{
+    		WorkTime = 0;
+    	}
     }
     
     
     
-    public boolean CanWork(){
-    	
-    	if(GetOutput() == null)
-    		return false;
-
-    	return GetOutput() != null && this.getStackInSlot(2) == null;
-    	
-    }
+    
     
     public int GetWorkTime(){
     	

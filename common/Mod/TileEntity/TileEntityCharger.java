@@ -6,6 +6,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
+import MiscItemsApi.Electric.IPowerItem;
 import Mod.Items.ModItemElArmor;
 import Mod.Items.ModItemPowerTool;
 
@@ -80,25 +81,25 @@ public class TileEntityCharger extends TileEntityInvBase{
     	
     	if(this.getStackInSlot(2) != null){
     		if(this.getStackInSlot(2).getItemDamage() == 0){
-    			Bigger = Bigger + this.getStackInSlot(2).stackSize * 100;
+    			Bigger += this.getStackInSlot(2).stackSize * 100;
     		}
     	}
     	
     	if(this.getStackInSlot(3) != null){
     		if(this.getStackInSlot(3).getItemDamage() == 0){
-    			Bigger = Bigger + this.getStackInSlot(3).stackSize * 100;
+    			Bigger += this.getStackInSlot(3).stackSize * 100;
     		}
     	}
     	
     	if(this.getStackInSlot(4) != null){
     		if(this.getStackInSlot(4).getItemDamage() == 0){
-    			Bigger = Bigger + this.getStackInSlot(4).stackSize * 100;
+    			Bigger += this.getStackInSlot(4).stackSize * 100;
     		}
     	}
     	
     	if(this.getStackInSlot(5) != null){
     		if(this.getStackInSlot(5).getItemDamage() == 0){
-    			Bigger = Bigger + this.getStackInSlot(5).stackSize * 100;
+    			Bigger += this.getStackInSlot(5).stackSize * 100;
     		}
     	}
     	
@@ -114,14 +115,12 @@ public class TileEntityCharger extends TileEntityInvBase{
     	
     	
     	
-    	int BlockID = this.worldObj.getBlockId(xCoord, yCoord + 1, zCoord);
-    	Block block = Block.blocksList[BlockID];
 
     	ItemStack itemStack = this.getStackInSlot(0);
     	
     	if(itemStack != null){
 		
-		if(itemStack.getItem() instanceof ModItemPowerTool || itemStack.getItem() instanceof ModItemElArmor){
+		if(itemStack.getItem() instanceof IPowerItem ){
 			if(itemStack.getItemDamage() > 0 && Power > 0){
 				Power--;
 				itemStack.setItemDamage(itemStack.getItemDamage() - 1);
@@ -135,7 +134,7 @@ public class TileEntityCharger extends TileEntityInvBase{
     	if(emptyStack != null){
 
     		
-    		if(emptyStack.getItem() instanceof ModItemPowerTool || emptyStack.getItem() instanceof ModItemElArmor){
+    		if(emptyStack.getItem() instanceof IPowerItem){
     			int i = emptyStack.getMaxDamage() - emptyStack.getItemDamage();
     			if(i > 0){
     				emptyStack.setItemDamage(emptyStack.getItemDamage() + 1);

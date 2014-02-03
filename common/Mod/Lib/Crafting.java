@@ -5,6 +5,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraftforge.oredict.ShapedOreRecipe;
+import MiscItemsApi.Recipes.MillRecipes;
+import MiscItemsApi.Recipes.SqueezerRecipes;
 import Mod.Block.ModBlocks;
 import Mod.Items.ModItems;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -15,6 +17,16 @@ public class Crafting {
 	
 	public static void RegisterRecipes(){
 		
+		
+		
+		SqueezerRecipes.instance().AddRecipe(new ItemStack(Item.appleRed), new ItemStack(ModItems.Liquid, 1, 0));
+		SqueezerRecipes.instance().AddRecipe(new ItemStack(ModItems.Orange), new ItemStack(ModItems.Liquid, 1, 2));
+		SqueezerRecipes.instance().AddRecipe(new ItemStack(Item.carrot), new ItemStack(ModItems.Liquid, 1, 3));
+		
+		MillRecipes.instance().AddRecipe(new ItemStack(Item.wheat), new ItemStack(ModItems.Flour));
+		MillRecipes.instance().AddRecipe(new ItemStack(Item.rottenFlesh), new ItemStack(Item.leather));
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(ModItems.Liquid, 1, 1), new Object[]{Item.bucketEmpty, ModItems.Tomato});
 		
 		GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.DiceHolder), new Object[]{ModBlocks.ItemPedestal, ModBlocks.Dice});
 		GameRegistry.addShapedRecipe(new ItemStack(ModItems.DataChip, 2), new Object[]{"CCC", "CGC", "III", 'C', ModItems.Cardboard, 'G', new ItemStack(ModItems.Circuit, 1, 0), 'I', Item.ingotIron});

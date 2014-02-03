@@ -74,8 +74,23 @@ public class ModItemInfoScreenHelmet extends ModItemElArmor{
 
 	        return par1ItemStack;
 	    }
+
+
+		@Override
+		public int MaxPower(ItemStack stack) {
+			return 152;
+		}
+
+
+		@Override
+		public int ChargeAmount(ItemStack stack) {
+			return 1;
+		}
 	    
-	    
+		@Override
+		public boolean CanBackpackRecharge(ItemStack stack) {
+			return true;
+		}
 	 
 }
 

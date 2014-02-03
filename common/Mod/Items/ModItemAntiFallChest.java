@@ -2,8 +2,6 @@ package Mod.Items;
 
 import java.util.List;
 
-import org.lwjgl.input.Keyboard;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -78,4 +76,22 @@ public class ModItemAntiFallChest extends ModItemElArmor{
 			}
 	    	
 	    }
+	    
+	    
+		@Override
+		public int MaxPower(ItemStack stack) {
+			return 2453;
+		}
+
+
+		@Override
+		public int ChargeAmount(ItemStack stack) {
+			return 2;
+		}
+
+
+		@Override
+		public boolean CanBackpackRecharge(ItemStack stack) {
+			return false;
+		}
 }

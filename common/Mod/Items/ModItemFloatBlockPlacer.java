@@ -90,5 +90,23 @@ public class ModItemFloatBlockPlacer extends ModItemPowerTool{
             list.add(StatCollector.translateToLocal("items.desc.floatblockplacer.1"));
             list.add(EnumChatFormatting.RED + StatCollector.translateToLocal("items.desc.floatblockplacer.2"));
     }
+
+
+	@Override
+	public int MaxPower(ItemStack stack) {
+		return 325;
+	}
+
+
+	@Override
+	public int ChargeAmount(ItemStack stack) {
+		return 1;
+	}
+
+
+	@Override
+	public boolean CanBackpackRecharge(ItemStack stack) {
+		return true;
+	}
     
 }

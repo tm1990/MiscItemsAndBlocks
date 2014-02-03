@@ -202,6 +202,21 @@ private Icon _icon4;
 	    	
 	    	
 	    }
+
+		@Override
+		public int MaxPower(ItemStack stack) {
+			return 580;
+		}
+
+		@Override
+		public int ChargeAmount(ItemStack stack) {
+			return 1;
+		}
+
+		@Override
+		public boolean CanBackpackRecharge(ItemStack stack) {
+			return true;
+		}
 	    
 	    
 	}

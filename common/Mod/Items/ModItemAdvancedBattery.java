@@ -1,6 +1,7 @@
 package Mod.Items;
 
 import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 import Mod.Lib.Refrence;
 import cpw.mods.fml.relauncher.Side;
@@ -9,9 +10,15 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class ModItemAdvancedBattery extends ModItemPowerStorage{
 
 	public ModItemAdvancedBattery(int par1) {
-		super(par1, 64);
+		super(par1);
+		this.setMaxDamage(64);
 	}
 
+	
+	@Override
+	public int MaxPower(ItemStack stack) {
+		return 64;
+	}
 	
 	Icon Icon1;
 	Icon Icon2;
@@ -60,6 +67,18 @@ public class ModItemAdvancedBattery extends ModItemPowerStorage{
 			
 			return Icon1;
 			
-	    } 
+	    }
+
+
+		@Override
+		public int ChargeAmount(ItemStack stack) {
+			return 1;
+		}
+
+
+		@Override
+		public boolean CanBackpackRecharge(ItemStack stack) {
+			return false;
+		} 
 
 }

@@ -1,14 +1,8 @@
 package Mod.Items;
 
-import java.util.List;
-
 import net.minecraft.client.renderer.texture.IconRegister;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
-import net.minecraft.world.World;
 import Mod.Lib.Refrence;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -16,7 +10,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class ModItemBigBattery extends ModItemPowerStorage{
 
 	public ModItemBigBattery(int par1) {
-		super(par1, 32);
+		super(par1);
+		this.setMaxDamage(32);
 	}
 
 	
@@ -69,4 +64,19 @@ public class ModItemBigBattery extends ModItemPowerStorage{
 			
 	    }
 	   
+		
+		@Override
+		public int MaxPower(ItemStack stack) {
+			return 32;
+		}
+
+		@Override
+		public int ChargeAmount(ItemStack stack) {
+			return 1;
+		}
+
+		@Override
+		public boolean CanBackpackRecharge(ItemStack stack) {
+			return false;
+		}
 }

@@ -358,10 +358,24 @@ public class ModItemDrill extends ModItemPowerTool{
 	        return false;
 	    }
 	    
-	    public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack)
-	    {
-	        return false;
-	    }
+
+
+		@Override
+		public int MaxPower(ItemStack stack) {
+			return MaxCharge;
+		}
+
+
+		@Override
+		public int ChargeAmount(ItemStack stack) {
+			return 1;
+		}
+
+
+		@Override
+		public boolean CanBackpackRecharge(ItemStack stack) {
+			return true;
+		}
 	  
 	    
 

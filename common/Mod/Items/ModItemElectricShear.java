@@ -159,4 +159,19 @@ public class ModItemElectricShear extends ModItemPowerTool{
 	        return false;
 	    }
 
+		@Override
+		public int MaxPower(ItemStack stack) {
+			return 430;
+		}
+
+		@Override
+		public int ChargeAmount(ItemStack stack) {
+			return 1;
+		}
+		
+		@Override
+		public boolean CanBackpackRecharge(ItemStack stack) {
+			return true;
+		}
+
 }

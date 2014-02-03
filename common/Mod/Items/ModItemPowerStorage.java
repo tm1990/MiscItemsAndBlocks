@@ -14,12 +14,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 
-public class ModItemPowerStorage extends ModItemPowerTool{
+public abstract class ModItemPowerStorage extends ModItemPowerTool{
 
-	public ModItemPowerStorage(int par1, int par2) {
+	public ModItemPowerStorage(int par1) {
 		super(par1,  0, EnumToolMaterial.IRON, new Block[]{});
 		this.setMaxStackSize(1);
-		this.setMaxDamage(par2);
 		this.damageVsEntity = 0;
 	}
 	
@@ -64,6 +63,8 @@ public class ModItemPowerStorage extends ModItemPowerTool{
         list.add(new ItemStack(par1, 1, item.getMaxDamage()));
         
     }
+
+
 	
 	
 

@@ -4,6 +4,7 @@ import java.util.Random;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import MiscItemsApi.Recipes.MillRecipes;
 import Mod.Items.ModItems;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -88,14 +89,16 @@ public class TileEntityMill extends TileEntityInvBase{
         {
         	
         	if(this.getStackInSlot(0) != null){
-        	if(CanItemWork()){
+        		ItemStack result = MillRecipes.instance().GetResult(getStackInSlot(0));
+        		
+        		if(result != null){
         		if(this.getStackInSlot(1) == null || this.getStackInSlot(1).stackSize <= 0 || this.getStackInSlot(1).stackSize < 16){
 
         		
         		if(WorkTime == FinishTime){
         			WorkTime = 0;
         			
-        			ItemStack finishItem = OutputItem();
+        			ItemStack finishItem = result;
 
         			
         			this.decrStackSize(0, 1);
@@ -120,28 +123,17 @@ public class TileEntityMill extends TileEntityInvBase{
         	
         	
         	}
+        	}else{
+        	WorkTime = 0;
+        	
+        	
         	}
         	}
+        		
+        		
         }
         
-        public boolean CanItemWork(){
-        	ItemStack itemstack = this.getStackInSlot(0);
-        	
-        	if(OutputItem() != null)return true;
-        	
-        	
-        	return false;
-        }
-
         
-        public ItemStack OutputItem(){
-        	Item item = this.getStackInSlot(0).getItem();
-        	
-        	if(item == Item.wheat) return new ItemStack(ModItems.Flour);
-        	if(item == Item.rottenFlesh)return new ItemStack(Item.leather);
-        	
-        	return null;
-        }
         
         public int GetWorkTime(){
         	
