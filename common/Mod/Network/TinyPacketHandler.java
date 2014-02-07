@@ -60,7 +60,7 @@ implements ITinyPacketHandler
                         
                         case 1:
                         {
-                                //Trade request;
+                                //Game request;
                                 String plyr1 = stream.readUTF();
                                 
                                 EntityPlayerMP plyr = FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().getPlayerForUsername(plyr1);

@@ -60,15 +60,7 @@ public class ModBlockPaintBlock extends BlockContainer{
 	    
 	    
 
-//	    @Override
-//	    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
-//	    {
-//
-//	    	world.markBlockForRenderUpdate(x, y, z);
-//	    	world.markBlockForUpdate(x, y, z);
-//
-//	    	return false;
-//	    }
+
 
 
 

@@ -54,8 +54,6 @@ public class ModItemBlockBox extends ItemBlock {
 	       return true;
 	    }
 	 
-	 
-	 //TODO Add shift functionality to other items
 	    @Override
 	    public void addInformation(ItemStack itemstack, EntityPlayer player, List list, boolean par4)
 	    {

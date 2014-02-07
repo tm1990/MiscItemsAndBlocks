@@ -1,6 +1,8 @@
 package Mod.Gui;
 
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.Collections;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
@@ -18,16 +20,85 @@ import cpw.mods.fml.common.FMLCommonHandler;
 
 public class GuiPlayerFinder extends GuiScreen{
 
-	private final ResourceLocation Texture = new ResourceLocation("miscitems" , "textures/gui/LargeGuiBlankOutInv.png");
+	private final ResourceLocation Texture = new ResourceLocation("miscitems" , "textures/gui/GuiPlayerFinder.png");
 
-    public static final int xSizeOfTexture = 176;
-    public static final int ySizeOfTexture = 155;
+    protected static int xSize = 248;
+    protected static int ySize = 169;
+	
+    public static final int xSizeOfTexture = xSize;
+    public static final int ySizeOfTexture = ySize;
+    
     
     GuiTextField textField;
     GuiButton teleport;
     
     EntityPlayer player;
     String Mode;
+    
+    int Page = 1;
+    int Pages = 1;
+    
+    protected int guiLeft;
+    protected int guiTop;
+    
+    public ArrayList<EntityPlayer> players = new ArrayList<EntityPlayer>();
+    
+    @Override
+    public void updateScreen()
+    {
+    	
+    	players.clear();
+    	
+    	 for(int i = 0; i < mc.theWorld.playerEntities.size(); i++)
+         {
+                 EntityPlayer player = (EntityPlayer)mc.theWorld.playerEntities.get(i);
+                 if(player.isEntityAlive() && !players.contains(player.username))
+                 {
+                         players.add(player);
+                 }
+         }
+    	 
+    	 
+         buttonList.clear();
+    	 Pages = players.size() / 5;
+    	
+    	 
+    	 
+    	 if(Pages <= 0)
+    		 Pages = 1;
+    	 
+    	 if(players.size() > Pages * 5){
+    		 Pages++;
+    	 }
+
+    	 
+    	 buttonList.add(new GuiButton(players.size() + 1, guiLeft + 160, guiTop + 114, 80, 20, "Prev Page"));
+    	 buttonList.add(new GuiButton(players.size() + 2, guiLeft + 160, guiTop + 144, 80, 20, "Next Page"));
+         
+    	 
+    	 
+         for(int i = 0; i < players.size(); i++)
+         {
+        	 
+
+
+        	 if(i < Page * 5 && i >= (Page - 1) * 5){
+
+                 buttonList.add(new GuiButton(i, guiLeft + 160, (guiTop - ((Page - 1) * 110)) + 4  + 22 * (int)Math.floor((double)i / 1D), 80, 20, players.get(i).getCommandSenderName()));
+         
+        	 }
+         }
+         
+         
+	        teleport = new GuiButton(players.size() + 5, guiLeft + 60, guiTop + 5, 50, 20, StatCollector.translateToLocal("gui.string.teleport"));
+	        
+	        buttonList.add(new GuiButton(players.size() + 4, guiLeft + 6, guiTop + 5, 50, 20, StatCollector.translateToLocal("gui.string.clear")));
+	        buttonList.add(teleport);
+	        
+	        if(player == null || !Minecraft.getMinecraft().thePlayer.capabilities.isCreativeMode)
+	        teleport.enabled = false;
+    }
+
 	
 	 @Override
 	    public void drawScreen(int x, int y, float f) {
@@ -38,33 +109,27 @@ public class GuiPlayerFinder extends GuiScreen{
 
 	        int posX = (this.width - xSizeOfTexture) / 2;
 	        int posY = (this.height - ySizeOfTexture) / 2;
-	        
 
 	        drawTexturedModalRect(posX, posY, 0, 0, xSizeOfTexture, ySizeOfTexture);
 	        
-	        this.drawRect(posX + 5, posY + 150, posX + 170, posY + 80, new Color(100,100,100).getRGB());
-         
+	    	 this.drawCenteredString(fontRenderer, Page + "/" + Pages, guiLeft + 200, guiTop + 135, 0x444444);
 	        
-	        fontRenderer.drawString(StatCollector.translateToLocal("gui.string.enterplayername") + " " + StatCollector.translateToLocal("gui.string.casesensetive"), posX + 3, posY + 6, 10);
+	        this.drawRect(posX + 5, posY + 97, posX + 130, posY + 30, new Color(100,100,100).getRGB());
 
 	        if(player != null && Mode == "Valid"){
-		    fontRenderer.drawString(player.username + "`s Coords: ", posX + 7, posY + 82, 10);
-	        fontRenderer.drawString("X Coord: " + (int)player.posX, posX + 7, posY + 90, 10);
-	        fontRenderer.drawString("Y Coord: " + (int)player.posY, posX + 7, posY + 98, 10);
-	        fontRenderer.drawString("Z Coord: " + (int)player.posZ, posX + 7, posY + 106, 10);
+		    fontRenderer.drawString(player.username + "`s Coords: ", posX + 7, posY + 32, 10);
+	        fontRenderer.drawString("X Coord: " + (int)player.posX, posX + 7, posY + 40, 10);
+	        fontRenderer.drawString("Y Coord: " + (int)player.posY, posX + 7, posY + 48, 10);
+	        fontRenderer.drawString("Z Coord: " + (int)player.posZ, posX + 7, posY + 56, 10);
 	        
 	        if(Minecraft.getMinecraft().thePlayer.capabilities.isCreativeMode){
 	        	teleport.enabled = true;
 	        }else{
 	        	teleport.enabled = false;
 	        }
-	        
-	        }else if (Mode == "Invalid"){
-			    fontRenderer.drawString("Invalid playername!", posX + 7, posY + 82, new Color(50,0,0).getRGB());
-	        	teleport.enabled = false;
+
 	        }
 	        
-	        textField.drawTextBox();
 	        
 	        
 	        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
@@ -83,76 +148,59 @@ public class GuiPlayerFinder extends GuiScreen{
 	    public void initGui() {
 			super.initGui();
 			buttonList.clear();
-	        int posX = (this.width - xSizeOfTexture) / 2;
-	        int posY = (this.height - ySizeOfTexture) / 2;
-	        textField = new GuiTextField(fontRenderer, posX + 6, posY + 16, 164, 17);
-	        teleport = new GuiButton(3, posX + 60, posY + 34, 50, 20, StatCollector.translateToLocal("gui.string.teleport"));
-	        
-	        buttonList.add(new GuiButton(1, posX + 6, posY + 34, 50, 20, StatCollector.translateToLocal("gui.string.enter")));
-	        buttonList.add(new GuiButton(2, posX + 6, posY + 56, 50, 20, StatCollector.translateToLocal("gui.string.clear")));
-	        buttonList.add(teleport);
-	        
-	        teleport.enabled = false;
-
-	        
-	        
+			
+	        this.guiLeft = (this.width - this.xSize) / 2;
+	        this.guiTop = (this.height - this.ySize) / 2;
 	    }
 	    
-	    protected void mouseClicked(int x, int y, int par3)
-	    {
-	        super.mouseClicked(x, y, par3);
-	    
-	        this.textField.mouseClicked(x, y, par3);
-	        
-	    }
-	    
-	    protected void keyTyped(char par1, int par2)
-	    {
-	    	super.keyTyped(par1, par2);
-
-	    	if(textField.isFocused() && par2 != Keyboard.KEY_RETURN){
-	    		textField.textboxKeyTyped(par1, par2);
-	    	}
-	    	
-	    }
+	
 	    
 	    @Override
-	    protected void actionPerformed(GuiButton par1GuiButton) {
-	        switch (par1GuiButton.id) {
-	        
-	        case 1:
+	    protected void actionPerformed(GuiButton button) {
+	    	
+
+	    	if(button.id == players.size() + 1){
+	    		
+	    		if(Page - 1 > 0)
+	    			Page--;
+	    		
+	    		
+	    		
+	    	}else if (button.id == players.size() + 2){
+	    		
+	    		if(Page + 1 <= Pages)
+	    		Page++;
+	    		
+	    	}else if (button.id == players.size() + 4){
 	        	teleport.enabled = false;
-				EntityPlayerMP player = FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().getPlayerForUsername(textField.getText());
-				if(player != null){
-					this.player = player;
-					Mode = "Valid";
-					textField.setText("");
-				}else{
-					Mode = "Invalid";
-					
-				}
-	        	break;
-	        	
-	        case 2:
-	        	teleport.enabled = false;
-	        	textField.setText("");
 	        	Mode = "Empty";
 	        	player = null;
-	        	
-	        	break;
-	        
-	        
-	        	
-	        case 3:
+	    	}else if (button.id == players.size() + 5){
+
+	    	
+
 	        	if(this.player != null && Mode == "Valid"){
 	        		
 	        		Minecraft.getMinecraft().thePlayer.setLocationAndAngles((int)this.player.posX, (int)this.player.posY, (int)this.player.posZ, Minecraft.getMinecraft().thePlayer.rotationYaw, Minecraft.getMinecraft().thePlayer.rotationPitch);
 	        		Minecraft.getMinecraft().thePlayer.closeScreen();
 	        	}
 	        	
-	        	break;
 	        
-	        }
+	    	}else{
+	    		
+	    		if(this.players.get(button.id) != null){
+	    			
+	    			
+
+
+	    		       
+	    		       if(players.get(button.id) != null){
+	    		    	   
+	    		    	   Mode = "Valid";
+	    		    	   player = players.get(button.id);
+	    		       }
+	    		}
+	    	}
 	        
 
 	        }
