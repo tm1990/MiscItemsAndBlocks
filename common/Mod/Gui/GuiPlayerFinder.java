@@ -16,6 +16,8 @@ import net.minecraft.util.StatCollector;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 
+import Mod.GuiObjects.GuiColorButton;
+
 import cpw.mods.fml.common.FMLCommonHandler;
 
 public class GuiPlayerFinder extends GuiScreen{
@@ -40,12 +42,14 @@ public class GuiPlayerFinder extends GuiScreen{
     
     protected int guiLeft;
     protected int guiTop;
+
     
     public ArrayList<EntityPlayer> players = new ArrayList<EntityPlayer>();
     
     @Override
     public void updateScreen()
     {
+    	
     	
     	players.clear();
     	

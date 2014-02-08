@@ -33,7 +33,7 @@ public class GuiComputerScreen extends GuiContainer{
 	GuiButton Button_Hide;
 	
 	GuiButton Button_Game_1;
-	GuiButton Button_2;
+	GuiButton Button_Game_2;
 	
 	GuiButton Button_3;
 	GuiButton Button_4;
@@ -86,7 +86,7 @@ public class GuiComputerScreen extends GuiContainer{
 	        Button_PlayerFinder = new GuiButton(2, posX + 90, posY + 4, ButtonSizeX, ButtonSizeY, StatCollector.translateToLocal("gui.string.playerfinder"));
 	        Button_Game_1 = new GuiButton(3, posX + 170, posY + 4, ButtonSizeX, ButtonSizeY, "Tic Tac Toe");
 	        
-	        Button_2 = new GuiButton(4, posX + 8, posY + 4 + (ButtonSizeY * 2) - 16, ButtonSizeX, ButtonSizeY, "");
+	        Button_Game_2 = new GuiButton(4, posX + 8, posY + 4 + (ButtonSizeY * 2) - 16, ButtonSizeX, ButtonSizeY, "Master Mind");
 	        Button_3 = new GuiButton(5, posX + 90, posY + 4 + (ButtonSizeY * 2) - 16, ButtonSizeX, ButtonSizeY, "");
 	        Button_4 = new GuiButton(6, posX + 170, posY + 4 + (ButtonSizeY * 2) - 16, ButtonSizeX, ButtonSizeY, "");
 	        
@@ -101,7 +101,6 @@ public class GuiComputerScreen extends GuiContainer{
 	        Button_Hide = new GuiButton(13, posX + 218, posY + 82, 33, 16, "Hide");
 	        
 	        
-	        Button_2.enabled = false;
 	        Button_3.enabled = false;
 	        Button_4.enabled = false;
 	        Button_5.enabled = false;
@@ -116,7 +115,7 @@ public class GuiComputerScreen extends GuiContainer{
 	        buttonList.add(Button_Hide);
 	        
 	        buttonList.add(Button_Game_1);
-	        buttonList.add(Button_2);
+	        buttonList.add(Button_Game_2);
 	        buttonList.add(Button_3);
 	        buttonList.add(Button_4);
 	        buttonList.add(Button_5);
@@ -146,6 +145,10 @@ public class GuiComputerScreen extends GuiContainer{
 	        	
 	        case 3:
 	        	Minecraft.getMinecraft().thePlayer.openGui(Main.instance, GuiHandler.TicTacToeID, Minecraft.getMinecraft().thePlayer.worldObj, 0, 0, 0);
+	        	break;
+	        	
+	        case 4:
+	        	Minecraft.getMinecraft().thePlayer.openGui(Main.instance, GuiHandler.MasterMindID, Minecraft.getMinecraft().thePlayer.worldObj, 0, 0, 0);
 	        	break;
 	        
 	        case 13:
@@ -181,7 +184,7 @@ public class GuiComputerScreen extends GuiContainer{
 		        
 		        if(Hide){
 		        	Button_Game_1.drawButton = false;
-			        Button_2.drawButton = false;
+		        	Button_Game_2.drawButton = false;
 			        Button_3.drawButton = false;
 			        Button_4.drawButton = false;
 			        Button_5.drawButton = false;
@@ -198,7 +201,7 @@ public class GuiComputerScreen extends GuiContainer{
 			        
 		        }else{
 		        	Button_Game_1.drawButton = true;
-			        Button_2.drawButton = true;
+		        	Button_Game_2.drawButton = true;
 			        Button_3.drawButton = true;
 			        Button_4.drawButton = true;
 			        Button_5.drawButton = true;

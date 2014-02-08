@@ -49,6 +49,7 @@ public class GuiHandler implements IGuiHandler{
     public static final int ChatID = 2;
     public static final int PlayerFindID = 4;
     public static final int TicTacToeID = 5;
+    public static final int MasterMindID = 6;
 	
     @Override
 
@@ -172,6 +173,10 @@ public class GuiHandler implements IGuiHandler{
         case TicTacToeID:
         	
             	return new GuiGame1Select();
+            	
+        case MasterMindID:
+        	
+        	return new GuiGame_2();
             	
         }
         
